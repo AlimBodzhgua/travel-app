@@ -5,7 +5,7 @@ import {Routes, Route} from 'react-router-dom';
 const ProfilePage = lazy(() => import('pages/ProfilePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
-const TravelsPage = lazy(() => import('pages/LoginPage'));
+const TravelsPage = lazy(() => import('pages/TravelsPage'));
 
 const AppRouter: FC = () => {
 	return (
