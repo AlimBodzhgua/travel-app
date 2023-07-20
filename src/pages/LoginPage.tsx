@@ -1,9 +1,16 @@
 import {FC} from 'react';
+import LoginForm from 'components/AuthForms/LoginForm';
+import NavBar from 'components/navbar/NavBar';
+import classes from './pages.module.css';
 
 const LoginPage: FC = () => {
 	return (
-		<div>
-			<h1>SignIn Page</h1>
+		<div className={classes.container}>
+			<NavBar />
+			<div className={classes.page__center}>
+				<h1>Login in Account</h1>
+				<LoginForm />
+			</div>
 		</div>
 	)
 }
