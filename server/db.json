@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "email": "alim@mail.ru",
+      "password": "$2a$10$kpUldE4GFMBGOuz5o5PKOe7c92P9493j7/4hq2xdPlLbtsD6vX.W.",
+      "login": "alimbo1",
+      "travels": [],
+      "id": 1
+    }
+  ]
+}

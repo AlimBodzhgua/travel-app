@@ -1,6 +1,9 @@
 import {FC} from 'react';
-import classes from './auth.module.css';
 import {useForm, SubmitHandler} from 'react-hook-form';
+import { useAppDispatch } from 'hooks/redux';
+import { registerUser } from 'redux/actions/userActions';
+import { IUser } from 'types/types'; 
+import classes from './auth.module.css';
 
 interface IFormInput {
 	login: string;
@@ -10,6 +13,7 @@ interface IFormInput {
 
 
 const RegisterForm: FC = () => {
+	const dispatch = useAppDispatch();
 	const {
 		register,
 		handleSubmit, 
@@ -18,7 +22,8 @@ const RegisterForm: FC = () => {
 
 
 	const onSubmit:SubmitHandler<IFormInput> = (e) => {
-		console.log(e);
+		const user = {...e, travels: []} as IUser;
+		dispatch(registerUser(user));
 	}
 
 	return (
