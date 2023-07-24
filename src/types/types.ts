@@ -1,3 +1,4 @@
+import {Dayjs} from 'dayjs';
 
 export interface IUser {
 	id?: number;
@@ -9,8 +10,8 @@ export interface IUser {
 
 export interface ITravel {
 	name: string;
-	dateStart: number;
-	dateEnd: number;
+	dateStart: Dayjs;
+	dateEnd: Dayjs;
 	backlog: string[]
 	groups: IGroup[];
 }
