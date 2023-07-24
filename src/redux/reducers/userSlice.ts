@@ -24,7 +24,7 @@ export const userSlice = createSlice({
 		setUser(state, action: PayloadAction<IUser>) {
 			state.user = action.payload;
 			state.isAuth = true;
-		}
+		},
 	},
 	extraReducers: {
 		[registerUser.pending.type]: (state, action: PayloadAction<string>) => {

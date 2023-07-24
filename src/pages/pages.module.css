@@ -11,5 +11,32 @@
 .container {
 	max-width: 980px;
 	width: 100%;
+
 	margin: 0 auto;
+}
+
+.header {
+	width: 100%;
+	margin: 35px 0;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+.page__title {
+	font-weight: 900;
+}
+
+.button {
+	background-color: skyblue;
+	border: none;
+	border-radius: 7px;
+	padding: 6px 9px;
+
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.button:hover {
+	cursor: pointer;
 }
