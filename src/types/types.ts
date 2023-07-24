@@ -9,6 +9,7 @@ export interface IUser {
 }
 
 export interface ITravel {
+	id: number;
 	name: string;
 	dateStart: Dayjs;
 	dateEnd: Dayjs;
@@ -18,11 +19,13 @@ export interface ITravel {
 
 
 export interface IGroup {
+	id: number;
 	title: string;
 	cards:	ICard[];
 }
 
 export interface ICard {
+	id: number;
 	title: string;
 	description: string;
 }
