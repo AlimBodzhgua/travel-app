@@ -1,5 +1,5 @@
 import {FC, useEffect} from 'react';
-import {isUserLoggedIn} from 'utils/utils';
+import {isUserLoggedIn, saveUserToLocalStorage} from 'utils/utils';
 import {useAppDispatch, useAppSelector} from 'hooks/redux';
 import {userSlice} from 'redux/reducers/userSlice';
 import {IUser} from 'types/types';
@@ -21,6 +21,7 @@ const App: FC = () => {
     useEffect(() => {
         if (user !== null) {
             UserService.updateUser(user);
+            saveUserToLocalStorage(user);
         }
     }, [user])
 
