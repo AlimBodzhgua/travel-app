@@ -1,4 +1,5 @@
-import {IUser, IUserResponse} from 'types/types';
+import {IUser, ITravel, IUserResponse} from 'types/types';
+import dayjs, {Dayjs} from 'dayjs';
 
 export const getErrorMessage = (error: unknown):string => {
 	if (error instanceof Error) return error.message;
@@ -15,4 +16,25 @@ export const isUserLoggedIn = ():boolean => {
 
 export const modifyUserResponseObject = (data: IUserResponse):IUser => {
 	return {...data.user, password: data.accessToken}
+}
+
+export const createNewTravel = (
+	id: number, 
+	value: string, 
+	startDate: Dayjs, 
+	endDate: Dayjs
+): ITravel => {
+	return { 
+		id: id,
+		name: value,
+		dateStart: startDate.format('YYYY.MM.DD'),
+		dateEnd: endDate.format('YYYY.MM.DD'),
+		backlog: [],
+		groups: [],
+	}
+}
+
+export const stringToDayjsObject = (date: string):Dayjs => {
+	const jsDateObj = dayjs(date).toDate()
+	return dayjs(jsDateObj);
 }
