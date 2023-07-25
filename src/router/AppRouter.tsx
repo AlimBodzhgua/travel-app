@@ -6,6 +6,7 @@ const ProfilePage = lazy(() => import('pages/ProfilePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const TravelsPage = lazy(() => import('pages/TravelsPage'));
+const TravelDetailsPage = lazy(() => import('pages/TravelDetailsPage'));
 
 const AppRouter: FC = () => {
 	return (
@@ -16,6 +17,7 @@ const AppRouter: FC = () => {
 					<Route path='/register' element={<RegisterPage/>}/>
 					<Route path='/login' 	element={<LoginPage/>}/>
 					<Route path='/travels' 	element={<TravelsPage/>}/>
+					<Route path='/travels/:id' element={<TravelDetailsPage/>} />
 				</Routes>
 			</Suspense>
 		</>
