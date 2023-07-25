@@ -14,7 +14,8 @@ export default class UserService {
 	}
 
 	static updateUser(user: IUser): void {
-		const body = {"travels": user.travels};
-		axios.patch(`http://localhost:8080/user/${user.id}`, body);
+		console.log(user);
+		const body = {'travels': user.travels};
+		axios.patch(`http://localhost:8080/users/${user.id}`, body);
 	}
 }
