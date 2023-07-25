@@ -1,5 +1,8 @@
-import React, {FC, useState, useRef, useEffect} from 'react';
+import {FC, useState, useRef, useEffect} from 'react';
+import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { userSlice } from 'redux/reducers/userSlice';
+import { createNewTravel } from 'utils/utils';
 import dayjs, { Dayjs } from 'dayjs';
 
 import classes from './travel.module.css';
@@ -9,9 +12,12 @@ interface TravelCreateFormProps {
 }
 
 const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
-	const [startDate, setStartDate] = useState<Dayjs | null>(dayjs(new Date()));
-	const [endDate, setEndDate] = useState<Dayjs | null>(dayjs(new Date()));
+	const [startDate, setStartDate] = useState<Dayjs | null>(dayjs());
+	const [endDate, setEndDate] = useState<Dayjs | null>(dayjs());
 	const [value, setValue] = useState<string>('');
+
+	const travels = useAppSelector(state => state.userReducer?.user?.travels);
+	const dispatch = useAppDispatch();
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
@@ -26,9 +32,18 @@ const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
 		setEndDate(e);
 	}
 
+	const handleSaveClick = () => { 	
+		if (startDate !== null && endDate !== null) {
+			let id: number;
+			travels?.length ? id = travels.length + 1 : id = 0;
+			const travel = createNewTravel(id, value, startDate, endDate);
+			dispatch(userSlice.actions.addTravel(travel));
+		}
+		setShowCreateForm(false);
+	}
 
-	const handleClick = () => { 	
-		console.log(startDate, endDate, value)
+	const handleCancelClick = () => {
+		setShowCreateForm(false);
 	}
 
 	return (
@@ -44,9 +59,8 @@ const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
 				<DatePicker
 					label='select travel start date'
 					onChange={handleStartChange}
-					views={['day', 'month', 'year']}
 					value={startDate}
-					disablePast={false}
+					disablePast={true}
 					slotProps={{ 
 						textField: { size: 'small'},
 					}}
@@ -55,15 +69,16 @@ const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
 				<DatePicker
 					label='select travel end date'
 					onChange={handleEndChange}
-					views={['day', 'month', 'year']}
-					disablePast={false}
+					value={endDate}
+					disablePast={true}
 					slotProps={{ 
 						textField: { size: 'small' },
 					}}
 				/>
 			</div>
 			<div className={classes.item__actions}>
-				<button className={classes.button}>save</button>
+				<button className={classes.button} onClick={handleSaveClick}>save</button>
+				<button className={classes.button} onClick={handleCancelClick}>cancel</button>
 			</div>
 		</li>
 	)
