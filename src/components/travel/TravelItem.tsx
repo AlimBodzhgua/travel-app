@@ -1,6 +1,7 @@
 import {FC, useState, useEffect} from 'react';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { stringToDayjsObject } from 'utils/utils';
+import { NavLink } from 'react-router-dom';
 import {Dayjs} from 'dayjs';
 import classes from './travel.module.css';
 
@@ -37,7 +38,12 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 					className={classes.item__input} 
 					placeholder={name} 
 				  />
-				: <div className={classes.item__title}>{name}</div>
+				: <div className={classes.item__title}>
+					<NavLink 
+						to={`http://localhost:3000/travels/${id}`}
+						className={classes.item__link}
+					>{name}</NavLink>
+				  </div>
 			}
 			<div className={classes.item__date}>
 				<DatePicker

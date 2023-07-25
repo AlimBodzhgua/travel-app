@@ -31,6 +31,15 @@
 	padding: 10px 5px;
 }
 
+.item__link {
+	text-decoration: none;
+	color: inherit;
+}
+
+.item__link:hover {
+	text-decoration: underline;
+}
+
 .item__date {
 	padding: 0px;
 	width: 47%;
