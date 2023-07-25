@@ -11,8 +11,8 @@ export interface IUser {
 export interface ITravel {
 	id: number;
 	name: string;
-	dateStart: Dayjs;
-	dateEnd: Dayjs;
+	dateStart: string;
+	dateEnd: string;
 	backlog: string[]
 	groups: IGroup[];
 }
