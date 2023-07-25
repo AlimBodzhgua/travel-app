@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {IUser} from 'types/types';
+import {IUser, ITravel} from 'types/types';
+import {Dayjs} from 'dayjs';
 import {registerUser, loginUser} from 'redux/actions/userActions';
 
 interface UserState {
@@ -25,6 +26,9 @@ export const userSlice = createSlice({
 			state.user = action.payload;
 			state.isAuth = true;
 		},
+		addTravel(state, action: PayloadAction<ITravel>) {
+			state.user?.travels.push(action.payload);
+		}
 	},
 	extraReducers: {
 		[registerUser.pending.type]: (state, action: PayloadAction<string>) => {
