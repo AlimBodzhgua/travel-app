@@ -1,5 +1,5 @@
 import {IUser, IUserResponse, IUserLogin} from 'types/types';
-import axios, {AxiosResponse} from 'axios';
+import axios from 'axios';
 
 
 export default class UserService {
@@ -14,7 +14,6 @@ export default class UserService {
 	}
 
 	static updateUser(user: IUser): void {
-		console.log(user);
 		const body = {'travels': user.travels};
 		axios.patch(`http://localhost:8080/users/${user.id}`, body);
 	}
