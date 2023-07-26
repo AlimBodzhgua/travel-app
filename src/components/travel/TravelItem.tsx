@@ -47,7 +47,7 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 			}
 			<div className={classes.item__date}>
 				<DatePicker
-					label='select travel start date'
+					label='travel start date'
 					value={startDate}
 					onChange={handleStartChange}
 					disablePast={true}
@@ -59,7 +59,7 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 				/>
 				<span className={classes.date__separator}>-</span>
 				<DatePicker
-					label='select travel end date'
+					label='travel end date'
 					value={endDate}
 					onChange={handleEndChange}
 					disablePast={true}

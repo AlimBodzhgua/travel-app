@@ -19,16 +19,11 @@
 	box-shadow: -1px 8px 25px -12px rgba(0,0,0,0.75);
 }
 
-.item__title,
-.item__input {
+.item__title {
 	width: 48%;
 	margin-right: 10px;
 
 	font-size: 14px;
-}
-
-.item__input {
-	padding: 10px 5px;
 }
 
 .item__link {
