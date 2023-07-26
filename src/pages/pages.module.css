@@ -40,3 +40,8 @@
 .button:hover {
 	cursor: pointer;
 }
+
+.details {
+	display: flex;
+	justify-content: space-between;
+}

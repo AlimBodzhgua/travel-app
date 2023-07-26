@@ -2,7 +2,7 @@ import {FC, useState} from 'react';
 import {useAppSelector} from 'hooks/redux';
 import NavBar from 'components/navbar/NavBar';
 import TravelList from 'components/travel/TravelList';
-import TravelCreateForm from 'components/travel/TravelCreateForm';
+import TravelCreateForm from 'components/CreateForms/TravelCreateForm/TravelCreateForm';
 import classes from './pages.module.css';
 
 
