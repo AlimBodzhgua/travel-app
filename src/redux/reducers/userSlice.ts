@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {IUser, ITravel} from 'types/types';
+import {IUser, ITravel, IBacklog} from 'types/types';
 import {Dayjs} from 'dayjs';
 import {registerUser, loginUser} from 'redux/actions/userActions';
 
@@ -28,7 +28,13 @@ export const userSlice = createSlice({
 		},
 		addTravel(state, action: PayloadAction<ITravel>) {
 			state.user?.travels.push(action.payload);
-		}
+		},
+		deleteTravel(state, action: PayloadAction<number>) {
+			state.user?.travels.splice(state.user?.travels.findIndex((travel) => 
+				travel.id === action.payload
+			), 1);
+
+		},
 	},
 	extraReducers: {
 		[registerUser.pending.type]: (state, action: PayloadAction<string>) => {
