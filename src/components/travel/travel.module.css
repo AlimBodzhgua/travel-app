@@ -35,6 +35,15 @@
 	text-decoration: underline;
 }
 
+.item__input {
+	width: 48%;
+
+	margin-right: 10px;
+	padding: 10px 5px;
+
+	font-size: 14px;
+}
+
 .item__date {
 	padding: 0px;
 	width: 47%;
