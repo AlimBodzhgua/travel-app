@@ -16,7 +16,9 @@ const TravelDetailsPage: FC = () => {
 		<div>
 			<div className={classes.container}>
 				<NavBar />
-				Details Page {id}
+				<div>
+					<h1>{travel?.name}</h1>
+				</div>
 				<div className={classes.details}>
 					{travel && 
 						<BacklogList backlogs={travel.backlog}/>
