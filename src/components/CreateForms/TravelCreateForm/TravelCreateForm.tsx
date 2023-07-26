@@ -34,8 +34,7 @@ const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
 
 	const handleSaveClick = () => { 	
 		if (startDate !== null && endDate !== null) {
-			let id: number;
-			travels?.length ? id = travels.length + 1 : id = 0;
+			const id: number = Date.now();
 			const travel = createNewTravel(id, value, startDate, endDate);
 			dispatch(userSlice.actions.addTravel(travel));
 		}

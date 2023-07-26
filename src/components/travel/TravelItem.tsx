@@ -2,6 +2,8 @@ import {FC, useState, useEffect} from 'react';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { stringToDayjsObject } from 'utils/utils';
 import { NavLink } from 'react-router-dom';
+import { userSlice } from 'redux/reducers/userSlice';
+import { useAppDispatch } from 'hooks/redux';
 import {Dayjs} from 'dayjs';
 import classes from './travel.module.css';
 
@@ -16,6 +18,7 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 	const [startDate, setStartDate] = useState<Dayjs | null>(null);
 	const [endDate, setEndDate] = useState<Dayjs | null>(null);
 	const [editable, setEditable] = useState<boolean>(false);
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		setStartDate(stringToDayjsObject(dateStart));
@@ -28,6 +31,10 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 
 	const handleEndChange = (e: (Dayjs | null)) => {
 		setEndDate(e);
+	}
+
+	const handleDeleteClick = () => {
+		dispatch(userSlice.actions.deleteTravel(id));
 	}
 
 	return (
@@ -72,7 +79,7 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 			</div>
 			<div className={classes.item__actions}>
 				<button className={classes.button} onClick={() => setEditable(!editable)}>edit</button>
-				<button className={classes.button}>delete</button>
+				<button className={classes.button} onClick={handleDeleteClick}>delete</button>
 			</div>
 		</li>
 	)
