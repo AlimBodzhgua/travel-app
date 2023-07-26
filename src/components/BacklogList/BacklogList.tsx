@@ -1,10 +1,13 @@
 import {FC, useState} from 'react';
+import { useParams } from 'react-router-dom';
+import { IBacklog } from 'types/types';
+import { useAppSelector } from 'hooks/redux';
 import BacklogItem from './BacklogItem';
 import BacklogCreateForm from 'components/CreateForms/BacklogCreateForm/BacklogCreateForm';
 import classes from './backlog.module.css';
 
 interface BacklogListProps {
-	backlogs: string[]
+	backlogs: IBacklog[]
 }
 
 const BacklogList: FC<BacklogListProps> = ({backlogs}) => {
@@ -18,7 +21,12 @@ const BacklogList: FC<BacklogListProps> = ({backlogs}) => {
 		<div className={classes.backlog}>
 			<h2 className={classes.backlog__title}>Backlog</h2>	
 			<ul className={classes.backlog__list}>
-				<BacklogItem/>
+				{backlogs.map(backlog => 
+					<BacklogItem 
+						key={backlog.id}
+						backlog={backlog}
+					/>
+				)}
 			</ul>
 			{showCreateForm 
 				?

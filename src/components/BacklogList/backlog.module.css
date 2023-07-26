@@ -5,16 +5,16 @@
 	background-color: lightgrey;
 	padding: 20px 16px;
 
-	width: 30%;
+	width: 35%;
 }
 
 .backlog__title {
-
+	font-weight: 500;
 }
 
 .backlog__list {
 	width: 100%;
-	margin: 12px 0;
+	margin: 15px 0;
 }
 
 .item {

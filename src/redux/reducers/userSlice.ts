@@ -33,8 +33,14 @@ export const userSlice = createSlice({
 			state.user?.travels.splice(state.user?.travels.findIndex((travel) => 
 				travel.id === action.payload
 			), 1);
-
 		},
+		addBacklog(state, action: PayloadAction<{id: string, backlog: IBacklog}>) {
+			state.user?.travels.forEach(travel => {
+				if (travel.id === Number(action.payload.id)) {
+					travel.backlog.push(action.payload.backlog);
+				}
+			})
+		}
 	},
 	extraReducers: {
 		[registerUser.pending.type]: (state, action: PayloadAction<string>) => {

@@ -13,10 +13,14 @@ export interface ITravel {
 	name: string;
 	dateStart: string;
 	dateEnd: string;
-	backlog: string[]
+	backlog: IBacklog[]
 	groups: IGroup[];
 }
 
+export interface IBacklog {
+	id: number;
+	name: string;
+}
 
 export interface IGroup {
 	id: number;
