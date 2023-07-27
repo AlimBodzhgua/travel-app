@@ -1,7 +1,5 @@
 import {FC, useState} from 'react';
-import { useParams } from 'react-router-dom';
 import { IBacklog } from 'types/types';
-import { useAppSelector } from 'hooks/redux';
 import BacklogItem from './BacklogItem';
 import BacklogCreateForm from 'components/CreateForms/BacklogCreateForm/BacklogCreateForm';
 import classes from './backlog.module.css';

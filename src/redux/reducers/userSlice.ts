@@ -40,6 +40,15 @@ export const userSlice = createSlice({
 					travel.backlog.push(action.payload.backlog);
 				}
 			})
+		},
+		deleteBacklog(state, action: PayloadAction<{travelId: number, backlogId: number}>) {
+			state.user?.travels.forEach((travel) => {
+				if (travel.id === action.payload.travelId) {
+					travel.backlog.splice(travel.backlog.findIndex((item) => 
+						item.id === action.payload.backlogId
+					), 1);
+				}
+			})
 		}
 	},
 	extraReducers: {

@@ -4,7 +4,29 @@
       "email": "alim@mail.ru",
       "password": "$2a$10$kpUldE4GFMBGOuz5o5PKOe7c92P9493j7/4hq2xdPlLbtsD6vX.W.",
       "login": "alimbo1",
-      "travels": [],
+      "travels": [
+        {
+          "id": 1690389681207,
+          "name": "new t1",
+          "dateStart": "2023.07.26",
+          "dateEnd": "2023.07.26",
+          "backlog": [
+            {
+              "id": 1690390323330,
+              "name": "new back1"
+            }
+          ],
+          "groups": []
+        },
+        {
+          "id": 1690389687014,
+          "name": "new t2",
+          "dateStart": "2023.07.26",
+          "dateEnd": "2023.07.26",
+          "backlog": [],
+          "groups": []
+        }
+      ],
       "id": 1
     }
   ]
