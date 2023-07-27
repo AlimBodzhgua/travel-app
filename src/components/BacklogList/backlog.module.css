@@ -30,6 +30,25 @@
 	justify-content: space-between;
 }
 
+.item__name {
+	height: 100%;
+	width: 100%;
+}
+
+.item__input {
+	height: 100%;
+	width: 100%;
+
+	border: none;
+	border-bottom: 1px solid #000;
+	color: inherit;
+	font-size: inherit;
+}
+
+.item__input:focus {
+	outline: none;
+}
+
 .item__actions {
 	display: flex;
 	justify-content: space-between;

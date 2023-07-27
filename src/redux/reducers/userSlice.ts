@@ -49,6 +49,21 @@ export const userSlice = createSlice({
 					), 1);
 				}
 			})
+		},
+		editBacklog(state, action: PayloadAction<{
+			travelId: number, 
+			backlogId: number, 
+			value: string}>
+		) {
+			state.user?.travels.forEach((travel) => {
+				if (travel.id === action.payload.travelId) {
+					travel.backlog.forEach(item => {
+						if (item.id === action.payload.backlogId) {
+							item.name = action.payload.value;
+						}
+					})
+				}
+			})
 		}
 	},
 	extraReducers: {

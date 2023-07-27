@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, useState, useRef, useEffect} from 'react';
 import {IBacklog} from 'types/types';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from 'hooks/redux';
@@ -10,25 +10,61 @@ interface BacklogItemProps {
 }
 
 const BacklogItem: FC<BacklogItemProps> = ({backlog}) => {
+	const [value, setValue] = useState<string>('');
+	const [editable, setEditable] = useState<boolean>(false);
 	const { id } = useParams<{id?: string}>();
 	const dispatch = useAppDispatch();
+	const inputRef = useRef<HTMLInputElement>(null)
 
 	const handleEditClick = () => {
-		console.log('edit', backlog.id);
+		setEditable(!editable);
 	}
+
+	useEffect(() => {
+		if (editable === true) {
+			inputRef.current?.focus();
+			setValue(backlog.name);
+		}
+	}, [editable])
 
 	const handleDeleteClick = () => {
 		dispatch(userSlice.actions.deleteBacklog({
 			travelId: Number(id), 
 			backlogId: backlog.id,
 		}))
-		console.log('delete', backlog.id);
+	}
+
+	const handleSaveClick = () => {
+		dispatch(userSlice.actions.editBacklog({
+			travelId: Number(id),
+			backlogId: backlog.id,
+			value: value,
+		}))
+		setEditable(false);
 	}
 
 	return (
 		<li className={classes.item}>
-			<div>{backlog.name}</div>
+			{editable 
+				?
+					<input 
+						type="text" 
+						ref={inputRef}
+						placeholder={backlog.name}
+						value={value}
+						onChange={(e) => setValue(e.target.value)}
+						className={classes.item__input}
+					/>
+				:   <div className={classes.item__name}>{backlog.name}</div>
+			}
+			
 			<div className={classes.item__actions}>
+				{editable && 
+					<button 
+						onClick={handleSaveClick}
+						className={classes.delete}
+					>&#x2714;</button>
+				}
 				<button 
 					onClick={handleEditClick}
 					className={classes.edit}
