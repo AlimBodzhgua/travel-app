@@ -14,13 +14,15 @@
             {
               "id": 1690390323330,
               "name": "new first backlog"
-            },
-            {
-              "id": 1690448738938,
-              "name": "drive to airport23"
             }
           ],
-          "groups": []
+          "groups": [
+            {
+              "id": 1690476832598,
+              "title": "New group1",
+              "cards": []
+            }
+          ]
         },
         {
           "id": 1690389687014,

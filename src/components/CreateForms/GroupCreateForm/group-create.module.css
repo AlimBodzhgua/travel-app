@@ -1,0 +1,48 @@
+
+.form {
+	width: 100%;
+	padding: 15px 10px;
+
+	display: flex;
+	justify-content: space-between;
+
+	background-color: lightblue;
+	border-radius: 5px;
+}
+
+.form__input {
+	width: 90%;
+	padding: 7px;
+	font-size: 18px;
+}
+
+.form__actions {
+	width: 10%;
+	margin-left: 2px;
+
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.save,
+.cancel {
+	background: none;
+	border: none;
+}
+
+.cancel {
+	font-weight: 900;
+	
+	padding: 2px 4px;
+	font-size: 19px;
+}
+
+.save {
+	padding: 2px 4px;
+	font-size: 19px;
+}
+
+.save:hover,
+.cancel:hover {
+	cursor: pointer;
+}

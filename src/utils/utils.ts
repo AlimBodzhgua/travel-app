@@ -1,4 +1,4 @@
-import {IUser, ITravel, IUserResponse} from 'types/types';
+import {IUser, ITravel, IUserResponse, IGroup} from 'types/types';
 import dayjs, {Dayjs} from 'dayjs';
 
 export const getErrorMessage = (error: unknown):string => {
@@ -37,4 +37,8 @@ export const createNewTravel = (
 export const stringToDayjsObject = (date: string):Dayjs => {
 	const jsDateObj = dayjs(date).toDate()
 	return dayjs(jsDateObj);
+}
+
+export const createNewGroup = (title: string):IGroup => {
+	return {id: Date.now(), title, cards: []}
 }

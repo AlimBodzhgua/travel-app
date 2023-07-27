@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom';
 import {useAppSelector} from 'hooks/redux';
 import NavBar from 'components/navbar/NavBar';
 import BacklogList from 'components/BacklogList/BacklogList';
+import Groups from 'components/Groups/Groups';
 import classes from './pages.module.css';
 
 const TravelDetailsPage: FC = () => {
@@ -23,7 +24,7 @@ const TravelDetailsPage: FC = () => {
 					{travel && 
 						<BacklogList backlogs={travel.backlog}/>
 					}
-					<div>Cards list</div>
+					<Groups />
 				</div>
 			</div>
 		</div>

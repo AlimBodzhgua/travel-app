@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {IUser, ITravel, IBacklog} from 'types/types';
+import {IUser, ITravel, IBacklog, IGroup} from 'types/types';
 import {Dayjs} from 'dayjs';
 import {registerUser, loginUser} from 'redux/actions/userActions';
 
@@ -62,6 +62,13 @@ export const userSlice = createSlice({
 							item.name = action.payload.value;
 						}
 					})
+				}
+			})
+		},
+		addGroup(state, action: PayloadAction<{id: number, group: IGroup}>) {
+			state.user?.travels.forEach((travel) => {
+				if (travel.id === action.payload.id) {
+					travel.groups.push(action.payload.group);
 				}
 			})
 		}

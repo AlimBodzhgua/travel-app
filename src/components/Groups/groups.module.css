@@ -1,0 +1,21 @@
+
+.groups {
+	width: 63%;
+	margin-left: 15px;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.add {
+	background: none;
+	border: none;
+
+	font-weight: 700;
+	font-size: 14px;
+	align-self: end;
+}
+
+.add:hover {
+	cursor: pointer;
+}
