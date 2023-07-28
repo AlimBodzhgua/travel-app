@@ -10,6 +10,7 @@
 .add {
 	background: none;
 	border: none;
+	margin: 5px 0;
 
 	font-weight: 700;
 	font-size: 14px;
@@ -18,4 +19,63 @@
 
 .add:hover {
 	cursor: pointer;
+}
+
+.list {
+	list-style: none;
+}
+
+.item {
+	width: 100%;
+	padding: 15px 10px;
+	margin-bottom: 15px;
+
+	background-color: lightblue;
+	border-radius: 5px;
+}
+
+.item__header {
+	margin-bottom: 17px;	
+	display: flex;
+	justify-content: space-between;
+}
+
+.item__title {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.item__actions {
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.edit,
+.delete {
+	border: none;
+	background: none;
+
+	font-weight: 900;
+	font-size: 18px;
+}
+
+.edit {
+	background-image: url('assets/icons/edit.svg');
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	color: transparent;
+
+	width: 18px;
+}
+
+.edit:hover,
+.delete:hover {
+	cursor: pointer;
+}
+
+.item__text {
+	margin-bottom: 17px;
+	font-weight: 500;
 }
