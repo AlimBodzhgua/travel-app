@@ -19,16 +19,35 @@
 	box-shadow: -1px 8px 25px -12px rgba(0,0,0,0.75);
 }
 
+.list__item_details {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+
+	padding: 15px 0;
+	margin: 10px 0;
+	border-radius: 8px;
+}
+
 .item__title {
 	width: 48%;
 	margin-right: 10px;
-
-	font-size: 14px;
 }
 
 .item__link {
 	text-decoration: none;
 	color: inherit;
+	font-size: 14px;
+}
+
+.item__link_details {
+	text-decoration: none;
+	color: inherit;
+	font-size: 22px;
+	font-weight: 500;
+
+	pointer-events: none;
 }
 
 .item__link:hover {

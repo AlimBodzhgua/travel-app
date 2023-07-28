@@ -1,7 +1,7 @@
 import {FC, useState, useEffect} from 'react';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { stringToDayjsObject } from 'utils/utils';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { userSlice } from 'redux/reducers/userSlice';
 import { useAppDispatch } from 'hooks/redux';
 import {Dayjs} from 'dayjs';
@@ -18,6 +18,7 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 	const [startDate, setStartDate] = useState<Dayjs | null>(null);
 	const [endDate, setEndDate] = useState<Dayjs | null>(null);
 	const [editable, setEditable] = useState<boolean>(false);
+	const location = useLocation();
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
@@ -37,18 +38,29 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 		dispatch(userSlice.actions.deleteTravel(id));
 	}
 
+	const handleEditClick = () => {
+		setEditable(!editable);
+	}
+
 	return (
-		<li className={classes.list__item}>
+		<li className={
+			location.pathname === `/travels/${id}` 
+				? classes.list__item_details
+				: classes.list__item
+		}>
 			{editable 
 				? <input 
 					type="text" 
-					className={classes.item__input} 
+					className={classes.item__input}
 					placeholder={name} 
 				  />
 				: <div className={classes.item__title}>
 					<NavLink 
 						to={`http://localhost:3000/travels/${id}`}
-						className={classes.item__link}
+						className={location.pathname === `/travels/${id}` 
+								? classes.item__link_details
+								: classes.item__link
+						}
 					>{name}</NavLink>
 				  </div>
 			}
@@ -78,7 +90,7 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 				/>
 			</div>
 			<div className={classes.item__actions}>
-				<button className={classes.button} onClick={() => setEditable(!editable)}>edit</button>
+				<button className={classes.button} onClick={handleEditClick}>edit</button>
 				<button className={classes.button} onClick={handleDeleteClick}>delete</button>
 			</div>
 		</li>

@@ -4,6 +4,7 @@ import {useAppSelector} from 'hooks/redux';
 import NavBar from 'components/navbar/NavBar';
 import BacklogList from 'components/BacklogList/BacklogList';
 import Groups from 'components/Groups/Groups';
+import TravelItem from 'components/travel/TravelItem';
 import classes from './pages.module.css';
 
 const TravelDetailsPage: FC = () => {
@@ -17,15 +18,20 @@ const TravelDetailsPage: FC = () => {
 		<div>
 			<div className={classes.container}>
 				<NavBar />
-				<div>
-					<h1>{travel?.name}</h1>
-				</div>
-				<div className={classes.details}>
-					{travel && 
-						<BacklogList backlogs={travel.backlog}/>
-					}
-					<Groups />
-				</div>
+				{travel && 
+					<>
+						<TravelItem 
+							id={travel.id}
+							name={travel.name}
+							dateStart={travel.dateStart}
+							dateEnd={travel.dateEnd}
+						/>
+						<div className={classes.details}>
+							<BacklogList backlogs={travel.backlog}/>
+							<Groups />
+						</div>
+					</>
+				}
 			</div>
 		</div>
 	)
