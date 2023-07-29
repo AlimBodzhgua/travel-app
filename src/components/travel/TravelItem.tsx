@@ -7,6 +7,7 @@ import {Dayjs} from 'dayjs';
 import classes from './travel.module.css';
 import DateRangePicker from 'components/DateRangePicker/DateRangePicker';
 
+
 interface TravelItemProps {
 	id: number;
 	name: string;
@@ -18,12 +19,14 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 	const [startDate, setStartDate] = useState<Dayjs | null>(null);
 	const [endDate, setEndDate] = useState<Dayjs | null>(null);
 	const [editable, setEditable] = useState<boolean>(false);
+	const [value, setValue] = useState<string>('');
 	const location = useLocation();
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		setStartDate(stringToDayjsObject(dateStart));
 		setEndDate(stringToDayjsObject(dateEnd));
+		setValue(name);
 	}, [])
 
 	const handleDeleteClick = () => {
@@ -32,6 +35,18 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 
 	const handleEditClick = () => {
 		setEditable(!editable);
+	}
+
+	const handleSaveClick = () => {
+		if (startDate && endDate) {
+			dispatch(userSlice.actions.editTravel({
+				id: id,
+				name: value,
+				dateStart: startDate.format('YYYY.MM.DD'),
+				dateEnd: endDate.format('YYYY.MM.DD'),
+			}))
+		}
+		setEditable(false);
 	}
 
 	return (
@@ -47,8 +62,11 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 						autoFocus
 						className={classes.item__input}
 						placeholder={name} 
+						value={value}
+						onChange={(e) => setValue(e.target.value)}
 				  	/>
 				  	<button 
+				  		onClick={handleSaveClick}
 						className={classes.save}
 					>&#x2714;</button>
 				  </div>

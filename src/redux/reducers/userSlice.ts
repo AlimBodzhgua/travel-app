@@ -34,6 +34,17 @@ export const userSlice = createSlice({
 				travel.id === action.payload
 			), 1);
 		},
+		editTravel(state, action: PayloadAction<
+			Omit<ITravel, 'backlog' | 'groups'>
+		>) {
+			state.user?.travels.forEach(travel => {
+				if (travel.id === action.payload.id) {
+					travel.name = action.payload.name;
+					travel.dateStart = action.payload.dateStart;
+					travel.dateEnd = action.payload.dateEnd
+				}
+			})
+		},
 		addBacklog(state, action: PayloadAction<{id: string, backlog: IBacklog}>) {
 			state.user?.travels.forEach(travel => {
 				if (travel.id === Number(action.payload.id)) {
