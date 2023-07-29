@@ -54,35 +54,12 @@
 	text-decoration: underline;
 }
 
-.input__handler {
-	width: 48%;
-	margin-right: 10px;
-	position: relative;
-}
 
 .item__input {
-	padding: 10px 34px 10px 10px;
-	width: 100%;
+	width: 44%;
+	padding: 10px;
 	font-size: 14px;
-}
-
-
-.save {
-	position: absolute;
-	top: 2px;
-	right: 2px;
-
-	height: 90%;
-	width: 30px;
-
-	font-weight: 500;
-	font-size: 16px;
-
-	border: none;
-}
-
-.save:hover {
-	cursor: pointer;
+	margin-right: 10px;
 }
 
 .item__date {
@@ -106,9 +83,9 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: center;
+	justify-content: end;
 
-	width: 8%;
+	width: fit-content;
 
 	gap: 5px;
 	padding: 0 3px;
@@ -140,7 +117,19 @@
 	background-image: url('assets/icons/delete.svg');
 }
 
+.save {
+	width: 32px;
+	height: 37px;
+	padding: 2px 0;
+
+	font-weight: 500;
+	font-size: 16px;
+
+	border: none;
+}
+
 .edit:hover,
-.delete:hover {
+.delete:hover 
+.save:hover {
 	cursor: pointer;
 }
