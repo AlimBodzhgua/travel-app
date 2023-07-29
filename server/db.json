@@ -59,6 +59,14 @@
               "cards": []
             }
           ]
+        },
+        {
+          "id": 1690622352236,
+          "name": "Travel to Turkey",
+          "dateStart": "2023.07.30",
+          "dateEnd": "2023.07.31",
+          "backlog": [],
+          "groups": []
         }
       ],
       "id": 1

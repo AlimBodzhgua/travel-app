@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { userSlice } from 'redux/reducers/userSlice';
 import { createNewTravel } from 'utils/utils';
+import DateRangePicker from 'components/DateRangePicker/DateRangePicker';
 import dayjs, { Dayjs } from 'dayjs';
 
 import classes from './travel-create.module.css';
@@ -24,14 +25,6 @@ const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
 		inputRef.current?.focus()
 	}, [])
 
-	const handleStartChange = (e: Dayjs | null) => {
-		setStartDate(e);
-	}
-
-	const handleEndChange = (e: Dayjs | null) => {
-		setEndDate(e);
-	}
-
 	const handleSaveClick = () => { 	
 		if (startDate !== null && endDate !== null) {
 			const id: number = Date.now();
@@ -46,7 +39,7 @@ const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
 	}
 
 	return (
-		<form className={classes.form}>
+		<div className={classes.form}>
 			<input 
 				type="text" 
 				ref={inputRef}
@@ -54,32 +47,19 @@ const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
 				onChange={(e) => setValue(e.target.value)}
 				className={classes.form__input}
 			/>
-			<div className={classes.form__date}>
-				<DatePicker
-					label='select travel start date'
-					onChange={handleStartChange}
-					value={startDate}
-					disablePast={true}
-					slotProps={{ 
-						textField: { size: 'small'},
-					}}
-				/>
-				<span className={classes.date__separator}>-</span>
-				<DatePicker
-					label='select travel end date'
-					onChange={handleEndChange}
-					value={endDate}
-					disablePast={true}
-					slotProps={{ 
-						textField: { size: 'small' },
-					}}
-				/>
-			</div>
+			<DateRangePicker 
+				startDate={startDate}
+				setStartDate={setStartDate}
+				endDate={endDate}
+				setEndDate={setEndDate}
+				labelStart='select start date'
+				labelEnd='select end date'
+			/>
 			<div className={classes.form__actions}>
 				<button className={classes.button} onClick={handleSaveClick}>save</button>
 				<button className={classes.button} onClick={handleCancelClick}>cancel</button>
 			</div>
-		</form>
+		</div>
 	)
 }
 
