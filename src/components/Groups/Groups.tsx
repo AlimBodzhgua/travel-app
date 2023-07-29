@@ -17,7 +17,10 @@ const Groups: FC = () => {
 			<ul className={classes.list}>
 				{groups && 
 					groups.map(group => 
-						<GroupItem group={group}/>
+						<GroupItem 
+							key={group.id}
+							group={group}
+						/>
 					)
 				}
 			</ul>
