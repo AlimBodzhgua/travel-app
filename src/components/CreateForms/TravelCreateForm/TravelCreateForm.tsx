@@ -1,6 +1,5 @@
 import {FC, useState, useRef, useEffect} from 'react';
-import { useAppSelector, useAppDispatch } from 'hooks/redux';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { useAppDispatch } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
 import { createNewTravel } from 'utils/utils';
 import DateRangePicker from 'components/DateRangePicker/DateRangePicker';
@@ -17,7 +16,6 @@ const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
 	const [endDate, setEndDate] = useState<Dayjs | null>(dayjs());
 	const [value, setValue] = useState<string>('');
 
-	const travels = useAppSelector(state => state.userReducer?.user?.travels);
 	const dispatch = useAppDispatch();
 	const inputRef = useRef<HTMLInputElement>(null);
 
