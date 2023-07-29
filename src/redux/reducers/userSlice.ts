@@ -71,6 +71,30 @@ export const userSlice = createSlice({
 					travel.groups.push(action.payload.group);
 				}
 			})
+		},
+		deleteGroup(state, action: PayloadAction<{travelId: number, groupId: number}>) {
+			state.user?.travels.forEach((travel) => {
+				if (travel.id === action.payload.travelId) {
+					travel.groups.splice(travel.groups.findIndex(group => 
+						group.id === action.payload.groupId
+					), 1)
+				}
+			})
+		},
+		editGroup(state, action: PayloadAction<{
+			travelId: number,
+			groupId: number,
+			value: string
+		}>) {
+			state.user?.travels.forEach((travel) => {
+				if (travel.id === action.payload.travelId) {
+					travel.groups.forEach(group => {
+						if (group.id === action.payload.groupId) {
+							group.title = action.payload.value;
+						}
+					})
+				}
+			})
 		}
 	},
 	extraReducers: {

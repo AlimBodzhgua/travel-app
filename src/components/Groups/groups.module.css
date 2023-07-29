@@ -45,6 +45,15 @@
 	font-weight: 500;
 }
 
+.item__input {
+	width: 100%;
+
+	padding: 8px 5px;
+	margin-right: 10px;
+
+	font-size: 16px;
+}
+
 .item__actions {
 	display: flex;
 	justify-content: space-between;
@@ -52,7 +61,8 @@
 }
 
 .edit,
-.delete {
+.close,
+.save {
 	border: none;
 	background: none;
 
@@ -71,7 +81,8 @@
 }
 
 .edit:hover,
-.delete:hover {
+.close:hover,
+.save:hover {
 	cursor: pointer;
 }
 
