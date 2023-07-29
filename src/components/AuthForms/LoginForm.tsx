@@ -13,7 +13,11 @@ interface IFormInput {
 
 const LoginForm: FC = () => {
 	const dispatch = useAppDispatch();
-	const {register, handleSubmit} = useForm<IFormInput>()
+	const {
+		register, 
+		handleSubmit,
+		formState: { errors }
+	} = useForm<IFormInput>()
 
 	const onSubmit:SubmitHandler<IUserLogin> = (e) => {
 		dispatch(loginUser(e));
@@ -33,6 +37,9 @@ const LoginForm: FC = () => {
 					}
 				})}
 			/>
+			{errors.email && 
+				<div className={classes.error}>{errors.email.message}</div>
+			}
 			<input 
 				type="password" 
 				placeholder='Password'
@@ -44,6 +51,9 @@ const LoginForm: FC = () => {
 					}
 				})}
 			/>
+			{errors.password && 
+				<div className={classes.error}>{errors.password.message}</div>
+			}
 			<button type="submit" className={classes.btn}>login</button>
 		</form>
 	)
