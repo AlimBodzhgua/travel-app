@@ -6,33 +6,6 @@
       "login": "alimbo1",
       "travels": [
         {
-          "id": 1690389681207,
-          "name": "new t1",
-          "dateStart": "2023.07.26",
-          "dateEnd": "2023.07.26",
-          "backlog": [
-            {
-              "id": 1690390323330,
-              "name": "new first backlog"
-            }
-          ],
-          "groups": [
-            {
-              "id": 1690636183931,
-              "title": "new group231",
-              "cards": []
-            }
-          ]
-        },
-        {
-          "id": 1690389687014,
-          "name": "new t2",
-          "dateStart": "2023.07.26",
-          "dateEnd": "2023.07.26",
-          "backlog": [],
-          "groups": []
-        },
-        {
           "id": 1690555385246,
           "name": "Путешествие в Москву",
           "dateStart": "2023.07.28",

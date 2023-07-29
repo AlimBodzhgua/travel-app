@@ -54,13 +54,35 @@
 	text-decoration: underline;
 }
 
-.item__input {
+.input__handler {
 	width: 48%;
-
 	margin-right: 10px;
-	padding: 10px 5px;
+	position: relative;
+}
 
+.item__input {
+	padding: 10px 34px 10px 10px;
+	width: 100%;
 	font-size: 14px;
+}
+
+
+.save {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+
+	height: 90%;
+	width: 30px;
+
+	font-weight: 500;
+	font-size: 16px;
+
+	border: none;
+}
+
+.save:hover {
+	cursor: pointer;
 }
 
 .item__date {
@@ -82,13 +104,43 @@
 
 .item__actions {
 	display: flex;
-	flex-direction: column;
-	align-items: end;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 
-	width: 5%;
+	width: 8%;
+
+	gap: 5px;
 	padding: 0 3px;
 }
 
-.button {
-	width: 100%;
+.edit,
+.delete {
+	width: 32px;
+	height: 37px;
+	padding: 2px 0;
+	font-size: 0;
+
+	border: none;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	color: transparent;
+}
+
+.edit {
+	background-color: lightblue;
+
+	background-image: url('assets/icons/edit_white.svg');
+}
+
+.delete {
+	background-color: orangered;
+
+	background-image: url('assets/icons/delete.svg');
+}
+
+.edit:hover,
+.delete:hover {
+	cursor: pointer;
 }

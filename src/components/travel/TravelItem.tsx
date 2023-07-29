@@ -41,11 +41,17 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 				: classes.list__item
 		}>
 			{editable 
-				? <input 
-					type="text" 
-					className={classes.item__input}
-					placeholder={name} 
-				  />
+				? <div className={classes.input__handler}>
+					<input 
+						type="text" 
+						autoFocus
+						className={classes.item__input}
+						placeholder={name} 
+				  	/>
+				  	<button 
+						className={classes.save}
+					>&#x2714;</button>
+				  </div>
 				: <div className={classes.item__title}>
 					<NavLink 
 						to={`http://localhost:3000/travels/${id}`}
@@ -66,8 +72,15 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 				disabled={editable ? false : true}
 			/>
 			<div className={classes.item__actions}>
-				<button className={classes.button} onClick={handleEditClick}>edit</button>
-				<button className={classes.button} onClick={handleDeleteClick}>delete</button>
+				<button 
+					className={classes.edit} 
+					onClick={handleEditClick}
+				>edit</button>
+				<button 
+					className={classes.delete} 
+					onClick={handleDeleteClick}
+				>delete
+				</button>
 			</div>
 		</li>
 	)
