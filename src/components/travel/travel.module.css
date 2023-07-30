@@ -129,7 +129,7 @@
 }
 
 .edit:hover,
-.delete:hover 
+.delete:hover,
 .save:hover {
 	cursor: pointer;
 }
