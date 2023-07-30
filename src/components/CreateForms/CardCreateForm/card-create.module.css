@@ -1,0 +1,64 @@
+.form {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 3px;
+	height: 125px;
+
+	background-color: #fff;
+	border-radius: 10px;
+	overflow: hidden;
+
+	position: relative;
+}
+
+.form__input {
+	width: 35%;
+	border: none;
+
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.form__input:focus,
+.form__textarea:focus {
+	outline: none;
+}
+
+.form__separator {
+	width: 2.5px;
+	height: 95%;
+
+	border-radius: 5px;
+	background-color: #000;
+}
+
+.form__textarea {
+	width: 65%;
+	height: 100%;
+	padding: 10px;
+	font-family: inherit;
+
+	border: none;
+	resize: none;
+
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.close {
+	border: none;
+	background: none;
+
+	font-weight: 900;
+	font-size: 16px;
+
+	position: absolute;
+	top: 2px;
+	right: 5px;
+}
+
+.close:hover {
+	cursor: pointer;
+}

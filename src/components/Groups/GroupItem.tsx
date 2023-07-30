@@ -3,6 +3,7 @@ import { IGroup } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
+import CardCreateForm from 'components/CreateForms/CardCreateForm/CardCreateForm';
 import classes from './groups.module.css';
 	
 interface GroupItemProps {
@@ -10,6 +11,7 @@ interface GroupItemProps {
 }
 
 const GroupItem: FC<GroupItemProps> = ({group}) => {
+	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const [editable, setEditable] = useState<boolean>(false);
 	const [value, setValue] = useState<string>('');
 	const dispatch = useAppDispatch();
@@ -78,8 +80,22 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 			</div>
 			{group?.cards.length
 				? 	<div>Cards</div>
-				:   <div className={classes.item__text}>Nothing is planned<br/>
-						Add something here or transher from backlog
+				:   <div className={classes.item__empty}>
+						<div className={classes.empty__text}>
+							Nothing is planned<br/>
+							Add something here or transher from backlog
+						</div>
+						{showCreateForm 
+							? 
+								<CardCreateForm 
+									setShowCreateForm={setShowCreateForm}
+								/>
+							:
+								<button 
+									onClick={() => setShowCreateForm(true)}
+									className={classes.add}
+								>+ Add card</button>
+						}
 					</div>
 			}
 		</li>

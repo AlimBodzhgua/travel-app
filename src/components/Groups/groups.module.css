@@ -86,7 +86,12 @@
 	cursor: pointer;
 }
 
-.item__text {
+.item__empty {
+	display: flex;
+	flex-direction: column;
+}
+
+.empty__text {
 	margin-bottom: 17px;
 	font-weight: 500;
 }
