@@ -3,13 +3,14 @@ import {isUserLoggedIn, saveUserToLocalStorage} from 'utils/utils';
 import {useAppDispatch, useAppSelector} from 'hooks/redux';
 import {userSlice} from 'redux/reducers/userSlice';
 import {IUser} from 'types/types';
+import {selectUser} from 'redux/selectors/selectors';
 import UserService from 'API/UserService';
 import AppRouter from 'router/AppRouter';
 import "./App.css";
 
 const App: FC = () => {
     const dispatch = useAppDispatch();
-    const { user } = useAppSelector(state => state.userReducer);
+    const user = useAppSelector(selectUser);
 
     useEffect(() => {
         if (isUserLoggedIn()) {
@@ -25,11 +26,7 @@ const App: FC = () => {
         }
     }, [user])
 
-    return (
-        <>
-            <AppRouter />
-        </>
-    )
+    return <AppRouter/>
 }
 
 export default App;
