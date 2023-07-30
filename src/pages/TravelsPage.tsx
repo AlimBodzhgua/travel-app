@@ -15,7 +15,7 @@ const TravelsPage: FC = () => {
 
 	return (
 		<div>
-			<div className="container">
+			<div className={classes.container}>
 				<NavBar />
 				<header className={classes.header}>
 					<h1 className={classes.page__title}>Travels</h1>
