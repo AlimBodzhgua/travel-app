@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
 import CardCreateForm from 'components/CreateForms/CardCreateForm/CardCreateForm';
+import Modal from 'components/Modal/Modal';
 import classes from './groups.module.css';
 	
 interface GroupItemProps {
@@ -12,6 +13,7 @@ interface GroupItemProps {
 
 const GroupItem: FC<GroupItemProps> = ({group}) => {
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
+	const [showModal, setShowModal] = useState<boolean>(false);
 	const [editable, setEditable] = useState<boolean>(false);
 	const [value, setValue] = useState<string>('');
 	const dispatch = useAppDispatch();
@@ -21,11 +23,10 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 		setValue(group.title);			
 	}, [])
 
-	const handleEditClick = () => {
-		setEditable(!editable);
-	}
+	const handleEditClick = ():void => setEditable(!editable);
+	const handleDeleteClick = ():void => setShowModal(!showModal);
 
-	const handleSaveClick = () => {
+	const handleSaveClick = ():void => {
 		dispatch(userSlice.actions.editGroup({
 			travelId: Number(id),
 			groupId: group.id,
@@ -34,7 +35,7 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 		setEditable(false);
 	}
 
-	const handleDeleteClick = () => {
+	const deleteGroup = ():void => {
 		dispatch(userSlice.actions.deleteGroup({
 			travelId: Number(id),
 			groupId: group.id
@@ -70,6 +71,12 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 						onClick={handleDeleteClick}
 						className={classes.close}
 					>&#10005;</button>
+					{showModal && 
+						<Modal 
+							handleCancelClick={handleDeleteClick}
+							handleDeleteClick={deleteGroup}
+						/>
+					}
 				</div>
 			</div>
 			{group?.cards.length
