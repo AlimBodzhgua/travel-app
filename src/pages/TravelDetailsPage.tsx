@@ -1,6 +1,7 @@
 import {FC} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppSelector} from 'hooks/redux';
+import { selectTravelById } from 'redux/selectors/selectors';
 import NavBar from 'components/navbar/NavBar';
 import BacklogList from 'components/BacklogList/BacklogList';
 import Groups from 'components/Groups/Groups';
@@ -10,9 +11,7 @@ import classes from './pages.module.css';
 const TravelDetailsPage: FC = () => {
 	const { id } = useParams<{id? : string}>();
 	const { user } = useAppSelector(state => state.userReducer);
-	const travel  = useAppSelector(state => 
-		state.userReducer.user?.travels.find(travel => travel.id === Number(id))
-	);
+	const travel = useAppSelector(state => selectTravelById(state, Number(id)));
 
 	return (
 		<div>

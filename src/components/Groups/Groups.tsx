@@ -4,13 +4,12 @@ import { useParams } from 'react-router-dom';
 import GroupCreateForm from '../CreateForms/GroupCreateForm/GroupCreateForm';
 import GroupItem from './GroupItem';
 import classes from './groups.module.css'
+import { selectTravelGroupsById } from 'redux/selectors/selectors';
 
 const Groups: FC = () => {
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const { id } = useParams<{id? : string}>()
-	const groups = useAppSelector(state => 
-		state.userReducer.user?.travels.find(travel => travel.id === Number(id))?.groups
-	);
+	const groups = useAppSelector(state => selectTravelGroupsById(state, Number(id)));
 
 	return (
 		<div className={classes.groups}>
