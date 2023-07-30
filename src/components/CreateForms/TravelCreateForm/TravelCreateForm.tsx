@@ -23,16 +23,17 @@ const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
 		inputRef.current?.focus()
 	}, [])
 
-	const handleSaveClick = () => { 	
-		if (startDate !== null && endDate !== null) {
-			const id: number = Date.now();
-			const travel = createNewTravel(id, value, startDate, endDate);
-			dispatch(userSlice.actions.addTravel(travel));
-		}
-		setShowCreateForm(false);
-	}
 
-	const handleCancelClick = () => {
+	const handleCancelClick = ():void => setShowCreateForm(false);
+
+	const handleSaveClick = ():void => { 	
+		if (startDate !== null && endDate !== null) {
+			if (value.length) {
+				const id: number = Date.now();
+				const travel = createNewTravel(id, value, startDate, endDate);
+				dispatch(userSlice.actions.addTravel(travel));
+			} else alert('Input value can not be empty');
+		}
 		setShowCreateForm(false);
 	}
 
@@ -54,8 +55,14 @@ const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
 				labelEnd='select end date'
 			/>
 			<div className={classes.form__actions}>
-				<button className={classes.button} onClick={handleSaveClick}>save</button>
-				<button className={classes.button} onClick={handleCancelClick}>cancel</button>
+				<button 
+					className={classes.add} 
+					onClick={handleSaveClick}
+				>+</button>
+				<button 
+					className={classes.cancel} 
+					onClick={handleCancelClick}
+				>&#10005;</button>
 			</div>
 		</div>
 	)
