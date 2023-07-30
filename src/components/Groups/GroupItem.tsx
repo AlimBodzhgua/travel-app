@@ -7,7 +7,7 @@ import CardCreateForm from 'components/CreateForms/CardCreateForm/CardCreateForm
 import classes from './groups.module.css';
 	
 interface GroupItemProps {
-	group?: IGroup;
+	group: IGroup;
 }
 
 const GroupItem: FC<GroupItemProps> = ({group}) => {
@@ -18,9 +18,7 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 	const { id } = useParams<{id? : string}>()
 
 	useEffect(() => {
-		if (group) {
-			setValue(group.title);			
-		}
+		setValue(group.title);			
 	}, [])
 
 	const handleEditClick = () => {
@@ -28,23 +26,19 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 	}
 
 	const handleSaveClick = () => {
-		if (group) {
-			dispatch(userSlice.actions.editGroup({
-				travelId: Number(id),
-				groupId: group.id,
-				value
-			}))
-		}
+		dispatch(userSlice.actions.editGroup({
+			travelId: Number(id),
+			groupId: group.id,
+			value
+		}))
 		setEditable(false);
 	}
 
 	const handleDeleteClick = () => {
-		if (group) {
-			dispatch(userSlice.actions.deleteGroup({
-				travelId: Number(id),
-				groupId: group.id
-			}))
-		}
+		dispatch(userSlice.actions.deleteGroup({
+			travelId: Number(id),
+			groupId: group.id
+		}))
 	}
 
 	return (

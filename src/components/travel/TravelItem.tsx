@@ -64,15 +64,15 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 						value={value}
 						onChange={(e) => setValue(e.target.value)}
 				  	/>
-				: <div className={classes.item__title}>
-					<NavLink 
-						to={`http://localhost:3000/travels/${id}`}
-						className={location.pathname === `/travels/${id}` 
+				: 	<div className={classes.item__title}>
+						<NavLink 
+							to={`http://localhost:3000/travels/${id}`}
+							className={location.pathname === `/travels/${id}` 
 								? classes.item__link_details
 								: classes.item__link
-						}
-					>{name}</NavLink>
-				  </div>
+							}
+						>{name}</NavLink>
+				  	</div>
 			}
 			<DateRangePicker 
 				startDate={startDate}

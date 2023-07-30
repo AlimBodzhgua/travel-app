@@ -11,6 +11,7 @@ const Groups: FC = () => {
 	const { id } = useParams<{id? : string}>()
 	const groups = useAppSelector(state => selectTravelGroupsById(state, Number(id)));
 
+
 	return (
 		<div className={classes.groups}>
 			<ul className={classes.list}>
