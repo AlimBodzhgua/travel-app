@@ -24,7 +24,13 @@
             {
               "id": 1690724727809,
               "title": "ewqewqfas",
-              "cards": []
+              "cards": [
+                {
+                  "id": 1690884425336,
+                  "title": "New ard1",
+                  "description": "my card 1 description"
+                }
+              ]
             }
           ]
         }

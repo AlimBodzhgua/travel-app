@@ -90,6 +90,7 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 							? 
 								<CardCreateForm 
 									setShowCreateForm={setShowCreateForm}
+									groupId={group.id}
 								/>
 							:
 								<button 
