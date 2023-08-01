@@ -28,6 +28,7 @@ const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) =
 				groupId,
 				card
 			}))
+			setShowCreateForm(false);
 		} else alert('Input is empty')
 	}
 
