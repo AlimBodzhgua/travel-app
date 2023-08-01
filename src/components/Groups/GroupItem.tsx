@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
 import CardCreateForm from 'components/CreateForms/CardCreateForm/CardCreateForm';
+import CardsList from 'components/CardsList/CardsList';
 import Modal from 'components/Modal/Modal';
 import classes from './groups.module.css';
 	
@@ -80,25 +81,25 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 				</div>
 			</div>
 			{group?.cards.length
-				? 	<div>Cards</div>
+				? 	<CardsList groupId={group.id} travelId={Number(id)}/>
 				:   <div className={classes.item__empty}>
 						<div className={classes.empty__text}>
 							Nothing is planned<br/>
 							Add something here or transher from backlog
 						</div>
-						{showCreateForm 
-							? 
-								<CardCreateForm 
-									setShowCreateForm={setShowCreateForm}
-									groupId={group.id}
-								/>
-							:
-								<button 
-									onClick={() => setShowCreateForm(true)}
-									className={classes.add}
-								>+ Add card</button>
-						}
 					</div>
+			}
+			{showCreateForm 
+				? 
+					<CardCreateForm 
+						setShowCreateForm={setShowCreateForm}
+						groupId={group.id}
+					/>
+				:
+					<button 
+						onClick={() => setShowCreateForm(true)}
+						className={classes.add}
+					>+ Add card</button>
 			}
 		</li>
 	)
