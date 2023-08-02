@@ -16,7 +16,10 @@ const CardsList:FC<CardsListProps> = ({travelId, groupId}) => {
 		<ul className={classes.list}>
 			{cards && 
 				cards.map(card => 
-					<CardItem card={card}/>
+					<CardItem 
+						key={card.id}
+						card={card}
+					/>
 				)
 			}
 		</ul>
