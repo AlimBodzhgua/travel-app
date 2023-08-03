@@ -19,12 +19,12 @@ const BacklogList: FC<BacklogListProps> = ({backlogs}) => {
 		<div className={classes.backlog}>
 			<h2 className={classes.backlog__title}>Backlog</h2>	
 			<ul className={classes.backlog__list}>
-				{backlogs.map(backlog => 
-					<BacklogItem 
-						key={backlog.id}
-						backlog={backlog}
-					/>
-				)}
+					{backlogs.map(backlog => 
+						<BacklogItem 
+							key={backlog.id}
+							backlog={backlog}
+						/>
+					)}
 			</ul>
 			{showCreateForm 
 				?

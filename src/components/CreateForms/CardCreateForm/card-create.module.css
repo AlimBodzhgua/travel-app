@@ -14,11 +14,17 @@
 }
 
 .form__input {
-	width: 35%;
-	border: none;
+	width: 34%;
 
+	border-radius: 7px;
+	margin-right: 5px;
+	padding: 2px;
+	
+	border: none;
+	resize: none;
+
+	font-family: inherit;
 	font-size: 16px;
-	font-weight: 500;
 }
 
 .form__input:focus,
