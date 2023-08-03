@@ -56,7 +56,10 @@ const BacklogItem: FC<BacklogItemProps> = ({backlog}) => {
 		<li 
 			className={classes.item}
 			ref={drag}
-			style={{transform: isDragging ? 'scale(1.1)' : 'scale(1)'}}
+			style={{
+				transform: isDragging ? 'scale(1.1)' : 'scale(1)',
+				cursor: isDragging ? 'grabbing' : 'grab'
+			}}
 		>
 			{editable 
 				?

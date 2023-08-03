@@ -19,7 +19,7 @@ const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) =
 	const textAreaId = useId();
 	const { id } = useParams<{id?: string}>();
 
-	const [{item, isOver, canDrop}, drop] = useDrop<
+	const [{isOver, canDrop}, drop] = useDrop<
 		IBacklog, 
 		void,
 		{item: IBacklog, isOver: boolean, canDrop: boolean}
@@ -30,7 +30,7 @@ const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) =
 			isOver: monitor.isOver(),
 			canDrop: monitor.canDrop(),
 		}),
-		drop: (item, monitor) => {
+		drop: (item) => {
 			setValue(item.name);
 			dispatch(userSlice.actions.deleteBacklog({
 				travelId: Number(id), 
@@ -62,8 +62,14 @@ const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) =
 				value={value}
 				className={classes.form__input}
 				onChange={(e) => setValue(e.target.value)}
-				style={{backgroundColor: canDrop ? 'lightblue' : '#fff'}}
-				placeholder='Enter card title or drag item from backlog list'
+				style={{
+					backgroundColor: canDrop ? 'lightblue' : '#fff',
+					border: isOver ? '1px dashed black' : 'none'
+				}}
+				placeholder={canDrop 
+					? 'Drop item here'
+					: 'Enter card title or drag item from backlog list'
+				}
 				rows={2}
 				maxLength={32}
 			/>
