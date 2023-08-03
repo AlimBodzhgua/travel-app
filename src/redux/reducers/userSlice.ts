@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {IUser, ITravel, IBacklog, IGroup} from 'types/types';
+import {IUser, ITravel, IBacklog, IGroup, ICard} from 'types/types';
 import {Dayjs} from 'dayjs';
 import {registerUser, loginUser} from 'redux/actions/userActions';
 
@@ -106,7 +106,22 @@ export const userSlice = createSlice({
 					})
 				}
 			})
-		}
+		},
+		addCard(state, action: PayloadAction<{
+			travelId: number, 
+			groupId: number,
+			card: ICard
+		}>) {
+			state.user?.travels.forEach((travel) => {
+				if (travel.id === action.payload.travelId) {
+					travel.groups.forEach(group => {
+						if (group.id === action.payload.groupId) {
+							group.cards.push(action.payload.card);
+						}
+					})
+				}
+			})
+		},
 	},
 	extraReducers: {
 		[registerUser.pending.type]: (state, action: PayloadAction<string>) => {

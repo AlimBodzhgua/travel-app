@@ -29,6 +29,12 @@
 
 	display: flex;
 	justify-content: space-between;
+
+	transition: transform .1s ease-out;
+}
+
+.item:hover {
+	cursor: grab;
 }
 
 .item__name {
