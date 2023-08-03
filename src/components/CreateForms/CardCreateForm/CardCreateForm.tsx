@@ -22,11 +22,10 @@ const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) =
 	const [{isOver, canDrop}, drop] = useDrop<
 		IBacklog, 
 		void,
-		{item: IBacklog, isOver: boolean, canDrop: boolean}
+		{isOver: boolean, canDrop: boolean}
 	>(() => ({
 		accept: 'backlog',
 		collect: (monitor) => ({
-			item: monitor.getItem(),
 			isOver: monitor.isOver(),
 			canDrop: monitor.canDrop(),
 		}),
