@@ -1,8 +1,10 @@
-import React, {FC, useState, useId} from 'react';
+import React, {FC, useState, useId, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from 'hooks/redux';
 import {userSlice} from 'redux/reducers/userSlice';
 import {createNewCard} from 'utils/utils';
+import {useDrop} from 'react-dnd';
+import {IBacklog} from 'types/types';
 import classes from './card-create.module.css';
 
 interface CardCreateFormProps {
@@ -16,6 +18,26 @@ const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) =
 	const dispatch = useAppDispatch();
 	const textAreaId = useId();
 	const { id } = useParams<{id?: string}>();
+
+	const [{isOver, canDrop}, drop] = useDrop<
+		IBacklog, 
+		void,
+		{isOver: boolean, canDrop: boolean}
+	>(() => ({
+		accept: 'backlog',
+		collect: (monitor) => ({
+			isOver: monitor.isOver(),
+			canDrop: monitor.canDrop(),
+		}),
+		drop: (item) => {
+			setValue(item.name);
+			dispatch(userSlice.actions.deleteBacklog({
+				travelId: Number(id), 
+				backlogId: item.id
+			}));
+		}
+	}))
+
 
 
 	const handleCloseClick = ():void => setShowCreateForm(false);
@@ -34,12 +56,21 @@ const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) =
 
 	return (
 		<div className={classes.form}>
-			<input 
-				type="text" 
-				className={classes.form__input}
-				placeholder='Enter card title...'
+			<textarea
+				ref={drop}
 				value={value}
+				className={classes.form__input}
 				onChange={(e) => setValue(e.target.value)}
+				style={{
+					backgroundColor: canDrop ? 'lightblue' : '#fff',
+					border: isOver ? '1px dashed black' : 'none'
+				}}
+				placeholder={canDrop 
+					? 'Drop item here'
+					: 'Enter card title or drag item from backlog list'
+				}
+				rows={2}
+				maxLength={32}
 			/>
 			<span className={classes.form__separator}></span>
 			<div className={classes.form__area}>
