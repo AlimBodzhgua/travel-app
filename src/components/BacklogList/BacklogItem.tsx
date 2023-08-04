@@ -3,7 +3,6 @@ import {IBacklog} from 'types/types';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from 'hooks/redux';
 import {userSlice} from 'redux/reducers/userSlice';
-import {useDrag} from 'react-dnd';
 import classes from './backlog.module.css';
 
 interface BacklogItemProps {
@@ -16,14 +15,6 @@ const BacklogItem: FC<BacklogItemProps> = ({backlog}) => {
 	const { id } = useParams<{id?: string}>();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const dispatch = useAppDispatch();
-
-	const [{isDragging}, drag] = useDrag(() => ({
-		type: 'backlog',
-		item: backlog,
-		collect: (monitor) => ({
-			isDragging: monitor.isDragging()
-		})
-	}))
 
 	
 	useEffect(() => {
@@ -53,14 +44,7 @@ const BacklogItem: FC<BacklogItemProps> = ({backlog}) => {
 
 
 	return (
-		<li 
-			className={classes.item}
-			ref={drag}
-			style={{
-				transform: isDragging ? 'scale(1.1)' : 'scale(1)',
-				opacity: isDragging ? '0' : '1',
-			}}
-		>
+		<li className={classes.item}>
 			{editable 
 				?
 					<input 
