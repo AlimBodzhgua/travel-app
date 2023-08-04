@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IUser, ITravel, IBacklog, IGroup, ICard} from 'types/types';
-import {Dayjs} from 'dayjs';
+import {arrayMove} from '@dnd-kit/sortable';
 import {registerUser, loginUser} from 'redux/actions/userActions';
 
 interface UserState {
@@ -45,6 +45,17 @@ export const userSlice = createSlice({
 				}
 			})
 		},
+		moveTravel(state, action: PayloadAction<{activeId: number, overId: number}>) {
+			if (state.user !== null) {
+				const activeIndex = state.user.travels.findIndex((travel) => {
+					return travel.id === action.payload.activeId;
+				})
+				const overIndex = state.user.travels.findIndex((travel) => {
+					return travel.id === action.payload.overId;
+				})
+				state.user.travels = arrayMove(state.user.travels, activeIndex, overIndex);
+			}
+		},
 		addBacklog(state, action: PayloadAction<{id: string, backlog: IBacklog}>) {
 			state.user?.travels.forEach(travel => {
 				if (travel.id === Number(action.payload.id)) {
@@ -73,6 +84,19 @@ export const userSlice = createSlice({
 							item.name = action.payload.value;
 						}
 					})
+				}
+			})
+		},
+		moveBacklog(state, action: PayloadAction<{travelId: number, activeId: number ,overId: number}>) {
+			state.user?.travels.forEach((travel) => {
+				if (travel.id === action.payload.travelId) {
+					const activeIndex = travel.backlog.findIndex((log) => {
+						return log.id === action.payload.activeId;
+					});
+					const overIndex = travel.backlog.findIndex((log) => {
+						return log.id === action.payload.overId;
+					});
+					travel.backlog = arrayMove(travel.backlog, activeIndex, overIndex);
 				}
 			})
 		},
