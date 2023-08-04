@@ -3,6 +3,8 @@ import {IBacklog} from 'types/types';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from 'hooks/redux';
 import {userSlice} from 'redux/reducers/userSlice';
+import {useSortable} from '@dnd-kit/sortable';
+import {CSS} from '@dnd-kit/utilities';
 import classes from './backlog.module.css';
 
 interface BacklogItemProps {
@@ -15,7 +17,6 @@ const BacklogItem: FC<BacklogItemProps> = ({backlog}) => {
 	const { id } = useParams<{id?: string}>();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const dispatch = useAppDispatch();
-
 	
 	useEffect(() => {
 		if (editable === true) {
@@ -42,9 +43,28 @@ const BacklogItem: FC<BacklogItemProps> = ({backlog}) => {
 		setEditable(false);
 	}
 
+	const { 
+		attributes,
+    	listeners,
+    	setNodeRef,
+    	transform,
+    	transition
+   	} = useSortable({id: backlog.id});
+
+
+	const style = {
+ 		transform: CSS.Translate.toString(transform),
+ 		transition
+	}
 
 	return (
-		<li className={classes.item}>
+		<li 
+			className={classes.item}
+			ref={setNodeRef} 
+			style={style}
+			{...attributes} 
+			{...listeners}
+		>
 			{editable 
 				?
 					<input 
