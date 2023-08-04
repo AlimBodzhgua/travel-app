@@ -19,6 +19,10 @@
 	box-shadow: -1px 8px 25px -12px rgba(0,0,0,0.75);
 }
 
+.list__item:hover {
+	cursor: grab;
+}
+
 .list__item_details {
 	display: flex;
 	justify-content: space-between;

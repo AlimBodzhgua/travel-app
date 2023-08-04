@@ -3,9 +3,11 @@ import { stringToDayjsObject } from 'utils/utils';
 import { NavLink, useLocation } from 'react-router-dom';
 import { userSlice } from 'redux/reducers/userSlice';
 import { useAppDispatch } from 'hooks/redux';
-import {Dayjs} from 'dayjs';
-import classes from './travel.module.css';
+import { Dayjs } from 'dayjs';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import DateRangePicker from 'components/DateRangePicker/DateRangePicker';
+import classes from './travel.module.css';
 
 
 interface TravelItemProps {
@@ -29,15 +31,27 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 		setValue(name);
 	}, [])
 
-	const handleDeleteClick = () => {
+	const { 
+		attributes,
+    	listeners,
+    	setNodeRef,
+    	transform,
+    	transition
+   	} = useSortable({id: id});
+
+
+	const style = {
+ 		transform: CSS.Translate.toString(transform),
+ 		transition
+	}
+
+	const handleEditClick = ():void => setEditable(!editable);
+
+	const handleDeleteClick = ():void => {
 		dispatch(userSlice.actions.deleteTravel(id));
 	}
 
-	const handleEditClick = () => {
-		setEditable(!editable);
-	}
-
-	const handleSaveClick = () => {
+	const handleSaveClick = ():void => {
 		if (startDate && endDate) {
 			dispatch(userSlice.actions.editTravel({
 				id: id,
@@ -54,7 +68,12 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 			location.pathname === `/travels/${id}` 
 				? classes.list__item_details
 				: classes.list__item
-		}>
+			}
+			ref={setNodeRef} 
+			style={style}
+			{...attributes} 
+			{...listeners}
+		>
 			{editable 
 				?	<input 
 						type="text" 

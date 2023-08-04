@@ -45,6 +45,17 @@ export const userSlice = createSlice({
 				}
 			})
 		},
+		moveTravel(state, action: PayloadAction<{activeId: number, overId: number}>) {
+			if (state.user !== null) {
+				const activeIndex = state.user.travels.findIndex((travel) => {
+					return travel.id === action.payload.activeId;
+				})
+				const overIndex = state.user.travels.findIndex((travel) => {
+					return travel.id === action.payload.overId;
+				})
+				state.user.travels = arrayMove(state.user.travels, activeIndex, overIndex);
+			}
+		},
 		addBacklog(state, action: PayloadAction<{id: string, backlog: IBacklog}>) {
 			state.user?.travels.forEach(travel => {
 				if (travel.id === Number(action.payload.id)) {
