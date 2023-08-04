@@ -5,16 +5,10 @@ import {userSlice} from 'redux/reducers/userSlice';
 import {useParams} from 'react-router-dom';
 import BacklogItem from './BacklogItem';
 import BacklogCreateForm from 'components/CreateForms/BacklogCreateForm/BacklogCreateForm';
-import {DndContext} from '@dnd-kit/core';
-import {
-	SortableContext, 
-	verticalListSortingStrategy
-} from '@dnd-kit/sortable';
-import {
-	restrictToVerticalAxis,
-  	restrictToParentElement,
-} from '@dnd-kit/modifiers';
+import {SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable';
 import {useSensors, useSensor, PointerSensor} from '@dnd-kit/core';
+import {restrictToParentElement} from '@dnd-kit/modifiers';
+import {DndContext} from '@dnd-kit/core';
 
 import classes from './backlog.module.css';
 
@@ -57,7 +51,6 @@ const BacklogList: FC<BacklogListProps> = ({backlogs}) => {
 				sensors={sensors}
 				onDragEnd={handleDragEnd}
 				modifiers={[restrictToParentElement]}
-				onDragCancel={(e) => console.log(e)}
 			>
 				<SortableContext 
 					items={backlogs}
