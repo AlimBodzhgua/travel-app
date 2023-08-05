@@ -11,7 +11,13 @@
           "dateStart": "2023.08.04",
           "dateEnd": "2023.08.04",
           "backlog": [],
-          "groups": []
+          "groups": [
+            {
+              "id": 1691227455611,
+              "title": "group #1",
+              "cards": []
+            }
+          ]
         },
         {
           "id": 1691169183167,

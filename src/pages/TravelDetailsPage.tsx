@@ -26,7 +26,7 @@ const TravelDetailsPage: FC = () => {
 							dateEnd={travel.dateEnd}
 						/>
 						<div className={classes.details}>
-							<BacklogList backlogs={travel.backlog}/>
+							<BacklogList />
 							<Groups />
 						</div>
 					</>

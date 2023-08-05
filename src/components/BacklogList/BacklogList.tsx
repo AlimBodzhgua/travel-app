@@ -1,27 +1,22 @@
-import {FC, useState} from 'react';
-import { IBacklog } from 'types/types';
-import {useAppDispatch} from 'hooks/redux';
+import {FC, useState, memo} from 'react';
+import {useAppDispatch, useAppSelector} from 'hooks/redux';
+import {selectBacklogByTravelId} from 'redux/selectors/selectors';
 import {userSlice} from 'redux/reducers/userSlice';
 import {useParams} from 'react-router-dom';
-import BacklogItem from './BacklogItem';
-import BacklogCreateForm from 'components/CreateForms/BacklogCreateForm/BacklogCreateForm';
 import {SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable';
 import {useSensors, useSensor, PointerSensor} from '@dnd-kit/core';
 import {restrictToParentElement} from '@dnd-kit/modifiers';
 import {DndContext} from '@dnd-kit/core';
+import BacklogCreateForm from 'components/CreateForms/BacklogCreateForm/BacklogCreateForm';
+import BacklogItem from './BacklogItem';
 
 import classes from './backlog.module.css';
 
-interface BacklogListProps {
-	backlogs: IBacklog[]
-}
-
-const BacklogList: FC<BacklogListProps> = ({backlogs}) => {
+const BacklogList: FC = () => {
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
+	const backlogs = useAppSelector(state => selectBacklogByTravelId(state, Number(id)));
 	const { id } = useParams<{id? : string}>();
 	const dispatch = useAppDispatch();
-
-	const handleClick = ():void => setShowCreateForm(true);
 
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
@@ -30,6 +25,8 @@ const BacklogList: FC<BacklogListProps> = ({backlogs}) => {
 	    	},
 	  	})
 	)
+
+	const handleClick = ():void => setShowCreateForm(true);
 
 	const handleDragEnd = (e: { active: any; over: any; }):void => {
 		const {active, over} = e;
@@ -47,25 +44,27 @@ const BacklogList: FC<BacklogListProps> = ({backlogs}) => {
 	return (
 		<div className={classes.backlog}>
 			<h2 className={classes.backlog__title}>Backlog</h2>	
-			<DndContext
-				sensors={sensors}
-				onDragEnd={handleDragEnd}
-				modifiers={[restrictToParentElement]}
-			>
-				<SortableContext 
-					items={backlogs}
-			        strategy={verticalListSortingStrategy}
+			{backlogs && 
+				<DndContext
+					sensors={sensors}
+					onDragEnd={handleDragEnd}
+					modifiers={[restrictToParentElement]}
 				>
-					<ul className={classes.backlog__list}>
-						{backlogs.map(backlog => 
-							<BacklogItem 
-								key={backlog.id}
-								backlog={backlog}
-							/>
-						)}
-					</ul>
-				</SortableContext>
-			</DndContext>
+					<SortableContext 
+						items={backlogs}
+				        strategy={verticalListSortingStrategy}
+					>
+						<ul className={classes.backlog__list}>
+							{backlogs.map(backlog => 
+								<BacklogItem 
+									key={backlog.id}
+									backlog={backlog}
+								/>
+							)}
+						</ul>
+					</SortableContext>
+				</DndContext>
+			}
 			{showCreateForm 
 				?
 					<BacklogCreateForm 
@@ -83,4 +82,4 @@ const BacklogList: FC<BacklogListProps> = ({backlogs}) => {
 	)
 }
 
-export default BacklogList;
+export default memo(BacklogList);
