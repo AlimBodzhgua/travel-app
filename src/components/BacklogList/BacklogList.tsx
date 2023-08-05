@@ -1,4 +1,4 @@
-import {FC, useState, memo} from 'react';
+import {FC, useState} from 'react';
 import {useAppDispatch, useAppSelector} from 'hooks/redux';
 import {selectBacklogByTravelId} from 'redux/selectors/selectors';
 import {userSlice} from 'redux/reducers/userSlice';
@@ -25,7 +25,6 @@ const BacklogList: FC = () => {
 	    	},
 	  	})
 	)
-
 	const handleClick = ():void => setShowCreateForm(true);
 
 	const handleDragEnd = (e: { active: any; over: any; }):void => {
@@ -82,4 +81,4 @@ const BacklogList: FC = () => {
 	)
 }
 
-export default memo(BacklogList);
+export default BacklogList;
