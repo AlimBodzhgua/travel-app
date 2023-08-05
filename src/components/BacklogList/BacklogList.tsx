@@ -14,8 +14,8 @@ import classes from './backlog.module.css';
 
 const BacklogList: FC = () => {
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
-	const backlogs = useAppSelector(state => selectBacklogByTravelId(state, Number(id)));
 	const { id } = useParams<{id? : string}>();
+	const backlogs = useAppSelector(state => selectBacklogByTravelId(state, Number(id)));
 	const dispatch = useAppDispatch();
 
 	const sensors = useSensors(

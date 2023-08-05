@@ -14,8 +14,14 @@
           "groups": [
             {
               "id": 1691227455611,
-              "title": "group #1",
-              "cards": []
+              "title": "group #1zxc",
+              "cards": [
+                {
+                  "id": 1691228767289,
+                  "title": "asddsa",
+                  "description": "eqwe"
+                }
+              ]
             }
           ]
         },
