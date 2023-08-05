@@ -163,6 +163,28 @@ export const userSlice = createSlice({
 				}
 			})
 		},
+		moveCards(state, action: PayloadAction<{
+			travelId: number,
+			groupId: number,
+			activeId: number,
+			overId: number
+		}>) {
+			state.user?.travels.forEach((travel) => {
+				if (travel.id === action.payload.travelId) {
+					travel.groups.forEach(group => {
+						if (group.id === action.payload.groupId) {
+							const activeIndex = group.cards.findIndex((card) => {
+								return card.id === action.payload.activeId;
+							})
+							const overIndex = group.cards.findIndex((card) => {
+								return card.id === action.payload.overId;
+							})
+							group.cards = arrayMove(group.cards, activeIndex, overIndex)
+						}
+					})
+				}
+			})	
+		}
 	},
 	extraReducers: {
 		[registerUser.pending.type]: (state, action: PayloadAction<string>) => {
