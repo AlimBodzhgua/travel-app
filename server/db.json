@@ -6,26 +6,54 @@
       "login": "alimbo1",
       "travels": [
         {
+          "id": 1691169190600,
+          "name": "trip 5431",
+          "dateStart": "2023.08.04",
+          "dateEnd": "2023.08.04",
+          "backlog": [],
+          "groups": []
+        },
+        {
+          "id": 1691169183167,
+          "name": "new trip123",
+          "dateStart": "2023.08.04",
+          "dateEnd": "2023.08.04",
+          "backlog": [],
+          "groups": [
+            {
+              "id": 1691226648997,
+              "title": "new group",
+              "cards": [
+                {
+                  "id": 1691226662283,
+                  "title": "title for card",
+                  "description": "card plan1"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "id": 1691081712615,
           "name": "new trip to st pt",
           "dateStart": "2023.08.03",
           "dateEnd": "2023.08.03",
           "backlog": [
             {
-              "id": 1691158131299,
-              "name": "backlog 123"
-            },
-            {
               "id": 1691156830775,
               "name": "backlog4"
             },
             {
-              "id": 1691168450605,
-              "name": "new bgcard123"
+              "id": 1691158131299,
+              "name": "backlog 123"
             },
             {
               "id": 1691156835990,
               "name": "backlog5"
+            },
+            {
+              "id": 1691168450605,
+              "name": "new bgcard123"
             },
             {
               "id": 1691156825274,
