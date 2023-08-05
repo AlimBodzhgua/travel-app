@@ -33,7 +33,7 @@ const BacklogList: FC = () => {
 		if (active.id === over.id) {
 			return;
 		}
-		dispatch(userSlice.actions.moveBacklog({
+		dispatch(userSlice.actions.moveBacklogs({
 			travelId: Number(id),
 			activeId: active.id,
 			overId: over.id,

@@ -6,67 +6,6 @@
       "login": "alimbo1",
       "travels": [
         {
-          "id": 1691081712615,
-          "name": "new trip to st pt",
-          "dateStart": "2023.08.03",
-          "dateEnd": "2023.08.03",
-          "backlog": [
-            {
-              "id": 1691158131299,
-              "name": "backlog 123"
-            },
-            {
-              "id": 1691156835990,
-              "name": "backlog5"
-            },
-            {
-              "id": 1691156830775,
-              "name": "backlog4"
-            },
-            {
-              "id": 1691168450605,
-              "name": "new bgcard123"
-            },
-            {
-              "id": 1691156825274,
-              "name": "backlog3 "
-            }
-          ],
-          "groups": [
-            {
-              "id": 1691167030212,
-              "title": "Group #1",
-              "cards": []
-            },
-            {
-              "id": 1691229119147,
-              "title": "Group #2",
-              "cards": [
-                {
-                  "id": 1691238490329,
-                  "title": "Title card 3",
-                  "description": "dsafkjlksdfjoiwqjmgkldmcx"
-                },
-                {
-                  "id": 1691238462284,
-                  "title": "Title card 1",
-                  "description": "Lorem ipsum dolar set 12314213514"
-                },
-                {
-                  "id": 1691238475361,
-                  "title": "Title card 2 ",
-                  "description": "qwewqe12421rfdasfsdaf"
-                }
-              ]
-            },
-            {
-              "id": 1691229126504,
-              "title": "Group #3",
-              "cards": []
-            }
-          ]
-        },
-        {
           "id": 1691169183167,
           "name": "new trip123",
           "dateStart": "2023.08.04",
@@ -112,6 +51,67 @@
                   "description": "eqwe"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "id": 1691081712615,
+          "name": "new trip to st pt",
+          "dateStart": "2023.08.03",
+          "dateEnd": "2023.08.03",
+          "backlog": [
+            {
+              "id": 1691158131299,
+              "name": "backlog 123"
+            },
+            {
+              "id": 1691156835990,
+              "name": "backlog5"
+            },
+            {
+              "id": 1691156830775,
+              "name": "backlog4"
+            },
+            {
+              "id": 1691168450605,
+              "name": "new bgcard123"
+            },
+            {
+              "id": 1691156825274,
+              "name": "backlog3 "
+            }
+          ],
+          "groups": [
+            {
+              "id": 1691167030212,
+              "title": "Group #1",
+              "cards": []
+            },
+            {
+              "id": 1691229119147,
+              "title": "Group #2",
+              "cards": [
+                {
+                  "id": 1691238462284,
+                  "title": "Title card 1",
+                  "description": "Lorem ipsum dolar set 12314213514"
+                },
+                {
+                  "id": 1691238490329,
+                  "title": "Title card 3",
+                  "description": "dsafkjlksdfjoiwqjmgkldmcx"
+                },
+                {
+                  "id": 1691238475361,
+                  "title": "Title card 2 ",
+                  "description": "qwewqe12421rfdasfsdaf"
+                }
+              ]
+            },
+            {
+              "id": 1691229126504,
+              "title": "Group #3",
+              "cards": []
             }
           ]
         }

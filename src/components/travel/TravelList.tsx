@@ -29,7 +29,7 @@ const TravelList: FC<TravelListProps> = ({travels}) => {
 		if (active.id === over.id) {
 			return;
 		}
-		dispatch(userSlice.actions.moveTravel({
+		dispatch(userSlice.actions.moveTravels({
 			activeId: active.id, 
 			overId: over.id
 		}))		

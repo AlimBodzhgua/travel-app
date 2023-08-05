@@ -29,7 +29,7 @@ const Groups: FC = () => {
 		if (active.id === over.id) {
 			return;
 		}
-		dispatch(userSlice.actions.moveGroup({
+		dispatch(userSlice.actions.moveGroups({
 			travelId: Number(id),
 			activeId: active.id,
 			overId: over.id,

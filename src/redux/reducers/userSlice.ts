@@ -45,7 +45,7 @@ export const userSlice = createSlice({
 				}
 			})
 		},
-		moveTravel(state, action: PayloadAction<{activeId: number, overId: number}>) {
+		moveTravels(state, action: PayloadAction<{activeId: number, overId: number}>) {
 			if (state.user !== null) {
 				const activeIndex = state.user.travels.findIndex((travel) => {
 					return travel.id === action.payload.activeId;
@@ -87,7 +87,7 @@ export const userSlice = createSlice({
 				}
 			})
 		},
-		moveBacklog(state, action: PayloadAction<{travelId: number, activeId: number ,overId: number}>) {
+		moveBacklogs(state, action: PayloadAction<{travelId: number, activeId: number ,overId: number}>) {
 			state.user?.travels.forEach((travel) => {
 				if (travel.id === action.payload.travelId) {
 					const activeIndex = travel.backlog.findIndex((log) => {
@@ -131,7 +131,7 @@ export const userSlice = createSlice({
 				}
 			})
 		},
-		moveGroup(state, action: PayloadAction<{
+		moveGroups(state, action: PayloadAction<{
 			travelId: number, 
 			activeId: number, 
 			overId: number
