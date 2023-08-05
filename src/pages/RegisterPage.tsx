@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import NavBar from 'components/navbar/NavBar';
+import NavBar from 'components/Navbar/NavBar';
 import RegisterForm from 'components/AuthForms/RegisterForm';
 
 import classes from './pages.module.css';

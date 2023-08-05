@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppSelector} from 'hooks/redux';
 import { selectTravelById } from 'redux/selectors/selectors';
-import NavBar from 'components/navbar/NavBar';
+import NavBar from 'components/Navbar/NavBar';
 import BacklogList from 'components/BacklogList/BacklogList';
 import Groups from 'components/Groups/Groups';
 import TravelItem from 'components/travel/TravelItem';

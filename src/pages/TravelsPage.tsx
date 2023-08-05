@@ -1,7 +1,7 @@
 import {FC, useState} from 'react';
 import {useAppSelector} from 'hooks/redux';
 import {selectTravels} from 'redux/selectors/selectors';
-import NavBar from 'components/navbar/NavBar';
+import NavBar from 'components/Navbar/NavBar';
 import TravelList from 'components/travel/TravelList';
 import TravelCreateForm from 'components/CreateForms/TravelCreateForm/TravelCreateForm';
 import classes from './pages.module.css';
