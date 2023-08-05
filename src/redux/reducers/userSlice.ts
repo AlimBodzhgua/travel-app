@@ -131,6 +131,23 @@ export const userSlice = createSlice({
 				}
 			})
 		},
+		moveGroup(state, action: PayloadAction<{
+			travelId: number, 
+			activeId: number, 
+			overId: number
+		}>) {
+			state.user?.travels.forEach((travel) => {
+				if (travel.id === action.payload.travelId) {
+					const activeIndex = travel.groups.findIndex((group) => {
+						return group.id === action.payload.activeId;
+					})
+					const overIndex = travel.groups.findIndex((group) => {
+						return group.id === action.payload.overId;
+					})
+					travel.groups = arrayMove(travel.groups, activeIndex, overIndex)
+				}
+			})
+		},
 		addCard(state, action: PayloadAction<{
 			travelId: number, 
 			groupId: number,

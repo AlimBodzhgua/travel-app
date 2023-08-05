@@ -37,6 +37,10 @@
 	flex-direction: column;
 }
 
+.item:hover {
+	cursor: grab;
+}
+
 .item__header {
 	margin-bottom: 17px;	
 	display: flex;

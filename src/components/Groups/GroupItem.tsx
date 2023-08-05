@@ -3,6 +3,8 @@ import { IGroup } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import CardCreateForm from 'components/CreateForms/CardCreateForm/CardCreateForm';
 import CardsList from 'components/CardsList/CardsList';
 import Modal from 'components/Modal/Modal';
@@ -19,6 +21,18 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 	const [value, setValue] = useState<string>('');
 	const dispatch = useAppDispatch();
 	const { id } = useParams<{id? : string}>()
+	const { 
+		attributes,
+    	listeners,
+    	setNodeRef,
+    	transform,
+    	transition
+   	} = useSortable({id: group.id});
+
+	const style = {
+ 		transform: CSS.Translate.toString(transform),
+ 		transition
+	}
 
 	useEffect(() => {
 		setValue(group.title);			
@@ -44,7 +58,13 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 	}
 
 	return (
-		<li className={classes.item}>
+		<li 
+			className={classes.item}
+			style={style}
+			ref={setNodeRef}
+			{...attributes} 
+			{...listeners}
+		>
 			<div className={classes.item__header}>
 				{editable 
 					? <input 
