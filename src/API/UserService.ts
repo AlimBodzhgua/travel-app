@@ -14,7 +14,11 @@ export default class UserService {
 	}
 
 	static updateUser(user: IUser): void {
-		const body = {'travels': user.travels};
+		const body = {
+			'login': user.login,
+			'email': user.email,
+			'travels': user.travels
+		};
 		axios.patch(`http://localhost:8080/users/${user.id}`, body);
 	}
 }

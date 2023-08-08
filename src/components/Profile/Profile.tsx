@@ -16,14 +16,15 @@ const Profile: FC = () => {
 
 	useEffect(() => {
 		if (user) {
-			setLogin(user?.login);
-			setEmail(user?.email);
+			setLogin(user.login);
+			setEmail(user.email);
 		}
 	}, [])
 
 	const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
 		setLogin(e.target?.value);
 	}
+
 	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
 		setEmail(e.target?.value);
 	}
@@ -31,7 +32,17 @@ const Profile: FC = () => {
 	const handleEditClick = ():void => setEditable(!editable);
 
 	const handleSaveClick = ():void => {
-		console.log('save');
+		if (window.confirm('Are you sure you want to save changes?')) {
+			if (login.length && email.length) {
+				if (login !== user?.login) {
+					dispatch(userSlice.actions.changeLogin(login));
+				}
+				if (email !== user?.email) {
+					dispatch(userSlice.actions.changeEmail(email));
+				}
+				setEditable(false);
+			} else alert('Input value empty')
+		}
 	}
 
 	const handleLogoutClick = ():void => {

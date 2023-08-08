@@ -30,6 +30,16 @@ export const userSlice = createSlice({
 			state.user = null;
 			state.isAuth = false;
 		},
+		changeLogin(state, action: PayloadAction<string>) {
+			if (state.user) {
+				state.user.login = action.payload;
+			}
+		},
+		changeEmail(state, action: PayloadAction<string>) {
+			if (state.user) {
+				state.user.email = action.payload;
+			}
+		},
 		addTravel(state, action: PayloadAction<ITravel>) {
 			state.user?.travels.push(action.payload);
 		},
