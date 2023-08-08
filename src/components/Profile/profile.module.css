@@ -1,0 +1,107 @@
+
+.profile {
+	display: flex;
+	flex-direction: column;
+
+	max-width: 300px;
+	width: 100%;
+}
+
+
+.profile__header {
+	align-self: center;
+	margin: 16px 0;
+	width: 100%;
+
+	display: flex;
+	justify-content: space-between;
+	align-self: center;
+}
+
+.profile__title {
+
+	font-weight: 500;
+}
+
+.profile__actions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.save {
+	width: 30px;
+	height: 32px;
+	padding: 2px 0;
+
+	font-weight: 500;
+	font-size: 16px;
+
+	border: none;
+}
+
+.edit {
+	width: 30px;
+	height: 32px;
+	padding: 2px 0;
+	font-size: 0;
+	color: transparent;
+
+	border: none;
+	background-color: lightblue;
+	background-image: url('assets/icons/edit_white.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+
+.cancel {
+	width: 30px;
+	height: 32px;
+	padding: 2px 0;
+
+	font-weight: 900;
+	font-size: 16px;
+
+	border: none;
+	background-color: orangered;
+}
+
+.edit:hover,
+.save:hover,
+.cancel:hover {
+	cursor: pointer;
+}
+
+.profile__item {
+	align-self: center;
+
+	padding: 8px;
+	font-size: 20px;
+	width: 100%;
+
+	margin-bottom: 10px;
+}
+
+.profile__btn {
+	align-self: center;
+
+	padding: 8px 12px;
+	margin-top: 10px;
+
+	border: none;
+	border-radius: 7px;
+
+	color: #fff;
+	font-size: 20px;
+	font-weight: 500;
+
+	background-color: blue;
+}
+
+
+.profile__btn:hover {
+	cursor: pointer;
+}
+

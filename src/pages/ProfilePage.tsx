@@ -1,4 +1,5 @@
 import {FC} from 'react';
+import Profile from 'components/Profile/Profile';
 import NavBar from 'components/Navbar/NavBar';
 import classes from './pages.module.css';
 
@@ -6,8 +7,10 @@ import classes from './pages.module.css';
 const ProfilePage: FC = () => {
 	return (
 		<div className={classes.container}>
-			<NavBar></NavBar>
-			<h1>ProfilePage</h1>
+			<NavBar />
+			<div className={classes.page__center}>
+				<Profile />
+			</div>
 		</div>
 	)
 }

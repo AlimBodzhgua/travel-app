@@ -6,92 +6,37 @@
       "login": "alimbo1",
       "travels": [
         {
-          "id": 1691081712615,
-          "name": "new trip to st ptwe",
-          "dateStart": "2023.08.03",
-          "dateEnd": "2023.08.03",
-          "backlog": [
-            {
-              "id": 1691156835990,
-              "name": "backlog5"
-            },
-            {
-              "id": 1691156830775,
-              "name": "backlog4"
-            },
-            {
-              "id": 1691156825274,
-              "name": "backlog3 "
-            },
-            {
-              "id": 1691168450605,
-              "name": "new bgcard123"
-            },
-            {
-              "id": 1691158131299,
-              "name": "backlog 123"
-            }
-          ],
-          "groups": [
-            {
-              "id": 1691167030212,
-              "title": "Group #1",
-              "cards": []
-            },
-            {
-              "id": 1691229119147,
-              "title": "Group #23",
-              "cards": [
-                {
-                  "id": 1691238462284,
-                  "title": "Title card 1",
-                  "description": "Lorem ipsum dolar set 12314213514"
-                },
-                {
-                  "id": 1691238490329,
-                  "title": "Title card 3",
-                  "description": "dsafkjlksdfjoiwqjmgkldmcx"
-                },
-                {
-                  "id": 1691238475361,
-                  "title": "Title card 2 ",
-                  "description": "qwewqe12421rfdasfsdaf"
-                }
-              ]
-            },
-            {
-              "id": 1691229126504,
-              "title": "Group #3",
-              "cards": []
-            }
-          ]
-        },
-        {
           "id": 1691169190600,
           "name": "trip 5431",
           "dateStart": "2023.08.04",
           "dateEnd": "2023.08.04",
           "backlog": [
             {
-              "id": 1691228844924,
-              "name": "new backlog2"
+              "id": 1691310194739,
+              "name": "card 3"
             },
             {
-              "id": 1691228836633,
-              "name": "backlog 1"
+              "id": 1691310190966,
+              "name": "card 2"
+            },
+            {
+              "id": 1691310185258,
+              "name": "card 1"
+            },
+            {
+              "id": 1691312168142,
+              "name": "m,"
+            },
+            {
+              "id": 1691312157134,
+              "name": "qwe"
             }
           ],
           "groups": [
             {
-              "id": 1691227455611,
-              "title": "group #1zxc",
-              "cards": [
-                {
-                  "id": 1691228767289,
-                  "title": "asddsa",
-                  "description": "eqwe"
-                }
-              ]
+              "id": 1691311404229,
+              "title": "group1",
+              "cards": []
             }
           ]
         },
@@ -101,19 +46,15 @@
           "dateStart": "2023.08.04",
           "dateEnd": "2023.08.04",
           "backlog": [],
-          "groups": [
-            {
-              "id": 1691226648997,
-              "title": "new group",
-              "cards": [
-                {
-                  "id": 1691226662283,
-                  "title": "title for card",
-                  "description": "card plan1"
-                }
-              ]
-            }
-          ]
+          "groups": []
+        },
+        {
+          "id": 1691081712615,
+          "name": "new trip to st ptwe",
+          "dateStart": "2023.08.03",
+          "dateEnd": "2023.08.03",
+          "backlog": [],
+          "groups": []
         }
       ],
       "id": 1
