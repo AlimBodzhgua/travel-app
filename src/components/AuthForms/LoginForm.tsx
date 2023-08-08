@@ -1,5 +1,6 @@
 import {FC} from 'react';
 import {useAppDispatch} from 'hooks/redux';
+import {useNavigate} from 'react-router-dom';
 import {loginUser} from 'redux/actions/userActions';
 import {useForm, SubmitHandler} from 'react-hook-form'
 import {IUserLogin} from 'types/types';
@@ -18,9 +19,11 @@ const LoginForm: FC = () => {
 		handleSubmit,
 		formState: { errors }
 	} = useForm<IFormInput>()
+	const navigate = useNavigate();
 
 	const onSubmit:SubmitHandler<IUserLogin> = (e) => {
 		dispatch(loginUser(e));
+		navigate('/travels');
 	}
 
 
