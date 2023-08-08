@@ -1,4 +1,4 @@
-import {FC, useState, useEffect, useRef} from 'react';
+import {FC, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
@@ -12,14 +12,9 @@ interface GroupCreateFormProps {
 const GroupCreateForm: FC<GroupCreateFormProps> = ({setShowCreateForm}) => {
 	const [value, setValue] = useState<string>('');
 	const { id } = useParams<{id? : string}>();
-	const inputRef = useRef<HTMLInputElement>(null);
 	const dispatch = useAppDispatch();
 
-	useEffect(() => {
-		inputRef.current?.focus();
-	}, [])
-
-	const handleSaveClick = () => {
+	const handleSaveClick = ():void => {
 		if (value.length) {
 			const group = createNewGroup(value);
 			dispatch(userSlice.actions.addGroup({id: Number(id), group}));
@@ -27,19 +22,21 @@ const GroupCreateForm: FC<GroupCreateFormProps> = ({setShowCreateForm}) => {
 		} else alert('Empty input value')
 	}
 
-	const handleCancelClick = () => {
-		setShowCreateForm(false);
+	const handleCancelClick = ():void => setShowCreateForm(false);
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
+		setValue(e.target.value);
 	}
 
 	return (
 		<div className={classes.form}>
 			<input 
+				autoFocus
 				className={classes.form__input}
-				ref={inputRef}
 				value={value}
-				onChange={(e) => setValue(e.target.value)}
+				onChange={handleInputChange}
 				type="text" 
-				placeholder="group name..."
+				placeholder="Enter group name"
 			/>
 			<div className={classes.form__actions}>
 				<button 

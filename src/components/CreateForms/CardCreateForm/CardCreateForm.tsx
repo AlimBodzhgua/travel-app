@@ -11,7 +11,7 @@ interface CardCreateFormProps {
 }
 
 const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) => {
-	const [value, setValue] = useState<string>('');
+	const [title, setTitle] = useState<string>('');
 	const [text, setText] = useState<string>('');
 	const dispatch = useAppDispatch();
 	const textAreaId = useId();
@@ -20,8 +20,8 @@ const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) =
 	const handleCloseClick = ():void => setShowCreateForm(false);
 
 	const handleSaveClick = ():void => {
-		if (text.length && value.length) {
-			const card = createNewCard(value, text);
+		if (text.length && title.length) {
+			const card = createNewCard(title, text);
 			dispatch(userSlice.actions.addCard({
 				travelId: Number(id),
 				groupId,
@@ -31,13 +31,22 @@ const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) =
 		} else alert('Input is empty')
 	}
 
+	const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>):void => {
+		setTitle(e.target.value);
+	}
+
+	const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>):void => {
+		setText(e.target.value);
+	}
+
 	return (
 		<div className={classes.form}>
 			<textarea
-				value={value}
+				autoFocus
+				value={title}
 				className={classes.form__input}
-				onChange={(e) => setValue(e.target.value)}
-				placeholder='Enter card title or drag item from backlog list'
+				onChange={handleTitleChange}
+				placeholder='Enter card title'
 				rows={2}
 				maxLength={32}
 			/>
@@ -51,7 +60,7 @@ const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) =
 					maxLength={140}
 					className={classes.form__textarea}
 					value={text}
-					onChange={(e) => setText(e.target.value)}
+					onChange={handleTextChange}
 				/>
 			</div>
 			<div className={classes.form__actions}>
