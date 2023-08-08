@@ -17,9 +17,11 @@ const BacklogCreateForm: FC<BacklogCreateFormProps> = ({setShowCreateForm}) => {
 
 	const handleSaveClick = ():void => {
 		if (typeof id !== 'undefined') {
-			const backlog = {id: Date.now(), name: value};
-			dispatch(userSlice.actions.addBacklog({id, backlog}))
-			setShowCreateForm(false);
+			if (value.length) {
+				const backlog = {id: Date.now(), name: value};
+				dispatch(userSlice.actions.addBacklog({id, backlog}));
+				setShowCreateForm(false);
+			} else alert('Input value is empty');
 		}
 	}
 
