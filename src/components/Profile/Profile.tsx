@@ -1,5 +1,7 @@
 import {FC, useState, useEffect} from 'react';
-import {useAppSelector} from 'hooks/redux';
+import {useAppSelector, useAppDispatch} from 'hooks/redux';
+import {useNavigate} from 'react-router-dom';
+import {userSlice} from 'redux/reducers/userSlice';
 import {selectUser} from 'redux/selectors/selectors';    
 import classes from './profile.module.css';
 
@@ -9,6 +11,8 @@ const Profile: FC = () => {
 	const [login, setLogin] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
 	const [editable, setEditable] = useState<boolean>(false);
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (user) {
@@ -28,6 +32,12 @@ const Profile: FC = () => {
 
 	const handleSaveClick = ():void => {
 		console.log('save');
+	}
+
+	const handleLogoutClick = ():void => {
+		dispatch(userSlice.actions.logoutUser());
+		localStorage.removeItem('user');
+		navigate('/login');
 	}
 
 
@@ -63,7 +73,10 @@ const Profile: FC = () => {
 				onChange={handleEmailChange}
 				className={classes.profile__item}
 			/>
-			<button className={classes.profile__btn}>logout</button>
+			<button 
+				className={classes.profile__btn}
+				onClick={handleLogoutClick}
+			>logout</button>
 		</div>
 	)
 }
