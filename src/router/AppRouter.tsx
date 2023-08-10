@@ -2,18 +2,10 @@ import {FC, lazy, Suspense} from 'react';
 import {useAppSelector} from 'hooks/redux';
 import {Routes, Route} from 'react-router-dom';
 import {RotatingLines} from 'react-loader-spinner';
-import {selectUser} from 'redux/selectors/selectors';
-
-const HomePage = lazy(() => import('pages/HomePage/HomePage'));
-const ProfilePage = lazy(() => import('pages/ProfilePage/ProfilePage'));
-const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
-const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
-const TravelsPage = lazy(() => import('pages/TravelsPage/TravelsPage'));
-const TravelDetailsPage = lazy(() => import('pages/TravelDetailsPage/TravelDetailsPage'));
-const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
+import {privateRoutes, publicRoutes} from './routes';
 
 const AppRouter: FC = () => {
-	const user = useAppSelector(selectUser);
+	const {isAuth} = useAppSelector(state => state.userReducer);
 
 	return (
 		<>
@@ -28,14 +20,23 @@ const AppRouter: FC = () => {
 	                />
                 </div>
            	}>
-				<Routes>
-					<Route path='/' element={<HomePage/>}/>
-					<Route path='/register' element={<RegisterPage/>}/>
-					<Route path='/login' 	element={<LoginPage/>}/>
-					<Route path='/profile' 	element={<ProfilePage/>}/>
-					<Route path='/travels' 	element={<TravelsPage/>}/>
-					<Route path='/travels/:id' element={<TravelDetailsPage/>} />
-					<Route path='*' element={<NotFoundPage/>} />
+           		<Routes>
+           			{isAuth 
+           				? 
+           					privateRoutes.map(route => 
+           						<Route
+           							path={route.path}
+           							element={route.component}
+           						/>
+           					)
+           				:
+           					publicRoutes.map(route => 
+           						<Route
+           							path={route.path}
+           							element={route.component}
+           						/>
+           					)
+           			}
 				</Routes>
 			</Suspense>
 		</>
