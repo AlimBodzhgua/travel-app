@@ -8,8 +8,10 @@ const NavBar: FC = () => {
 		<nav className={classes.nav}>
 			<div className={classes.nav__left}>
 				<h1 className={classes.logo}>
-					Travel 
-					<span className={classes.logo__blue}>Pro</span>
+					<NavLink className={classes.logo__link} to='/'>
+						Travel 
+						<span className={classes.logo__blue}>Pro</span>
+					</NavLink>
 				</h1>
 				<NavLink to='/travels' className={classes.nav__link}>
 					My Travels
