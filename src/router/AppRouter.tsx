@@ -4,12 +4,13 @@ import {Routes, Route} from 'react-router-dom';
 import {RotatingLines} from 'react-loader-spinner';
 import {selectUser} from 'redux/selectors/selectors';
 
-const ProfilePage = lazy(() => import('pages/ProfilePage'));
-const RegisterPage = lazy(() => import('pages/RegisterPage'));
-const LoginPage = lazy(() => import('pages/LoginPage'));
-const TravelsPage = lazy(() => import('pages/TravelsPage'));
-const TravelDetailsPage = lazy(() => import('pages/TravelDetailsPage'));
-const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const ProfilePage = lazy(() => import('pages/ProfilePage/ProfilePage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const TravelsPage = lazy(() => import('pages/TravelsPage/TravelsPage'));
+const TravelDetailsPage = lazy(() => import('pages/TravelDetailsPage/TravelDetailsPage'));
+const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 
 const AppRouter: FC = () => {
 	const user = useAppSelector(selectUser);
@@ -28,6 +29,7 @@ const AppRouter: FC = () => {
                 </div>
            	}>
 				<Routes>
+					<Route path='/' element={<HomePage/>}/>
 					<Route path='/register' element={<RegisterPage/>}/>
 					<Route path='/login' 	element={<LoginPage/>}/>
 					<Route path='/profile' 	element={<ProfilePage/>}/>

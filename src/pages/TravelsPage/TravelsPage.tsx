@@ -4,7 +4,7 @@ import {selectTravels} from 'redux/selectors/selectors';
 import NavBar from 'components/Navbar/NavBar';
 import TravelList from 'components/travel/TravelList';
 import TravelCreateForm from 'components/CreateForms/TravelCreateForm/TravelCreateForm';
-import classes from './pages.module.css';
+import classes from './travels.module.css';
 
 
 const TravelsPage: FC = () => {

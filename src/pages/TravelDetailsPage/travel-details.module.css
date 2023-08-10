@@ -1,0 +1,12 @@
+.container {
+	max-width: 980px;
+	width: 100%;
+
+	margin: 0 auto;
+}
+
+.details {
+	display: flex;
+	justify-content: space-between;
+	margin: 35px 0;
+}

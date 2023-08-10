@@ -1,4 +1,5 @@
 import {FC} from 'react';
+import classes from './not-found.module.css'
 
 const NotFoundPage: FC = () => {
 	return (

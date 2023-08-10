@@ -6,7 +6,7 @@ import NavBar from 'components/Navbar/NavBar';
 import BacklogList from 'components/BacklogList/BacklogList';
 import Groups from 'components/Groups/Groups';
 import TravelItem from 'components/travel/TravelItem';
-import classes from './pages.module.css';
+import classes from './travel-details.module.css';
 
 const TravelDetailsPage: FC = () => {
 	const { id } = useParams<{id? : string}>();
