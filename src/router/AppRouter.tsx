@@ -1,4 +1,4 @@
-import {FC, lazy, Suspense} from 'react';
+import {FC, Suspense} from 'react';
 import {useAppSelector} from 'hooks/redux';
 import {Routes, Route} from 'react-router-dom';
 import {RotatingLines} from 'react-loader-spinner';
@@ -22,15 +22,13 @@ const AppRouter: FC = () => {
            	}>
            		<Routes>
            			{isAuth 
-           				? 
-           					privateRoutes.map(route => 
+           				? 	privateRoutes.map(route => 
            						<Route
            							path={route.path}
            							element={route.component}
            						/>
            					)
-           				:
-           					publicRoutes.map(route => 
+           				:   publicRoutes.map(route => 
            						<Route
            							path={route.path}
            							element={route.component}

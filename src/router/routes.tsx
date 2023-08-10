@@ -11,9 +11,9 @@ const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 enum RouteNames {
 	HOME = '/',
 	NOT_FOUND = '*',
+	TRAVELS = '/travels',
 	TRAVEL_DETAILS = '/travels/:id',
 	PROFILE = '/profile',
-	TRAVELS = '/travels',
 	REGISTER = '/regiser',
 	LOGIN = '/login',
 } 
