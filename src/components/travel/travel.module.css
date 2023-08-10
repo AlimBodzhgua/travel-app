@@ -110,13 +110,13 @@
 }
 
 .edit {
-	background-color: lightblue;
+	background-color: var(--color-lightblue);
 
 	background-image: url('assets/icons/edit_white.svg');
 }
 
 .delete {
-	background-color: orangered;
+	background-color: var(--color-red);
 
 	background-image: url('assets/icons/delete.svg');
 }

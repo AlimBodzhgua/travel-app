@@ -48,7 +48,7 @@
 	color: transparent;
 
 	border: none;
-	background-color: lightblue;
+	background-color: var(--color-lightblue);
 	background-image: url('assets/icons/edit_white.svg');
 	background-repeat: no-repeat;
 	background-position: center;
@@ -66,7 +66,7 @@
 	color: #fff;
 
 	border: none;
-	background-color: orangered;
+	background-color: var(--color-red);
 }
 
 .edit:hover,
@@ -98,7 +98,7 @@
 	font-size: 20px;
 	font-weight: 500;
 
-	background-color: blue;
+	background-color: var(--color-blue);
 }
 
 
