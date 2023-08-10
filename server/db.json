@@ -6,6 +6,31 @@
       "login": "alimbo1",
       "travels": [
         {
+          "id": 1691169183167,
+          "name": "new trip123",
+          "dateStart": "2023.08.04",
+          "dateEnd": "2023.08.04",
+          "backlog": [
+            {
+              "id": 1691656112955,
+              "name": "bacaklogs 1"
+            }
+          ],
+          "groups": [
+            {
+              "id": 1691656119628,
+              "title": "new group 123",
+              "cards": [
+                {
+                  "id": 1691656137437,
+                  "title": "card in group",
+                  "description": "text in card"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "id": 1691169190600,
           "name": "trip 5431",
           "dateStart": "2023.08.04",
@@ -27,14 +52,6 @@
               "cards": []
             }
           ]
-        },
-        {
-          "id": 1691169183167,
-          "name": "new trip123",
-          "dateStart": "2023.08.04",
-          "dateEnd": "2023.08.04",
-          "backlog": [],
-          "groups": []
         },
         {
           "id": 1691081712615,
