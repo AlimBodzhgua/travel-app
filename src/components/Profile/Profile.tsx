@@ -48,7 +48,7 @@ const Profile: FC = () => {
 	const handleLogoutClick = ():void => {
 		dispatch(userSlice.actions.logoutUser());
 		localStorage.removeItem('user');
-		navigate('/login');
+		navigate('/');
 	}
 
 
