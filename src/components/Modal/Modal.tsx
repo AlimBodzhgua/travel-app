@@ -25,8 +25,8 @@ const Modal: FC<ModalProps> = ({handleCancelClick, handleDeleteClick}) => {
 				<div className={classes.triangle}></div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 
 export default Modal;

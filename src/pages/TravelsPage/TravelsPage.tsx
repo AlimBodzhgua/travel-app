@@ -32,7 +32,7 @@ const TravelsPage: FC = () => {
 				}
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 export default TravelsPage;

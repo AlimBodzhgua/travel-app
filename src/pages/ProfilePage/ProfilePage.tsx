@@ -12,8 +12,8 @@ const ProfilePage: FC = () => {
 				<Profile />
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 
 export default ProfilePage;

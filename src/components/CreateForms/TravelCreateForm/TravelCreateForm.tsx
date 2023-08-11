@@ -28,17 +28,17 @@ const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
 			} else alert('Input value can not be empty');
 		}
 		setShowCreateForm(false);
-	}
+	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
 		setValue(e.target.value);
-	}
+	};
 
 	return (
 		<div className={classes.form}>
 			<input 
 				autoFocus
-				type="text" 
+				type='text' 
 				value={value}
 				onChange={handleInputChange}
 				className={classes.form__input}
@@ -62,8 +62,8 @@ const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
 				>&#10005;</button>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 
 export default TravelCreateForm;

@@ -21,7 +21,7 @@ const NavBar: FC = () => {
 				Profile
 			</NavLink>
 		</nav>
-	)
-}
+	);
+};
 
 export default memo(NavBar);

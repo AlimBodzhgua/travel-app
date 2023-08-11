@@ -12,10 +12,10 @@ const AppRouter: FC = () => {
 			<Suspense fallback={
 				<div className='spinner'>
 					<RotatingLines
-	                    strokeColor="grey"
-	                    strokeWidth="5"
-	                    animationDuration="0.75"
-	                    width="55"
+	                    strokeColor='grey'
+	                    strokeWidth='5'
+	                    animationDuration='0.75'
+	                    width='55'
 	                    visible={true}
 	                />
                 </div>
@@ -38,7 +38,7 @@ const AppRouter: FC = () => {
 				</Routes>
 			</Suspense>
 		</>
-	)
-}
+	);
+};
 
 export default AppRouter;

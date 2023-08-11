@@ -21,7 +21,7 @@ const CardItem:FC<CardItemProps> = ({card}) => {
    	const style = {
  		transform: CSS.Translate.toString(transform),
  		transition
-	}
+	};
 
 
 	return (
@@ -38,8 +38,8 @@ const CardItem:FC<CardItemProps> = ({card}) => {
 			<span className={classes.card__separator}></span>
 			<div className={classes.card__text}>{card.description}</div>
 		</li>
-	)
-}
+	);
+};
 
 
 export default CardItem;

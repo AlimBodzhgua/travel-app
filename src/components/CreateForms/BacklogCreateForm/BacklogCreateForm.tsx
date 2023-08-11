@@ -23,17 +23,17 @@ const BacklogCreateForm: FC<BacklogCreateFormProps> = ({setShowCreateForm}) => {
 				setShowCreateForm(false);
 			} else alert('Input value is empty');
 		}
-	}
+	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
 		setValue(e.target.value);
-	}
+	};
 
 	return (
 		<div className={classes.form}>
 			<input 
 				autoFocus
-				type="text"
+				type='text'
 				value={value}
 				onChange={handleInputChange}
 				className={classes.form__input}
@@ -49,8 +49,8 @@ const BacklogCreateForm: FC<BacklogCreateFormProps> = ({setShowCreateForm}) => {
 				>&#10005;</button>
 			</div>
 	</div>
-	)
-}
+	);
+};
 
 
-export default BacklogCreateForm
+export default BacklogCreateForm;

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Dayjs } from 'dayjs';
 import classes from './date-range.module.css';
 
@@ -26,11 +26,11 @@ const DateRangePicker:FC<DateRangePickerProps> = ({
 
 	const handleStartChange = (e: (Dayjs | null)) => {
 		setStartDate(e);
-	}
+	};
 
 	const handleEndChange = (e: (Dayjs | null)) => {
 		setEndDate(e);
-	}
+	};
 
 	return (
 		<div className={classes.date}>
@@ -58,8 +58,8 @@ const DateRangePicker:FC<DateRangePickerProps> = ({
 				disabled={disabled}
 			/>
 		</div>
-	)
-}
+	);
+};
 
 
 export default DateRangePicker;

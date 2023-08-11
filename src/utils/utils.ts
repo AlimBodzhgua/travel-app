@@ -4,19 +4,19 @@ import dayjs, {Dayjs} from 'dayjs';
 export const getErrorMessage = (error: unknown):string => {
 	if (error instanceof Error) return error.message;
 	return String(error);
-}
+};
 
 export const saveUserToLocalStorage = (user: IUser):void => {
 	localStorage.setItem('user', JSON.stringify(user));
-}
+};
 
 export const isUserLoggedIn = ():boolean => {
 	return localStorage.hasOwnProperty('user');
-}
+};
 
 export const modifyUserResponseObject = (data: IUserResponse):IUser => {
-	return {...data.user, password: data.accessToken}
-}
+	return {...data.user, password: data.accessToken};
+};
 
 export const createNewTravel = (
 	id: number, 
@@ -31,18 +31,18 @@ export const createNewTravel = (
 		dateEnd: endDate.format('YYYY.MM.DD'),
 		backlog: [],
 		groups: [],
-	}
-}
+	};
+};
 
 export const stringToDayjsObject = (date: string):Dayjs => {
-	const jsDateObj = dayjs(date).toDate()
+	const jsDateObj = dayjs(date).toDate();
 	return dayjs(jsDateObj);
-}
+};
 
 export const createNewGroup = (title: string):IGroup => {
-	return {id: Date.now(), title, cards: []}
-}
+	return {id: Date.now(), title, cards: []};
+};
 
 export const createNewCard = (title: string, description: string): ICard => {
-	return {id: Date.now(), title, description}
-}
+	return {id: Date.now(), title, description};
+};

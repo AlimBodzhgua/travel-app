@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import {NavLink} from 'react-router-dom';
-import classes from './not-found.module.css'
+import classes from './not-found.module.css';
 
 const NotFoundPage: FC = () => {
 	return (
@@ -14,7 +14,7 @@ const NotFoundPage: FC = () => {
 				className={classes.link}
 			>Go to home page</NavLink>
 		</div>
-	)
-}
+	);
+};
 
 export default NotFoundPage;

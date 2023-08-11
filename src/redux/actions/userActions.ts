@@ -1,7 +1,7 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IUser, IUserLogin } from "types/types";
-import { getErrorMessage, modifyUserResponseObject, saveUserToLocalStorage } from "utils/utils";
-import UserService from "API/UserService";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { IUser, IUserLogin } from 'types/types';
+import { getErrorMessage, modifyUserResponseObject, saveUserToLocalStorage } from 'utils/utils';
+import UserService from 'API/UserService';
 
 export const registerUser = createAsyncThunk(
 	'users/register',
@@ -15,7 +15,7 @@ export const registerUser = createAsyncThunk(
 			rejectWithValue(getErrorMessage(e));
 		}
 	}
-)
+);
 
 export const loginUser = createAsyncThunk(
 	'users/login',
@@ -24,9 +24,9 @@ export const loginUser = createAsyncThunk(
 			const response = await UserService.login(data);
 			const user = modifyUserResponseObject(response);
 			saveUserToLocalStorage(user);
-			return user
+			return user;
 		} catch (e) {
-			rejectWithValue(getErrorMessage(e))
+			rejectWithValue(getErrorMessage(e));
 		}
 	}
-)
+);

@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {useAppDispatch} from 'hooks/redux';
 import {useNavigate} from 'react-router-dom';
 import {loginUser} from 'redux/actions/userActions';
-import {useForm, SubmitHandler} from 'react-hook-form'
+import {useForm, SubmitHandler} from 'react-hook-form';
 import {IUserLogin} from 'types/types';
 import classes from './auth.module.css';
 
@@ -18,19 +18,19 @@ const LoginForm: FC = () => {
 		register, 
 		handleSubmit,
 		formState: { errors }
-	} = useForm<IFormInput>()
+	} = useForm<IFormInput>();
 	const navigate = useNavigate();
 
 	const onSubmit:SubmitHandler<IUserLogin> = (e) => {
 		dispatch(loginUser(e));
 		navigate('/travels');
-	}
+	};
 
 
 	return (
 		<form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
 			<input 
-				type="email" 
+				type='email' 
 				placeholder='Email'
 				className={classes.input}
 				{...register('email', {
@@ -44,7 +44,7 @@ const LoginForm: FC = () => {
 				<div className={classes.error}>{errors.email.message}</div>
 			}
 			<input 
-				type="password" 
+				type='password' 
 				placeholder='Password'
 				className={classes.input}
 				{...register('password', {
@@ -57,9 +57,9 @@ const LoginForm: FC = () => {
 			{errors.password && 
 				<div className={classes.error}>{errors.password.message}</div>
 			}
-			<button type="submit" className={classes.btn}>login</button>
+			<button type='submit' className={classes.btn}>login</button>
 		</form>
-	)
-}
+	);
+};
 
 export default LoginForm;

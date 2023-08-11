@@ -9,7 +9,7 @@ export default class UserService {
 	}
 
 	static async login(user: IUserLogin): Promise<IUserResponse> {
-		const response = await axios.post('http://localhost:8080/login', user)
+		const response = await axios.post('http://localhost:8080/login', user);
 		return response.data;
 	}
 

@@ -19,15 +19,15 @@ const Profile: FC = () => {
 			setLogin(user.login);
 			setEmail(user.email);
 		}
-	}, [])
+	}, []);
 
 	const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
 		setLogin(e.target?.value);
-	}
+	};
 
 	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
 		setEmail(e.target?.value);
-	}
+	};
 
 	const handleEditClick = ():void => setEditable(!editable);
 
@@ -41,15 +41,15 @@ const Profile: FC = () => {
 					dispatch(userSlice.actions.changeEmail(email));
 				}
 				setEditable(false);
-			} else alert('Input value empty')
+			} else alert('Input value empty');
 		}
-	}
+	};
 
 	const handleLogoutClick = ():void => {
 		dispatch(userSlice.actions.logoutUser());
 		localStorage.removeItem('user');
 		navigate('/');
-	}
+	};
 
 
 	return (
@@ -72,14 +72,14 @@ const Profile: FC = () => {
 			</div>
 			<input 
 				disabled={editable ? false : true}
-				type="text" 
+				type='text' 
 				value={login}
 				onChange={handleLoginChange}
 				className={classes.profile__item}
 			/>
 			<input 
 				disabled={editable ? false : true}
-				type="email" 
+				type='email' 
 				value={email}
 				onChange={handleEmailChange}
 				className={classes.profile__item}
@@ -89,8 +89,8 @@ const Profile: FC = () => {
 				onClick={handleLogoutClick}
 			>logout</button>
 		</div>
-	)
-}
+	);
+};
 
 
 export default Profile;

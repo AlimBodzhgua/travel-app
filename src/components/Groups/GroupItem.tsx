@@ -20,7 +20,7 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 	const [editable, setEditable] = useState<boolean>(false);
 	const [value, setValue] = useState<string>('');
 	const dispatch = useAppDispatch();
-	const { id } = useParams<{id? : string}>()
+	const { id } = useParams<{id? : string}>();
 	const { 
 		attributes,
     	listeners,
@@ -32,11 +32,11 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 	const style = {
  		transform: CSS.Translate.toString(transform),
  		transition
-	}
+	};
 
 	useEffect(() => {
 		setValue(group.title);			
-	}, [])
+	}, []);
 
 	const handleEditClick = ():void => setEditable(!editable);
 	const handleDeleteClick = ():void => setShowModal(!showModal);
@@ -46,16 +46,16 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 			travelId: Number(id),
 			groupId: group.id,
 			value
-		}))
+		}));
 		setEditable(false);
-	}
+	};
 
 	const deleteGroup = ():void => {
 		dispatch(userSlice.actions.deleteGroup({
 			travelId: Number(id),
 			groupId: group.id
-		}))
-	}
+		}));
+	};
 
 	return (
 		<li 
@@ -69,7 +69,7 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 				{editable 
 					? <input 
 						autoFocus
-						type="text" 
+						type='text' 
 						value={value}
 						onChange={(e) => setValue(e.target.value)}
 						placeholder={group?.title} 
@@ -122,7 +122,7 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 					>+ Add card</button>
 			}
 		</li>
-	)
-}
+	);
+};
 
 export default GroupItem;

@@ -37,7 +37,7 @@ const HomePage: FC = () => {
 				}
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 export default HomePage;

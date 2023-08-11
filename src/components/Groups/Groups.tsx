@@ -7,13 +7,13 @@ import {restrictToParentElement} from '@dnd-kit/modifiers';
 import {useParams} from 'react-router-dom';
 import GroupCreateForm from '../CreateForms/GroupCreateForm/GroupCreateForm';
 import GroupItem from './GroupItem';
-import classes from './groups.module.css'
+import classes from './groups.module.css';
 import { selectTravelGroupsById } from 'redux/selectors/selectors';
 
 const Groups: FC = () => {
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
-	const { id } = useParams<{id? : string}>()
+	const { id } = useParams<{id? : string}>();
 	const groups = useAppSelector(state => selectTravelGroupsById(state, Number(id)));
 
 	const sensors = useSensors(
@@ -22,7 +22,7 @@ const Groups: FC = () => {
 	      		distance: 8,
 	    	},
 	  	})
-	)
+	);
 
 	const handleDragEnd = (e: { active: any; over: any; }):void => {
 		const {active, over} = e;
@@ -33,8 +33,8 @@ const Groups: FC = () => {
 			travelId: Number(id),
 			activeId: active.id,
 			overId: over.id,
-		}))
-	}
+		}));
+	};
 
 	return (
 		<div className={classes.groups}>
@@ -67,7 +67,7 @@ const Groups: FC = () => {
 					>+ Add group</button>
 			}
 		</div>
-	)
-}
+	);
+};
 
 export default Groups;

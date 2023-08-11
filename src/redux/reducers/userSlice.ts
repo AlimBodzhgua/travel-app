@@ -15,7 +15,7 @@ const initialState: UserState = {
 	isLoading: false,
 	errorMessage: '',
 	user: null,
-}
+};
 
 
 export const userSlice = createSlice({
@@ -55,18 +55,18 @@ export const userSlice = createSlice({
 				if (travel.id === action.payload.id) {
 					travel.name = action.payload.name;
 					travel.dateStart = action.payload.dateStart;
-					travel.dateEnd = action.payload.dateEnd
+					travel.dateEnd = action.payload.dateEnd;
 				}
-			})
+			});
 		},
 		moveTravels(state, action: PayloadAction<{activeId: number, overId: number}>) {
 			if (state.user !== null) {
 				const activeIndex = state.user.travels.findIndex((travel) => {
 					return travel.id === action.payload.activeId;
-				})
+				});
 				const overIndex = state.user.travels.findIndex((travel) => {
 					return travel.id === action.payload.overId;
-				})
+				});
 				state.user.travels = arrayMove(state.user.travels, activeIndex, overIndex);
 			}
 		},
@@ -75,7 +75,7 @@ export const userSlice = createSlice({
 				if (travel.id === Number(action.payload.id)) {
 					travel.backlog.push(action.payload.backlog);
 				}
-			})
+			});
 		},
 		deleteBacklog(state, action: PayloadAction<{travelId: number, backlogId: number}>) {
 			state.user?.travels.forEach((travel) => {
@@ -84,7 +84,7 @@ export const userSlice = createSlice({
 						item.id === action.payload.backlogId
 					), 1);
 				}
-			})
+			});
 		},
 		editBacklog(state, action: PayloadAction<{
 			travelId: number, 
@@ -97,9 +97,9 @@ export const userSlice = createSlice({
 						if (item.id === action.payload.backlogId) {
 							item.name = action.payload.value;
 						}
-					})
+					});
 				}
-			})
+			});
 		},
 		moveBacklogs(state, action: PayloadAction<{travelId: number, activeId: number ,overId: number}>) {
 			state.user?.travels.forEach((travel) => {
@@ -112,23 +112,23 @@ export const userSlice = createSlice({
 					});
 					travel.backlog = arrayMove(travel.backlog, activeIndex, overIndex);
 				}
-			})
+			});
 		},
 		addGroup(state, action: PayloadAction<{id: number, group: IGroup}>) {
 			state.user?.travels.forEach((travel) => {
 				if (travel.id === action.payload.id) {
 					travel.groups.push(action.payload.group);
 				}
-			})
+			});
 		},
 		deleteGroup(state, action: PayloadAction<{travelId: number, groupId: number}>) {
 			state.user?.travels.forEach((travel) => {
 				if (travel.id === action.payload.travelId) {
 					travel.groups.splice(travel.groups.findIndex(group => 
 						group.id === action.payload.groupId
-					), 1)
+					), 1);
 				}
-			})
+			});
 		},
 		editGroup(state, action: PayloadAction<{
 			travelId: number,
@@ -141,9 +141,9 @@ export const userSlice = createSlice({
 						if (group.id === action.payload.groupId) {
 							group.title = action.payload.value;
 						}
-					})
+					});
 				}
-			})
+			});
 		},
 		moveGroups(state, action: PayloadAction<{
 			travelId: number, 
@@ -154,13 +154,13 @@ export const userSlice = createSlice({
 				if (travel.id === action.payload.travelId) {
 					const activeIndex = travel.groups.findIndex((group) => {
 						return group.id === action.payload.activeId;
-					})
+					});
 					const overIndex = travel.groups.findIndex((group) => {
 						return group.id === action.payload.overId;
-					})
-					travel.groups = arrayMove(travel.groups, activeIndex, overIndex)
+					});
+					travel.groups = arrayMove(travel.groups, activeIndex, overIndex);
 				}
-			})
+			});
 		},
 		addCard(state, action: PayloadAction<{
 			travelId: number, 
@@ -173,9 +173,9 @@ export const userSlice = createSlice({
 						if (group.id === action.payload.groupId) {
 							group.cards.push(action.payload.card);
 						}
-					})
+					});
 				}
-			})
+			});
 		},
 		moveCards(state, action: PayloadAction<{
 			travelId: number,
@@ -189,15 +189,15 @@ export const userSlice = createSlice({
 						if (group.id === action.payload.groupId) {
 							const activeIndex = group.cards.findIndex((card) => {
 								return card.id === action.payload.activeId;
-							})
+							});
 							const overIndex = group.cards.findIndex((card) => {
 								return card.id === action.payload.overId;
-							})
-							group.cards = arrayMove(group.cards, activeIndex, overIndex)
+							});
+							group.cards = arrayMove(group.cards, activeIndex, overIndex);
 						}
-					})
+					});
 				}
-			})	
+			});	
 		}
 	},
 	extraReducers: {
@@ -219,6 +219,6 @@ export const userSlice = createSlice({
 			state.user = action.payload;
 		}
 	}
-})
+});
 
 export default userSlice.reducer;

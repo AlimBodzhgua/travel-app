@@ -22,7 +22,7 @@ const TravelList: FC<TravelListProps> = ({travels}) => {
 	      		distance: 8,
 	    	},
 	  	})
-	)
+	);
 
 	const handleDragEnd = (e: { active: any; over: any; }):void => {
 		const {active, over} = e;
@@ -32,8 +32,8 @@ const TravelList: FC<TravelListProps> = ({travels}) => {
 		dispatch(userSlice.actions.moveTravels({
 			activeId: active.id, 
 			overId: over.id
-		}))		
-	}
+		}));		
+	};
 
 	return (
 		<DndContext
@@ -55,7 +55,7 @@ const TravelList: FC<TravelListProps> = ({travels}) => {
 				</ul>
 			</SortableContext>
 		</DndContext>
-	)
-}
+	);
+};
 
 export default TravelList;

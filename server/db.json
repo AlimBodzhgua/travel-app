@@ -29,37 +29,6 @@
               ]
             }
           ]
-        },
-        {
-          "id": 1691169190600,
-          "name": "trip 5431",
-          "dateStart": "2023.08.04",
-          "dateEnd": "2023.08.04",
-          "backlog": [
-            {
-              "id": 1691310194739,
-              "name": "card 3"
-            },
-            {
-              "id": 1691310190966,
-              "name": "card 2"
-            }
-          ],
-          "groups": [
-            {
-              "id": 1691311404229,
-              "title": "group1",
-              "cards": []
-            }
-          ]
-        },
-        {
-          "id": 1691081712615,
-          "name": "new trip to st ptwe",
-          "dateStart": "2023.08.03",
-          "dateEnd": "2023.08.03",
-          "backlog": [],
-          "groups": []
         }
       ],
       "id": 1

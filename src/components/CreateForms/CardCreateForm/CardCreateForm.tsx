@@ -26,18 +26,18 @@ const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) =
 				travelId: Number(id),
 				groupId,
 				card
-			}))
+			}));
 			setShowCreateForm(false);
-		} else alert('Input is empty')
-	}
+		} else alert('Input is empty');
+	};
 
 	const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>):void => {
 		setTitle(e.target.value);
-	}
+	};
 
 	const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>):void => {
 		setText(e.target.value);
-	}
+	};
 
 	return (
 		<div className={classes.form}>
@@ -74,7 +74,7 @@ const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) =
 				>&#10005;</button>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 export default CardCreateForm;

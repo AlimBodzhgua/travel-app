@@ -24,7 +24,7 @@ const BacklogList: FC = () => {
 	      		distance: 8,
 	    	},
 	  	})
-	)
+	);
 	const handleClick = ():void => setShowCreateForm(true);
 
 	const handleDragEnd = (e: { active: any; over: any; }):void => {
@@ -36,8 +36,8 @@ const BacklogList: FC = () => {
 			travelId: Number(id),
 			activeId: active.id,
 			overId: over.id,
-		}))
-	}
+		}));
+	};
 
 
 	return (
@@ -78,7 +78,7 @@ const BacklogList: FC = () => {
 					</div>
 			}
 		</div>
-	)
-}
+	);
+};
 
 export default BacklogList;

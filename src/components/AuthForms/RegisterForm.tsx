@@ -24,12 +24,12 @@ const RegisterForm: FC = () => {
 	const onSubmit:SubmitHandler<IFormInput> = (e) => {
 		const user = {...e, travels: []} as IUser;
 		dispatch(registerUser(user));
-	}
+	};
 
 	return (
 		<form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
 			<input 
-				type="text"
+				type='text'
 				placeholder='Login'
 				className={classes.input}
 				{...register('login', {
@@ -47,7 +47,7 @@ const RegisterForm: FC = () => {
 				<div className={classes.error}>{errors.login.message}</div>
 			}
 			<input 
-				type="email"
+				type='email'
 				placeholder='Email'
 				className={classes.input}
 				{...register('email', {
@@ -61,7 +61,7 @@ const RegisterForm: FC = () => {
 				<div className={classes.error}>{errors.email.message}</div>
 			}
 			<input 
-				type="password"
+				type='password'
 				placeholder='Password'
 				className={classes.input}
 				{...register('password', {
@@ -80,7 +80,7 @@ const RegisterForm: FC = () => {
 			}
 			<button type='submit' className={classes.btn}>register</button>
 		</form>
-	)
-}
+	);
+};
 
 export default RegisterForm;

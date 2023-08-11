@@ -27,8 +27,8 @@ const CardsList:FC<CardsListProps> = ({travelId, groupId}) => {
 			groupId: groupId,
 			activeId: active.id,
 			overId: over.id
-		}))
-	}
+		}));
+	};
 
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
@@ -36,7 +36,7 @@ const CardsList:FC<CardsListProps> = ({travelId, groupId}) => {
 	      		distance: 8,
 	    	},
 	  	})
-	)
+	);
 
 	return (
 		<>
@@ -62,7 +62,7 @@ const CardsList:FC<CardsListProps> = ({travelId, groupId}) => {
 			</DndContext>
 		}
 		</>
-	)
-}
+	);
+};
 
 export default CardsList;

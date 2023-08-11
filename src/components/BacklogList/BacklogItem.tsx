@@ -23,7 +23,7 @@ const BacklogItem: FC<BacklogItemProps> = ({backlog}) => {
 			inputRef.current?.focus();
 			setValue(backlog.name);
 		}
-	}, [editable])
+	}, [editable]);
 
 	const handleEditClick = ():void => setEditable(!editable);
 
@@ -31,17 +31,17 @@ const BacklogItem: FC<BacklogItemProps> = ({backlog}) => {
 		dispatch(userSlice.actions.deleteBacklog({
 			travelId: Number(id), 
 			backlogId: backlog.id,
-		}))
-	}
+		}));
+	};
 
 	const handleSaveClick = ():void => {
 		dispatch(userSlice.actions.editBacklog({
 			travelId: Number(id),
 			backlogId: backlog.id,
 			value: value,
-		}))
+		}));
 		setEditable(false);
-	}
+	};
 
 	const { 
 		attributes,
@@ -55,7 +55,7 @@ const BacklogItem: FC<BacklogItemProps> = ({backlog}) => {
 	const style = {
  		transform: CSS.Translate.toString(transform),
  		transition
-	}
+	};
 
 	return (
 		<li 
@@ -68,7 +68,7 @@ const BacklogItem: FC<BacklogItemProps> = ({backlog}) => {
 			{editable 
 				?
 					<input 
-						type="text" 
+						type='text' 
 						ref={inputRef}
 						placeholder={backlog.name}
 						value={value}
@@ -95,7 +95,7 @@ const BacklogItem: FC<BacklogItemProps> = ({backlog}) => {
 				>&#10005;</button>
 			</div>
 		</li>
-	)
-}
+	);
+};
 
 export default BacklogItem;

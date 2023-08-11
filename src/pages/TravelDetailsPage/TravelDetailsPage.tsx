@@ -33,8 +33,8 @@ const TravelDetailsPage: FC = () => {
 				}
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 
 export default TravelDetailsPage;

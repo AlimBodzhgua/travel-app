@@ -1,5 +1,5 @@
-declare module "*.module.css";
-declare module "react-datepicker";
+declare module '*.module.css';
+declare module 'react-datepicker';
 
 declare module '*.svg' {
   import React = require('react');

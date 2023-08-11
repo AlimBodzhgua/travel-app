@@ -29,7 +29,7 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 		setStartDate(stringToDayjsObject(dateStart));
 		setEndDate(stringToDayjsObject(dateEnd));
 		setValue(name);
-	}, [])
+	}, []);
 
 	const { 
 		attributes,
@@ -43,13 +43,13 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 	const style = {
  		transform: CSS.Translate.toString(transform),
  		transition
-	}
+	};
 
 	const handleEditClick = ():void => setEditable(!editable);
 
 	const handleDeleteClick = ():void => {
 		dispatch(userSlice.actions.deleteTravel(id));
-	}
+	};
 
 	const handleSaveClick = ():void => {
 		if (startDate && endDate) {
@@ -58,10 +58,10 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 				name: value,
 				dateStart: startDate.format('YYYY.MM.DD'),
 				dateEnd: endDate.format('YYYY.MM.DD'),
-			}))
+			}));
 		}
 		setEditable(false);
-	}
+	};
 
 	return (
 		<li className={
@@ -76,7 +76,7 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 		>
 			{editable 
 				?	<input 
-						type="text" 
+						type='text' 
 						autoFocus
 						className={classes.item__input}
 						placeholder={name} 
@@ -120,8 +120,8 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 				</button>
 			</div>
 		</li>
-	)
-}
+	);
+};
 
 
 export default TravelItem;

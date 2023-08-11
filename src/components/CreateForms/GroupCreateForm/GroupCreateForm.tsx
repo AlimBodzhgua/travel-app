@@ -19,14 +19,14 @@ const GroupCreateForm: FC<GroupCreateFormProps> = ({setShowCreateForm}) => {
 			const group = createNewGroup(value);
 			dispatch(userSlice.actions.addGroup({id: Number(id), group}));
 			setShowCreateForm(false);
-		} else alert('Empty input value')
-	}
+		} else alert('Empty input value');
+	};
 
 	const handleCancelClick = ():void => setShowCreateForm(false);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
 		setValue(e.target.value);
-	}
+	};
 
 	return (
 		<div className={classes.form}>
@@ -35,8 +35,8 @@ const GroupCreateForm: FC<GroupCreateFormProps> = ({setShowCreateForm}) => {
 				className={classes.form__input}
 				value={value}
 				onChange={handleInputChange}
-				type="text" 
-				placeholder="Enter group name"
+				type='text' 
+				placeholder='Enter group name'
 			/>
 			<div className={classes.form__actions}>
 				<button 
@@ -49,7 +49,7 @@ const GroupCreateForm: FC<GroupCreateFormProps> = ({setShowCreateForm}) => {
 				>&#10005;</button>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 export default GroupCreateForm;
