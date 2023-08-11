@@ -18,6 +18,8 @@
 
 	background-color: #fff;
 	border-radius: 7px;
+
+	position: relative;
 }
 
 .card__left {
@@ -42,4 +44,28 @@
 .card__text {
 	width: 65%;
 	padding: 0 8px;
+}
+
+.delete {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+
+	border: none;
+	background: none;
+	padding: 0;
+
+	font-weight: 900;
+	font-size: 16px;
+
+	transform: scale(0);
+	transition: transform .1s linear;
+}
+
+.card:hover .delete {
+	transform: scale(1);
+}
+
+.delete:hover {
+	cursor: pointer;
 }

@@ -177,6 +177,23 @@ export const userSlice = createSlice({
 				}
 			});
 		},
+		deleteCard(state, action: PayloadAction<{
+			cardId: number,
+			groupId: number,
+			travelId: number
+		}>) {
+			state.user?.travels.forEach(travel => {
+				if (travel.id === action.payload.travelId) {
+					travel.groups.forEach(group => {
+						if (group.id === action.payload.groupId) {
+							group.cards.splice(group.cards.findIndex(
+								card => card.id === action.payload.cardId)
+							, 1)
+						}
+					})
+				}
+			})
+		},
 		moveCards(state, action: PayloadAction<{
 			travelId: number,
 			groupId: number,

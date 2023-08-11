@@ -55,6 +55,8 @@ const CardsList:FC<CardsListProps> = ({travelId, groupId}) => {
 								<CardItem 
 									key={card.id}
 									card={card}
+									groupId={groupId}
+									travelId={travelId}
 								/>
 							)}
 					</ul>
