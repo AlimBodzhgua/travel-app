@@ -24,12 +24,14 @@ const AppRouter: FC = () => {
            			{isAuth 
            				? 	privateRoutes.map(route => 
            						<Route
+           							key={route.path}
            							path={route.path}
            							element={route.component}
            						/>
            					)
            				:   publicRoutes.map(route => 
            						<Route
+           							key={route.path}
            							path={route.path}
            							element={route.component}
            						/>
