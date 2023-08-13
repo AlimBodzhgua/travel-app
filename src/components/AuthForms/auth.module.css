@@ -30,6 +30,11 @@
 	background-color: blue;
 	border: none;
 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+
 	text-transform: uppercase;
 	color: #fff;
 	font-weight: 700;
