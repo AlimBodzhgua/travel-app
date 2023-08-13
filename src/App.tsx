@@ -10,7 +10,7 @@ import './App.css';
 
 const App: FC = () => {
     const dispatch = useAppDispatch();
-    const user = useAppSelector(selectUser);
+    const {isAuth, user} = useAppSelector(state => state.userReducer);
 
     useEffect(() => {
         if (isUserLoggedIn()) {
@@ -20,7 +20,7 @@ const App: FC = () => {
     }, []);
 
     useEffect(() => {
-        if (user !== null) {
+        if (isAuth && user) {
             UserService.updateUser(user);
             saveUserToLocalStorage(user);
         }
