@@ -1,5 +1,6 @@
 import {FC} from 'react';
-import {useForm, SubmitHandler} from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
 import { registerUser } from 'redux/actions/userActions';
 import { IUser } from 'types/types'; 
@@ -14,6 +15,7 @@ interface IFormInput {
 
 const RegisterForm: FC = () => {
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 	const {
 		register,
 		handleSubmit, 
@@ -24,6 +26,7 @@ const RegisterForm: FC = () => {
 	const onSubmit:SubmitHandler<IFormInput> = (e) => {
 		const user = {...e, travels: []} as IUser;
 		dispatch(registerUser(user));
+		navigate('/travels');
 	};
 
 	return (

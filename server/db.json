@@ -32,6 +32,20 @@
         }
       ],
       "id": 1
+    },
+    {
+      "email": "alimbo2@mail.ru",
+      "password": "$2a$10$w8o283aqqnbCa3t1Q2.PTe4WlPV9zoQCDGgXFjarJyfWlW/ihEh36",
+      "login": "alimbo2",
+      "travels": [],
+      "id": 2
+    },
+    {
+      "email": "alimbo3@mail.ru",
+      "password": "$2a$10$p5rqDQOccuJqaF355QPcYujs9lOdN2VKdGMsWVjgFQkasc8ymOIYW",
+      "login": "alimbo3",
+      "travels": [],
+      "id": 3
     }
   ]
 }
