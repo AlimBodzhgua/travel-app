@@ -16,7 +16,7 @@ interface IFormInput {
 
 const RegisterForm: FC = () => {
 	const dispatch = useAppDispatch();
-	const {errorMessage, isLoading, user} = useAppSelector(state => state.userReducer);
+	const {errorMessage, isLoading} = useAppSelector(state => state.userReducer);
 	const navigate = useNavigate();
 	const {
 		register,

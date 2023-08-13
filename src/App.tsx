@@ -3,7 +3,6 @@ import {isUserLoggedIn, saveUserToLocalStorage} from 'utils/utils';
 import {useAppDispatch, useAppSelector} from 'hooks/redux';
 import {userSlice} from 'redux/reducers/userSlice';
 import {IUser} from 'types/types';
-import {selectUser} from 'redux/selectors/selectors';
 import UserService from 'API/UserService';
 import AppRouter from 'router/AppRouter';
 import './App.css';
