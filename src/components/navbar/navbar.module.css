@@ -9,10 +9,10 @@
 
 .nav__left {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	gap: 12px;
 
-	width: 30%;
+	width: 40%;
 }
 
 .logo {

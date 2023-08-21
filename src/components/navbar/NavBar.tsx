@@ -16,6 +16,9 @@ const NavBar: FC = () => {
 				<NavLink to='/travels' className={classes.nav__link}>
 					My Travels
 				</NavLink>
+				<NavLink to='/users' className={classes.nav__link}>
+					Users
+				</NavLink>
 			</div>			
 			<NavLink to='/profile' className={classes.nav__link}>
 				Profile
