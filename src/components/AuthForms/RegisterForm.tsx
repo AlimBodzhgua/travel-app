@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { registerUser } from 'redux/actions/userActions';
 import { IUser } from 'types/types'; 
 import { ThreeDots } from 'react-loader-spinner';
+import { createNewUser } from 'utils/utils';
 import classes from './auth.module.css';
 
 interface IFormInput {
@@ -26,7 +27,7 @@ const RegisterForm: FC = () => {
 
 
 	const onSubmit:SubmitHandler<IFormInput> = (e) => {
-		const user = {...e, travels: []} as IUser;
+		const user = createNewUser(e);
 		dispatch(registerUser(user))
 			.then(({meta}) => {
 				if (meta.requestStatus === 'fulfilled') {
