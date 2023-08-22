@@ -15,6 +15,15 @@
 	width: 40%;
 }
 
+.nav__right {
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	gap: 12px;
+
+	width: 60%;
+}
+
 .logo {
 	font-size: 30px;
 }
