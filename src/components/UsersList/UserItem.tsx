@@ -29,12 +29,12 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 				console.log('cancel friend request');
 			} else {
 				console.log('send friend request');
-				/*const fromData = {
+				const fromData = {
 					id: currentUser.id,
 					login: currentUser.login,
 					email: currentUser.email
 				}
-				UserService.sendFriendRequest(user.id, fromData);*/
+				UserService.sendFriendRequest(user.id, fromData);
 			}
 			setRequestSended(!requestSended);
 		}
