@@ -24,20 +24,17 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 	}, [])
 
 	const handleClick = ():void => {
-		if (currentUser) {
-			if (hovering && requestSended) {
-				console.log('cancel friend request');
-			} else {
-				console.log('send friend request');
-				const fromData = {
-					id: currentUser.id,
-					login: currentUser.login,
-					email: currentUser.email
-				}
-				UserService.sendFriendRequest(user.id, fromData);
+		if (hovering && requestSended) {
+			UserService.cancelFriendRequest(currentUser?.id, user.id);
+		} else {
+			const fromData = {
+				id: currentUser?.id,
+				login: currentUser?.login,
+				email: currentUser?.email
 			}
-			setRequestSended(!requestSended);
+			UserService.sendFriendRequest(user.id, fromData);
 		}
+		setRequestSended(!requestSended);
 	}
 
 	return (

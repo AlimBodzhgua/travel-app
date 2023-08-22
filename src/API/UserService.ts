@@ -1,4 +1,4 @@
-import {IUser, IUserResponse, IUserLogin} from 'types/types';
+import {IUser, IUserResponse, IUserLogin, IFriendRequest} from 'types/types';
 import axios from 'axios';
 
 
@@ -32,6 +32,15 @@ export default class UserService {
 			const allRequests = response.data.friendRequests;
 			const body = {"friendRequests": [...allRequests, fromData]}
 			axios.patch(`http://localhost:8080/users/${toId}`, body);
+		})
+	}
+
+	static cancelFriendRequest(fromId: any, toId: any): void {
+		axios.get(`http://localhost:8080/users/${toId}`).then(response => {
+			const filteredRequests = response.data.friendRequests
+				.filter((request: IFriendRequest) => request.id !== fromId);
+			const body = {"friendRequests": filteredRequests}
+			axios.patch(`http://localhost:8080/users/${toId}`, body);	
 		})
 	}
 }
