@@ -3,9 +3,14 @@ export interface IUser {
 	id?: number;
 	login: string;
 	email: string;
+	friends: IFriend[];
+	friendRequests: IFriendRequest[];
 	password: string;
 	travels: ITravel[];
 }
+
+export type IFriendRequest = Pick<IUser, 'id' | 'login' | 'email'>;
+export type IFriend = Omit<IUser, 'password'>;
 
 export interface ITravel {
 	id: number;
