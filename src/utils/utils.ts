@@ -7,7 +7,7 @@ export const getErrorMessage = (error: unknown):string => {
 };
 
 export const createNewUser = (data: {login: string, email: string, password: string}): IUser => {
-	return {...data, friends: [], friendRequests: [], travels: []};
+	return {...data, id: Date.now(), friends: [], friendRequests: [], travels: []};
 }
 
 export const saveUserToLocalStorage = (user: IUser):void => {
