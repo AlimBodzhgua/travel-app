@@ -1,15 +1,17 @@
 import {FC, useEffect, useState} from 'react';
+import { useAppSelector, useAppDispatch } from 'hooks/redux';
+import { fetchAllUsers } from 'redux/actions/allUsersActions';
+import {IUser} from 'types/types';
 import NavBar from 'components/Navbar/NavBar';
 import UsersList from 'components/UsersList/UsersList';
-import UserService from 'API/UserService';
-import {IUser} from 'types/types';
 import classes from './users.module.css';
 
 const UsersPage: FC = () => {
-	const [users, setUsers] = useState<IUser[] | []>([]);
+	const {users} = useAppSelector(state => state.allUsersReducer);
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		UserService.getAllUsers().then(data => setUsers(data));
+		dispatch(fetchAllUsers());
 	}, [])
 
 	return (
