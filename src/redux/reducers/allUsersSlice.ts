@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import { fetchAllUsers } from 'redux/actions/allUsersActions';
+import { fetchAllUsers, sendFriendRequest, cancelFriendRequest } from 'redux/actions/allUsersActions';
 import {IPublicUser} from 'types/types';
 
 
@@ -33,6 +33,20 @@ const allUsersSlice = createSlice({
 			.addCase(fetchAllUsers.rejected, (state, action) => {
 				state.isLoading = false;
 				state.errorMessage = action.payload
+			})
+			.addCase(sendFriendRequest.fulfilled, (state, action) => {
+				state.users.forEach(user => {
+					if (user.id === action.payload.id) {
+						user.friendRequests.push(action.payload.data);
+					}
+				})
+			})
+			.addCase(cancelFriendRequest.fulfilled, (state, action) => {
+				state.users.forEach(user => {
+					if (user.id === action.payload.toId) {
+						user.friendRequests = user.friendRequests.filter(request => request.id !== action.payload.fromId);
+					}
+				})
 			})
 	}
 })
