@@ -43,4 +43,14 @@ export default class UserService {
 			axios.patch(`http://localhost:8080/users/${toId}`, body);	
 		})
 	}
+
+	static async getFriendRequests(id: any): Promise<IFriendRequest[]> {
+		const response = await axios.get(`http://localhost:8080/users/${id}`);
+		return response.data.friendRequests;
+	}
+
+	static async getFriends(id: any): Promise<IFriendRequest[]> {
+		const response = await axios.get(`http://localhost:8080/users/${id}`);
+		return response.data.friends;
+	}
 }
