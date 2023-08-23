@@ -1,10 +1,10 @@
 import {FC} from 'react';
-import {IUser} from 'types/types';
+import {IPublicUser} from 'types/types';
 import UserItem from './UserItem';
 import classes from './users-list.module.css';
 
 interface UsersListProps {
-	users: IUser[]
+	users: IPublicUser[]
 }
 
 const UsersList: FC<UsersListProps> = ({users}) => {

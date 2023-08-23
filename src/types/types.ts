@@ -1,16 +1,16 @@
 
 export interface IUser {
-	id?: number;
+	id: number;
 	login: string;
 	email: string;
 	friends: IFriend[];
-	friendRequests: IFriendRequest[];
+	friendRequests: IFriend[];
 	password: string;
 	travels: ITravel[];
 }
 
-export type IFriendRequest = Pick<IUser, 'id' | 'login' | 'email'>;
-export type IFriend = Omit<IUser, 'password'>;
+export type IFriend = Pick<IUser, 'id' | 'login' | 'email'>;
+export type IPublicUser = Omit<IUser, 'password'>;
 
 export interface ITravel {
 	id: number;

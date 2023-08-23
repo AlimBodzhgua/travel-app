@@ -1,4 +1,10 @@
-import {IUser, IUserResponse, IUserLogin, IFriendRequest} from 'types/types';
+import {
+	IUser, 
+	IPublicUser,
+	IUserResponse, 
+	IUserLogin, 
+	IFriend
+} from 'types/types';
 import axios from 'axios';
 
 
@@ -22,12 +28,16 @@ export default class UserService {
 		axios.patch(`http://localhost:8080/users/${user.id}`, body);
 	}
 
-	static async getAllUsers(): Promise<IUser[]> {
+	static async getAllUsers(): Promise<IPublicUser[]> {
 		const response = await axios.get('http://localhost:8080/users')
-		return response.data;
+		const result:IPublicUser[] = response.data.map((user:any) => {
+			delete user.password
+			return user;
+		})
+		return result;
 	}
 
-	static sendFriendRequest(toId: any, fromData: any): void {
+	static sendFriendRequest(toId: number, fromData: any): void {
 		axios.get(`http://localhost:8080/users/${toId}`).then(response => {
 			const allRequests = response.data.friendRequests;
 			const body = {"friendRequests": [...allRequests, fromData]}
@@ -35,21 +45,21 @@ export default class UserService {
 		})
 	}
 
-	static cancelFriendRequest(fromId: any, toId: any): void {
+	static cancelFriendRequest(toId: number, fromId: number): void {
 		axios.get(`http://localhost:8080/users/${toId}`).then(response => {
 			const filteredRequests = response.data.friendRequests
-				.filter((request: IFriendRequest) => request.id !== fromId);
+				.filter((request: IFriend) => request.id !== fromId);
 			const body = {"friendRequests": filteredRequests}
 			axios.patch(`http://localhost:8080/users/${toId}`, body);	
 		})
 	}
 
-	static async getFriendRequests(id: any): Promise<IFriendRequest[]> {
+	static async getFriendRequests(id: any): Promise<IFriend[]> {
 		const response = await axios.get(`http://localhost:8080/users/${id}`);
 		return response.data.friendRequests;
 	}
 
-	static async getFriends(id: any): Promise<IFriendRequest[]> {
+	static async getFriends(id: any): Promise<IFriend[]> {
 		const response = await axios.get(`http://localhost:8080/users/${id}`);
 		return response.data.friends;
 	}

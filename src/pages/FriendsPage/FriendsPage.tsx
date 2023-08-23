@@ -1,5 +1,5 @@
 import {FC, useState, useEffect} from 'react';
-import {IFriendRequest} from 'types/types';
+import {IFriend} from 'types/types';
 import {useAppSelector} from 'hooks/redux';
 import {selectUser} from 'redux/selectors/selectors';
 import NavBar from 'components/Navbar/NavBar';
@@ -9,8 +9,8 @@ import classes from './friends.module.css';
 
 const FriendsPage: FC = () => {
 	const user = useAppSelector(selectUser);
-	const [friendRequests, setFriendRequests] = useState<IFriendRequest[]>([]);
-	const [friends, setFriends] = useState<IFriendRequest[]>([]);
+	const [friendRequests, setFriendRequests] = useState<IFriend[]>([]);
+	const [friends, setFriends] = useState<IFriend[]>([]);
 
 	useEffect(() => {
 		UserService.getFriendRequests(user?.id)
