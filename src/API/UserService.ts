@@ -1,4 +1,4 @@
-import {IUser, IUserResponse, IUserLogin} from 'types/types';
+import {IUser, IUserResponse, IUserLogin, IFriendRequest} from 'types/types';
 import axios from 'axios';
 
 
@@ -20,5 +20,37 @@ export default class UserService {
 			'travels': user.travels
 		};
 		axios.patch(`http://localhost:8080/users/${user.id}`, body);
+	}
+
+	static async getAllUsers(): Promise<IUser[]> {
+		const response = await axios.get('http://localhost:8080/users')
+		return response.data;
+	}
+
+	static sendFriendRequest(toId: any, fromData: any): void {
+		axios.get(`http://localhost:8080/users/${toId}`).then(response => {
+			const allRequests = response.data.friendRequests;
+			const body = {"friendRequests": [...allRequests, fromData]}
+			axios.patch(`http://localhost:8080/users/${toId}`, body);
+		})
+	}
+
+	static cancelFriendRequest(fromId: any, toId: any): void {
+		axios.get(`http://localhost:8080/users/${toId}`).then(response => {
+			const filteredRequests = response.data.friendRequests
+				.filter((request: IFriendRequest) => request.id !== fromId);
+			const body = {"friendRequests": filteredRequests}
+			axios.patch(`http://localhost:8080/users/${toId}`, body);	
+		})
+	}
+
+	static async getFriendRequests(id: any): Promise<IFriendRequest[]> {
+		const response = await axios.get(`http://localhost:8080/users/${id}`);
+		return response.data.friendRequests;
+	}
+
+	static async getFriends(id: any): Promise<IFriendRequest[]> {
+		const response = await axios.get(`http://localhost:8080/users/${id}`);
+		return response.data.friends;
 	}
 }

@@ -12,7 +12,7 @@ export const registerUser = createAsyncThunk(
 			saveUserToLocalStorage(user);
 			return user; 
 		} catch (e) {
-			rejectWithValue(getErrorMessage(e));
+			return rejectWithValue(getErrorMessage(e));
 		}
 	}
 );

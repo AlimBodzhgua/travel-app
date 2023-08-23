@@ -6,6 +6,10 @@ export const getErrorMessage = (error: unknown):string => {
 	return String(error);
 };
 
+export const createNewUser = (data: {login: string, email: string, password: string}): IUser => {
+	return {...data, friends: [], friendRequests: [], travels: []};
+}
+
 export const saveUserToLocalStorage = (user: IUser):void => {
 	localStorage.setItem('user', JSON.stringify(user));
 };

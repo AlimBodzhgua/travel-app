@@ -1,8 +1,11 @@
-import {FC} from 'react';
-import {useForm, SubmitHandler} from 'react-hook-form';
-import { useAppDispatch } from 'hooks/redux';
+import { FC } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { registerUser } from 'redux/actions/userActions';
 import { IUser } from 'types/types'; 
+import { ThreeDots } from 'react-loader-spinner';
+import { createNewUser } from 'utils/utils';
 import classes from './auth.module.css';
 
 interface IFormInput {
@@ -14,6 +17,8 @@ interface IFormInput {
 
 const RegisterForm: FC = () => {
 	const dispatch = useAppDispatch();
+	const {errorMessage, isLoading} = useAppSelector(state => state.userReducer);
+	const navigate = useNavigate();
 	const {
 		register,
 		handleSubmit, 
@@ -22,8 +27,13 @@ const RegisterForm: FC = () => {
 
 
 	const onSubmit:SubmitHandler<IFormInput> = (e) => {
-		const user = {...e, travels: []} as IUser;
-		dispatch(registerUser(user));
+		const user = createNewUser(e);
+		dispatch(registerUser(user))
+			.then(({meta}) => {
+				if (meta.requestStatus === 'fulfilled') {
+					navigate('/travels');
+				}
+			});
 	};
 
 	return (
@@ -78,7 +88,25 @@ const RegisterForm: FC = () => {
 			{errors.password && 
 				<div className={classes.error}>{errors.password.message}</div>
 			}
-			<button type='submit' className={classes.btn}>register</button>
+			{errorMessage &&
+				<div className={classes.error}>User with such email already exist</div>
+			}
+			<button type='submit' className={classes.btn}>
+				{isLoading 
+					? 	<>
+							Loading
+							<ThreeDots 
+								height="22" 
+								width="34" 
+								radius="9"
+								color="#f2f2f2" 
+								ariaLabel="three-dots-loading"
+								visible={true}
+							/>
+						</>
+					: 	<>Register</>
+				}
+			</button>
 		</form>
 	);
 };

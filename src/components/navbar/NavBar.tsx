@@ -16,10 +16,18 @@ const NavBar: FC = () => {
 				<NavLink to='/travels' className={classes.nav__link}>
 					My Travels
 				</NavLink>
-			</div>			
-			<NavLink to='/profile' className={classes.nav__link}>
-				Profile
-			</NavLink>
+				<NavLink to='/users' className={classes.nav__link}>
+					Users
+				</NavLink>
+			</div>	
+			<div className={classes.nav__right}>		
+				<NavLink to='/friends' className={classes.nav__link}>
+					Friends
+				</NavLink>
+				<NavLink to='/profile' className={classes.nav__link}>
+					Profile
+				</NavLink>
+			</div>
 		</nav>
 	);
 };

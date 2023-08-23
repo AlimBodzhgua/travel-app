@@ -6,6 +6,8 @@ const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const TravelsPage = lazy(() => import('pages/TravelsPage/TravelsPage'));
 const TravelDetailsPage = lazy(() => import('pages/TravelDetailsPage/TravelDetailsPage'));
+const UsersPage = lazy(() => import('pages/UsersPage/UsersPage'));
+const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 
 enum RouteNames {
@@ -16,6 +18,8 @@ enum RouteNames {
 	PROFILE = '/profile',
 	REGISTER = '/regiser',
 	LOGIN = '/login',
+	USERS = '/users',
+	FRIENDS = '/friends',
 } 
 
 export const privateRoutes = [
@@ -23,7 +27,10 @@ export const privateRoutes = [
 	{path: RouteNames.TRAVELS, component: <TravelsPage />},
 	{path: RouteNames.TRAVEL_DETAILS, component: <TravelDetailsPage />},
 	{path: RouteNames.PROFILE, component: <ProfilePage />},
-	{path: RouteNames.NOT_FOUND, component: <NotFoundPage />}
+	{path: RouteNames.NOT_FOUND, component: <NotFoundPage />},
+	{path: RouteNames.USERS, component: <UsersPage />},
+	{path: RouteNames.FRIENDS, component: <FriendsPage />},
+
 ];
 
 export const publicRoutes = [
