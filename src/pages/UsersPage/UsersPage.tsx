@@ -1,13 +1,14 @@
 import {FC, useEffect, useState} from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { fetchAllUsers } from 'redux/actions/allUsersActions';
-import {IUser} from 'types/types';
+import { selectUser, selectAllUsers } from 'redux/selectors/selectors';
 import NavBar from 'components/Navbar/NavBar';
 import UsersList from 'components/UsersList/UsersList';
 import classes from './users.module.css';
 
 const UsersPage: FC = () => {
-	const {users} = useAppSelector(state => state.allUsersReducer);
+	const user = useAppSelector(selectUser);
+	const users = useAppSelector(state => selectAllUsers(state, Number(user?.id)));
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
