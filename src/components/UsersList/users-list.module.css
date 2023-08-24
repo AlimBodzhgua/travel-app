@@ -1,24 +1,29 @@
 
-.user {
+.item {
 	display: flex;
 	justify-content: space-between;
 
-	margin-bottom: 12px;
-	padding: 4px 6px;
-	
-	border: 1px solid black;
+	font-size: 16px;
+	padding: 6px 8px;
+	margin-bottom: 15px;
+
+	box-shadow: -1px 8px 25px -12px rgba(0,0,0,0.75);
+	border: 1px solid rgba(0, 0, 0, .3);
+	border-radius: 5px;
 }
 
-.button {
+.add {
 	border: none;
 	border-radius: 5px;
 
-	padding: 4px 6px;
+	padding: 4px;
+	width: 60px;
+
 	font-weight: 600;
-	background-color: var(--color-lightblue);
-	color: #000;
+	background-color: var(--color-blue);
+	color: #fff;
 }
 
-.button:hover {
+.add:hover {
 	cursor: pointer;
 }

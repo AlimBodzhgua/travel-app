@@ -24,43 +24,48 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 		})
 	}, [])
 
-	const handleClick = ():void => {
+	const handleCancelClick = ():void => {
+		if (currentUser && hovering && requestSended) {
+			dispatch(cancelFriendRequest({
+				toId: user.id,
+				fromId: currentUser.id
+			}));
+			setRequestSended(!requestSended);
+		}
+	}
+
+	const handleAddClick = ():void => {
 		if (currentUser) {
-			if (hovering && requestSended) {
-				dispatch(cancelFriendRequest({toId: user.id, fromId: currentUser.id}));
-			} else {
-				const fromData = {
-					id: Number(currentUser.id),
-					login: currentUser.login,
-					email: currentUser.email
-				}
-				dispatch(sendFriendRequest({id: user.id, data: fromData}));
+			const fromData = {
+				id: Number(currentUser.id),
+				login: currentUser.login,
+				email: currentUser.email
 			}
+			dispatch(sendFriendRequest({id: user.id, data: fromData}));
 			setRequestSended(!requestSended);
 		}
 	}
 
 	return (
-		<li className={classes.user}>
+		<li className={classes.item}>
 			<div>
-				<h2>{user.email}</h2>
+				<h3>{user.email}</h3>
 				<div>{user.login}</div>
 			</div>
-			<button
-				{...hoverProps}
-				onClick={handleClick}
-				className={classes.button}
-			>
-				{requestSended 
-					? <>
-						{hovering 
-							? <>cancel request</>
-							: <>request sended</>
-						}
-					  </>
-					: <>add friend</>
-				}
-			</button>
+			{requestSended 
+				?	<button 
+						{...hoverProps}
+						className={classes.add} 
+						onClick={handleCancelClick}
+					>
+						{hovering ? <>cancel</> : <>sended</>}
+					</button>
+				:   <button 
+						{...hoverProps}
+						className={classes.add} 
+						onClick={handleAddClick}
+					>add friend</button>
+			}
 		</li>
 	)
 }
