@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {IUser, ITravel, IBacklog, IGroup, ICard} from 'types/types';
+import {IUser, ITravel, IBacklog, IGroup, ICard, IFriend} from 'types/types';
 import {arrayMove} from '@dnd-kit/sortable';
 import {registerUser, loginUser} from 'redux/actions/userActions';
 
@@ -38,6 +38,23 @@ export const userSlice = createSlice({
 		changeEmail(state, action: PayloadAction<string>) {
 			if (state.user) {
 				state.user.email = action.payload;
+			}
+		},
+		rejectFriendRequest(state, action: PayloadAction<number>) {
+			if (state.user) {
+				state.user.friendRequests = state.user.friendRequests.filter(request => request.id !== action.payload)
+			}
+		},
+		acceptFriendRequest(state, action: PayloadAction<IFriend>) {
+			if (state.user) {
+				state.user.friendRequests = state.user.friendRequests
+					.filter(request => request.id !== action.payload.id)
+				state.user.friends.push(action.payload);
+			}	
+		},
+		deleteFriend(state, action: PayloadAction<number>) {
+			if (state.user) {
+				state.user.friends = state.user.friends.filter(friend => friend.id !== action.payload)
 			}
 		},
 		addTravel(state, action: PayloadAction<ITravel>) {
