@@ -23,6 +23,8 @@ export default class UserService {
 		const body = {
 			'login': user.login,
 			'email': user.email,
+			'friends': user.friends,
+			'friendRequests': user.friendRequests,
 			'travels': user.travels
 		};
 		axios.patch(`http://localhost:8080/users/${user.id}`, body);
@@ -52,15 +54,5 @@ export default class UserService {
 			const body = {"friendRequests": filteredRequests}
 			axios.patch(`http://localhost:8080/users/${toId}`, body);	
 		})
-	}
-
-	static async getFriendRequests(id: any): Promise<IFriend[]> {
-		const response = await axios.get(`http://localhost:8080/users/${id}`);
-		return response.data.friendRequests;
-	}
-
-	static async getFriends(id: any): Promise<IFriend[]> {
-		const response = await axios.get(`http://localhost:8080/users/${id}`);
-		return response.data.friends;
 	}
 }
