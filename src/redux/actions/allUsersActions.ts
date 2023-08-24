@@ -1,9 +1,13 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {getErrorMessage} from 'utils/utils';
-import {IPublicUser, IUser} from 'types/types';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { getErrorMessage } from 'utils/utils';
+import { IPublicUser } from 'types/types';
 import UserService from 'API/UserService';
 
-export const fetchAllUsers = createAsyncThunk<IPublicUser[], void, {rejectValue: string}>(
+export const fetchAllUsers = createAsyncThunk<
+	IPublicUser[], 
+	void, 
+	{rejectValue: string}
+>(
 	'users/getAll',
 	async (_, {rejectWithValue}) => {
 		try {
@@ -21,9 +25,14 @@ interface DataProps {
 	email: string;
 }
 
+interface ISendFriendRequestAction {
+	id: number;
+	data: DataProps;
+}
+
 export const sendFriendRequest = createAsyncThunk<
-	{id: number, data: DataProps},
-	{id: number, data: DataProps},
+	ISendFriendRequestAction,
+	ISendFriendRequestAction,
 	{rejectValue: string}
 >(
 	'users/friendRequest',
@@ -37,9 +46,14 @@ export const sendFriendRequest = createAsyncThunk<
 	}
 )
 
+interface ICancelFriendRequestAction {
+	toId: number;
+	fromId: number;
+}
+
 export const cancelFriendRequest = createAsyncThunk<
-	{toId: number, fromId: number},
-	{toId: number, fromId: number},
+	ICancelFriendRequestAction,
+	ICancelFriendRequestAction,
 	{rejectValue: string}
 >(
 	'users/cancelRequest',
