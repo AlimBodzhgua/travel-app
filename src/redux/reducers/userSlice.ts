@@ -234,24 +234,30 @@ export const userSlice = createSlice({
 			});	
 		}
 	},
-	extraReducers: {
-		[registerUser.pending.type]: (state, action: PayloadAction<string>) => {
-			state.isLoading = true;
-		},
-		[registerUser.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
-			state.isLoading = false;
-			state.isAuth = true;
-			state.errorMessage = '';
-			state.user = action.payload;
-		},
-		[registerUser.rejected.type]: (state, action: PayloadAction<string>) => {
-			state.isLoading = false;
-			state.errorMessage = action.payload;
-		},
-		[loginUser.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
-			state.isAuth = true;
-			state.user = action.payload;
-		}
+	extraReducers: (builder) => {
+		builder
+			.addCase(registerUser.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(registerUser.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isAuth = true;
+				state.user = action.payload;
+				state.errorMessage = '';
+			})
+			.addCase(registerUser.rejected, (state, action) => {
+				state.isLoading = false;
+				state.errorMessage = action.payload;
+			})
+			.addCase(loginUser.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isAuth = true;
+				state.user = action.payload;
+			})
+			.addCase(loginUser.rejected, (state, action) => {
+				state.isLoading = false;
+				state.errorMessage = action.payload;
+			})
 	}
 });
 
