@@ -37,7 +37,7 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 	const handleAddClick = ():void => {
 		if (currentUser) {
 			const fromData = {
-				id: Number(currentUser.id),
+				id: currentUser.id,
 				login: currentUser.login,
 				email: currentUser.email
 			}
