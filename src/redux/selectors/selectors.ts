@@ -26,6 +26,6 @@ export const selectCards = (state: RootState, travelId: number, groupId: number)
 		.find(group => group.id === groupId)?.cards;
 };
 
-export const selectAllUsers = (state: RootState, currentUserId: number) => {
-	return state.allUsersReducer.users.filter(user => user.id !== currentUserId);
+export const selectAllUsers = (state: RootState) => {
+	return state.allUsersReducer.users.filter(user => user.id !== state.userReducer.user?.id);
 }
