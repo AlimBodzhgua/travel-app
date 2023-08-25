@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { fetchAllUsers } from 'redux/actions/allUsersActions';
-import { selectAllUsers } from 'redux/selectors/selectors';
+import { memozedSelectAllUsers } from 'redux/selectors/selectors';
 import { RotatingLines } from 'react-loader-spinner';
 import { useDebounce } from 'hooks/useDebounce';
 import { IPublicUser } from 'types/types';
@@ -10,7 +10,7 @@ import UsersList from 'components/UsersList/UsersList';
 import classes from './users.module.css';
 
 const UsersPage: FC = () => {
-	const users = useAppSelector(selectAllUsers);
+	const users = useAppSelector(memozedSelectAllUsers);
 	const {isLoading, errorMessage} = useAppSelector(state => state.allUsersReducer);
 	const [searchedUsers, setSearchedUsers] = useState<IPublicUser[]>(users);
 	const [value, setValue] = useState<string>('');

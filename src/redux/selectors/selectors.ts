@@ -1,4 +1,5 @@
 import {RootState} from 'redux/store';
+import {createSelector} from '@reduxjs/toolkit';
 
 export const selectUser = (state: RootState) => {
 	return state.userReducer.user;
@@ -29,3 +30,8 @@ export const selectCards = (state: RootState, travelId: number, groupId: number)
 export const selectAllUsers = (state: RootState) => {
 	return state.allUsersReducer.users.filter(user => user.id !== state.userReducer.user?.id);
 }
+
+export const memozedSelectAllUsers = createSelector(
+	[selectAllUsers], (allUsers) => {
+	return allUsers;
+})
