@@ -1,26 +1,24 @@
 import { FC, useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { fetchAllUsers } from 'redux/actions/allUsersActions';
-import { selectUser, selectAllUsers } from 'redux/selectors/selectors';
+import { selectAllUsers } from 'redux/selectors/selectors';
 import { RotatingLines } from 'react-loader-spinner';
+import { useDebounce } from 'hooks/useDebounce';
 import { IPublicUser } from 'types/types';
 import NavBar from 'components/Navbar/NavBar';
 import UsersList from 'components/UsersList/UsersList';
-import {useDebounce} from 'hooks/useDebounce';
 import classes from './users.module.css';
 
 const UsersPage: FC = () => {
-	const user = useAppSelector(selectUser);
-	const users = useAppSelector(state => selectAllUsers(state, Number(user?.id)));
+	const users = useAppSelector(selectAllUsers);
 	const {isLoading, errorMessage} = useAppSelector(state => state.allUsersReducer);
-	const [searchedUsers, setSearchedUsers] = useState<IPublicUser[]>([]);
+	const [searchedUsers, setSearchedUsers] = useState<IPublicUser[]>(users);
 	const [value, setValue] = useState<string>('');
 	const debouncedValue = useDebounce(value, 500);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		dispatch(fetchAllUsers());
-		setSearchedUsers(users);
 	}, [])
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
@@ -29,12 +27,12 @@ const UsersPage: FC = () => {
 
 	useEffect(() => {
 		const result = users.filter((u) => {
-			if (u.login.toLowerCase().startsWith(debouncedValue.toLowerCase())) {
+			if (u.login.toLowerCase().includes(debouncedValue.toLowerCase())) {
 				return u;
 			}
 		})
 		setSearchedUsers(result);
-	}, [debouncedValue])
+	}, [debouncedValue, users])
 
 	return (
 		<div className={classes.container}>
@@ -63,7 +61,7 @@ const UsersPage: FC = () => {
 						                />
 						            </div>
 								:	<UsersList users={searchedUsers} /> 
-							: <h2>No users here yet</h2>
+							:   <h2>No users here yet</h2>
 						}
 					</>
 			}
