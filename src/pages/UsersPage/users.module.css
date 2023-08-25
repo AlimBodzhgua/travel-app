@@ -5,8 +5,25 @@
 	margin: 0 auto;
 }
 
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	margin-bottom: 18px;
+}
+
 .title {
-	margin-bottom: 14px;
+}
+
+.search {
+	padding: 4px;
+	border: 1px solid black;
+	border-radius: 0;
+}
+
+.search:focus {
+	outline: none;
 }
 
 .loader {
