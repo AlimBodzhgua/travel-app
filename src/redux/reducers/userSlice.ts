@@ -66,7 +66,7 @@ export const userSlice = createSlice({
 			), 1);
 		},
 		editTravel(state, action: PayloadAction<
-			Omit<ITravel, 'backlog' | 'groups'>
+			Omit<ITravel, 'members' | 'backlog' | 'groups'>
 		>) {
 			state.user?.travels.forEach(travel => {
 				if (travel.id === action.payload.id) {

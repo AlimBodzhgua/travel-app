@@ -6,8 +6,16 @@ export const getErrorMessage = (error: unknown):string => {
 	return String(error);
 };
 
-export const createNewUser = (data: {login: string, email: string, password: string}): IUser => {
-	return {...data, id: Date.now(), friends: [], friendRequests: [], travels: []};
+export const createNewUser = 
+	(data: {login: string, email: string, password: string}
+): IUser => {
+	return {
+		...data, 
+		id: Date.now(), 
+		friends: [], 
+		friendRequests: [], 
+		travels: []}
+	;
 }
 
 export const saveUserToLocalStorage = (user: IUser):void => {
@@ -33,6 +41,7 @@ export const createNewTravel = (
 		name: value,
 		dateStart: startDate.format('YYYY.MM.DD'),
 		dateEnd: endDate.format('YYYY.MM.DD'),
+		members: [],
 		backlog: [],
 		groups: [],
 	};
