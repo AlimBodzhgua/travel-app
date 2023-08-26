@@ -21,6 +21,10 @@ export const selectBacklogByTravelId = (state: RootState, travelId: number) => {
 	return state.userReducer.user?.travels.find(travel => travel.id === travelId)?.backlog;
 };
 
+export const selectMembersByTravelId = (state: RootState, travelId: number) => {
+	return state.userReducer.user?.travels.find(travel => travel.id === travelId)?.members
+}
+
 export const selectCards = (state: RootState, travelId: number, groupId: number) => {
 	return state.userReducer.user?.travels
 		.find(travel => travel.id === travelId)?.groups
