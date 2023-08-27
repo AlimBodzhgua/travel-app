@@ -87,6 +87,21 @@ export const userSlice = createSlice({
 				state.user.travels = arrayMove(state.user.travels, activeIndex, overIndex);
 			}
 		},
+		addMember(state, action: PayloadAction<{id: number, member: IFriend}>) {
+			state.user?.travels.forEach(travel => {
+				if (travel.id === action.payload.id) {
+					travel.members.push(action.payload.member);
+				}
+			})
+		},
+		deleteMember(state, action: PayloadAction<{travelId: number, memberId: number}>) {
+			state.user?.travels.forEach(travel => {
+				if (travel.id === action.payload.travelId) {
+					travel.members = travel.members
+						.filter(member => member.id !== action.payload.memberId)
+				}
+			})
+		},
 		addBacklog(state, action: PayloadAction<{id: string, backlog: IBacklog}>) {
 			state.user?.travels.forEach(travel => {
 				if (travel.id === Number(action.payload.id)) {
