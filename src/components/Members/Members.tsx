@@ -3,12 +3,11 @@ import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { useParams } from 'react-router-dom';
 import { selectMembersByTravelId } from 'redux/selectors/selectors';
 import { IFriend } from 'types/types';
-import { DndContext, DragStartEvent, DragOverlay, DragEndEvent } from '@dnd-kit/core';
+import { DndContext, DragStartEvent, DragEndEvent } from '@dnd-kit/core';
 import { userSlice } from 'redux/reducers/userSlice';
+import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
 import AddMembersForm from 'components/AddMembersForm/AddMembersForm';
 import MembersList from './MembersList/MembersList';
-import DroppableMembersArea from 'components/AddMembersForm/DroppableMembersArea';
-import Item from 'components/AddMembersForm/Item';
 
 import classes from './members.module.css';
 
@@ -18,6 +17,14 @@ const Members: FC = () => {
 	const [activeItem, setActiveItem] = useState<IFriend | null>(null)
 	const members = useAppSelector(state => selectMembersByTravelId(state, Number(id)));
 	const dispatch = useAppDispatch();
+	const sensors = useSensors(
+		useSensor(PointerSensor, {
+	    	activationConstraint: {
+	      		distance: 8,
+	    	},
+	  	})
+	);
+
 
 	const handleClick = ():void => setShowAddForm(true);
 
@@ -52,25 +59,16 @@ const Members: FC = () => {
 			<DndContext 
 				onDragStart={handleDragStart}
 				onDragEnd={handleDragEnd}
+				sensors={sensors}
 			>
 				{showAddForm &&
 					<AddMembersForm />
 				}
-				{members?.length
-					? 	<MembersList 
-							members={members} 
-							activeItem={activeItem}
-						/>
-					: 	activeItem && 
-							<>
-								<DragOverlay>
-									{activeItem 
-										? 	<Item friend={activeItem} />
-										: 	null
-									}
-								</DragOverlay>
-								<DroppableMembersArea />
-							</>
+				{members && 
+					<MembersList 
+						members={members} 
+						activeItem={activeItem}
+					/>
 				}
 			</DndContext>
 		</div>
