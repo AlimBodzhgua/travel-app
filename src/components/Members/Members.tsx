@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { useParams } from 'react-router-dom';
 import { selectMembersByTravelId } from 'redux/selectors/selectors';
@@ -27,7 +27,6 @@ const Members: FC = () => {
 	}
 
 	const handleDragEnd = (e: DragEndEvent):void => {
-		setActiveItem(null);
 		if (e.over) {
 			const item:IFriend = e.active.data.current?.friend;
 			dispatch(userSlice.actions.addMember({
@@ -35,6 +34,7 @@ const Members: FC = () => {
 				member: item
 			}));
 		}
+		setActiveItem(null);
 	}
 
 	return (
