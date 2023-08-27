@@ -1,9 +1,10 @@
 import { FC, useState, useEffect } from 'react';
-import { useAppSelector } from 'hooks/redux';
+import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { useParams } from 'react-router-dom';
 import { selectMembersByTravelId } from 'redux/selectors/selectors';
 import { IFriend } from 'types/types';
-import { DndContext, DragStartEvent, DragOverlay } from '@dnd-kit/core';
+import { DndContext, DragStartEvent, DragOverlay, DragEndEvent } from '@dnd-kit/core';
+import { userSlice } from 'redux/reducers/userSlice';
 import AddMembersForm from 'components/AddMembersForm/AddMembersForm';
 import MembersList from './MembersList/MembersList';
 import DroppableMembersArea from 'components/AddMembersForm/DroppableMembersArea';
@@ -16,15 +17,25 @@ const Members: FC = () => {
 	const [showAddForm, setShowAddForm] = useState<boolean>(false);
 	const [activeItem, setActiveItem] = useState<IFriend | null>(null)
 	const members = useAppSelector(state => selectMembersByTravelId(state, Number(id)));
+	const dispatch = useAppDispatch();
 
 	const handleClick = ():void => setShowAddForm(true);
-	const handleDragEnd = ():void => setActiveItem(null);
 
 	const handleDragStart = (e: DragStartEvent) => {
 		const item:IFriend = e.active.data.current?.friend;
 		setActiveItem(item);
 	}
 
+	const handleDragEnd = (e: DragEndEvent):void => {
+		setActiveItem(null);
+		if (e.over) {
+			const item:IFriend = e.active.data.current?.friend;
+			dispatch(userSlice.actions.addMember({
+				id: Number(id),
+				member: item
+			}));
+		}
+	}
 
 	return (
 		<div className={classes.members}>
@@ -46,7 +57,10 @@ const Members: FC = () => {
 					<AddMembersForm />
 				}
 				{members?.length
-					? 	<MembersList members={members} activeItem={activeItem}/>
+					? 	<MembersList 
+							members={members} 
+							activeItem={activeItem}
+						/>
 					: 	activeItem && 
 							<>
 								<DragOverlay>
