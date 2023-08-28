@@ -21,14 +21,22 @@ const AddMembersForm: FC = () => {
 
 	return (
 		<div className={classes.form}>
-			<ul className={classes.list}>
-				{filteredFriends.map(friend => 
-					<Item 
-						key={friend.id} 
-						friend={friend}
-					/>
-				)}
-			</ul>
+			{filteredFriends.length 
+				?	<>
+						<h4 className={classes.helper_text}>
+							Drag elements and drop to members list or press button
+						</h4>
+						<ul className={classes.list}>
+							{filteredFriends.map(friend => 
+								<Item 
+									key={friend.id} 
+									friend={friend}
+								/>
+							)}
+						</ul>
+					</>
+				: 	<div className={classes.empty_text}>You have no users to add</div>
+			}
 		</div>
 	)
 }

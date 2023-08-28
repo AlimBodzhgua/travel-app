@@ -56,3 +56,15 @@
 	cursor: pointer;
 	color: gray;
 }
+
+.helper_text {
+	color: var(--color-blue);
+	padding-bottom: 5px;
+	text-align: center;
+	font-weight: normal;
+}
+
+.empty_text {
+	text-align: center;
+	color: var(--color-blue);
+}
