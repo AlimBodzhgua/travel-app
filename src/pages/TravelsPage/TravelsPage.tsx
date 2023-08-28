@@ -21,7 +21,7 @@ const TravelsPage: FC = () => {
 					<h1 className={classes.page__title}>Travels</h1>
 					<button className={classes.button} onClick={handleClick}>Create trip</button>
 				</header>
-				{travels?.length 
+				{travels.length 
 					? <TravelList travels={travels}/>
 					: <h3>You don`t have any planned trips yet</h3>
 				}
