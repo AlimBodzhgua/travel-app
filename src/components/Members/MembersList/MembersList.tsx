@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { IFriend } from 'types/types';
 import { DragOverlay } from '@dnd-kit/core';
 import MembersItem from './MembersItem';
-import Item from 'components/AddMembersForm/Item';
-import DroppableMembersArea from 'components/AddMembersForm/DroppableMembersArea';
+import Item from 'components/AddMembersSection/Item';
+import DroppableMembersArea from 'components/AddMembersSection/DroppableMembersArea';
 
 import classes from './members-list.module.css';
 
