@@ -6,14 +6,14 @@ import { IFriend } from 'types/types';
 import { DndContext, DragStartEvent, DragEndEvent } from '@dnd-kit/core';
 import { userSlice } from 'redux/reducers/userSlice';
 import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
-import AddMembersForm from 'components/AddMembersForm/AddMembersForm';
+import AddMembersSection from 'components/AddMembersForm/AddMembersSection';
 import MembersList from './MembersList/MembersList';
 
 import classes from './members.module.css';
 
 const Members: FC = () => {
 	const { id } = useParams<{id?: string}>();
-	const [showAddForm, setShowAddForm] = useState<boolean>(false);
+	const [showAddSection, setShowAddSection] = useState<boolean>(false);
 	const [activeItem, setActiveItem] = useState<IFriend | null>(null)
 	const members = useAppSelector(state => selectMembersByTravelId(state, Number(id)));
 	const dispatch = useAppDispatch();
@@ -26,7 +26,7 @@ const Members: FC = () => {
 	);
 
 
-	const handleClick = ():void => setShowAddForm(!showAddForm);
+	const handleClick = ():void => setShowAddSection(!showAddSection);
 
 	const handleDragStart = (e: DragStartEvent) => {
 		const item:IFriend = e.active.data.current?.friend;
@@ -54,15 +54,15 @@ const Members: FC = () => {
 				<button 
 					onClick={handleClick}
 					className={classes.add}
-				>{showAddForm ? <>close</> : <>add members</>}</button>
+				>{showAddSection ? <>close</> : <>add members</>}</button>
 			</div>
 			<DndContext 
 				onDragStart={handleDragStart}
 				onDragEnd={handleDragEnd}
 				sensors={sensors}
 			>
-				{showAddForm &&
-					<AddMembersForm />
+				{showAddSection &&
+					<AddMembersSection />
 				}
 				<MembersList 
 					members={members} 
