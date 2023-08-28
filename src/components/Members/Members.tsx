@@ -26,7 +26,7 @@ const Members: FC = () => {
 	);
 
 
-	const handleClick = ():void => setShowAddForm(true);
+	const handleClick = ():void => setShowAddForm(!showAddForm);
 
 	const handleDragStart = (e: DragStartEvent) => {
 		const item:IFriend = e.active.data.current?.friend;
@@ -47,14 +47,14 @@ const Members: FC = () => {
 	return (
 		<div className={classes.members}>
 			<div className={classes.members__header}>
-				{members?.length
+				{members.length
 					? <h3 className={classes.title}>Members list</h3>
 					: null
 				}
 				<button 
 					onClick={handleClick}
 					className={classes.add}
-				>add members</button>
+				>{showAddForm ? <>close</> : <>add members</>}</button>
 			</div>
 			<DndContext 
 				onDragStart={handleDragStart}
@@ -64,12 +64,10 @@ const Members: FC = () => {
 				{showAddForm &&
 					<AddMembersForm />
 				}
-				{members && 
-					<MembersList 
-						members={members} 
-						activeItem={activeItem}
-					/>
-				}
+				<MembersList 
+					members={members} 
+					activeItem={activeItem}
+				/>
 			</DndContext>
 		</div>
 	)
