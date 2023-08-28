@@ -1,6 +1,8 @@
 import { FC } from 'react';
-import { useAppDispatch } from 'hooks/redux';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
+import { acceptFriendRequest } from 'redux/actions/userActions';
+import { selectUser } from 'redux/selectors/selectors';
 import { IFriend } from 'types/types';
 import classes from './friend-requests.module.css';
 
@@ -9,6 +11,7 @@ interface RequestItemProps {
 }
 
 const RequestItem: FC<RequestItemProps> = ({request}) => {
+	const user = useAppSelector(selectUser);
 	const dispatch = useAppDispatch();
 
 	const handleRejectClick = (id:number):void => {
@@ -18,7 +21,17 @@ const RequestItem: FC<RequestItemProps> = ({request}) => {
 	}
 
 	const handleAddClick = (friend: IFriend) => {
-		dispatch(userSlice.actions.acceptFriendRequest(friend));
+		if (user) {
+			const currentUser: IFriend = {
+				id: user.id,
+				login: user.login,
+				email: user.email
+			}
+			dispatch(acceptFriendRequest({
+				requestUser: friend,
+				responseUser: currentUser 
+			}))
+		}
 	}
 
 	return (
