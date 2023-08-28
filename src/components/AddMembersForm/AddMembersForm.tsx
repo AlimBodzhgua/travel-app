@@ -1,17 +1,28 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useAppSelector } from 'hooks/redux';
-import { selectUser } from 'redux/selectors/selectors';
+import { selectUser, selectMembersByTravelId } from 'redux/selectors/selectors';
+import { removeMembersFromFriendList } from 'utils/utils';
+import { useParams } from 'react-router-dom';
+import { IFriend } from 'types/types';
 import Item from './Item';
 import classes from './member-add.module.css';
 
-
 const AddMembersForm: FC = () => {
+	const { id } = useParams<{id? : string}>();
+	const members = useAppSelector(state => selectMembersByTravelId(state, Number(id)));
 	const user = useAppSelector(selectUser);
+	const [filteredFriends, setFilteredFriends] = useState<IFriend[]>([]);
+
+	useEffect(() => {
+		if (user) {
+			setFilteredFriends(removeMembersFromFriendList(members, user.friends));
+		}
+	}, [members])
 
 	return (
 		<div className={classes.form}>
 			<ul className={classes.list}>
-				{user?.friends.map(friend => 
+				{filteredFriends.map(friend => 
 					<Item 
 						key={friend.id} 
 						friend={friend}
