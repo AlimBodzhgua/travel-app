@@ -1,5 +1,5 @@
-import {FC} from 'react';
-import {IFriend} from 'types/types';
+import { FC } from 'react';
+import { IFriend } from 'types/types';
 import ListItem from './ListItem';
 import classes from './friend-list.module.css';
 

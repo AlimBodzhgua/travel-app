@@ -55,3 +55,19 @@ export const acceptFriendRequest = createAsyncThunk<
 		}
 	}
 )
+
+export const deleteFriend = createAsyncThunk<
+	number,
+	{firstUserId: number, secondUserId: number},
+	{rejectValue: string}
+>(
+	'user/deleteFrined',
+	async({firstUserId, secondUserId}, {rejectWithValue}) => {
+		try {
+			UserService.deleteFriend(firstUserId, secondUserId);
+			return secondUserId;
+		} catch (e) {
+			return rejectWithValue(getErrorMessage(e));
+		}
+	}
+)

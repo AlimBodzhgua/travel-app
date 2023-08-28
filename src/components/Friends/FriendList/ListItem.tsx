@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { IFriend } from 'types/types';
-import { useAppDispatch } from 'hooks/redux';
-import { userSlice } from 'redux/reducers/userSlice';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { selectUser } from 'redux/selectors/selectors';
+import { deleteFriend } from 'redux/actions/userActions';
 import classes from './friend-list.module.css';
 
 interface ListItemProps {
@@ -9,11 +10,17 @@ interface ListItemProps {
 }
 
 const ListItem: FC<ListItemProps> = ({friend}) => {
+	const user = useAppSelector(selectUser);
 	const dispatch = useAppDispatch();
 
-	const handleDeleteClick = (id: number):void => {
+	const handleClick = ():void => {
 		if (window.confirm('Are you sure you want to delete friend?')) {
-			dispatch(userSlice.actions.deleteFriend(id));
+			if (user) {
+				dispatch(deleteFriend({
+					firstUserId: user.id,
+					secondUserId: friend.id
+				}))
+			}
 		}
 	}
 
@@ -24,7 +31,7 @@ const ListItem: FC<ListItemProps> = ({friend}) => {
 				<div>{friend.login}</div>
 			</div>
 			<button 
-				onClick={() => handleDeleteClick(friend.id)}
+				onClick={handleClick}
 				className={classes.delete}
 			>delete</button>
 		</li>

@@ -62,4 +62,13 @@ export default class UserService {
 			axios.patch(`http://localhost:8080/users/${requestUser.id}`, body);	
 		})
 	}
+
+	static deleteFriend(firstUserId: number, secondUserId: number):void {
+		axios.get(`http://localhost:8080/users/${secondUserId}`).then(response => {
+			const body = {
+				"friends": response.data.friends.filter((friend:IFriend) => friend.id !== firstUserId)
+			}
+			axios.patch(`http://localhost:8080/users/${secondUserId}`, body);
+		})
+	}
 }

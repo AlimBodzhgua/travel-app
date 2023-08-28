@@ -7,7 +7,12 @@ import {
 	ICard, 
 	IFriend
 } from 'types/types';
-import {registerUser, loginUser, acceptFriendRequest} from 'redux/actions/userActions';
+import {
+	acceptFriendRequest,
+	deleteFriend,
+	registerUser, 
+	loginUser
+} from 'redux/actions/userActions';
 import {arrayMove} from '@dnd-kit/sortable';
 
 interface UserState {
@@ -50,11 +55,6 @@ export const userSlice = createSlice({
 		rejectFriendRequest(state, action: PayloadAction<number>) {
 			if (state.user) {
 				state.user.friendRequests = state.user.friendRequests.filter(request => request.id !== action.payload)
-			}
-		},
-		deleteFriend(state, action: PayloadAction<number>) {
-			if (state.user) {
-				state.user.friends = state.user.friends.filter(friend => friend.id !== action.payload)
 			}
 		},
 		addTravel(state, action: PayloadAction<ITravel>) {
@@ -279,6 +279,19 @@ export const userSlice = createSlice({
 						.filter(request => request.id !== action.payload.id);
 					state.user.friends.push(action.payload);
 				}	
+			})
+			.addCase(acceptFriendRequest.rejected, (state, action) => {
+				state.errorMessage = action.payload;
+				state.isLoading = false;
+			})
+			.addCase(deleteFriend.fulfilled, (state, action) => {
+				if (state.user) {
+					state.user.friends = state.user.friends.filter(friend => friend.id !== action.payload)
+				}
+			})
+			.addCase(deleteFriend.rejected, (state, action) => {
+				state.errorMessage = action.payload;
+				state.isLoading = false;
 			})
 	}
 });
