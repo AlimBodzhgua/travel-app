@@ -10,25 +10,25 @@ export const selectTravelById = (state: RootState, id: number) => {
 };
 
 export const selectTravels = (state: RootState) => {
-	return state.userReducer.user?.travels;
+	return state.userReducer.user?.travels || [];
 };
 
-export const selectTravelGroupsById = (state: RootState, id: number) => {
-	return state.userReducer.user?.travels.find(travel => travel.id === Number(id))?.groups;
+export const selectGroupsByTravelId = (state: RootState, id: number) => {
+	return state.userReducer.user?.travels.find(travel => travel.id === Number(id))?.groups || [];
 };
 
-export const selectBacklogByTravelId = (state: RootState, travelId: number) => {
-	return state.userReducer.user?.travels.find(travel => travel.id === travelId)?.backlog;
+export const selectBacklogsByTravelId = (state: RootState, travelId: number) => {
+	return state.userReducer.user?.travels.find(travel => travel.id === travelId)?.backlog || [];
 };
 
 export const selectMembersByTravelId = (state: RootState, travelId: number) => {
-	return state.userReducer.user?.travels.find(travel => travel.id === travelId)?.members
+	return state.userReducer.user?.travels.find(travel => travel.id === travelId)?.members || []
 }
 
 export const selectCards = (state: RootState, travelId: number, groupId: number) => {
 	return state.userReducer.user?.travels
 		.find(travel => travel.id === travelId)?.groups
-		.find(group => group.id === groupId)?.cards;
+		.find(group => group.id === groupId)?.cards || [];
 };
 
 export const selectAllUsers = (state: RootState) => {
