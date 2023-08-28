@@ -1,12 +1,12 @@
-import {FC, useState} from 'react';
-import {useAppDispatch, useAppSelector} from 'hooks/redux';
-import {selectBacklogByTravelId} from 'redux/selectors/selectors';
-import {userSlice} from 'redux/reducers/userSlice';
-import {useParams} from 'react-router-dom';
-import {SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable';
-import {useSensors, useSensor, PointerSensor} from '@dnd-kit/core';
-import {restrictToParentElement} from '@dnd-kit/modifiers';
-import {DndContext} from '@dnd-kit/core';
+import { FC, useState } from 'react';
+import { useAppDispatch, useAppSelector} from 'hooks/redux';
+import { selectBacklogsByTravelId} from 'redux/selectors/selectors';
+import { userSlice } from 'redux/reducers/userSlice';
+import { useParams } from 'react-router-dom';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
+import { restrictToParentElement } from '@dnd-kit/modifiers';
+import { DndContext } from '@dnd-kit/core';
 import BacklogCreateForm from 'components/CreateForms/BacklogCreateForm/BacklogCreateForm';
 import BacklogItem from './BacklogItem';
 
@@ -15,7 +15,7 @@ import classes from './backlog.module.css';
 const BacklogList: FC = () => {
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const { id } = useParams<{id? : string}>();
-	const backlogs = useAppSelector(state => selectBacklogByTravelId(state, Number(id)));
+	const backlogs = useAppSelector(state => selectBacklogsByTravelId(state, Number(id)));
 	const dispatch = useAppDispatch();
 
 	const sensors = useSensors(
@@ -43,27 +43,25 @@ const BacklogList: FC = () => {
 	return (
 		<div className={classes.backlog}>
 			<h2 className={classes.backlog__title}>Backlog</h2>	
-			{backlogs && 
-				<DndContext
-					sensors={sensors}
-					onDragEnd={handleDragEnd}
-					modifiers={[restrictToParentElement]}
+			<DndContext
+				sensors={sensors}
+				onDragEnd={handleDragEnd}
+				modifiers={[restrictToParentElement]}
+			>
+				<SortableContext 
+					items={backlogs}
+			        strategy={verticalListSortingStrategy}
 				>
-					<SortableContext 
-						items={backlogs}
-				        strategy={verticalListSortingStrategy}
-					>
-						<ul className={classes.backlog__list}>
-							{backlogs.map(backlog => 
-								<BacklogItem 
-									key={backlog.id}
-									backlog={backlog}
-								/>
-							)}
-						</ul>
-					</SortableContext>
-				</DndContext>
-			}
+					<ul className={classes.backlog__list}>
+						{backlogs.map(backlog => 
+							<BacklogItem 
+								key={backlog.id}
+								backlog={backlog}
+							/>
+						)}
+					</ul>
+				</SortableContext>
+			</DndContext>
 			{showCreateForm 
 				?
 					<BacklogCreateForm 
