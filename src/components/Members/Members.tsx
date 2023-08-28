@@ -6,7 +6,7 @@ import { IFriend } from 'types/types';
 import { DndContext, DragStartEvent, DragEndEvent } from '@dnd-kit/core';
 import { userSlice } from 'redux/reducers/userSlice';
 import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
-import AddMembersSection from 'components/AddMembersForm/AddMembersSection';
+import AddMembersSection from 'components/AddMembersSection/AddMembersSection';
 import MembersList from './MembersList/MembersList';
 
 import classes from './members.module.css';
