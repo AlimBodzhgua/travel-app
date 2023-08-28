@@ -55,4 +55,11 @@ export default class UserService {
 			axios.patch(`http://localhost:8080/users/${toId}`, body);	
 		})
 	}
+
+	static acceptFriendRequest(requestUser: IFriend, responseUser: IFriend): void {
+		axios.get(`http://localhost:8080/users/${requestUser.id}`).then(response => {
+			const body = {"friends": [...response.data.friends, responseUser]}
+			axios.patch(`http://localhost:8080/users/${requestUser.id}`, body);	
+		})
+	}
 }
