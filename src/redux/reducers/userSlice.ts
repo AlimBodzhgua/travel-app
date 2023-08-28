@@ -1,7 +1,14 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {IUser, ITravel, IBacklog, IGroup, ICard, IFriend} from 'types/types';
+import {
+	IUser, 
+	ITravel, 
+	IBacklog, 
+	IGroup, 
+	ICard, 
+	IFriend
+} from 'types/types';
+import {registerUser, loginUser, acceptFriendRequest} from 'redux/actions/userActions';
 import {arrayMove} from '@dnd-kit/sortable';
-import {registerUser, loginUser} from 'redux/actions/userActions';
 
 interface UserState {
 	isLoading: boolean;
@@ -44,13 +51,6 @@ export const userSlice = createSlice({
 			if (state.user) {
 				state.user.friendRequests = state.user.friendRequests.filter(request => request.id !== action.payload)
 			}
-		},
-		acceptFriendRequest(state, action: PayloadAction<IFriend>) {
-			if (state.user) {
-				state.user.friendRequests = state.user.friendRequests
-					.filter(request => request.id !== action.payload.id)
-				state.user.friends.push(action.payload);
-			}	
 		},
 		deleteFriend(state, action: PayloadAction<number>) {
 			if (state.user) {
@@ -272,6 +272,13 @@ export const userSlice = createSlice({
 			.addCase(loginUser.rejected, (state, action) => {
 				state.isLoading = false;
 				state.errorMessage = action.payload;
+			})
+			.addCase(acceptFriendRequest.fulfilled, (state, action) => {
+				if (state.user) {
+					state.user.friendRequests = state.user.friendRequests
+						.filter(request => request.id !== action.payload.id);
+					state.user.friends.push(action.payload);
+				}	
 			})
 	}
 });
