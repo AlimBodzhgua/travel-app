@@ -8,13 +8,13 @@ import {useParams} from 'react-router-dom';
 import GroupCreateForm from '../CreateForms/GroupCreateForm/GroupCreateForm';
 import GroupItem from './GroupItem';
 import classes from './groups.module.css';
-import { selectTravelGroupsById } from 'redux/selectors/selectors';
+import { selectGroupsByTravelId } from 'redux/selectors/selectors';
 
 const Groups: FC = () => {
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 	const { id } = useParams<{id? : string}>();
-	const groups = useAppSelector(state => selectTravelGroupsById(state, Number(id)));
+	const groups = useAppSelector(state => selectGroupsByTravelId(state, Number(id)));
 
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
@@ -38,27 +38,25 @@ const Groups: FC = () => {
 
 	return (
 		<div className={classes.groups}>
-			{groups && 
-				<DndContext
-					onDragEnd={handleDragEnd}
-					sensors={sensors}
-					modifiers={[restrictToParentElement]}
+			<DndContext
+				onDragEnd={handleDragEnd}
+				sensors={sensors}
+				modifiers={[restrictToParentElement]}
+			>
+				<SortableContext 
+					items={groups}
+					strategy={verticalListSortingStrategy}
 				>
-					<SortableContext 
-						items={groups}
-						strategy={verticalListSortingStrategy}
-					>
-						<ul className={classes.list}>
-								{groups.map(group => 
-									<GroupItem 
-										key={group.id}
-										group={group}
-									/>
-								)}
-						</ul>
-					</SortableContext>
-				</DndContext>
-			}
+					<ul className={classes.list}>
+							{groups.map(group => 
+								<GroupItem 
+									key={group.id}
+									group={group}
+								/>
+							)}
+					</ul>
+				</SortableContext>
+			</DndContext>
 			{showCreateForm 
 				?	<GroupCreateForm setShowCreateForm={setShowCreateForm}/>
 				: 	<button 
