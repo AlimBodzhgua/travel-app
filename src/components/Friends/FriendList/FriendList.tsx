@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IFriend } from 'types/types';
-import ListItem from './ListItem';
+import FriendItem from './FriendItem';
 import classes from './friend-list.module.css';
 
 interface FriendsListProps {
@@ -11,7 +11,7 @@ const FriendList: FC<FriendsListProps> = ({friends}) => {
 	return (
 		<ul className={classes.list}>
 			{friends.map(friend => 
-				<ListItem 
+				<FriendItem 
 					key={friend.id}
 					friend={friend}
 				/>

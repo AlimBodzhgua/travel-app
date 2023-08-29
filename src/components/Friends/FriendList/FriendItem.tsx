@@ -5,11 +5,11 @@ import { selectUser } from 'redux/selectors/selectors';
 import { deleteFriend } from 'redux/actions/userActions';
 import classes from './friend-list.module.css';
 
-interface ListItemProps {
+interface FriendItemProps {
 	friend: IFriend;
 }
 
-const ListItem: FC<ListItemProps> = ({friend}) => {
+const FriendItem: FC<FriendItemProps> = ({friend}) => {
 	const user = useAppSelector(selectUser);
 	const dispatch = useAppDispatch();
 
@@ -38,4 +38,4 @@ const ListItem: FC<ListItemProps> = ({friend}) => {
 	)
 }
 
-export default ListItem;
+export default FriendItem;
