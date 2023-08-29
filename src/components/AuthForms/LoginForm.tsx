@@ -1,9 +1,10 @@
-import {FC} from 'react';
-import {useAppDispatch} from 'hooks/redux';
-import {useNavigate} from 'react-router-dom';
-import {loginUser} from 'redux/actions/userActions';
-import {useForm, SubmitHandler} from 'react-hook-form';
-import {IUserLogin} from 'types/types';
+import { FC } from 'react';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from 'redux/actions/userActions';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { ThreeDots } from 'react-loader-spinner';
+import { IUserLogin } from 'types/types';
 import classes from './auth.module.css';
 
 
@@ -13,6 +14,7 @@ interface IFormInput {
 }
 
 const LoginForm: FC = () => {
+	const { isLoading } = useAppSelector(state => state.userReducer);
 	const dispatch = useAppDispatch();
 	const {
 		register, 
@@ -22,8 +24,13 @@ const LoginForm: FC = () => {
 	const navigate = useNavigate();
 
 	const onSubmit:SubmitHandler<IUserLogin> = (e) => {
-		dispatch(loginUser(e));
-		navigate('/travels');
+		dispatch(loginUser(e)).then(({meta}) => {
+			if (meta.requestStatus === 'fulfilled') {
+				navigate('/travels');
+			} else if (meta.requestStatus === 'rejected') {
+				alert('Wrong password or email');
+			}
+		})
 	};
 
 
@@ -57,7 +64,22 @@ const LoginForm: FC = () => {
 			{errors.password && 
 				<div className={classes.error}>{errors.password.message}</div>
 			}
-			<button type='submit' className={classes.btn}>login</button>
+			<button type='submit' className={classes.btn}>
+				{isLoading 
+					? 	<>
+							Loading
+							<ThreeDots 
+								height="22" 
+								width="34" 
+								radius="9"
+								color="#f2f2f2" 
+								ariaLabel="three-dots-loading"
+								visible={true}
+							/>
+						</> 
+					: 	<>login</>
+				}
+			</button>
 		</form>
 	);
 };
