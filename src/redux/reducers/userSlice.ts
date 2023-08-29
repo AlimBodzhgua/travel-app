@@ -251,7 +251,7 @@ export const userSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(registerUser.pending, (state, action) => {
+			.addCase(registerUser.pending, (state, _) => {
 				state.isLoading = true;
 			})
 			.addCase(registerUser.fulfilled, (state, action) => {
@@ -263,6 +263,9 @@ export const userSlice = createSlice({
 			.addCase(registerUser.rejected, (state, action) => {
 				state.isLoading = false;
 				state.errorMessage = action.payload;
+			})
+			.addCase(loginUser.pending, (state, _) => {
+				state.isLoading = true;
 			})
 			.addCase(loginUser.fulfilled, (state, action) => {
 				state.isLoading = false;
