@@ -10,9 +10,12 @@ const DroppableMembersArea: FC = () => {
 	return (
 		<div 
 		    ref={setNodeRef}
-		    style={{color: isOver ? 'red' : 'blue'}}
+		    style={{
+		    	backgroundColor: isOver ? 'lightblue' : 'white',
+		    	color: isOver ? 'white' : 'black'
+		    }}
 		    className={classes.droppable}
-		>drop area</div>
+		>drop here</div>
 	)
 }
 
