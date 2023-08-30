@@ -58,7 +58,7 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 						className={classes.add} 
 						onClick={handleCancelClick}
 					>
-						{hovering ? <>cancel</> : <>sended</>}
+						{hovering ? <>cancel request</> : <>request sended</>}
 					</button>
 				:   <button 
 						{...hoverProps}
