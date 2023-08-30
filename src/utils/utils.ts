@@ -5,6 +5,7 @@ import {
 	IGroup, 
 	ICard,
 	IFriend,
+    IPublicUser,
 } from 'types/types';
 import dayjs, {Dayjs} from 'dayjs';
 
@@ -80,5 +81,13 @@ export const removeMembersFromFriendList = (members: IFriend[], friends: IFriend
 	return friends.filter((friend) => {
 		const find = members.find(member => member.id === friend.id);
 		if (!find) return friend
+	}) || []
+}
+
+
+export const removeFriendsFromAllUsers = (friends: IFriend[], users: IPublicUser[]): IPublicUser[] => {
+	return users.filter((user) => {
+		const find = friends.find(friend => friend.id === user.id);
+		if (!find) return user
 	}) || []
 }
