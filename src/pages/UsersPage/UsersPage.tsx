@@ -1,49 +1,31 @@
 import { FC, useEffect, useState } from 'react';
-import { useAppSelector, useAppDispatch } from 'hooks/redux';
-import { fetchAllUsers } from 'redux/actions/allUsersActions';
-import { memozedSelectAllUsers, selectUser } from 'redux/selectors/selectors';
 import { RotatingLines } from 'react-loader-spinner';
 import { useDebounce } from 'hooks/useDebounce';
 import { IPublicUser } from 'types/types';
-import { removeFriendsFromAllUsers } from 'utils/utils';
+import { useAllUsers } from 'hooks/useAllUsers';
 import NavBar from 'components/Navbar/NavBar';
 import UsersList from 'components/UsersList/UsersList';
 import classes from './users.module.css';
 
+
 const UsersPage: FC = () => {
-	const users = useAppSelector(memozedSelectAllUsers);
-	const user = useAppSelector(selectUser);
-	const {isLoading, errorMessage} = useAppSelector(state => state.allUsersReducer);
+	const [users, isLoading, errorMessage] = useAllUsers();
 	const [searchedUsers, setSearchedUsers] = useState<IPublicUser[]>([]);
-	const [value, setValue] = useState<string>('');
-	const debouncedValue = useDebounce(value, 500);
-	const dispatch = useAppDispatch();
-
-	const [filteredUsers, setFilteredUsers] = useState<IPublicUser[]>([])
+	const [searchQuery, setSearchQuery] = useState<string>('');
+	const debouncedValue = useDebounce(searchQuery, 500);
 
 	useEffect(() => {
-		dispatch(fetchAllUsers())
-	}, [])
-
-
-	useEffect(() => {
-		if (users.length && user) {
-			setFilteredUsers(removeFriendsFromAllUsers(user.friends, users));
-		}
-	}, [users])
-
-
-	useEffect(() => {
-		const result = filteredUsers.filter((u) => {
+		const result = users.filter((u) => {
 			if (u.login.toLowerCase().includes(debouncedValue.toLowerCase())) {
 				return u;
 			}
 		})
 		setSearchedUsers(result);
-	}, [debouncedValue, filteredUsers])
+	}, [debouncedValue, users])
+
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
-		setValue(e.target.value);
+		setSearchQuery(e.target.value);
 	}
 
 	return (
@@ -57,7 +39,7 @@ const UsersPage: FC = () => {
 							<input 
 								type="text" 
 								placeholder='search users'
-								value={value}
+								value={searchQuery}
 								onChange={handleChange}
 								className={classes.search}
 							/>
