@@ -14,7 +14,7 @@ import classes from './members.module.css';
 const Members: FC = () => {
 	const { id } = useParams<{id?: string}>();
 	const [showAddSection, setShowAddSection] = useState<boolean>(false);
-	const [activeItem, setActiveItem] = useState<IFriend | null>(null)
+	const [activeItem, setActiveItem] = useState<IFriend | null>(null);
 	const members = useAppSelector(state => selectMembersByTravelId(state, Number(id)));
 	const dispatch = useAppDispatch();
 	const sensors = useSensors(
@@ -31,7 +31,7 @@ const Members: FC = () => {
 	const handleDragStart = (e: DragStartEvent) => {
 		const item:IFriend = e.active.data.current?.friend;
 		setActiveItem(item);
-	}
+	};
 
 	const handleDragEnd = (e: DragEndEvent):void => {
 		if (e.over) {
@@ -42,7 +42,7 @@ const Members: FC = () => {
 			}));
 		}
 		setActiveItem(null);
-	}
+	};
 
 	return (
 		<div className={classes.members}>
@@ -70,7 +70,7 @@ const Members: FC = () => {
 				/>
 			</DndContext>
 		</div>
-	)
-}
+	);
+};
 
 export default Members;

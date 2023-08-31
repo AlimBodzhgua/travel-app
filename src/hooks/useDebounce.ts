@@ -7,12 +7,12 @@ export const useDebounce = <T>(value: T, delay:number = 400):T => {
 	useEffect(() => {
 		timer.current = setTimeout(() => {
 			setDebouncedValue(value);
-		}, delay)
+		}, delay);
 
 		return () => {
-			if (timer.current) clearTimeout(timer.current)
-    	}
-	}, [value, delay])
+			if (timer.current) clearTimeout(timer.current);
+    	};
+	}, [value, delay]);
 
 	return debouncedValue;
-}
+};

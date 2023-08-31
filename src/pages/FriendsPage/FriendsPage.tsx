@@ -23,8 +23,8 @@ const FriendsPage: FC = () => {
 				:   <div className={classes.empty}>You have no friends</div>
 			}
 		</div>
-	)
-}
+	);
+};
 
 
 export default FriendsPage;

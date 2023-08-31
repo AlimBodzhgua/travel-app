@@ -33,8 +33,8 @@ const CardItem:FC<CardItemProps> = ({card, groupId, travelId}) => {
 			cardId: card.id,
 			groupId: groupId,
 			travelId: travelId, 
-		}))
-	}
+		}));
+	};
 
 	return (
 		<li 

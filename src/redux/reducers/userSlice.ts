@@ -54,7 +54,7 @@ export const userSlice = createSlice({
 		},
 		rejectFriendRequest(state, action: PayloadAction<number>) {
 			if (state.user) {
-				state.user.friendRequests = state.user.friendRequests.filter(request => request.id !== action.payload)
+				state.user.friendRequests = state.user.friendRequests.filter(request => request.id !== action.payload);
 			}
 		},
 		addTravel(state, action: PayloadAction<ITravel>) {
@@ -92,15 +92,15 @@ export const userSlice = createSlice({
 				if (travel.id === action.payload.id) {
 					travel.members.push(action.payload.member);
 				}
-			})
+			});
 		},
 		deleteMember(state, action: PayloadAction<{travelId: number, memberId: number}>) {
 			state.user?.travels.forEach(travel => {
 				if (travel.id === action.payload.travelId) {
 					travel.members = travel.members
-						.filter(member => member.id !== action.payload.memberId)
+						.filter(member => member.id !== action.payload.memberId);
 				}
-			})
+			});
 		},
 		addBacklog(state, action: PayloadAction<{id: string, backlog: IBacklog}>) {
 			state.user?.travels.forEach(travel => {
@@ -220,11 +220,11 @@ export const userSlice = createSlice({
 						if (group.id === action.payload.groupId) {
 							group.cards.splice(group.cards.findIndex(
 								card => card.id === action.payload.cardId)
-							, 1)
+							, 1);
 						}
-					})
+					});
 				}
-			})
+			});
 		},
 		moveCards(state, action: PayloadAction<{
 			travelId: number,
@@ -289,13 +289,13 @@ export const userSlice = createSlice({
 			})
 			.addCase(deleteFriend.fulfilled, (state, action) => {
 				if (state.user) {
-					state.user.friends = state.user.friends.filter(friend => friend.id !== action.payload)
+					state.user.friends = state.user.friends.filter(friend => friend.id !== action.payload);
 				}
 			})
 			.addCase(deleteFriend.rejected, (state, action) => {
 				state.errorMessage = action.payload;
 				state.isLoading = false;
-			})
+			});
 	}
 });
 

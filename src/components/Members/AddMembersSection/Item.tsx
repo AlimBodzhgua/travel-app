@@ -13,7 +13,7 @@ interface ItemProps {
 
 const Item: FC<ItemProps> = ({friend}) => {
 	const dispatch = useAppDispatch();
-	const { id } = useParams<{id? : string}>()
+	const { id } = useParams<{id? : string}>();
 	const {
 		attributes, 
 		listeners, 
@@ -36,8 +36,8 @@ const Item: FC<ItemProps> = ({friend}) => {
 		dispatch(userSlice.actions.addMember({
 			id: Number(id), 
 			member: friend
-		}))
-	}
+		}));
+	};
 
 	return (
 		<>
@@ -58,7 +58,7 @@ const Item: FC<ItemProps> = ({friend}) => {
 				>+</button>
 			</li>
 		</>
-	)  
-}
+	);  
+};
 
 export default Item;

@@ -17,7 +17,7 @@ const AddMembersSection: FC = () => {
 		if (user) {
 			setFilteredFriends(removeMembersFromFriendList(members, user.friends));
 		}
-	}, [members])
+	}, [members]);
 
 	return (
 		<div className={classes.section}>
@@ -38,7 +38,7 @@ const AddMembersSection: FC = () => {
 				: 	<div className={classes.empty_text}>You have no users to add</div>
 			}
 		</div>
-	)
-}
+	);
+};
 
 export default AddMembersSection;

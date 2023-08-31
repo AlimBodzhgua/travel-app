@@ -96,11 +96,11 @@ const RegisterForm: FC = () => {
 					? 	<>
 							Loading
 							<ThreeDots 
-								height="22" 
-								width="34" 
-								radius="9"
-								color="#f2f2f2" 
-								ariaLabel="three-dots-loading"
+								height='22' 
+								width='34' 
+								radius='9'
+								color='#f2f2f2' 
+								ariaLabel='three-dots-loading'
 								visible={true}
 							/>
 						</>

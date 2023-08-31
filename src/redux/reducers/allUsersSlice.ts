@@ -13,7 +13,7 @@ const initialState:UsersState = {
 	isLoading: false,
 	errorMessage: '',
 	users: [],
-}
+};
 
 const allUsersSlice = createSlice({
 	name: 'allUsers',
@@ -32,23 +32,23 @@ const allUsersSlice = createSlice({
 			})
 			.addCase(fetchAllUsers.rejected, (state, action) => {
 				state.isLoading = false;
-				state.errorMessage = action.payload
+				state.errorMessage = action.payload;
 			})
 			.addCase(sendFriendRequest.fulfilled, (state, action) => {
 				state.users.forEach(user => {
 					if (user.id === action.payload.id) {
 						user.friendRequests.push(action.payload.data);
 					}
-				})
+				});
 			})
 			.addCase(cancelFriendRequest.fulfilled, (state, action) => {
 				state.users.forEach(user => {
 					if (user.id === action.payload.toId) {
 						user.friendRequests = user.friendRequests.filter(request => request.id !== action.payload.fromId);
 					}
-				})
-			})
+				});
+			});
 	}
-})
+});
 
 export default allUsersSlice.reducer;

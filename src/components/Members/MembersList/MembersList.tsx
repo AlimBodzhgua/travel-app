@@ -33,7 +33,7 @@ const MembersList: FC<MembersListProps> = ({members, activeItem}) => {
 				</>
 			}
 		</ul>
-	)
-}
+	);
+};
 
 export default MembersList;

@@ -31,44 +31,44 @@ export default class UserService {
 	}
 
 	static async getAllUsers(): Promise<IPublicUser[]> {
-		const response = await axios.get('http://localhost:8080/users')
+		const response = await axios.get('http://localhost:8080/users');
 		const result:IPublicUser[] = response.data.map((user:any) => {
-			delete user.password
+			delete user.password;
 			return user;
-		})
+		});
 		return result;
 	}
 
 	static sendFriendRequest(toId: number, fromData: any): void {
 		axios.get(`http://localhost:8080/users/${toId}`).then(response => {
 			const allRequests = response.data.friendRequests;
-			const body = {"friendRequests": [...allRequests, fromData]}
+			const body = {'friendRequests': [...allRequests, fromData]};
 			axios.patch(`http://localhost:8080/users/${toId}`, body);
-		})
+		});
 	}
 
 	static cancelFriendRequest(toId: number, fromId: number): void {
 		axios.get(`http://localhost:8080/users/${toId}`).then(response => {
 			const filteredRequests = response.data.friendRequests
 				.filter((request: IFriend) => request.id !== fromId);
-			const body = {"friendRequests": filteredRequests}
+			const body = {'friendRequests': filteredRequests};
 			axios.patch(`http://localhost:8080/users/${toId}`, body);	
-		})
+		});
 	}
 
 	static acceptFriendRequest(requestUser: IFriend, responseUser: IFriend): void {
 		axios.get(`http://localhost:8080/users/${requestUser.id}`).then(response => {
-			const body = {"friends": [...response.data.friends, responseUser]}
+			const body = {'friends': [...response.data.friends, responseUser]};
 			axios.patch(`http://localhost:8080/users/${requestUser.id}`, body);	
-		})
+		});
 	}
 
 	static deleteFriend(firstUserId: number, secondUserId: number):void {
 		axios.get(`http://localhost:8080/users/${secondUserId}`).then(response => {
 			const body = {
-				"friends": response.data.friends.filter((friend:IFriend) => friend.id !== firstUserId)
-			}
+				'friends': response.data.friends.filter((friend:IFriend) => friend.id !== firstUserId)
+			};
 			axios.patch(`http://localhost:8080/users/${secondUserId}`, body);
-		})
+		});
 	}
 }

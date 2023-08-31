@@ -19,7 +19,7 @@ const FriendRequests:FC<FriendRequestsProps> = ({friendRequests}) => {
 				/>
 			)}
 		</ul>
-	)
-}
+	);
+};
 
 export default FriendRequests;

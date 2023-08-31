@@ -19,14 +19,14 @@ const UsersPage: FC = () => {
 			if (u.login.toLowerCase().includes(debouncedValue.toLowerCase())) {
 				return u;
 			}
-		})
+		});
 		setSearchedUsers(result);
-	}, [debouncedValue, users])
+	}, [debouncedValue, users]);
 
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
 		setSearchQuery(e.target.value);
-	}
+	};
 
 	return (
 		<div className={classes.container}>
@@ -37,7 +37,7 @@ const UsersPage: FC = () => {
 						<div className={classes.header}>
 							<h2 className={classes.title}>Travelers</h2>
 							<input 
-								type="text" 
+								type='text' 
 								placeholder='search users'
 								value={searchQuery}
 								onChange={handleChange}
@@ -60,7 +60,7 @@ const UsersPage: FC = () => {
 					</>
 			}
 		</div>
-	)
-}
+	);
+};
 
 export default UsersPage;

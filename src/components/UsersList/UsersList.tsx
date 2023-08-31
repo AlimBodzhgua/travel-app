@@ -17,8 +17,8 @@ const UsersList: FC<UsersListProps> = ({users}) => {
 				/>
 			)}
 		</ul>
-	)
-}
+	);
+};
 
 
 export default UsersList;

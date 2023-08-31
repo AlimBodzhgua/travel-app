@@ -21,8 +21,8 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 			if (request.id === currentUser?.id) {
 				setRequestSended(true);
 			}
-		})
-	}, [])
+		});
+	}, []);
 
 	const handleCancelClick = ():void => {
 		if (currentUser && hovering && requestSended) {
@@ -32,7 +32,7 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 			}));
 			setRequestSended(!requestSended);
 		}
-	}
+	};
 
 	const handleAddClick = ():void => {
 		if (currentUser) {
@@ -40,11 +40,11 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 				id: currentUser.id,
 				login: currentUser.login,
 				email: currentUser.email
-			}
+			};
 			dispatch(sendFriendRequest({id: user.id, data: fromData}));
 			setRequestSended(!requestSended);
 		}
-	}
+	};
 
 	return (
 		<li className={classes.item}>
@@ -67,8 +67,8 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 					>add friend</button>
 			}
 		</li>
-	)
-}
+	);
+};
 
 
 export default UserItem;

@@ -19,10 +19,10 @@ const FriendItem: FC<FriendItemProps> = ({friend}) => {
 				dispatch(deleteFriend({
 					firstUserId: user.id,
 					secondUserId: friend.id
-				}))
+				}));
 			}
 		}
-	}
+	};
 
 	return (
 		<li className={classes.item}>
@@ -35,7 +35,7 @@ const FriendItem: FC<FriendItemProps> = ({friend}) => {
 				className={classes.delete}
 			>delete</button>
 		</li>
-	)
-}
+	);
+};
 
 export default FriendItem;

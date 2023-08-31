@@ -16,9 +16,9 @@ const RequestItem: FC<RequestItemProps> = ({request}) => {
 
 	const handleRejectClick = (id:number):void => {
 		if (window.confirm('Are you sure you want to reject friend request?')) {
-			dispatch(userSlice.actions.rejectFriendRequest(id))
+			dispatch(userSlice.actions.rejectFriendRequest(id));
 		}
-	}
+	};
 
 	const handleAddClick = (friend: IFriend) => {
 		if (user) {
@@ -26,13 +26,13 @@ const RequestItem: FC<RequestItemProps> = ({request}) => {
 				id: user.id,
 				login: user.login,
 				email: user.email
-			}
+			};
 			dispatch(acceptFriendRequest({
 				requestUser: friend,
 				responseUser: currentUser 
-			}))
+			}));
 		}
-	}
+	};
 
 	return (
 		<li className={classes.item}>
@@ -51,8 +51,8 @@ const RequestItem: FC<RequestItemProps> = ({request}) => {
 				>reject</button>
 			</div>
 		</li>
-	)
-}
+	);
+};
 
 
 export default RequestItem;

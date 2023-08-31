@@ -17,7 +17,7 @@ export const fetchAllUsers = createAsyncThunk<
 			return rejectWithValue(getErrorMessage(e));
 		}
 	}
-)
+);
 
 interface DataProps {
 	id: number;
@@ -44,7 +44,7 @@ export const sendFriendRequest = createAsyncThunk<
 			return rejectWithValue(getErrorMessage(e));
 		}
 	}
-)
+);
 
 interface ICancelFriendRequestAction {
 	toId: number;
@@ -60,9 +60,9 @@ export const cancelFriendRequest = createAsyncThunk<
 	async({toId, fromId}, {rejectWithValue}) => {
 		try {
 			UserService.cancelFriendRequest(toId, fromId);
-			return {toId, fromId}
+			return {toId, fromId};
 		} catch (e) {
 			return rejectWithValue(getErrorMessage(e));
 		}
 	}
-)
+);

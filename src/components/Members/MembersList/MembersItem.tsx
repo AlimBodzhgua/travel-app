@@ -19,8 +19,8 @@ const MembersItem: FC<MembersItemProps> = ({member}) => {
 		dispatch(userSlice.actions.deleteMember({
 			travelId: Number(id),
 			memberId: member.id
-		}))
-	}
+		}));
+	};
 
 	return (
 		<li className={classes.item} {...hoverProps}>
@@ -34,7 +34,7 @@ const MembersItem: FC<MembersItemProps> = ({member}) => {
 				onClick={handleClick}
 			>&#10005;</button>
 		</li>
-	)
-}
+	);
+};
 
 export default MembersItem;

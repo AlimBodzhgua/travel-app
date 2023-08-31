@@ -22,8 +22,8 @@ export const selectBacklogsByTravelId = (state: RootState, travelId: number) => 
 };
 
 export const selectMembersByTravelId = (state: RootState, travelId: number) => {
-	return state.userReducer.user?.travels.find(travel => travel.id === travelId)?.members || []
-}
+	return state.userReducer.user?.travels.find(travel => travel.id === travelId)?.members || [];
+};
 
 export const selectCards = (state: RootState, travelId: number, groupId: number) => {
 	return state.userReducer.user?.travels
@@ -33,9 +33,9 @@ export const selectCards = (state: RootState, travelId: number, groupId: number)
 
 export const selectAllUsers = (state: RootState) => {
 	return state.allUsersReducer.users.filter(user => user.id !== state.userReducer.user?.id);
-}
+};
 
 export const memozedSelectAllUsers = createSelector(
 	[selectAllUsers], (allUsers) => {
 	return allUsers;
-})
+});

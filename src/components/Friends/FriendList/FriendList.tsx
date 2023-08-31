@@ -17,7 +17,7 @@ const FriendList: FC<FriendsListProps> = ({friends}) => {
 				/>
 			)}
 		</ul>
-	)
-}
+	);
+};
 
 export default FriendList;

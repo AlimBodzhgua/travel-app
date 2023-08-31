@@ -5,7 +5,7 @@ import classes from './member-add.module.css';
 const DroppableMembersArea: FC = () => {
 	const {setNodeRef, isOver} = useDroppable({
 		id: 'droppable-members'
-	})
+	});
 
 	return (
 		<div 
@@ -16,8 +16,8 @@ const DroppableMembersArea: FC = () => {
 		    }}
 		    className={classes.droppable}
 		>drop here</div>
-	)
-}
+	);
+};
 
 
 export default DroppableMembersArea;

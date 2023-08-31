@@ -49,12 +49,12 @@ export const acceptFriendRequest = createAsyncThunk<
 	async({requestUser, responseUser}, {rejectWithValue}) => {
 		try {
 			UserService.acceptFriendRequest(requestUser, responseUser);
-			return requestUser
+			return requestUser;
 		} catch (e) {
 			return rejectWithValue(getErrorMessage(e));
 		}
 	}
-)
+);
 
 export const deleteFriend = createAsyncThunk<
 	number,
@@ -70,4 +70,4 @@ export const deleteFriend = createAsyncThunk<
 			return rejectWithValue(getErrorMessage(e));
 		}
 	}
-)
+);

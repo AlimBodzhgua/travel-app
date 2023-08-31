@@ -25,7 +25,7 @@ export const createNewUser =
 		friendRequests: [], 
 		travels: []}
 	;
-}
+};
 
 
 export const createNewTravel = (
@@ -80,14 +80,14 @@ export const stringToDayjsObject = (date: string):Dayjs => {
 export const removeMembersFromFriendList = (members: IFriend[], friends: IFriend[]): IFriend[] => {
 	return friends.filter((friend) => {
 		const find = members.find(member => member.id === friend.id);
-		if (!find) return friend
-	}) || []
-}
+		if (!find) return friend;
+	}) || [];
+};
 
 
 export const removeFriendsFromAllUsers = (friends: IFriend[], users: IPublicUser[]): IPublicUser[] => {
 	return users.filter((user) => {
 		const find = friends.find(friend => friend.id === user.id);
-		if (!find) return user
-	}) || []
-}
+		if (!find) return user;
+	}) || [];
+};
