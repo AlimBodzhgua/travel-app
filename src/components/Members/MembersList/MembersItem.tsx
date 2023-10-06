@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import { FC, memo } from 'react';
 import { useAppDispatch } from 'hooks/redux';
 import { useParams } from 'react-router-dom';
 import { IFriend } from 'types/types';
@@ -10,7 +10,7 @@ interface MembersItemProps {
 	member: IFriend;
 }
 
-const MembersItem: FC<MembersItemProps> = ({member}) => {
+const MembersItem: FC<MembersItemProps> = memo(({member}) => {
 	const { id } = useParams<{id?: string}>();
 	const [hovering, hoverProps]  = useHover();
 	const dispatch = useAppDispatch();
@@ -35,6 +35,6 @@ const MembersItem: FC<MembersItemProps> = ({member}) => {
 			>&#10005;</button>
 		</li>
 	);
-};
+});
 
 export default MembersItem;

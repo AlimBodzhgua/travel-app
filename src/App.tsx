@@ -1,8 +1,8 @@
-import {FC, useEffect} from 'react';
-import {isUserLoggedIn, saveUserToLocalStorage} from 'utils/utils';
-import {useAppDispatch, useAppSelector} from 'hooks/redux';
-import {userSlice} from 'redux/reducers/userSlice';
-import {IUser} from 'types/types';
+import { FC, useEffect } from 'react';
+import { isUserLoggedIn, saveUserToLocalStorage } from 'utils/utils';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { userSlice } from 'redux/reducers/userSlice';
+import { IUser } from 'types/types';
 import UserService from 'API/UserService';
 import AppRouter from 'router/AppRouter';
 import './App.css';

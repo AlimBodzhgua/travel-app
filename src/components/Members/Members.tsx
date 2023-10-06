@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, memo } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { useParams } from 'react-router-dom';
 import { selectMembersByTravelId } from 'redux/selectors/selectors';
@@ -11,7 +11,7 @@ import MembersList from './MembersList/MembersList';
 
 import classes from './members.module.css';
 
-const Members: FC = () => {
+const Members: FC = memo(() => {
 	const { id } = useParams<{id?: string}>();
 	const [showAddSection, setShowAddSection] = useState<boolean>(false);
 	const [activeItem, setActiveItem] = useState<IFriend | null>(null);
@@ -24,7 +24,6 @@ const Members: FC = () => {
 	    	},
 	  	})
 	);
-
 
 	const handleClick = ():void => setShowAddSection(!showAddSection);
 
@@ -71,6 +70,6 @@ const Members: FC = () => {
 			</DndContext>
 		</div>
 	);
-};
+});
 
 export default Members;

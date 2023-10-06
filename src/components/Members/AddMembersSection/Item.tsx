@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { useAppDispatch } from 'hooks/redux';
 import { CSS } from '@dnd-kit/utilities';
@@ -11,7 +11,7 @@ interface ItemProps {
 	friend: IFriend;
 }
 
-const Item: FC<ItemProps> = ({friend}) => {
+const Item: FC<ItemProps> = memo(({friend}) => {
 	const dispatch = useAppDispatch();
 	const { id } = useParams<{id? : string}>();
 	const {
@@ -59,6 +59,6 @@ const Item: FC<ItemProps> = ({friend}) => {
 			</li>
 		</>
 	);  
-};
+});
 
 export default Item;

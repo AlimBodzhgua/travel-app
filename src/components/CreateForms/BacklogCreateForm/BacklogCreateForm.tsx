@@ -1,6 +1,6 @@
-import React, {FC, useState} from 'react';
-import {useAppDispatch} from 'hooks/redux';
-import {useParams} from 'react-router-dom';
+import { FC, useState, memo } from 'react';
+import { useAppDispatch } from 'hooks/redux';
+import { useParams } from 'react-router-dom';
 import { userSlice } from 'redux/reducers/userSlice';
 import classes from './backlog-create.module.css';
 
@@ -8,7 +8,7 @@ interface BacklogCreateFormProps {
 	setShowCreateForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const BacklogCreateForm: FC<BacklogCreateFormProps> = ({setShowCreateForm}) => {
+const BacklogCreateForm: FC<BacklogCreateFormProps> = memo(({setShowCreateForm}) => {
 	const [value, setValue] = useState<string>('');
 	const { id } = useParams<{id?: string}>();
 	const dispatch = useAppDispatch();
@@ -50,7 +50,7 @@ const BacklogCreateForm: FC<BacklogCreateFormProps> = ({setShowCreateForm}) => {
 			</div>
 	</div>
 	);
-};
+});
 
 
 export default BacklogCreateForm;

@@ -1,5 +1,5 @@
-import {FC, memo} from 'react';
-import {NavLink} from 'react-router-dom';
+import { FC, memo } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import classes from './navbar.module.css';
 

@@ -1,16 +1,16 @@
-import {FC, useState} from 'react';
-import {useAppSelector, useAppDispatch} from 'hooks/redux';
-import {userSlice} from 'redux/reducers/userSlice';
-import {SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable';
-import {useSensors, useSensor, PointerSensor, DndContext} from '@dnd-kit/core';
-import {restrictToParentElement} from '@dnd-kit/modifiers';
-import {useParams} from 'react-router-dom';
+import { FC, useState, memo } from 'react';
+import { useAppSelector, useAppDispatch } from 'hooks/redux';
+import { userSlice } from 'redux/reducers/userSlice';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { useSensors, useSensor, PointerSensor, DndContext } from '@dnd-kit/core';
+import { restrictToParentElement } from '@dnd-kit/modifiers';
+import { useParams } from 'react-router-dom';
 import GroupCreateForm from '../CreateForms/GroupCreateForm/GroupCreateForm';
 import GroupItem from './GroupItem';
-import classes from './groups.module.css';
 import { selectGroupsByTravelId } from 'redux/selectors/selectors';
+import classes from './groups.module.css';
 
-const Groups: FC = () => {
+const Groups: FC = memo(() => {
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 	const { id } = useParams<{id? : string}>();
@@ -66,6 +66,6 @@ const Groups: FC = () => {
 			}
 		</div>
 	);
-};
+});
 
 export default Groups;

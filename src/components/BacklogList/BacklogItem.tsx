@@ -1,17 +1,17 @@
-import {FC, useState, useRef, useEffect} from 'react';
-import {IBacklog} from 'types/types';
-import {useParams} from 'react-router-dom';
-import {useAppDispatch} from 'hooks/redux';
-import {userSlice} from 'redux/reducers/userSlice';
-import {useSortable} from '@dnd-kit/sortable';
-import {CSS} from '@dnd-kit/utilities';
+import { FC, useState, useRef, useEffect, memo } from 'react';
+import { IBacklog } from 'types/types';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch } from 'hooks/redux';
+import { userSlice } from 'redux/reducers/userSlice';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import classes from './backlog.module.css';
 
 interface BacklogItemProps {
 	backlog: IBacklog
 }
 
-const BacklogItem: FC<BacklogItemProps> = ({backlog}) => {
+const BacklogItem: FC<BacklogItemProps> = memo(({backlog}) => {
 	const [value, setValue] = useState<string>('');
 	const [editable, setEditable] = useState<boolean>(false);
 	const { id } = useParams<{id?: string}>();
@@ -96,6 +96,6 @@ const BacklogItem: FC<BacklogItemProps> = ({backlog}) => {
 			</div>
 		</li>
 	);
-};
+});
 
 export default BacklogItem;

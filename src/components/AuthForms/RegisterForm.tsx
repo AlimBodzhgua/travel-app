@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
@@ -15,7 +15,7 @@ interface IFormInput {
 }
 
 
-const RegisterForm: FC = () => {
+const RegisterForm: FC = memo(() => {
 	const dispatch = useAppDispatch();
 	const {errorMessage, isLoading} = useAppSelector(state => state.userReducer);
 	const navigate = useNavigate();
@@ -109,6 +109,6 @@ const RegisterForm: FC = () => {
 			</button>
 		</form>
 	);
-};
+});
 
 export default RegisterForm;

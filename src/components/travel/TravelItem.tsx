@@ -1,4 +1,4 @@
-import {FC, useState, useEffect} from 'react';
+import { FC, useState, useEffect, memo } from 'react';
 import { stringToDayjsObject } from 'utils/utils';
 import { NavLink, useLocation } from 'react-router-dom';
 import { userSlice } from 'redux/reducers/userSlice';
@@ -17,7 +17,7 @@ interface TravelItemProps {
 	dateEnd: string;
 }
 
-const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
+const TravelItem: FC<TravelItemProps> = memo(({id, name, dateStart, dateEnd}) => {
 	const [startDate, setStartDate] = useState<Dayjs | null>(null);
 	const [endDate, setEndDate] = useState<Dayjs | null>(null);
 	const [editable, setEditable] = useState<boolean>(false);
@@ -121,7 +121,7 @@ const TravelItem: FC<TravelItemProps> = ({id, name, dateStart, dateEnd}) => {
 			</div>
 		</li>
 	);
-};
+});
 
 
 export default TravelItem;

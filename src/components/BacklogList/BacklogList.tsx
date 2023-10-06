@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, memo } from 'react';
 import { useAppDispatch, useAppSelector} from 'hooks/redux';
 import { selectBacklogsByTravelId} from 'redux/selectors/selectors';
 import { userSlice } from 'redux/reducers/userSlice';
@@ -12,7 +12,7 @@ import BacklogItem from './BacklogItem';
 
 import classes from './backlog.module.css';
 
-const BacklogList: FC = () => {
+const BacklogList: FC = memo(() => {
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const { id } = useParams<{id? : string}>();
 	const backlogs = useAppSelector(state => selectBacklogsByTravelId(state, Number(id)));
@@ -77,6 +77,6 @@ const BacklogList: FC = () => {
 			}
 		</div>
 	);
-};
+});
 
 export default BacklogList;

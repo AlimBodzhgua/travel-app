@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, memo } from 'react';
 import { useAppSelector } from 'hooks/redux';
 import { selectUser, selectMembersByTravelId } from 'redux/selectors/selectors';
 import { removeMembersFromFriendList } from 'utils/utils';
@@ -7,7 +7,7 @@ import { IFriend } from 'types/types';
 import Item from './Item';
 import classes from './member-add.module.css';
 
-const AddMembersSection: FC = () => {
+const AddMembersSection: FC = memo(() => {
 	const { id } = useParams<{id? : string}>();
 	const members = useAppSelector(state => selectMembersByTravelId(state, Number(id)));
 	const user = useAppSelector(selectUser);
@@ -39,6 +39,6 @@ const AddMembersSection: FC = () => {
 			}
 		</div>
 	);
-};
+});
 
 export default AddMembersSection;

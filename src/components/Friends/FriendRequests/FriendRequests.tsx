@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { IFriend } from 'types/types';
 import RequestItem from './RequestItem';
 import classes from './friend-requests.module.css';
@@ -8,7 +8,7 @@ interface FriendRequestsProps {
 	friendRequests: IFriend[]; 
 }
 
-const FriendRequests:FC<FriendRequestsProps> = ({friendRequests}) => {
+const FriendRequests:FC<FriendRequestsProps> = memo(({friendRequests}) => {
 	
 	return (
 		<ul className={classes.list}>
@@ -20,6 +20,6 @@ const FriendRequests:FC<FriendRequestsProps> = ({friendRequests}) => {
 			)}
 		</ul>
 	);
-};
+});
 
 export default FriendRequests;

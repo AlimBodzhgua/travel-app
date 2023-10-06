@@ -1,16 +1,23 @@
-import React, {FC, useState, useId, useEffect} from 'react';
+import {
+	FC,
+	Dispatch,
+	useState,
+	useId,
+	SetStateAction,
+	memo,
+} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from 'hooks/redux';
-import {userSlice} from 'redux/reducers/userSlice';
-import {createNewCard} from 'utils/utils';
+import { userSlice } from 'redux/reducers/userSlice';
+import { createNewCard } from 'utils/utils';
 import classes from './card-create.module.css';
 
 interface CardCreateFormProps {
-	setShowCreateForm: React.Dispatch<React.SetStateAction<boolean>>
+	setShowCreateForm: Dispatch<SetStateAction<boolean>>
 	groupId: number;
 }
 
-const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) => {
+const CardCreateForm: FC<CardCreateFormProps> = memo(({setShowCreateForm, groupId}) => {
 	const [title, setTitle] = useState<string>('');
 	const [text, setText] = useState<string>('');
 	const dispatch = useAppDispatch();
@@ -75,6 +82,6 @@ const CardCreateForm: FC<CardCreateFormProps> = ({setShowCreateForm, groupId}) =
 			</div>
 		</div>
 	);
-};
+});
 
 export default CardCreateForm;

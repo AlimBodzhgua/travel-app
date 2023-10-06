@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useAppDispatch } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
 import { ICard } from 'types/types';
@@ -13,7 +13,7 @@ interface CardItemProps {
 }
 
 
-const CardItem:FC<CardItemProps> = ({card, groupId, travelId}) => {
+const CardItem:FC<CardItemProps> = memo(({card, groupId, travelId}) => {
 	const dispatch = useAppDispatch();
 	const { 
 		attributes,
@@ -55,7 +55,7 @@ const CardItem:FC<CardItemProps> = ({card, groupId, travelId}) => {
 			>&#10005;</button>
 		</li>
 	);
-};
+});
 
 
 export default CardItem;

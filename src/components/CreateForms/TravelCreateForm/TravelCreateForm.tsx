@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, memo } from 'react';
 import { useAppDispatch } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
 import { createNewTravel } from 'utils/utils';
@@ -11,7 +11,7 @@ interface TravelCreateFormProps {
 	setShowCreateForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
+const TravelCreateForm: FC<TravelCreateFormProps> = memo(({setShowCreateForm}) => {
 	const [startDate, setStartDate] = useState<Dayjs | null>(dayjs());
 	const [endDate, setEndDate] = useState<Dayjs | null>(dayjs());
 	const [value, setValue] = useState<string>('');
@@ -63,7 +63,7 @@ const TravelCreateForm: FC<TravelCreateFormProps> = ({setShowCreateForm}) => {
 			</div>
 		</div>
 	);
-};
+});
 
 
 export default TravelCreateForm;

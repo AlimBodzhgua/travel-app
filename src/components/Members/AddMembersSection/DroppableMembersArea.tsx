@@ -1,8 +1,8 @@
-import {FC} from 'react';
-import {useDroppable} from '@dnd-kit/core';
+import { FC, memo } from 'react';
+import { useDroppable } from '@dnd-kit/core';
 import classes from './member-add.module.css';
 
-const DroppableMembersArea: FC = () => {
+const DroppableMembersArea: FC = memo(() => {
 	const {setNodeRef, isOver} = useDroppable({
 		id: 'droppable-members'
 	});
@@ -17,7 +17,7 @@ const DroppableMembersArea: FC = () => {
 		    className={classes.droppable}
 		>drop here</div>
 	);
-};
+});
 
 
 export default DroppableMembersArea;

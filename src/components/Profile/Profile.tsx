@@ -1,12 +1,12 @@
-import {FC, useState, useEffect} from 'react';
-import {useAppSelector, useAppDispatch} from 'hooks/redux';
-import {useNavigate} from 'react-router-dom';
-import {userSlice} from 'redux/reducers/userSlice';
-import {selectUser} from 'redux/selectors/selectors';    
+import { FC, useState, useEffect, memo } from 'react';
+import { useAppSelector, useAppDispatch } from 'hooks/redux';
+import { useNavigate } from 'react-router-dom';
+import { userSlice } from 'redux/reducers/userSlice';
+import { selectUser } from 'redux/selectors/selectors';    
 import classes from './profile.module.css';
 
 
-const Profile: FC = () => {
+const Profile: FC = memo(() => {
 	const user = useAppSelector(selectUser);
 	const [login, setLogin] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
@@ -90,7 +90,7 @@ const Profile: FC = () => {
 			>logout</button>
 		</div>
 	);
-};
+});
 
 
 export default Profile;

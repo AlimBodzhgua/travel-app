@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect, memo } from 'react';
 import { IPublicUser } from 'types/types';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { useHover } from 'hooks/useHover';
@@ -10,7 +10,7 @@ interface UserItemProps {
 	user: IPublicUser;
 }
 
-const UserItem: FC<UserItemProps> = ({user}) => {
+const UserItem: FC<UserItemProps> = memo(({user}) => {
 	const currentUser = useAppSelector(selectUser);
 	const dispatch = useAppDispatch();
 	const [hovering, hoverProps]  = useHover();
@@ -68,7 +68,7 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 			}
 		</li>
 	);
-};
+});
 
 
 export default UserItem;

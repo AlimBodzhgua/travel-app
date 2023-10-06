@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect, memo } from 'react';
 import { IGroup } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
@@ -14,7 +14,7 @@ interface GroupItemProps {
 	group: IGroup;
 }
 
-const GroupItem: FC<GroupItemProps> = ({group}) => {
+const GroupItem: FC<GroupItemProps> = memo(({group}) => {
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [editable, setEditable] = useState<boolean>(false);
@@ -123,6 +123,6 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 			}
 		</li>
 	);
-};
+});
 
 export default GroupItem;

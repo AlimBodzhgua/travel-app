@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
 import { acceptFriendRequest } from 'redux/actions/userActions';
@@ -10,7 +10,7 @@ interface RequestItemProps {
 	request: IFriend; 
 }
 
-const RequestItem: FC<RequestItemProps> = ({request}) => {
+const RequestItem: FC<RequestItemProps> = memo(({request}) => {
 	const user = useAppSelector(selectUser);
 	const dispatch = useAppDispatch();
 
@@ -52,7 +52,7 @@ const RequestItem: FC<RequestItemProps> = ({request}) => {
 			</div>
 		</li>
 	);
-};
+});
 
 
 export default RequestItem;

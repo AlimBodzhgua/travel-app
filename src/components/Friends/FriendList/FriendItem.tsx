@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { IFriend } from 'types/types';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { selectUser } from 'redux/selectors/selectors';
@@ -9,7 +9,7 @@ interface FriendItemProps {
 	friend: IFriend;
 }
 
-const FriendItem: FC<FriendItemProps> = ({friend}) => {
+const FriendItem: FC<FriendItemProps> = memo(({friend}) => {
 	const user = useAppSelector(selectUser);
 	const dispatch = useAppDispatch();
 
@@ -36,6 +36,6 @@ const FriendItem: FC<FriendItemProps> = ({friend}) => {
 			>delete</button>
 		</li>
 	);
-};
+});
 
 export default FriendItem;

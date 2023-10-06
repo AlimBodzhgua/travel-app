@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from 'redux/actions/userActions';
@@ -13,7 +13,7 @@ interface IFormInput {
 	password: string;
 }
 
-const LoginForm: FC = () => {
+const LoginForm: FC = memo(() => {
 	const { isLoading } = useAppSelector(state => state.userReducer);
 	const dispatch = useAppDispatch();
 	const {
@@ -82,6 +82,6 @@ const LoginForm: FC = () => {
 			</button>
 		</form>
 	);
-};
+});
 
 export default LoginForm;
