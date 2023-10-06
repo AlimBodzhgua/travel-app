@@ -3,9 +3,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { registerUser } from 'redux/actions/userActions';
-import { IUser } from 'types/types'; 
 import { ThreeDots } from 'react-loader-spinner';
 import { createNewUser } from 'utils/utils';
+import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
 import classes from './auth.module.css';
 
 interface IFormInput {
@@ -91,7 +91,12 @@ const RegisterForm: FC = memo(() => {
 			{errorMessage &&
 				<div className={classes.error}>User with such email already exist</div>
 			}
-			<button type='submit' className={classes.btn}>
+			<Button
+				type='submit'
+				className={classes.btn}
+				theme={ButtonTheme.BLUE}
+				size={ButtonSize.SMALL}
+			>
 				{isLoading 
 					? 	<>
 							Loading
@@ -106,7 +111,7 @@ const RegisterForm: FC = memo(() => {
 						</>
 					: 	<>Register</>
 				}
-			</button>
+			</Button>
 		</form>
 	);
 });

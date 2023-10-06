@@ -3,6 +3,7 @@ import { IFriend } from 'types/types';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { selectUser } from 'redux/selectors/selectors';
 import { deleteFriend } from 'redux/actions/userActions';
+import { Button, ButtonTheme } from 'components/UI/Button/Button';
 import classes from './friend-list.module.css';
 
 interface FriendItemProps {
@@ -30,10 +31,13 @@ const FriendItem: FC<FriendItemProps> = memo(({friend}) => {
 				<div>{friend.email}</div>
 				<div>{friend.login}</div>
 			</div>
-			<button 
+			<Button 
 				onClick={handleClick}
 				className={classes.delete}
-			>delete</button>
+				theme={ButtonTheme.RED}
+			>
+				delete
+			</Button>
 		</li>
 	);
 });

@@ -5,6 +5,7 @@ import { loginUser } from 'redux/actions/userActions';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { ThreeDots } from 'react-loader-spinner';
 import { IUserLogin } from 'types/types';
+import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
 import classes from './auth.module.css';
 
 
@@ -64,7 +65,12 @@ const LoginForm: FC = memo(() => {
 			{errors.password && 
 				<div className={classes.error}>{errors.password.message}</div>
 			}
-			<button type='submit' className={classes.btn}>
+			<Button
+				type='submit'
+				className={classes.btn}
+				theme={ButtonTheme.BLUE}
+				size={ButtonSize.SMALL}
+			>
 				{isLoading 
 					? 	<>
 							Loading
@@ -79,7 +85,7 @@ const LoginForm: FC = memo(() => {
 						</> 
 					: 	<>login</>
 				}
-			</button>
+			</Button>
 		</form>
 	);
 });

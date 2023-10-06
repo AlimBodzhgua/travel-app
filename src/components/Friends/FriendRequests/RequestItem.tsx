@@ -4,6 +4,7 @@ import { userSlice } from 'redux/reducers/userSlice';
 import { acceptFriendRequest } from 'redux/actions/userActions';
 import { selectUser } from 'redux/selectors/selectors';
 import { IFriend } from 'types/types';
+import { Button, ButtonTheme } from 'components/UI/Button/Button';
 import classes from './friend-requests.module.css';
 
 interface RequestItemProps {
@@ -41,14 +42,20 @@ const RequestItem: FC<RequestItemProps> = memo(({request}) => {
 				<div>{request.login}</div>
 			</div>
 			<div className={classes.item__actions}>
-				<button 
+				<Button 
 					onClick={() => handleAddClick(request)}
 					className={classes.add}
-				>add</button>
-				<button 
+					theme={ButtonTheme.BLUE}
+				>
+					add
+				</Button>
+				<Button 
 					onClick={() => handleRejectClick(request.id)}
 					className={classes.reject}
-				>reject</button>
+					theme={ButtonTheme.RED}
+				>
+					reject
+				</Button>
 			</div>
 		</li>
 	);

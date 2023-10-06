@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { useNavigate } from 'react-router-dom';
 import { userSlice } from 'redux/reducers/userSlice';
 import { selectUser } from 'redux/selectors/selectors';    
+import { Button, ButtonTheme, ButtonSize } from 'components/UI/Button/Button';
 import classes from './profile.module.css';
 
 
@@ -84,10 +85,13 @@ const Profile: FC = memo(() => {
 				onChange={handleEmailChange}
 				className={classes.profile__item}
 			/>
-			<button 
+			<Button
 				className={classes.profile__btn}
+				theme={ButtonTheme.BLUE}
+				size={ButtonSize.MEDIUM}				
 				onClick={handleLogoutClick}
-			>logout</button>
+				square={true}
+			>logout</Button>
 		</div>
 	);
 });

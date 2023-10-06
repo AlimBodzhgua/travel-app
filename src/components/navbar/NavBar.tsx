@@ -1,6 +1,11 @@
 import { FC, memo } from 'react';
 import { NavLink } from 'react-router-dom';
 import { RouteNames } from 'router/routes';
+import {
+	AppLink,
+	AppLinkSize,
+	AppLinkTheme
+} from 'components/UI/AppLink/AppLink';
 
 import classes from './navbar.module.css';
 
@@ -17,32 +22,36 @@ const NavBar: FC = () => {
 						<span className={classes.logo__blue}>Pro</span>
 					</NavLink>
 				</h1>
-				<NavLink
+				<AppLink
 					to={RouteNames.TRAVELS}
-					className={classes.nav__link}
+					theme={AppLinkTheme.CLEAR}
+					size={AppLinkSize.SMALL}
 				>
-					My Travels
-				</NavLink>
-				<NavLink
+					My Travels 
+				</AppLink>
+				<AppLink
 					to={RouteNames.USERS}
-					className={classes.nav__link}
+					theme={AppLinkTheme.CLEAR}
+					size={AppLinkSize.SMALL}
 				>
 					Users
-				</NavLink>
+				</AppLink>
 			</div>	
-			<div className={classes.nav__right}>		
-				<NavLink
+			<div className={classes.nav__right}>	
+				<AppLink
 					to={RouteNames.FRIENDS}
-					className={classes.nav__link}
+					theme={AppLinkTheme.CLEAR}
+					size={AppLinkSize.SMALL}
 				>
 					Friends
-				</NavLink>
-				<NavLink
+				</AppLink>
+				<AppLink
 					to={RouteNames.PROFILE}
-					className={classes.nav__link}
+					theme={AppLinkTheme.CLEAR}
+					size={AppLinkSize.SMALL}
 				>
 					Profile
-				</NavLink>
+				</AppLink>
 			</div>
 		</nav>
 	);

@@ -88,17 +88,7 @@
 .profile__btn {
 	align-self: center;
 
-	padding: 8px 12px;
 	margin-top: 10px;
-
-	border: none;
-	border-radius: 7px;
-
-	color: #fff;
-	font-size: 20px;
-	font-weight: 500;
-
-	background-color: var(--color-blue);
 }
 
 
