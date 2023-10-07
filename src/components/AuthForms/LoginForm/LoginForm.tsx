@@ -15,7 +15,7 @@ interface IFormInput {
 }
 
 export const LoginForm: FC = memo(() => {
-	const { isLoading } = useAppSelector(state => state.userReducer);
+	const { isLoading } = useAppSelector(state => state.user);
 	const dispatch = useAppDispatch();
 	const {
 		register, 

@@ -11,7 +11,7 @@ import classes from './home.module.css';
 
 
 const HomePage: FC = () => {
-	const { isAuth } = useAppSelector(state => state.userReducer);
+	const { isAuth } = useAppSelector(state => state.user);
 
 	return (
 		<div className={classes.container}>

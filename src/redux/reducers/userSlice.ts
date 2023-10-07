@@ -15,18 +15,18 @@ import {
 } from 'redux/actions/userActions';
 import {arrayMove} from '@dnd-kit/sortable';
 
-interface UserState {
+export interface UserSchema {
 	isLoading: boolean;
 	isAuth: boolean;
 	errorMessage: string | undefined;
-	user: IUser | null
+	authData?: IUser;
 }
 
-const initialState: UserState = {
+const initialState: UserSchema = {
 	isAuth: false,
 	isLoading: false,
 	errorMessage: '',
-	user: null,
+	authData: undefined,
 };
 
 
@@ -35,40 +35,40 @@ export const userSlice = createSlice({
 	initialState,
 	reducers: {
 		setUser(state, action: PayloadAction<IUser>) {
-			state.user = action.payload;
+			state.authData = action.payload;
 			state.isAuth = true;
 		},
 		logoutUser(state) {
-			state.user = null;
+			state.authData = undefined;
 			state.isAuth = false;
 		},
 		changeLogin(state, action: PayloadAction<string>) {
-			if (state.user) {
-				state.user.login = action.payload;
+			if (state.authData) {
+				state.authData.login = action.payload;
 			}
 		},
 		changeEmail(state, action: PayloadAction<string>) {
-			if (state.user) {
-				state.user.email = action.payload;
+			if (state.authData) {
+				state.authData.email = action.payload;
 			}
 		},
 		rejectFriendRequest(state, action: PayloadAction<number>) {
-			if (state.user) {
-				state.user.friendRequests = state.user.friendRequests.filter(request => request.id !== action.payload);
+			if (state.authData) {
+				state.authData.friendRequests = state.authData.friendRequests.filter(request => request.id !== action.payload);
 			}
 		},
 		addTravel(state, action: PayloadAction<ITravel>) {
-			state.user?.travels.push(action.payload);
+			state.authData?.travels.push(action.payload);
 		},
 		deleteTravel(state, action: PayloadAction<number>) {
-			state.user?.travels.splice(state.user?.travels.findIndex((travel) => 
+			state.authData?.travels.splice(state.authData?.travels.findIndex((travel) => 
 				travel.id === action.payload
 			), 1);
 		},
 		editTravel(state, action: PayloadAction<
 			Omit<ITravel, 'members' | 'backlog' | 'groups'>
 		>) {
-			state.user?.travels.forEach(travel => {
+			state.authData?.travels.forEach(travel => {
 				if (travel.id === action.payload.id) {
 					travel.name = action.payload.name;
 					travel.dateStart = action.payload.dateStart;
@@ -77,25 +77,25 @@ export const userSlice = createSlice({
 			});
 		},
 		moveTravels(state, action: PayloadAction<{activeId: number, overId: number}>) {
-			if (state.user !== null) {
-				const activeIndex = state.user.travels.findIndex((travel) => {
+			if (state.authData) {
+				const activeIndex = state.authData?.travels.findIndex((travel) => {
 					return travel.id === action.payload.activeId;
 				});
-				const overIndex = state.user.travels.findIndex((travel) => {
+				const overIndex = state.authData?.travels.findIndex((travel) => {
 					return travel.id === action.payload.overId;
 				});
-				state.user.travels = arrayMove(state.user.travels, activeIndex, overIndex);
+				state.authData.travels = arrayMove(state?.authData?.travels, activeIndex, overIndex);
 			}
 		},
 		addMember(state, action: PayloadAction<{id: number, member: IFriend}>) {
-			state.user?.travels.forEach(travel => {
+			state.authData?.travels.forEach(travel => {
 				if (travel.id === action.payload.id) {
 					travel.members.push(action.payload.member);
 				}
 			});
 		},
 		deleteMember(state, action: PayloadAction<{travelId: number, memberId: number}>) {
-			state.user?.travels.forEach(travel => {
+			state.authData?.travels.forEach(travel => {
 				if (travel.id === action.payload.travelId) {
 					travel.members = travel.members
 						.filter(member => member.id !== action.payload.memberId);
@@ -103,14 +103,14 @@ export const userSlice = createSlice({
 			});
 		},
 		addBacklog(state, action: PayloadAction<{id: string, backlog: IBacklog}>) {
-			state.user?.travels.forEach(travel => {
+			state.authData?.travels.forEach(travel => {
 				if (travel.id === Number(action.payload.id)) {
 					travel.backlog.push(action.payload.backlog);
 				}
 			});
 		},
 		deleteBacklog(state, action: PayloadAction<{travelId: number, backlogId: number}>) {
-			state.user?.travels.forEach((travel) => {
+			state.authData?.travels.forEach((travel) => {
 				if (travel.id === action.payload.travelId) {
 					travel.backlog.splice(travel.backlog.findIndex((item) => 
 						item.id === action.payload.backlogId
@@ -123,7 +123,7 @@ export const userSlice = createSlice({
 			backlogId: number, 
 			value: string}>
 		) {
-			state.user?.travels.forEach((travel) => {
+			state.authData?.travels.forEach((travel) => {
 				if (travel.id === action.payload.travelId) {
 					travel.backlog.forEach(item => {
 						if (item.id === action.payload.backlogId) {
@@ -134,7 +134,7 @@ export const userSlice = createSlice({
 			});
 		},
 		moveBacklogs(state, action: PayloadAction<{travelId: number, activeId: number ,overId: number}>) {
-			state.user?.travels.forEach((travel) => {
+			state.authData?.travels.forEach((travel) => {
 				if (travel.id === action.payload.travelId) {
 					const activeIndex = travel.backlog.findIndex((log) => {
 						return log.id === action.payload.activeId;
@@ -147,14 +147,14 @@ export const userSlice = createSlice({
 			});
 		},
 		addGroup(state, action: PayloadAction<{id: number, group: IGroup}>) {
-			state.user?.travels.forEach((travel) => {
+			state.authData?.travels.forEach((travel) => {
 				if (travel.id === action.payload.id) {
 					travel.groups.push(action.payload.group);
 				}
 			});
 		},
 		deleteGroup(state, action: PayloadAction<{travelId: number, groupId: number}>) {
-			state.user?.travels.forEach((travel) => {
+			state.authData?.travels.forEach((travel) => {
 				if (travel.id === action.payload.travelId) {
 					travel.groups.splice(travel.groups.findIndex(group => 
 						group.id === action.payload.groupId
@@ -167,7 +167,7 @@ export const userSlice = createSlice({
 			groupId: number,
 			value: string
 		}>) {
-			state.user?.travels.forEach((travel) => {
+			state.authData?.travels.forEach((travel) => {
 				if (travel.id === action.payload.travelId) {
 					travel.groups.forEach(group => {
 						if (group.id === action.payload.groupId) {
@@ -182,7 +182,7 @@ export const userSlice = createSlice({
 			activeId: number, 
 			overId: number
 		}>) {
-			state.user?.travels.forEach((travel) => {
+			state.authData?.travels.forEach((travel) => {
 				if (travel.id === action.payload.travelId) {
 					const activeIndex = travel.groups.findIndex((group) => {
 						return group.id === action.payload.activeId;
@@ -199,7 +199,7 @@ export const userSlice = createSlice({
 			groupId: number,
 			card: ICard
 		}>) {
-			state.user?.travels.forEach((travel) => {
+			state.authData?.travels.forEach((travel) => {
 				if (travel.id === action.payload.travelId) {
 					travel.groups.forEach(group => {
 						if (group.id === action.payload.groupId) {
@@ -214,7 +214,7 @@ export const userSlice = createSlice({
 			groupId: number,
 			travelId: number
 		}>) {
-			state.user?.travels.forEach(travel => {
+			state.authData?.travels.forEach(travel => {
 				if (travel.id === action.payload.travelId) {
 					travel.groups.forEach(group => {
 						if (group.id === action.payload.groupId) {
@@ -232,7 +232,7 @@ export const userSlice = createSlice({
 			activeId: number,
 			overId: number
 		}>) {
-			state.user?.travels.forEach((travel) => {
+			state.authData?.travels.forEach((travel) => {
 				if (travel.id === action.payload.travelId) {
 					travel.groups.forEach(group => {
 						if (group.id === action.payload.groupId) {
@@ -257,7 +257,7 @@ export const userSlice = createSlice({
 			.addCase(registerUser.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.isAuth = true;
-				state.user = action.payload;
+				state.authData = action.payload;
 				state.errorMessage = '';
 			})
 			.addCase(registerUser.rejected, (state, action) => {
@@ -270,17 +270,17 @@ export const userSlice = createSlice({
 			.addCase(loginUser.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.isAuth = true;
-				state.user = action.payload;
+				state.authData = action.payload;
 			})
 			.addCase(loginUser.rejected, (state, action) => {
 				state.isLoading = false;
 				state.errorMessage = action.payload;
 			})
 			.addCase(acceptFriendRequest.fulfilled, (state, action) => {
-				if (state.user) {
-					state.user.friendRequests = state.user.friendRequests
+				if (state.authData) {
+					state.authData.friendRequests = state.authData.friendRequests
 						.filter(request => request.id !== action.payload.id);
-					state.user.friends.push(action.payload);
+					state.authData.friends.push(action.payload);
 				}	
 			})
 			.addCase(acceptFriendRequest.rejected, (state, action) => {
@@ -288,8 +288,8 @@ export const userSlice = createSlice({
 				state.isLoading = false;
 			})
 			.addCase(deleteFriend.fulfilled, (state, action) => {
-				if (state.user) {
-					state.user.friends = state.user.friends.filter(friend => friend.id !== action.payload);
+				if (state.authData) {
+					state.authData.friends = state.authData.friends.filter(friend => friend.id !== action.payload);
 				}
 			})
 			.addCase(deleteFriend.rejected, (state, action) => {

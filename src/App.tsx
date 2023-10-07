@@ -9,21 +9,21 @@ import './App.css';
 
 const App: FC = () => {
     const dispatch = useAppDispatch();
-    const {isAuth, user} = useAppSelector(state => state.userReducer);
+    const {isAuth, authData} = useAppSelector(state => state.user);
 
     useEffect(() => {
         if (isUserLoggedIn()) {
-            const user: IUser = JSON.parse(localStorage.getItem('user') || '{}');
+            const user: IUser = JSON.parse(localStorage.getItem('user') || '');
             dispatch(userSlice.actions.setUser(user));
         }
     }, []);
 
     useEffect(() => {
-        if (isAuth && user) {
-            UserService.updateUser(user);
-            saveUserToLocalStorage(user);
+        if (isAuth && authData) {
+            UserService.updateUser(authData);
+            saveUserToLocalStorage(authData);
         }
-    }, [user]);
+    }, [authData]);
 
     return <AppRouter/>;
 };

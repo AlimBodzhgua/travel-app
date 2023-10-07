@@ -1,11 +1,11 @@
-import {FC, Suspense} from 'react';
-import {useAppSelector} from 'hooks/redux';
-import {Routes, Route} from 'react-router-dom';
-import {RotatingLines} from 'react-loader-spinner';
-import {privateRoutes, publicRoutes} from './routes';
+import { FC, Suspense } from 'react';
+import { useAppSelector } from 'hooks/redux';
+import { Routes, Route } from 'react-router-dom';
+import { RotatingLines } from 'react-loader-spinner';
+import { privateRoutes, publicRoutes } from './routes';
 
 const AppRouter: FC = () => {
-	const {isAuth} = useAppSelector(state => state.userReducer);
+	const { isAuth } = useAppSelector(state => state.user);
 
 	return (
 		<>

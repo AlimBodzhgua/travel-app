@@ -7,13 +7,13 @@ import {
 import {IPublicUser} from 'types/types';
 
 
-interface UsersState {
+export interface AllUsersSchema {
 	isLoading: boolean;
 	errorMessage: string | undefined;
 	users: IPublicUser[] | [];
 }
 
-const initialState:UsersState = {
+const initialState:AllUsersSchema = {
 	isLoading: false,
 	errorMessage: '',
 	users: [],

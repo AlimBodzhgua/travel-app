@@ -1,38 +1,38 @@
-import {RootState} from 'redux/store';
-import {createSelector} from '@reduxjs/toolkit';
+import { StateSchema } from 'redux/config/StateSchema';
+import { createSelector } from '@reduxjs/toolkit';
 
-export const selectUser = (state: RootState) => {
-	return state.userReducer.user;
+export const selectUser = (state: StateSchema) => {
+	return state.user.authData;
 };
 
-export const selectTravelById = (state: RootState, id: number) => {
-	return state.userReducer.user?.travels.find(travel => travel.id === Number(id));	
+export const selectTravelById = (state: StateSchema, id: number) => {
+	return state.user.authData?.travels.find(travel => travel.id === Number(id));	
 };
 
-export const selectTravels = (state: RootState) => {
-	return state.userReducer.user?.travels || [];
+export const selectTravels = (state: StateSchema) => {
+	return state.user.authData?.travels || [];
 };
 
-export const selectGroupsByTravelId = (state: RootState, id: number) => {
-	return state.userReducer.user?.travels.find(travel => travel.id === Number(id))?.groups || [];
+export const selectGroupsByTravelId = (state: StateSchema, id: number) => {
+	return state.user.authData?.travels.find(travel => travel.id === Number(id))?.groups || [];
 };
 
-export const selectBacklogsByTravelId = (state: RootState, travelId: number) => {
-	return state.userReducer.user?.travels.find(travel => travel.id === travelId)?.backlog || [];
+export const selectBacklogsByTravelId = (state: StateSchema, travelId: number) => {
+	return state.user.authData?.travels.find(travel => travel.id === travelId)?.backlog || [];
 };
 
-export const selectMembersByTravelId = (state: RootState, travelId: number) => {
-	return state.userReducer.user?.travels.find(travel => travel.id === travelId)?.members || [];
+export const selectMembersByTravelId = (state: StateSchema, travelId: number) => {
+	return state.user.authData?.travels.find(travel => travel.id === travelId)?.members || [];
 };
 
-export const selectCards = (state: RootState, travelId: number, groupId: number) => {
-	return state.userReducer.user?.travels
+export const selectCards = (state: StateSchema, travelId: number, groupId: number) => {
+	return state.user.authData?.travels
 		.find(travel => travel.id === travelId)?.groups
 		.find(group => group.id === groupId)?.cards || [];
 };
 
-export const selectAllUsers = (state: RootState) => {
-	return state.allUsersReducer.users.filter(user => user.id !== state.userReducer.user?.id);
+export const selectAllUsers = (state: StateSchema) => {
+	return state.allUsers.users.filter(user => user.id !== state.user.authData?.id);
 };
 
 export const memozedSelectAllUsers = createSelector(
