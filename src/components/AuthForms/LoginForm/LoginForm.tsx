@@ -24,7 +24,7 @@ export const LoginForm: FC = memo(() => {
 	} = useForm<IFormInput>();
 	const navigate = useNavigate();
 
-	const onSubmit:SubmitHandler<IUserLogin> = (e) => {
+	const onSubmit: SubmitHandler<IUserLogin> = (e) => {
 		dispatch(loginUser(e)).then(({meta}) => {
 			if (meta.requestStatus === 'fulfilled') {
 				navigate('/travels');
@@ -33,7 +33,6 @@ export const LoginForm: FC = memo(() => {
 			}
 		});
 	};
-
 
 	return (
 		<form className={classes.form} onSubmit={handleSubmit(onSubmit)}>

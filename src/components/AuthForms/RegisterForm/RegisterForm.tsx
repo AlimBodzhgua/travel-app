@@ -26,7 +26,7 @@ export const RegisterForm: FC = memo(() => {
 	} = useForm<IFormInput>();
 
 
-	const onSubmit:SubmitHandler<IFormInput> = (e) => {
+	const onSubmit: SubmitHandler<IFormInput> = (e) => {
 		const user = createNewUser(e);
 		dispatch(registerUser(user))
 			.then(({meta}) => {
