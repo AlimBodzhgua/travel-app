@@ -13,7 +13,29 @@
         }
       ],
       "friendRequests": [],
-      "travels": []
+      "travels": [
+        {
+          "id": 1696687791519,
+          "name": "new trip",
+          "dateStart": "2023.10.07",
+          "dateEnd": "2023.10.07",
+          "members": [],
+          "backlog": [],
+          "groups": [
+            {
+              "id": 1696687802657,
+              "title": "123",
+              "cards": [
+                {
+                  "id": 1696687812670,
+                  "title": "qwe",
+                  "description": "123"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "email": "alimbo1@mail.ru",

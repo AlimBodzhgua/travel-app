@@ -1,6 +1,6 @@
 import {FC} from 'react';
-import NavBar from 'components/Navbar/NavBar';
 import { RegisterForm } from 'components/AuthForms/RegisterForm/RegisterForm';
+import NavBar from 'components/Navbar/NavBar';
 
 import classes from './register.module.css';
 
