@@ -3,11 +3,16 @@
       "react-app",
       "react-app/jest"
     ],
+    "plugins": [
+        "react-hooks",
+    ],
     "rules": {
     	"no-console": "warn",
     	"prefer-const": "warn",
     	"quotes": ["warn", "single"],
     	"jsx-quotes": ["warn", "prefer-single"],
     	"semi": ["warn", "always"],
+        "react-hooks/rules-of-hooks": "warn",
+        "react-hooks/exhaustive-deps": "warn" 
     }
 }

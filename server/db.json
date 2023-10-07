@@ -1,23 +1,34 @@
 {
   "users": [
     {
-      "email": "alim@mail.ru",
-      "password": "$2a$10$X8H37tbAEUDZQj0ytxm3iOthyHakU/upAL1ws2puljWm4iwZvhTGC",
-      "login": "alimbo1",
-      "id": 1696611626146,
-      "friends": [],
-      "friendRequests": [],
-      "travels": [
+      "email": "alimbo3@mail.ru",
+      "password": "$2a$10$ZSXuGye/gJAWJNuXD6fMLutRC1bFu7Hxx.RMTQlbcUtKYPnnDwT9q",
+      "login": "alimbo3",
+      "id": 1696621269786,
+      "friends": [
         {
-          "id": 1696611649583,
-          "name": "new trip 123",
-          "dateStart": "2023.10.06",
-          "dateEnd": "2023.10.13",
-          "members": [],
-          "backlog": [],
-          "groups": []
+          "id": 1696621389637,
+          "login": "alimbo1",
+          "email": "alimbo1@mail.ru"
         }
-      ]
+      ],
+      "friendRequests": [],
+      "travels": []
+    },
+    {
+      "email": "alimbo1@mail.ru",
+      "password": "$2a$10$sRzyuNbjj1cnZhY4itLw5uBWsxL.HVUX0yUgPmPecE1PqB1x2w3T2",
+      "login": "alimbo1",
+      "id": 1696621389637,
+      "friends": [
+        {
+          "id": 1696621269786,
+          "login": "alimbo3",
+          "email": "alimbo3@mail.ru"
+        }
+      ],
+      "friendRequests": [],
+      "travels": []
     }
   ]
 }
