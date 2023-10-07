@@ -13,8 +13,8 @@ import { createNewCard } from 'utils/utils';
 import classes from './card-create.module.css';
 
 interface CardCreateFormProps {
-	setShowCreateForm: Dispatch<SetStateAction<boolean>>
 	groupId: number;
+	setShowCreateForm?: Dispatch<SetStateAction<boolean>>
 }
 
 const CardCreateForm: FC<CardCreateFormProps> = memo(({setShowCreateForm, groupId}) => {
@@ -24,7 +24,7 @@ const CardCreateForm: FC<CardCreateFormProps> = memo(({setShowCreateForm, groupI
 	const textAreaId = useId();
 	const { id } = useParams<{id?: string}>();
 
-	const handleCloseClick = ():void => setShowCreateForm(false);
+	const handleCloseClick = ():void => setShowCreateForm?.(false);
 
 	const handleSaveClick = ():void => {
 		if (text.length && title.length) {
@@ -34,7 +34,7 @@ const CardCreateForm: FC<CardCreateFormProps> = memo(({setShowCreateForm, groupI
 				groupId,
 				card
 			}));
-			setShowCreateForm(false);
+			setShowCreateForm?.(false);
 		} else alert('Input is empty');
 	};
 

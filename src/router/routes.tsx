@@ -10,7 +10,7 @@ const UsersPage = lazy(() => import('pages/UsersPage/UsersPage'));
 const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 
-enum RouteNames {
+export enum RouteNames {
 	HOME = '/',
 	NOT_FOUND = '*',
 	TRAVELS = '/travels',

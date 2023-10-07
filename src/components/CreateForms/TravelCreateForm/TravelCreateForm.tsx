@@ -2,13 +2,13 @@ import { FC, useState, memo } from 'react';
 import { useAppDispatch } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
 import { createNewTravel } from 'utils/utils';
-import DateRangePicker from 'components/DateRangePicker/DateRangePicker';
+import DateRangePicker from 'components/UI/DateRangePicker/DateRangePicker';
 import dayjs, { Dayjs } from 'dayjs';
 
 import classes from './travel-create.module.css';
 
 interface TravelCreateFormProps {
-	setShowCreateForm: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowCreateForm?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const TravelCreateForm: FC<TravelCreateFormProps> = memo(({setShowCreateForm}) => {
@@ -17,7 +17,7 @@ const TravelCreateForm: FC<TravelCreateFormProps> = memo(({setShowCreateForm}) =
 	const [value, setValue] = useState<string>('');
 	const dispatch = useAppDispatch();
 
-	const handleCancelClick = ():void => setShowCreateForm(false);
+	const handleCancelClick = ():void => setShowCreateForm?.(false);
 
 	const handleSaveClick = ():void => { 	
 		if (startDate !== null && endDate !== null) {
@@ -27,7 +27,7 @@ const TravelCreateForm: FC<TravelCreateFormProps> = memo(({setShowCreateForm}) =
 				dispatch(userSlice.actions.addTravel(travel));
 			} else alert('Input value can not be empty');
 		}
-		setShowCreateForm(false);
+		setShowCreateForm?.(false);
 	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>):void => {

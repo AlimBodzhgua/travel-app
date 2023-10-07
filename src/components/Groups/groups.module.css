@@ -1,4 +1,3 @@
-
 .groups {
 	width: 63%;
 	margin-left: 15px;
@@ -23,75 +22,6 @@
 
 .list {
 	list-style: none;
-}
-
-.item {
-	width: 100%;
-	padding: 15px 10px;
-	margin-bottom: 15px;
-
-	background-color: var(--color-lightblue);
-	border-radius: 5px;
-
-	display: flex;
-	flex-direction: column;
-}
-
-.item:hover {
-	cursor: grab;
-}
-
-.item__header {
-	margin-bottom: 17px;	
-	display: flex;
-	justify-content: space-between;
-}
-
-.item__title {
-	font-size: 20px;
-	font-weight: 500;
-}
-
-.item__input {
-	width: 100%;
-
-	padding: 8px 5px;
-	margin-right: 10px;
-
-	font-size: 16px;
-}
-
-.item__actions {
-	display: flex;
-	justify-content: space-between;
-	gap: 10px;
-	position: relative;
-}
-
-.edit,
-.close,
-.save {
-	border: none;
-	background: none;
-
-	font-weight: 900;
-	font-size: 18px;
-}
-
-.edit {
-	background-image: url('assets/icons/edit.svg');
-	background-position: center;
-	background-size: contain;
-	background-repeat: no-repeat;
-	color: transparent;
-
-	width: 18px;
-}
-
-.edit:hover,
-.close:hover,
-.save:hover {
-	cursor: pointer;
 }
 
 .item__empty {

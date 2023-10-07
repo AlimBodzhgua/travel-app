@@ -6,7 +6,7 @@ import { useAppDispatch } from 'hooks/redux';
 import { Dayjs } from 'dayjs';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import DateRangePicker from 'components/DateRangePicker/DateRangePicker';
+import DateRangePicker from 'components/UI/DateRangePicker/DateRangePicker';
 import classes from './travel.module.css';
 
 

@@ -4,16 +4,24 @@ import { userSlice } from 'redux/reducers/userSlice';
 import { ICard } from 'types/types';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import classes from './cards.module.css';
+import classnames from 'classnames';
+import classes from './CardItem.module.css';
 
 interface CardItemProps {
 	card: ICard;
 	groupId: number;
 	travelId: number;
+	className?: string;
 }
 
 
-const CardItem:FC<CardItemProps> = memo(({card, groupId, travelId}) => {
+export const CardItem:FC<CardItemProps> = memo((props) => {
+	const {
+		card,
+		groupId,
+		travelId,
+		className,
+	} = props;
 	const dispatch = useAppDispatch();
 	const { 
 		attributes,
@@ -38,7 +46,7 @@ const CardItem:FC<CardItemProps> = memo(({card, groupId, travelId}) => {
 
 	return (
 		<li 
-			className={classes.card}
+			className={classnames(classes.CardItem, className)}
 			style={style}
 			ref={setNodeRef}
 			{...attributes} 
@@ -56,6 +64,3 @@ const CardItem:FC<CardItemProps> = memo(({card, groupId, travelId}) => {
 		</li>
 	);
 });
-
-
-export default CardItem;

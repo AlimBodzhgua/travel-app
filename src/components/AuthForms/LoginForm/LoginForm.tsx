@@ -6,7 +6,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { ThreeDots } from 'react-loader-spinner';
 import { IUserLogin } from 'types/types';
 import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
-import classes from './auth.module.css';
+import classes from '../auth.module.css';
 
 
 interface IFormInput {

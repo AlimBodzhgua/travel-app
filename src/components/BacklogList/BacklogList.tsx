@@ -7,8 +7,8 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { DndContext } from '@dnd-kit/core';
+import { BacklogItem } from './BacklogItem/BacklogItem';
 import BacklogCreateForm from 'components/CreateForms/BacklogCreateForm/BacklogCreateForm';
-import BacklogItem from './BacklogItem';
 
 import classes from './backlog.module.css';
 

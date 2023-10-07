@@ -5,9 +5,9 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { useSensors, useSensor, PointerSensor, DndContext } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { useParams } from 'react-router-dom';
-import GroupCreateForm from '../CreateForms/GroupCreateForm/GroupCreateForm';
-import GroupItem from './GroupItem';
 import { selectGroupsByTravelId } from 'redux/selectors/selectors';
+import { GroupItem } from './GroupItem/GroupItem';
+import GroupCreateForm from '../CreateForms/GroupCreateForm/GroupCreateForm';
 import classes from './groups.module.css';
 
 const Groups: FC = memo(() => {
@@ -62,7 +62,9 @@ const Groups: FC = memo(() => {
 				: 	<button 
 						className={classes.add}
 						onClick={() => setShowCreateForm(true)}
-					>+ Add group</button>
+					>
+						+ Add group
+					</button>
 			}
 		</div>
 	);

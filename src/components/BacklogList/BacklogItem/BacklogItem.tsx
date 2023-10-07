@@ -5,13 +5,15 @@ import { useAppDispatch } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import classes from './backlog.module.css';
+import classes from './BacklogItem.module.css';
+import classNames from 'classnames';
 
 interface BacklogItemProps {
-	backlog: IBacklog
+	backlog: IBacklog;
+	className?: string;
 }
 
-const BacklogItem: FC<BacklogItemProps> = memo(({backlog}) => {
+export const BacklogItem: FC<BacklogItemProps> = memo(({backlog, className}) => {
 	const [value, setValue] = useState<string>('');
 	const [editable, setEditable] = useState<boolean>(false);
 	const { id } = useParams<{id?: string}>();
@@ -59,7 +61,7 @@ const BacklogItem: FC<BacklogItemProps> = memo(({backlog}) => {
 
 	return (
 		<li 
-			className={classes.item}
+			className={classNames(classes.BacklogItem, className)}
 			ref={setNodeRef} 
 			style={style}
 			{...attributes} 
@@ -97,5 +99,3 @@ const BacklogItem: FC<BacklogItemProps> = memo(({backlog}) => {
 		</li>
 	);
 });
-
-export default BacklogItem;

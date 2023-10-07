@@ -6,7 +6,7 @@ import {createNewGroup} from 'utils/utils';
 import classes from './group-create.module.css';
 
 interface GroupCreateFormProps {
-	setShowCreateForm: React.Dispatch<React.SetStateAction<boolean>>
+	setShowCreateForm?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const GroupCreateForm: FC<GroupCreateFormProps> = memo(({setShowCreateForm}) => {
@@ -18,11 +18,11 @@ const GroupCreateForm: FC<GroupCreateFormProps> = memo(({setShowCreateForm}) => 
 		if (value.length) {
 			const group = createNewGroup(value);
 			dispatch(userSlice.actions.addGroup({id: Number(id), group}));
-			setShowCreateForm(false);
+			setShowCreateForm?.(false);
 		} else alert('Empty input value');
 	};
 
-	const handleCancelClick = ():void => setShowCreateForm(false);
+	const handleCancelClick = ():void => setShowCreateForm?.(false);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
 		setValue(e.target.value);

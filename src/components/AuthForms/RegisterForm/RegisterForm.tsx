@@ -6,7 +6,7 @@ import { registerUser } from 'redux/actions/userActions';
 import { ThreeDots } from 'react-loader-spinner';
 import { createNewUser } from 'utils/utils';
 import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
-import classes from './auth.module.css';
+import classes from '../auth.module.css';
 
 interface IFormInput {
 	login: string;

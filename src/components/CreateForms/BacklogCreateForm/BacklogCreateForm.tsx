@@ -5,7 +5,7 @@ import { userSlice } from 'redux/reducers/userSlice';
 import classes from './backlog-create.module.css';
 
 interface BacklogCreateFormProps {
-	setShowCreateForm: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowCreateForm?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const BacklogCreateForm: FC<BacklogCreateFormProps> = memo(({setShowCreateForm}) => {
@@ -13,14 +13,14 @@ const BacklogCreateForm: FC<BacklogCreateFormProps> = memo(({setShowCreateForm})
 	const { id } = useParams<{id?: string}>();
 	const dispatch = useAppDispatch();
 
-	const handleCloseClick = ():void => setShowCreateForm(false);
+	const handleCloseClick = ():void => setShowCreateForm?.(false);
 
 	const handleSaveClick = ():void => {
 		if (typeof id !== 'undefined') {
 			if (value.length) {
 				const backlog = {id: Date.now(), name: value};
 				dispatch(userSlice.actions.addBacklog({id, backlog}));
-				setShowCreateForm(false);
+				setShowCreateForm?.(false);
 			} else alert('Input value is empty');
 		}
 	};
