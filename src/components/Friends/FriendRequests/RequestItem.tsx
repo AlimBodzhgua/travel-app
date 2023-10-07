@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { acceptFriendRequest } from 'redux/actions/userActions';
 import { selectUser } from 'redux/selectors/selectors';
 import { IFriend } from 'types/types';
@@ -17,7 +17,7 @@ const RequestItem: FC<RequestItemProps> = memo(({request}) => {
 
 	const handleRejectClick = (id:number):void => {
 		if (window.confirm('Are you sure you want to reject friend request?')) {
-			dispatch(userSlice.actions.rejectFriendRequest(id));
+			dispatch(userActions.rejectFriendRequest(id));
 		}
 	};
 

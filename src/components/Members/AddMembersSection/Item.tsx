@@ -4,7 +4,7 @@ import { useAppDispatch } from 'hooks/redux';
 import { CSS } from '@dnd-kit/utilities';
 import { IFriend } from 'types/types';
 import { useParams } from 'react-router-dom';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import classes from './member-add.module.css';
 
 interface ItemProps {
@@ -33,7 +33,7 @@ const Item: FC<ItemProps> = memo(({friend}) => {
 	};	
 
 	const handleClick = ():void => {
-		dispatch(userSlice.actions.addMember({
+		dispatch(userActions.addMember({
 			id: Number(id), 
 			member: friend
 		}));

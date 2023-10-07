@@ -2,7 +2,7 @@ import { FC, useState, useRef, useEffect, memo } from 'react';
 import { IBacklog } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { SortableItem } from 'components/SortableItem/SortableItem';
 import classes from './BacklogItem.module.css';
 import classNames from 'classnames';
@@ -29,14 +29,14 @@ export const BacklogItem: FC<BacklogItemProps> = memo(({backlog, className}) => 
 	const handleEditClick = ():void => setEditable(!editable);
 
 	const handleDeleteClick = ():void => {
-		dispatch(userSlice.actions.deleteBacklog({
+		dispatch(userActions.deleteBacklog({
 			travelId: Number(id), 
 			backlogId: backlog.id,
 		}));
 	};
 
 	const handleSaveClick = ():void => {
-		dispatch(userSlice.actions.editBacklog({
+		dispatch(userActions.editBacklog({
 			travelId: Number(id),
 			backlogId: backlog.id,
 			value: value,

@@ -1,5 +1,9 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import { fetchAllUsers, sendFriendRequest, cancelFriendRequest } from 'redux/actions/allUsersActions';
+import { createSlice } from '@reduxjs/toolkit';
+import {
+	fetchAllUsers,
+	sendFriendRequest,
+	cancelFriendRequest
+} from 'redux/actions/allUsersActions';
 import {IPublicUser} from 'types/types';
 
 
@@ -51,4 +55,5 @@ const allUsersSlice = createSlice({
 	}
 });
 
-export default allUsersSlice.reducer;
+export const {actions: allUsersActions} = allUsersSlice;
+export const {reducer: allUsersReducer} = allUsersSlice;

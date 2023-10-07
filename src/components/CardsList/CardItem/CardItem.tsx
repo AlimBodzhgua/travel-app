@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { useAppDispatch } from 'hooks/redux';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { ICard } from 'types/types';
 import { SortableItem } from 'components/SortableItem/SortableItem';
 import classnames from 'classnames';
@@ -23,7 +23,7 @@ export const CardItem:FC<CardItemProps> = memo((props) => {
 	const dispatch = useAppDispatch();
 
 	const handleDeleteClick = ():void => {
-		dispatch(userSlice.actions.deleteCard({
+		dispatch(userActions.deleteCard({
 			cardId: card.id,
 			groupId: groupId,
 			travelId: travelId, 

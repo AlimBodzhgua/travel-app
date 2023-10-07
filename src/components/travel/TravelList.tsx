@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { ITravel } from 'types/types';
 import { TravelItem } from './TravelItem/TravelItem';
 import { useAppDispatch } from 'hooks/redux';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { SortableContext } from '@dnd-kit/sortable';
 import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
@@ -29,7 +29,7 @@ const TravelList: FC<TravelListProps> = memo(({travels}) => {
 		if (active.id === over.id) {
 			return;
 		}
-		dispatch(userSlice.actions.moveTravels({
+		dispatch(userActions.moveTravels({
 			activeId: active.id, 
 			overId: over.id
 		}));		

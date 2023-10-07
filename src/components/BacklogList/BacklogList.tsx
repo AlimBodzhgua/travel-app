@@ -1,7 +1,7 @@
 import { FC, useState, memo } from 'react';
 import { useAppDispatch, useAppSelector} from 'hooks/redux';
 import { selectBacklogsByTravelId} from 'redux/selectors/selectors';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { useParams } from 'react-router-dom';
 
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
@@ -34,7 +34,7 @@ const BacklogList: FC = memo(() => {
 		if (active.id === over.id) {
 			return;
 		}
-		dispatch(userSlice.actions.moveBacklogs({
+		dispatch(userActions.moveBacklogs({
 			travelId: Number(id),
 			activeId: active.id,
 			overId: over.id,
@@ -74,7 +74,9 @@ const BacklogList: FC = memo(() => {
 						<button 
 							onClick={handleClick}
 							className={classes.add}
-						>+ Add card</button>
+						>
+							+ Add card
+						</button>
 					</div>
 			}
 		</div>

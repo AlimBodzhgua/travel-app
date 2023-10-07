@@ -1,7 +1,7 @@
 import { FC, useState, useEffect, memo } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { useNavigate } from 'react-router-dom';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { selectUser } from 'redux/selectors/selectors';    
 import { Button, ButtonTheme, ButtonSize } from 'components/UI/Button/Button';
 import classes from './profile.module.css';
@@ -36,10 +36,10 @@ const Profile: FC = memo(() => {
 		if (window.confirm('Are you sure you want to save changes?')) {
 			if (login.length && email.length) {
 				if (login !== user?.login) {
-					dispatch(userSlice.actions.changeLogin(login));
+					dispatch(userActions.changeLogin(login));
 				}
 				if (email !== user?.email) {
-					dispatch(userSlice.actions.changeEmail(email));
+					dispatch(userActions.changeEmail(email));
 				}
 				setEditable(false);
 			} else alert('Input value empty');
@@ -47,7 +47,7 @@ const Profile: FC = memo(() => {
 	};
 
 	const handleLogoutClick = ():void => {
-		dispatch(userSlice.actions.logoutUser());
+		dispatch(userActions.logoutUser());
 		localStorage.removeItem('user');
 		navigate('/');
 	};

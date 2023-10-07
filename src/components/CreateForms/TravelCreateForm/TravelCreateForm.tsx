@@ -1,6 +1,6 @@
 import { FC, useState, memo } from 'react';
 import { useAppDispatch } from 'hooks/redux';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { createNewTravel } from 'utils/utils';
 import DateRangePicker from 'components/UI/DateRangePicker/DateRangePicker';
 import dayjs, { Dayjs } from 'dayjs';
@@ -19,18 +19,18 @@ const TravelCreateForm: FC<TravelCreateFormProps> = memo(({setShowCreateForm}) =
 
 	const handleCancelClick = ():void => setShowCreateForm?.(false);
 
-	const handleSaveClick = ():void => { 	
+	const handleSaveClick = () => { 	
 		if (startDate !== null && endDate !== null) {
 			if (value.length) {
 				const id: number = Date.now();
 				const travel = createNewTravel(id, value, startDate, endDate);
-				dispatch(userSlice.actions.addTravel(travel));
+				dispatch(userActions.addTravel(travel));
 			} else alert('Input value can not be empty');
 		}
 		setShowCreateForm?.(false);
 	};
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
 	};
 
@@ -55,11 +55,15 @@ const TravelCreateForm: FC<TravelCreateFormProps> = memo(({setShowCreateForm}) =
 				<button 
 					className={classes.add} 
 					onClick={handleSaveClick}
-				>+</button>
+				>
+					+
+				</button>
 				<button 
 					className={classes.cancel} 
 					onClick={handleCancelClick}
-				>&#10005;</button>
+				>
+					&#10005;
+				</button>
 			</div>
 		</div>
 	);

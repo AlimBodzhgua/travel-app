@@ -8,7 +8,7 @@ import {
 } from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from 'hooks/redux';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { createNewCard } from 'utils/utils';
 import classes from './card-create.module.css';
 
@@ -24,12 +24,12 @@ const CardCreateForm: FC<CardCreateFormProps> = memo(({setShowCreateForm, groupI
 	const textAreaId = useId();
 	const { id } = useParams<{id?: string}>();
 
-	const handleCloseClick = ():void => setShowCreateForm?.(false);
+	const handleCloseClick = () => setShowCreateForm?.(false);
 
-	const handleSaveClick = ():void => {
+	const handleSaveClick = () => {
 		if (text.length && title.length) {
 			const card = createNewCard(title, text);
-			dispatch(userSlice.actions.addCard({
+			dispatch(userActions.addCard({
 				travelId: Number(id),
 				groupId,
 				card
@@ -38,11 +38,11 @@ const CardCreateForm: FC<CardCreateFormProps> = memo(({setShowCreateForm, groupI
 		} else alert('Input is empty');
 	};
 
-	const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>):void => {
+	const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setTitle(e.target.value);
 	};
 
-	const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>):void => {
+	const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setText(e.target.value);
 	};
 

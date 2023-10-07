@@ -1,7 +1,7 @@
 import { FC, useState, useEffect, memo } from 'react';
 import { stringToDayjsObject } from 'utils/utils';
 import { NavLink, useLocation } from 'react-router-dom';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { useAppDispatch } from 'hooks/redux';
 import { Dayjs } from 'dayjs';
 import { SortableItem } from 'components/SortableItem/SortableItem';
@@ -34,12 +34,12 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 	const handleEditClick = ():void => setEditable(!editable);
 
 	const handleDeleteClick = ():void => {
-		dispatch(userSlice.actions.deleteTravel(id));
+		dispatch(userActions.deleteTravel(id));
 	};
 
 	const handleSaveClick = ():void => {
 		if (startDate && endDate) {
-			dispatch(userSlice.actions.editTravel({
+			dispatch(userActions.editTravel({
 				id: id,
 				name: value,
 				dateStart: startDate.format('YYYY.MM.DD'),

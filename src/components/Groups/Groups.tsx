@@ -1,6 +1,6 @@
 import { FC, useState, memo } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { useSensors, useSensor, PointerSensor, DndContext } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
@@ -29,7 +29,7 @@ const Groups: FC = memo(() => {
 		if (active.id === over.id) {
 			return;
 		}
-		dispatch(userSlice.actions.moveGroups({
+		dispatch(userActions.moveGroups({
 			travelId: Number(id),
 			activeId: active.id,
 			overId: over.id,

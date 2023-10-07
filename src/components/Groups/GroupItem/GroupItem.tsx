@@ -2,7 +2,7 @@ import { FC, useState, useEffect, memo, useCallback } from 'react';
 import { IGroup } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
@@ -46,7 +46,7 @@ export const GroupItem: FC<GroupItemProps> = memo(({group}) => {
 	}, [showPopup]);
 
 	const handleSaveClick = ():void => {
-		dispatch(userSlice.actions.editGroup({
+		dispatch(userActions.editGroup({
 			travelId: Number(id),
 			groupId: group.id,
 			value
@@ -55,7 +55,7 @@ export const GroupItem: FC<GroupItemProps> = memo(({group}) => {
 	};
 
 	const deleteGroup = useCallback(() => {
-		dispatch(userSlice.actions.deleteGroup({
+		dispatch(userActions.deleteGroup({
 			travelId: Number(id),
 			groupId: group.id
 		}));

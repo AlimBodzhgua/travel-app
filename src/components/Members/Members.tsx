@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { selectMembersByTravelId } from 'redux/selectors/selectors';
 import { IFriend } from 'types/types';
 import { DndContext, DragStartEvent, DragEndEvent } from '@dnd-kit/core';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
 import AddMembersSection from './AddMembersSection/AddMembersSection';
 import MembersList from './MembersList/MembersList';
@@ -35,7 +35,7 @@ const Members: FC = memo(() => {
 	const handleDragEnd = (e: DragEndEvent):void => {
 		if (e.over) {
 			const item:IFriend = e.active.data.current?.friend;
-			dispatch(userSlice.actions.addMember({
+			dispatch(userActions.addMember({
 				id: Number(id),
 				member: item
 			}));

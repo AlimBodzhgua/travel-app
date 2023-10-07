@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { selectCards } from 'redux/selectors/selectors';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { useSensors, useSensor, PointerSensor, DndContext } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
@@ -22,7 +22,7 @@ const CardsList:FC<CardsListProps> = memo(({travelId, groupId}) => {
 		if (active.id === over.id) {
 			return;
 		}
-		dispatch(userSlice.actions.moveCards({
+		dispatch(userActions.moveCards({
 			travelId: travelId,
 			groupId: groupId,
 			activeId: active.id,

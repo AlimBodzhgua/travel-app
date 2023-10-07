@@ -299,4 +299,5 @@ export const userSlice = createSlice({
 	}
 });
 
-export default userSlice.reducer;
+export const { actions: userActions } = userSlice;
+export const { reducer: userReducer } = userSlice;
