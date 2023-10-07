@@ -14,7 +14,7 @@ interface IFormInput {
 	password: string;
 }
 
-const LoginForm: FC = memo(() => {
+export const LoginForm: FC = memo(() => {
 	const { isLoading } = useAppSelector(state => state.userReducer);
 	const dispatch = useAppDispatch();
 	const {
@@ -89,5 +89,3 @@ const LoginForm: FC = memo(() => {
 		</form>
 	);
 });
-
-export default LoginForm;

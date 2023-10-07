@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import LoginForm from 'components/AuthForms/LoginForm';
+import { LoginForm } from 'components/AuthForms/LoginForm/LoginForm';
 import NavBar from 'components/Navbar/NavBar';
 import classes from './login.module.css';
 
