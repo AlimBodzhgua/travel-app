@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import { FC, useEffect, useCallback } from 'react';
 import classes from './popup.module.css';
 
 interface PopupProps {
@@ -7,6 +7,19 @@ interface PopupProps {
 }
 
 const Popup: FC<PopupProps> = ({handleCancelClick, handleDeleteClick}) => {
+
+	const onKeydown = useCallback((e: KeyboardEvent) => {
+		if (e.key === 'Escape') {
+            handleCancelClick();
+        }
+	}, [])
+
+	useEffect(() => {
+		window.addEventListener('keydown', onKeydown);
+
+		return () => window.removeEventListener('keydown', onKeydown);
+	}, [])
+
 	return (
 		<div className={classes.modal}>
 			<h2 className={classes.modal__title}>Delete exactly?</h2>
@@ -17,11 +30,15 @@ const Popup: FC<PopupProps> = ({handleCancelClick, handleDeleteClick}) => {
 				<button 
 					className={classes.cancel}
 					onClick={handleCancelClick}
-				>Cancel</button>
+				>
+					Cancel
+				</button>
 				<button 
 					className={classes.submit}
 					onClick={handleDeleteClick}
-				>Yes, delete</button>
+				>
+					Yes, delete
+				</button>
 				<div className={classes.triangle}></div>
 			</div>
 		</div>
