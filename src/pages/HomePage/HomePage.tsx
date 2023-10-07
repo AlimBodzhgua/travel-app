@@ -1,11 +1,17 @@
-import {FC} from 'react';
-import {useAppSelector} from 'hooks/redux';
-import {NavLink} from 'react-router-dom';
+import { FC } from 'react';
+import { useAppSelector } from 'hooks/redux';
+import { RouteNames } from 'router/routes';
+import {
+	AppLink,
+	AppLinkTheme,
+	AppLinkSize,
+} from 'components/UI/AppLink/AppLink';
 import NavBar from 'components/Navbar/NavBar';
 import classes from './home.module.css';
 
+
 const HomePage: FC = () => {
-	const {isAuth} = useAppSelector(state => state.userReducer);
+	const { isAuth } = useAppSelector(state => state.userReducer);
 
 	return (
 		<div className={classes.container}>
@@ -14,25 +20,37 @@ const HomePage: FC = () => {
 				{isAuth 
 					?
 						<>
-							<NavLink 
-								to='/profile'
-								className={classes.link}
-							>profile</NavLink>
-							<NavLink 
-								to='/travels'
-								className={classes.link}
-							>travels</NavLink>
+							<AppLink
+								to={RouteNames.PROFILE}
+								size={AppLinkSize.MEDIUM}
+								theme={AppLinkTheme.PRIMARY}
+							>
+								Profile
+							</AppLink>
+							<AppLink
+								to={RouteNames.TRAVELS}
+								size={AppLinkSize.MEDIUM}
+								theme={AppLinkTheme.PRIMARY}
+							>
+								Travels
+							</AppLink>
 						</>
 					:
 						<>
-							<NavLink 
-								to='/regiser'
-								className={classes.link}
-							>register</NavLink>
-							<NavLink 
-								to='/login'
-								className={classes.link}
-							>login</NavLink>
+							<AppLink
+								to={RouteNames.REGISTER}
+								size={AppLinkSize.MEDIUM}
+								theme={AppLinkTheme.PRIMARY}
+							>
+								Register
+							</AppLink>
+							<AppLink
+								to={RouteNames.LOGIN}
+								size={AppLinkSize.MEDIUM}
+								theme={AppLinkTheme.PRIMARY}
+							>
+								Login
+							</AppLink>
 						</>
 				}
 			</div>
