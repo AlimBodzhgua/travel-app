@@ -1,9 +1,9 @@
 import { FC, memo } from 'react';
 import { ITravel } from 'types/types';
-import TravelItem from './TravelItem';
+import { TravelItem } from './TravelItem/TravelItem';
 import { useAppDispatch } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { SortableContext } from '@dnd-kit/sortable';
 import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { DndContext } from '@dnd-kit/core';

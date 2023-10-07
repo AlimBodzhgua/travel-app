@@ -7,6 +7,7 @@ import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { useParams } from 'react-router-dom';
 import { selectGroupsByTravelId } from 'redux/selectors/selectors';
 import { GroupItem } from './GroupItem/GroupItem';
+
 import GroupCreateForm from '../CreateForms/GroupCreateForm/GroupCreateForm';
 import classes from './groups.module.css';
 
@@ -15,7 +16,6 @@ const Groups: FC = memo(() => {
 	const dispatch = useAppDispatch();
 	const { id } = useParams<{id? : string}>();
 	const groups = useAppSelector(state => selectGroupsByTravelId(state, Number(id)));
-
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
 	    	activationConstraint: {
@@ -49,7 +49,7 @@ const Groups: FC = memo(() => {
 				>
 					<ul className={classes.list}>
 							{groups.map(group => 
-								<GroupItem 
+								<GroupItem
 									key={group.id}
 									group={group}
 								/>

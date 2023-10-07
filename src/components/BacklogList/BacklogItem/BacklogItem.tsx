@@ -3,8 +3,7 @@ import { IBacklog } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
 import { userSlice } from 'redux/reducers/userSlice';
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import { SortableItem } from 'components/SortableItem/SortableItem';
 import classes from './BacklogItem.module.css';
 import classNames from 'classnames';
 
@@ -45,57 +44,45 @@ export const BacklogItem: FC<BacklogItemProps> = memo(({backlog, className}) => 
 		setEditable(false);
 	};
 
-	const { 
-		attributes,
-    	listeners,
-    	setNodeRef,
-    	transform,
-    	transition
-   	} = useSortable({id: backlog.id});
-
-
-	const style = {
- 		transform: CSS.Translate.toString(transform),
- 		transition
-	};
-
 	return (
-		<li 
-			className={classNames(classes.BacklogItem, className)}
-			ref={setNodeRef} 
-			style={style}
-			{...attributes} 
-			{...listeners}
-		>
-			{editable 
-				?
-					<input 
-						type='text' 
-						ref={inputRef}
-						placeholder={backlog.name}
-						value={value}
-						onChange={(e) => setValue(e.target.value)}
-						className={classes.item__input}
-					/>
-				:   <div className={classes.item__name}>{backlog.name}</div>
-			}
-			
-			<div className={classes.item__actions}>
-				{editable && 
-					<button 
-						onClick={handleSaveClick}
-						className={classes.delete}
-					>&#x2714;</button>
+		<SortableItem id={backlog.id}>
+			<li className={classNames(classes.BacklogItem, className)}>
+				{editable 
+					?
+						<input 
+							type='text' 
+							ref={inputRef}
+							placeholder={backlog.name}
+							value={value}
+							onChange={(e) => setValue(e.target.value)}
+							className={classes.item__input}
+						/>
+					:   <div className={classes.item__name}>{backlog.name}</div>
 				}
-				<button 
-					onClick={handleEditClick}
-					className={classes.edit}
-				>edit</button>
-				<button 
-					onClick={handleDeleteClick}
-					className={classes.delete}
-				>&#10005;</button>
-			</div>
-		</li>
+				
+				<div className={classes.item__actions}>
+					{editable && 
+						<button 
+							onClick={handleSaveClick}
+							className={classes.delete}
+						>
+							&#x2714;
+						</button>
+					}
+					<button 
+						onClick={handleEditClick}
+						className={classes.edit}
+					>
+						edit
+					</button>
+					<button 
+						onClick={handleDeleteClick}
+						className={classes.delete}
+					>
+						&#10005;
+					</button>
+				</div>
+			</li>
+		</SortableItem>
 	);
 });

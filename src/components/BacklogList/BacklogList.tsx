@@ -3,11 +3,13 @@ import { useAppDispatch, useAppSelector} from 'hooks/redux';
 import { selectBacklogsByTravelId} from 'redux/selectors/selectors';
 import { userSlice } from 'redux/reducers/userSlice';
 import { useParams } from 'react-router-dom';
+
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { DndContext } from '@dnd-kit/core';
 import { BacklogItem } from './BacklogItem/BacklogItem';
+
 import BacklogCreateForm from 'components/CreateForms/BacklogCreateForm/BacklogCreateForm';
 
 import classes from './backlog.module.css';
@@ -54,7 +56,7 @@ const BacklogList: FC = memo(() => {
 				>
 					<ul className={classes.backlog__list}>
 						{backlogs.map(backlog => 
-							<BacklogItem 
+							<BacklogItem
 								key={backlog.id}
 								backlog={backlog}
 							/>
