@@ -1,23 +1,24 @@
-import React, {FC} from 'react';
+import { FC, memo, Dispatch, SetStateAction } from 'react';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
+
 import classes from './date-range.module.css';
 
 interface DateRangePickerProps {
-	startDate: Dayjs | null;
-	setStartDate: React.Dispatch<React.SetStateAction<Dayjs | null>>;
-	endDate: Dayjs | null;
-	setEndDate: React.Dispatch<React.SetStateAction<Dayjs | null>>;
+	startDate?: Dayjs | null;
+	setStartDate?: Dispatch<SetStateAction<Dayjs | null>>;
+	endDate?: Dayjs | null;
+	setEndDate?: Dispatch<SetStateAction<Dayjs | null>>;
 	labelStart?: string;
 	labelEnd?: string;
 	disabled?: boolean;
 }
 
 
-const DateRangePicker:FC<DateRangePickerProps> = ({
-	startDate, 
+const DateRangePicker:FC<DateRangePickerProps> = memo(({
+	startDate = dayjs(), 
 	setStartDate,
-	endDate,
+	endDate = dayjs(),
 	setEndDate,
 	labelStart,
 	labelEnd,
@@ -25,11 +26,11 @@ const DateRangePicker:FC<DateRangePickerProps> = ({
 }) => {
 
 	const handleStartChange = (e: (Dayjs | null)) => {
-		setStartDate(e);
+		setStartDate?.(e);
 	};
 
 	const handleEndChange = (e: (Dayjs | null)) => {
-		setEndDate(e);
+		setEndDate?.(e);
 	};
 
 	return (
@@ -59,7 +60,7 @@ const DateRangePicker:FC<DateRangePickerProps> = ({
 			/>
 		</div>
 	);
-};
+});
 
 
 export default DateRangePicker;

@@ -1,38 +1,32 @@
 import { FC, useEffect, useState } from 'react';
-import { useAppSelector, useAppDispatch } from 'hooks/redux';
-import { fetchAllUsers } from 'redux/actions/allUsersActions';
-import { memozedSelectAllUsers } from 'redux/selectors/selectors';
 import { RotatingLines } from 'react-loader-spinner';
 import { useDebounce } from 'hooks/useDebounce';
 import { IPublicUser } from 'types/types';
+import { useAllUsers } from 'hooks/useAllUsers';
 import NavBar from 'components/Navbar/NavBar';
 import UsersList from 'components/UsersList/UsersList';
 import classes from './users.module.css';
 
+
 const UsersPage: FC = () => {
-	const users = useAppSelector(memozedSelectAllUsers);
-	const {isLoading, errorMessage} = useAppSelector(state => state.allUsersReducer);
-	const [searchedUsers, setSearchedUsers] = useState<IPublicUser[]>(users);
-	const [value, setValue] = useState<string>('');
-	const debouncedValue = useDebounce(value, 500);
-	const dispatch = useAppDispatch();
-
-	useEffect(() => {
-		dispatch(fetchAllUsers());
-	}, [])
-
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
-		setValue(e.target.value);
-	}
+	const [users, isLoading, errorMessage] = useAllUsers();
+	const [searchedUsers, setSearchedUsers] = useState<IPublicUser[]>([]);
+	const [searchQuery, setSearchQuery] = useState<string>('');
+	const debouncedValue = useDebounce(searchQuery, 500);
 
 	useEffect(() => {
 		const result = users.filter((u) => {
 			if (u.login.toLowerCase().includes(debouncedValue.toLowerCase())) {
 				return u;
 			}
-		})
+		});
 		setSearchedUsers(result);
-	}, [debouncedValue, users])
+	}, [debouncedValue, users]);
+
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
+		setSearchQuery(e.target.value);
+	};
 
 	return (
 		<div className={classes.container}>
@@ -43,9 +37,9 @@ const UsersPage: FC = () => {
 						<div className={classes.header}>
 							<h2 className={classes.title}>Travelers</h2>
 							<input 
-								type="text" 
+								type='text' 
 								placeholder='search users'
-								value={value}
+								value={searchQuery}
 								onChange={handleChange}
 								className={classes.search}
 							/>
@@ -66,7 +60,7 @@ const UsersPage: FC = () => {
 					</>
 			}
 		</div>
-	)
-}
+	);
+};
 
 export default UsersPage;

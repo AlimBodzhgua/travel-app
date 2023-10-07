@@ -11,7 +11,7 @@ export const useHover = ():[boolean, hoverProps] => {
 	const hoverProps:hoverProps = {
 		onMouseEnter: () => setHovering(true),
 		onMouseLeave: () => setHovering(false)
-	}
+	};
 
-	return [hovering, hoverProps]
-}
+	return [hovering, hoverProps];
+};

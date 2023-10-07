@@ -1,12 +1,13 @@
-import {FC, useState, useEffect} from 'react';
-import {useAppSelector, useAppDispatch} from 'hooks/redux';
-import {useNavigate} from 'react-router-dom';
-import {userSlice} from 'redux/reducers/userSlice';
-import {selectUser} from 'redux/selectors/selectors';    
+import { FC, useState, useEffect, memo } from 'react';
+import { useAppSelector, useAppDispatch } from 'hooks/redux';
+import { useNavigate } from 'react-router-dom';
+import { userActions } from 'redux/reducers/userSlice';
+import { selectUser } from 'redux/selectors/selectors';    
+import { Button, ButtonTheme, ButtonSize } from 'components/UI/Button/Button';
 import classes from './profile.module.css';
 
 
-const Profile: FC = () => {
+const Profile: FC = memo(() => {
 	const user = useAppSelector(selectUser);
 	const [login, setLogin] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
@@ -35,10 +36,10 @@ const Profile: FC = () => {
 		if (window.confirm('Are you sure you want to save changes?')) {
 			if (login.length && email.length) {
 				if (login !== user?.login) {
-					dispatch(userSlice.actions.changeLogin(login));
+					dispatch(userActions.changeLogin(login));
 				}
 				if (email !== user?.email) {
-					dispatch(userSlice.actions.changeEmail(email));
+					dispatch(userActions.changeEmail(email));
 				}
 				setEditable(false);
 			} else alert('Input value empty');
@@ -46,7 +47,7 @@ const Profile: FC = () => {
 	};
 
 	const handleLogoutClick = ():void => {
-		dispatch(userSlice.actions.logoutUser());
+		dispatch(userActions.logoutUser());
 		localStorage.removeItem('user');
 		navigate('/');
 	};
@@ -84,13 +85,16 @@ const Profile: FC = () => {
 				onChange={handleEmailChange}
 				className={classes.profile__item}
 			/>
-			<button 
+			<Button
 				className={classes.profile__btn}
+				theme={ButtonTheme.BLUE}
+				size={ButtonSize.MEDIUM}				
 				onClick={handleLogoutClick}
-			>logout</button>
+				square={true}
+			>logout</Button>
 		</div>
 	);
-};
+});
 
 
 export default Profile;

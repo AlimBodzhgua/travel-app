@@ -1,6 +1,7 @@
-import {FC, useState} from 'react';
-import {useAppSelector} from 'hooks/redux';
-import {selectTravels} from 'redux/selectors/selectors';
+import { FC, useState } from 'react';
+import { useAppSelector } from 'hooks/redux';
+import { selectTravels } from 'redux/selectors/selectors';
+import { Button, ButtonTheme, ButtonSize } from 'components/UI/Button/Button';
 import NavBar from 'components/Navbar/NavBar';
 import TravelList from 'components/travel/TravelList';
 import TravelCreateForm from 'components/CreateForms/TravelCreateForm/TravelCreateForm';
@@ -19,9 +20,15 @@ const TravelsPage: FC = () => {
 				<NavBar />
 				<header className={classes.header}>
 					<h1 className={classes.page__title}>Travels</h1>
-					<button className={classes.button} onClick={handleClick}>Create trip</button>
+					<Button
+						theme={ButtonTheme.PRIMARY}
+						size={ButtonSize.SMALL}
+						onClick={handleClick}
+					>
+						Create trip
+					</Button>
 				</header>
-				{travels?.length 
+				{travels.length 
 					? <TravelList travels={travels}/>
 					: <h3>You don`t have any planned trips yet</h3>
 				}

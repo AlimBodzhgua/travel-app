@@ -1,22 +1,23 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect, memo, useCallback } from 'react';
 import { IGroup } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
-import { userSlice } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/reducers/userSlice';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+
 import CardCreateForm from 'components/CreateForms/CardCreateForm/CardCreateForm';
 import CardsList from 'components/CardsList/CardsList';
-import Modal from 'components/Modal/Modal';
-import classes from './groups.module.css';
+import Popup from 'components/Popup/Popup';
+import classes from './GroupItem.module.css';
 	
 interface GroupItemProps {
 	group: IGroup;
 }
 
-const GroupItem: FC<GroupItemProps> = ({group}) => {
+export const GroupItem: FC<GroupItemProps> = memo(({group}) => {
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
-	const [showModal, setShowModal] = useState<boolean>(false);
+	const [showPopup, setShowPopup] = useState<boolean>(false);
 	const [editable, setEditable] = useState<boolean>(false);
 	const [value, setValue] = useState<string>('');
 	const dispatch = useAppDispatch();
@@ -38,11 +39,14 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 		setValue(group.title);			
 	}, []);
 
-	const handleEditClick = ():void => setEditable(!editable);
-	const handleDeleteClick = ():void => setShowModal(!showModal);
+	const handleEditClick = () => setEditable(!editable);
+
+	const handleDeleteClick = useCallback(() => {
+		setShowPopup(!showPopup);
+	}, [showPopup]);
 
 	const handleSaveClick = ():void => {
-		dispatch(userSlice.actions.editGroup({
+		dispatch(userActions.editGroup({
 			travelId: Number(id),
 			groupId: group.id,
 			value
@@ -50,16 +54,16 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 		setEditable(false);
 	};
 
-	const deleteGroup = ():void => {
-		dispatch(userSlice.actions.deleteGroup({
+	const deleteGroup = useCallback(() => {
+		dispatch(userActions.deleteGroup({
 			travelId: Number(id),
 			groupId: group.id
 		}));
-	};
+	}, [dispatch]);
 
 	return (
 		<li 
-			className={classes.item}
+			className={classes.GroupItem}
 			style={style}
 			ref={setNodeRef}
 			{...attributes} 
@@ -82,18 +86,24 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 						<button 
 							onClick={handleSaveClick}
 							className={classes.save}
-						>&#x2714;</button>
+						>
+							&#x2714;
+						</button>
 					}
 					<button 
 						onClick={handleEditClick}
 						className={classes.edit}
-					>edit</button>
+					>
+						edit
+					</button>
 					<button 
 						onClick={handleDeleteClick}
 						className={classes.close}
-					>&#10005;</button>
-					{showModal && 
-						<Modal 
+					>
+						&#10005;
+					</button>
+					{showPopup && 
+						<Popup
 							handleCancelClick={handleDeleteClick}
 							handleDeleteClick={deleteGroup}
 						/>
@@ -119,10 +129,10 @@ const GroupItem: FC<GroupItemProps> = ({group}) => {
 					<button 
 						onClick={() => setShowCreateForm(true)}
 						className={classes.add}
-					>+ Add card</button>
+					>
+						+ Add card
+					</button>
 			}
 		</li>
 	);
-};
-
-export default GroupItem;
+});

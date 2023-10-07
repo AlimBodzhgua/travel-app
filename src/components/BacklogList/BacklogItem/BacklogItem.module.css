@@ -1,0 +1,71 @@
+.BacklogItem {
+	width: 100%;
+
+	background-color: #fff;
+	border-radius: 6px;
+
+	margin-bottom: 8px;
+	padding: 10px 6px;
+
+	display: flex;
+	justify-content: space-between;
+
+	transition: transform .1s ease-out;
+}
+
+.BacklogItem:hover {
+	cursor: grab;
+}
+
+.item__name {
+	height: 100%;
+	width: 100%;
+}
+
+.item__input {
+	height: 100%;
+	width: 100%;
+
+	border: none;
+	border-bottom: 1px solid #000;
+	color: inherit;
+	font-size: inherit;
+}
+
+.item__input:focus {
+	outline: none;
+}
+
+.item__actions {
+	display: flex;
+	justify-content: space-between;
+	gap: 8px;
+
+	position: relative;
+}
+
+.edit,
+.delete {
+	border: none;
+	background: none;
+	padding: 0;
+}
+
+.edit:hover,
+.delete:hover {
+	cursor: pointer;
+}
+
+.edit {
+	background-image: url('assets/icons/edit.svg');
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	color: transparent;
+
+	width: 15px;
+}
+
+.delete {
+	font-weight: 900;
+}

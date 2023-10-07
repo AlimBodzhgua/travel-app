@@ -1,0 +1,46 @@
+.Button {
+	border: none;
+	padding: 8px 20px;
+
+	text-decoration: none;
+	font-weight: 500;
+	color: #000;
+
+	cursor: pointer;
+}
+
+.clear {
+	background: none;
+	border: none;
+	padding: 0;
+}
+
+.primary {
+	background-color: var(--color-lightblue);
+}
+
+.red {
+	background-color: var(--color-red);
+	color: #fff;
+}
+
+.blue {
+	background-color: var(--color-blue);
+	color: #fff;
+}
+
+.small {
+	font-size: 16px;
+}
+
+.medium {
+	font-size: 20px;
+}
+
+.large {
+	font-size: 24px;
+}
+
+.square {
+	border-radius: 8px;
+}

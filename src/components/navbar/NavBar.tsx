@@ -1,5 +1,11 @@
-import {FC, memo} from 'react';
-import {NavLink} from 'react-router-dom';
+import { FC, memo } from 'react';
+import { NavLink } from 'react-router-dom';
+import { RouteNames } from 'router/routes';
+import {
+	AppLink,
+	AppLinkSize,
+	AppLinkTheme
+} from 'components/UI/AppLink/AppLink';
 
 import classes from './navbar.module.css';
 
@@ -8,25 +14,44 @@ const NavBar: FC = () => {
 		<nav className={classes.nav}>
 			<div className={classes.nav__left}>
 				<h1 className={classes.logo}>
-					<NavLink className={classes.logo__link} to='/'>
+					<NavLink
+						className={classes.logo__link}
+						to={RouteNames.HOME}
+					>
 						Travel 
 						<span className={classes.logo__blue}>Pro</span>
 					</NavLink>
 				</h1>
-				<NavLink to='/travels' className={classes.nav__link}>
-					My Travels
-				</NavLink>
-				<NavLink to='/users' className={classes.nav__link}>
+				<AppLink
+					to={RouteNames.TRAVELS}
+					theme={AppLinkTheme.CLEAR}
+					size={AppLinkSize.SMALL}
+				>
+					My Travels 
+				</AppLink>
+				<AppLink
+					to={RouteNames.USERS}
+					theme={AppLinkTheme.CLEAR}
+					size={AppLinkSize.SMALL}
+				>
 					Users
-				</NavLink>
+				</AppLink>
 			</div>	
-			<div className={classes.nav__right}>		
-				<NavLink to='/friends' className={classes.nav__link}>
+			<div className={classes.nav__right}>	
+				<AppLink
+					to={RouteNames.FRIENDS}
+					theme={AppLinkTheme.CLEAR}
+					size={AppLinkSize.SMALL}
+				>
 					Friends
-				</NavLink>
-				<NavLink to='/profile' className={classes.nav__link}>
+				</AppLink>
+				<AppLink
+					to={RouteNames.PROFILE}
+					theme={AppLinkTheme.CLEAR}
+					size={AppLinkSize.SMALL}
+				>
 					Profile
-				</NavLink>
+				</AppLink>
 			</div>
 		</nav>
 	);

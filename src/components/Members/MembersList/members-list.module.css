@@ -1,0 +1,51 @@
+
+
+.list {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+
+	width: 100%;
+	margin-top: 10px;
+	gap: 12px;
+}
+
+.item {
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	padding: 5px;
+
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.email {
+	font-weight: 700;
+	margin-bottom: 2px;
+}
+
+.login {
+	align-self: end;
+}
+
+.cancel {
+	width: 26px;
+	height: 31px;
+	padding: 2px 0;
+
+	border: none;
+	color: #fff;
+	transition: color .2s linear;
+
+	font-size: 16px;
+	font-weight: 900;
+	background-color: orangered;
+
+	transition: transform .2s linear;
+}
+
+.cancel:hover {
+	cursor: pointer;
+	color: #000;
+}

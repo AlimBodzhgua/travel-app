@@ -1,12 +1,12 @@
-import {FC} from 'react';
-import {ITravel} from 'types/types';
-import TravelItem from './TravelItem';
-import {useAppDispatch} from 'hooks/redux';
-import {userSlice} from 'redux/reducers/userSlice';
-import {SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable';
-import {useSensors, useSensor, PointerSensor} from '@dnd-kit/core';
-import {restrictToParentElement} from '@dnd-kit/modifiers';
-import {DndContext} from '@dnd-kit/core';
+import { FC, memo } from 'react';
+import { ITravel } from 'types/types';
+import { TravelItem } from './TravelItem/TravelItem';
+import { useAppDispatch } from 'hooks/redux';
+import { userActions } from 'redux/reducers/userSlice';
+import { SortableContext } from '@dnd-kit/sortable';
+import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
+import { restrictToParentElement } from '@dnd-kit/modifiers';
+import { DndContext } from '@dnd-kit/core';
 
 import classes from './travel.module.css';
 
@@ -14,7 +14,7 @@ interface TravelListProps {
 	travels: ITravel[];
 }
 
-const TravelList: FC<TravelListProps> = ({travels}) => {
+const TravelList: FC<TravelListProps> = memo(({travels}) => {
 	const dispatch = useAppDispatch();
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
@@ -29,7 +29,7 @@ const TravelList: FC<TravelListProps> = ({travels}) => {
 		if (active.id === over.id) {
 			return;
 		}
-		dispatch(userSlice.actions.moveTravels({
+		dispatch(userActions.moveTravels({
 			activeId: active.id, 
 			overId: over.id
 		}));		
@@ -56,6 +56,6 @@ const TravelList: FC<TravelListProps> = ({travels}) => {
 			</SortableContext>
 		</DndContext>
 	);
-};
+});
 
 export default TravelList;

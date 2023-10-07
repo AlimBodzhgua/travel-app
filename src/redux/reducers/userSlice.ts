@@ -1,7 +1,19 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {IUser, ITravel, IBacklog, IGroup, ICard, IFriend} from 'types/types';
+import {
+	IUser, 
+	ITravel, 
+	IBacklog, 
+	IGroup, 
+	ICard, 
+	IFriend
+} from 'types/types';
+import {
+	acceptFriendRequest,
+	deleteFriend,
+	registerUser, 
+	loginUser
+} from 'redux/actions/userActions';
 import {arrayMove} from '@dnd-kit/sortable';
-import {registerUser, loginUser} from 'redux/actions/userActions';
 
 interface UserState {
 	isLoading: boolean;
@@ -42,19 +54,7 @@ export const userSlice = createSlice({
 		},
 		rejectFriendRequest(state, action: PayloadAction<number>) {
 			if (state.user) {
-				state.user.friendRequests = state.user.friendRequests.filter(request => request.id !== action.payload)
-			}
-		},
-		acceptFriendRequest(state, action: PayloadAction<IFriend>) {
-			if (state.user) {
-				state.user.friendRequests = state.user.friendRequests
-					.filter(request => request.id !== action.payload.id)
-				state.user.friends.push(action.payload);
-			}	
-		},
-		deleteFriend(state, action: PayloadAction<number>) {
-			if (state.user) {
-				state.user.friends = state.user.friends.filter(friend => friend.id !== action.payload)
+				state.user.friendRequests = state.user.friendRequests.filter(request => request.id !== action.payload);
 			}
 		},
 		addTravel(state, action: PayloadAction<ITravel>) {
@@ -66,7 +66,7 @@ export const userSlice = createSlice({
 			), 1);
 		},
 		editTravel(state, action: PayloadAction<
-			Omit<ITravel, 'backlog' | 'groups'>
+			Omit<ITravel, 'members' | 'backlog' | 'groups'>
 		>) {
 			state.user?.travels.forEach(travel => {
 				if (travel.id === action.payload.id) {
@@ -86,6 +86,21 @@ export const userSlice = createSlice({
 				});
 				state.user.travels = arrayMove(state.user.travels, activeIndex, overIndex);
 			}
+		},
+		addMember(state, action: PayloadAction<{id: number, member: IFriend}>) {
+			state.user?.travels.forEach(travel => {
+				if (travel.id === action.payload.id) {
+					travel.members.push(action.payload.member);
+				}
+			});
+		},
+		deleteMember(state, action: PayloadAction<{travelId: number, memberId: number}>) {
+			state.user?.travels.forEach(travel => {
+				if (travel.id === action.payload.travelId) {
+					travel.members = travel.members
+						.filter(member => member.id !== action.payload.memberId);
+				}
+			});
 		},
 		addBacklog(state, action: PayloadAction<{id: string, backlog: IBacklog}>) {
 			state.user?.travels.forEach(travel => {
@@ -205,11 +220,11 @@ export const userSlice = createSlice({
 						if (group.id === action.payload.groupId) {
 							group.cards.splice(group.cards.findIndex(
 								card => card.id === action.payload.cardId)
-							, 1)
+							, 1);
 						}
-					})
+					});
 				}
-			})
+			});
 		},
 		moveCards(state, action: PayloadAction<{
 			travelId: number,
@@ -236,7 +251,7 @@ export const userSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(registerUser.pending, (state, action) => {
+			.addCase(registerUser.pending, (state, _) => {
 				state.isLoading = true;
 			})
 			.addCase(registerUser.fulfilled, (state, action) => {
@@ -249,6 +264,9 @@ export const userSlice = createSlice({
 				state.isLoading = false;
 				state.errorMessage = action.payload;
 			})
+			.addCase(loginUser.pending, (state, _) => {
+				state.isLoading = true;
+			})
 			.addCase(loginUser.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.isAuth = true;
@@ -258,7 +276,28 @@ export const userSlice = createSlice({
 				state.isLoading = false;
 				state.errorMessage = action.payload;
 			})
+			.addCase(acceptFriendRequest.fulfilled, (state, action) => {
+				if (state.user) {
+					state.user.friendRequests = state.user.friendRequests
+						.filter(request => request.id !== action.payload.id);
+					state.user.friends.push(action.payload);
+				}	
+			})
+			.addCase(acceptFriendRequest.rejected, (state, action) => {
+				state.errorMessage = action.payload;
+				state.isLoading = false;
+			})
+			.addCase(deleteFriend.fulfilled, (state, action) => {
+				if (state.user) {
+					state.user.friends = state.user.friends.filter(friend => friend.id !== action.payload);
+				}
+			})
+			.addCase(deleteFriend.rejected, (state, action) => {
+				state.errorMessage = action.payload;
+				state.isLoading = false;
+			});
 	}
 });
 
-export default userSlice.reducer;
+export const { actions: userActions } = userSlice;
+export const { reducer: userReducer } = userSlice;

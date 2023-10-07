@@ -1,51 +1,97 @@
 {
   "users": [
     {
-      "email": "alim@mail.ru",
-      "password": "$2a$10$kpUldE4GFMBGOuz5o5PKOe7c92P9493j7/4hq2xdPlLbtsD6vX.W.",
-      "login": "alimbo1",
+      "email": "alimbo3@mail.ru",
+      "password": "$2a$10$ZSXuGye/gJAWJNuXD6fMLutRC1bFu7Hxx.RMTQlbcUtKYPnnDwT9q",
+      "login": "alimbo3",
+      "id": 1696621269786,
+      "friends": [
+        {
+          "id": 1696621389637,
+          "login": "alimbo1",
+          "email": "alimbo1@mail.ru"
+        }
+      ],
+      "friendRequests": [],
       "travels": [
         {
-          "id": 1691169183167,
-          "name": "new trip123",
-          "dateStart": "2023.08.04",
-          "dateEnd": "2023.08.04",
+          "id": 1696690300138,
+          "name": "tri123",
+          "dateStart": "2023.10.07",
+          "dateEnd": "2023.10.07",
+          "members": [],
+          "backlog": [],
+          "groups": []
+        },
+        {
+          "id": 1696690304858,
+          "name": "fasd123",
+          "dateStart": "2023.10.07",
+          "dateEnd": "2023.10.07",
+          "members": [],
+          "backlog": [],
+          "groups": []
+        },
+        {
+          "id": 1696687791519,
+          "name": "new trip",
+          "dateStart": "2023.10.07",
+          "dateEnd": "2023.10.07",
+          "members": [],
           "backlog": [
             {
-              "id": 1691656112955,
-              "name": "bacaklogs 1"
+              "id": 1696689795901,
+              "name": "678"
+            },
+            {
+              "id": 1696689789085,
+              "name": "123"
+            },
+            {
+              "id": 1696689792596,
+              "name": "345"
             }
           ],
           "groups": [
             {
-              "id": 1691656119628,
-              "title": "new group 123",
+              "id": 1696690045658,
+              "title": "new group12",
+              "cards": []
+            },
+            {
+              "id": 1696687802657,
+              "title": "123",
               "cards": [
                 {
-                  "id": 1691758054965,
-                  "title": "car dtitl 123",
-                  "description": "car dtitl 123asdwqfwqcar dtitl 123asdwqfwqcar dtitl 123asdwqfwqcar dtitl 123asdwqfwqcar dtitl 123asdwqfwqcar dtitl 123asdwqfwqcar dtitl 123a"
+                  "id": 1696690808204,
+                  "title": "123",
+                  "description": "adsf"
+                },
+                {
+                  "id": 1696687812670,
+                  "title": "qwe",
+                  "description": "123"
                 }
               ]
             }
           ]
         }
+      ]
+    },
+    {
+      "email": "alimbo1@mail.ru",
+      "password": "$2a$10$sRzyuNbjj1cnZhY4itLw5uBWsxL.HVUX0yUgPmPecE1PqB1x2w3T2",
+      "login": "alimbo1",
+      "id": 1696621389637,
+      "friends": [
+        {
+          "id": 1696621269786,
+          "login": "alimbo3",
+          "email": "alimbo3@mail.ru"
+        }
       ],
-      "id": 1
-    },
-    {
-      "email": "alimbo2@mail.ru",
-      "password": "$2a$10$w8o283aqqnbCa3t1Q2.PTe4WlPV9zoQCDGgXFjarJyfWlW/ihEh36",
-      "login": "alimbo2",
-      "travels": [],
-      "id": 2
-    },
-    {
-      "email": "alimbo3@mail.ru",
-      "password": "$2a$10$p5rqDQOccuJqaF355QPcYujs9lOdN2VKdGMsWVjgFQkasc8ymOIYW",
-      "login": "alimbo3",
-      "travels": [],
-      "id": 3
+      "friendRequests": [],
+      "travels": []
     }
   ]
 }

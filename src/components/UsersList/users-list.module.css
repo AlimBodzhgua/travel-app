@@ -11,19 +11,3 @@
 	border: 1px solid rgba(0, 0, 0, .3);
 	border-radius: 5px;
 }
-
-.add {
-	border: none;
-	border-radius: 5px;
-
-	padding: 4px;
-	width: 60px;
-
-	font-weight: 600;
-	background-color: var(--color-blue);
-	color: #fff;
-}
-
-.add:hover {
-	cursor: pointer;
-}

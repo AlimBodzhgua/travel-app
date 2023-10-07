@@ -1,31 +1,31 @@
-import React, {FC, useState} from 'react';
-import {useAppDispatch} from 'hooks/redux';
-import {useParams} from 'react-router-dom';
-import { userSlice } from 'redux/reducers/userSlice';
+import { FC, useState, memo } from 'react';
+import { useAppDispatch } from 'hooks/redux';
+import { useParams } from 'react-router-dom';
+import { userActions } from 'redux/reducers/userSlice';
 import classes from './backlog-create.module.css';
 
 interface BacklogCreateFormProps {
-	setShowCreateForm: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowCreateForm?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const BacklogCreateForm: FC<BacklogCreateFormProps> = ({setShowCreateForm}) => {
+const BacklogCreateForm: FC<BacklogCreateFormProps> = memo(({setShowCreateForm}) => {
 	const [value, setValue] = useState<string>('');
 	const { id } = useParams<{id?: string}>();
 	const dispatch = useAppDispatch();
 
-	const handleCloseClick = ():void => setShowCreateForm(false);
+	const handleCloseClick = () => setShowCreateForm?.(false);
 
-	const handleSaveClick = ():void => {
+	const handleSaveClick = () => {
 		if (typeof id !== 'undefined') {
 			if (value.length) {
 				const backlog = {id: Date.now(), name: value};
-				dispatch(userSlice.actions.addBacklog({id, backlog}));
-				setShowCreateForm(false);
+				dispatch(userActions.addBacklog({id, backlog}));
+				setShowCreateForm?.(false);
 			} else alert('Input value is empty');
 		}
 	};
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
 	};
 
@@ -42,15 +42,19 @@ const BacklogCreateForm: FC<BacklogCreateFormProps> = ({setShowCreateForm}) => {
 				<button 
 					className={classes.add}
 					onClick={handleSaveClick}
-				>&#43;</button>
+				>
+					&#43;
+				</button>
 				<button 
 					className={classes.close}
 					onClick={handleCloseClick}
-				>&#10005;</button>
+				>
+					&#10005;
+				</button>
 			</div>
 	</div>
 	);
-};
+});
 
 
 export default BacklogCreateForm;

@@ -23,18 +23,12 @@
 }
 
 .delete {
-	border: none;
-
 	padding: 4px;
-	color: #fff;
 	font-size: 15px;
 	font-weight: 500;
-	background-color: var(--color-red);
-
 	transition: border-radius .1s linear;
 }
 
 .delete:hover {
-	cursor: pointer;
 	border-radius: 5px;
 }

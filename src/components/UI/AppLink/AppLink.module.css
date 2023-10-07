@@ -1,0 +1,36 @@
+.AppLink {
+	text-decoration: none;
+	border-radius: 8px;
+	padding: 8px 20px;
+	font-weight: 500;
+	color: #000;
+}
+
+.AppLink:hover {
+	text-decoration: underline;
+}
+
+.clear {
+	border: none;
+	padding: 0;
+}
+
+.primary {
+	background-color: var(--color-lightblue);
+}
+
+.primary:hover {
+	text-decoration: none;
+}
+
+.small {
+	font-size: 16px;
+}
+
+.medium {
+	font-size: 20px;
+}
+
+.large {
+	font-size: 24px;
+}

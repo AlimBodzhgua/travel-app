@@ -29,26 +29,13 @@
 
 .add,
 .reject {
-	border: none;
-
 	padding: 4px;
-	color: #fff;
 	font-size: 15px;
-	font-weight: 500;
 
 	transition: border-radius .1s linear;
 }
 
-.add {
-	background-color: var(--color-blue);
-}
-
-.reject {
-	background-color: var(--color-red);
-}
-
 .add:hover,
 .reject:hover {
-	cursor: pointer;
 	border-radius: 5px;
 }

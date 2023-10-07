@@ -1,12 +1,12 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { registerUser } from 'redux/actions/userActions';
-import { IUser } from 'types/types'; 
 import { ThreeDots } from 'react-loader-spinner';
 import { createNewUser } from 'utils/utils';
-import classes from './auth.module.css';
+import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
+import classes from '../auth.module.css';
 
 interface IFormInput {
 	login: string;
@@ -15,7 +15,7 @@ interface IFormInput {
 }
 
 
-const RegisterForm: FC = () => {
+export const RegisterForm: FC = memo(() => {
 	const dispatch = useAppDispatch();
 	const {errorMessage, isLoading} = useAppSelector(state => state.userReducer);
 	const navigate = useNavigate();
@@ -91,24 +91,27 @@ const RegisterForm: FC = () => {
 			{errorMessage &&
 				<div className={classes.error}>User with such email already exist</div>
 			}
-			<button type='submit' className={classes.btn}>
+			<Button
+				type='submit'
+				className={classes.btn}
+				theme={ButtonTheme.BLUE}
+				size={ButtonSize.SMALL}
+			>
 				{isLoading 
 					? 	<>
 							Loading
 							<ThreeDots 
-								height="22" 
-								width="34" 
-								radius="9"
-								color="#f2f2f2" 
-								ariaLabel="three-dots-loading"
+								height='22' 
+								width='34' 
+								radius='9'
+								color='#f2f2f2' 
+								ariaLabel='three-dots-loading'
 								visible={true}
 							/>
 						</>
 					: 	<>Register</>
 				}
-			</button>
+			</Button>
 		</form>
 	);
-};
-
-export default RegisterForm;
+});

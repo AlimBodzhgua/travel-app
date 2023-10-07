@@ -1,0 +1,41 @@
+
+.members {
+	/*border: 1px solid black;*/
+}
+
+.members__header {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 100%;
+}
+
+.title {
+	font-size: 20px;
+	flex-grow: 1;
+}
+
+.add {
+	border: none;
+	font-size: 16px;
+
+	padding: 6px 6px;
+	width: 25%;
+}
+
+.add:hover {
+	cursor: pointer;
+}
+
+.empty {
+	margin-top: 10px;
+	display: flex;
+	align-items: center;	
+}
+
+.droppable {
+	border: 1px dotted blue;
+	width: 160px;
+	height: 44px;
+	margin: 5px 0;
+}

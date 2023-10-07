@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import { FC } from 'react';
 import Profile from 'components/Profile/Profile';
 import NavBar from 'components/Navbar/NavBar';
 import classes from './profile.module.css';

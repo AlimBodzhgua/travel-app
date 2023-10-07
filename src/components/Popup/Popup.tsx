@@ -1,12 +1,12 @@
 import {FC} from 'react';
-import classes from './modal.module.css';
+import classes from './popup.module.css';
 
-interface ModalProps {
+interface PopupProps {
 	handleCancelClick: () => void;
 	handleDeleteClick: () => void;
 }
 
-const Modal: FC<ModalProps> = ({handleCancelClick, handleDeleteClick}) => {
+const Popup: FC<PopupProps> = ({handleCancelClick, handleDeleteClick}) => {
 	return (
 		<div className={classes.modal}>
 			<h2 className={classes.modal__title}>Delete exactly?</h2>
@@ -28,5 +28,4 @@ const Modal: FC<ModalProps> = ({handleCancelClick, handleDeleteClick}) => {
 	);
 };
 
-
-export default Modal;
+export default Popup;

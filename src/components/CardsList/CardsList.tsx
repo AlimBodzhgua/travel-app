@@ -1,11 +1,11 @@
-import {FC} from 'react';
-import {useAppSelector, useAppDispatch} from 'hooks/redux';
-import {selectCards} from 'redux/selectors/selectors';
-import {userSlice} from 'redux/reducers/userSlice';
-import {SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable';
-import {useSensors, useSensor, PointerSensor, DndContext} from '@dnd-kit/core';
-import {restrictToParentElement} from '@dnd-kit/modifiers';
-import CardItem from './CardItem';
+import { FC, memo } from 'react';
+import { useAppSelector, useAppDispatch } from 'hooks/redux';
+import { selectCards } from 'redux/selectors/selectors';
+import { userActions } from 'redux/reducers/userSlice';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { useSensors, useSensor, PointerSensor, DndContext } from '@dnd-kit/core';
+import { restrictToParentElement } from '@dnd-kit/modifiers';
+import { CardItem } from './CardItem/CardItem';
 import classes from './cards.module.css';
 
 interface CardsListProps {
@@ -13,7 +13,7 @@ interface CardsListProps {
 	groupId: number;
 }
 
-const CardsList:FC<CardsListProps> = ({travelId, groupId}) => {
+const CardsList:FC<CardsListProps> = memo(({travelId, groupId}) => {
 	const cards = useAppSelector(state => selectCards(state, travelId, groupId));
 	const dispatch = useAppDispatch();
 
@@ -22,7 +22,7 @@ const CardsList:FC<CardsListProps> = ({travelId, groupId}) => {
 		if (active.id === over.id) {
 			return;
 		}
-		dispatch(userSlice.actions.moveCards({
+		dispatch(userActions.moveCards({
 			travelId: travelId,
 			groupId: groupId,
 			activeId: active.id,
@@ -65,6 +65,6 @@ const CardsList:FC<CardsListProps> = ({travelId, groupId}) => {
 		}
 		</>
 	);
-};
+});
 
 export default CardsList;

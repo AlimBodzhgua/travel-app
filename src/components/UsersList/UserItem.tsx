@@ -1,16 +1,17 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect, memo } from 'react';
 import { IPublicUser } from 'types/types';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { useHover } from 'hooks/useHover';
 import { selectUser } from 'redux/selectors/selectors';
 import { sendFriendRequest, cancelFriendRequest } from 'redux/actions/allUsersActions';
+import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
 import classes from './users-list.module.css';
 
 interface UserItemProps {
 	user: IPublicUser;
 }
 
-const UserItem: FC<UserItemProps> = ({user}) => {
+const UserItem: FC<UserItemProps> = memo(({user}) => {
 	const currentUser = useAppSelector(selectUser);
 	const dispatch = useAppDispatch();
 	const [hovering, hoverProps]  = useHover();
@@ -21,8 +22,8 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 			if (request.id === currentUser?.id) {
 				setRequestSended(true);
 			}
-		})
-	}, [])
+		});
+	}, []);
 
 	const handleCancelClick = ():void => {
 		if (currentUser && hovering && requestSended) {
@@ -32,7 +33,7 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 			}));
 			setRequestSended(!requestSended);
 		}
-	}
+	};
 
 	const handleAddClick = ():void => {
 		if (currentUser) {
@@ -40,11 +41,11 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 				id: currentUser.id,
 				login: currentUser.login,
 				email: currentUser.email
-			}
+			};
 			dispatch(sendFriendRequest({id: user.id, data: fromData}));
 			setRequestSended(!requestSended);
 		}
-	}
+	};
 
 	return (
 		<li className={classes.item}>
@@ -53,22 +54,28 @@ const UserItem: FC<UserItemProps> = ({user}) => {
 				<div>{user.login}</div>
 			</div>
 			{requestSended 
-				?	<button 
+				?	<Button 
 						{...hoverProps}
-						className={classes.add} 
 						onClick={handleCancelClick}
+						theme={ButtonTheme.BLUE}
+						size={ButtonSize.SMALL}
+						square={true}
 					>
-						{hovering ? <>cancel</> : <>sended</>}
-					</button>
-				:   <button 
+						{hovering ? <>cancel request</> : <>request sended</>}
+					</Button>
+				:   <Button 
 						{...hoverProps}
-						className={classes.add} 
 						onClick={handleAddClick}
-					>add friend</button>
+						theme={ButtonTheme.BLUE}
+						size={ButtonSize.SMALL}
+						square={true}
+					>
+						add friend
+					</Button>
 			}
 		</li>
-	)
-}
+	);
+});
 
 
 export default UserItem;
