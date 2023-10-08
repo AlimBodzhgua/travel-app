@@ -1,6 +1,5 @@
 import {
 	FC,
-	memo,
 	ButtonHTMLAttributes,
 	ReactNode,
 } from 'react';
@@ -28,7 +27,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	className?: string;
 }
 
-export const Button: FC<ButtonProps> = memo((props) => {
+export const Button: FC<ButtonProps> = (props) => {
 	const {
 		children,
 		className,
@@ -37,8 +36,6 @@ export const Button: FC<ButtonProps> = memo((props) => {
 		size = ButtonSize.MEDIUM,
 		...otherProps
 	} = props;
-
-	
 
 	return (
 		<button
@@ -52,6 +49,6 @@ export const Button: FC<ButtonProps> = memo((props) => {
 			{...otherProps}
 		>{children}</button>
 	)
-})
+}
 
 
