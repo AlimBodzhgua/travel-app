@@ -38,6 +38,9 @@ export const userSlice = createSlice({
 			state.authData = action.payload;
 			state.isAuth = true;
 		},
+		clearError(state) {
+			state.errorMessage = '';
+		},
 		logoutUser(state) {
 			state.authData = undefined;
 			state.isAuth = false;

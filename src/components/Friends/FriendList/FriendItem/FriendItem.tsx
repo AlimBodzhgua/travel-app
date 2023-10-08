@@ -4,13 +4,15 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { selectUser } from 'redux/selectors/selectors';
 import { deleteFriend } from 'redux/actions/userActions';
 import { Button, ButtonTheme } from 'components/UI/Button/Button';
-import classes from './friend-list.module.css';
+import classnames from 'classnames';
+import classes from './FriendItem.module.css';
 
 interface FriendItemProps {
 	friend: IFriend;
+	className?: string;
 }
 
-const FriendItem: FC<FriendItemProps> = memo(({friend}) => {
+export const FriendItem: FC<FriendItemProps> = memo(({friend, className}) => {
 	const user = useAppSelector(selectUser);
 	const dispatch = useAppDispatch();
 
@@ -26,7 +28,7 @@ const FriendItem: FC<FriendItemProps> = memo(({friend}) => {
 	};
 
 	return (
-		<li className={classes.item}>
+		<li className={classnames(classes.item, className)}>
 			<div className={classes.item__info}>
 				<div>{friend.email}</div>
 				<div>{friend.login}</div>
@@ -41,5 +43,3 @@ const FriendItem: FC<FriendItemProps> = memo(({friend}) => {
 		</li>
 	);
 });
-
-export default FriendItem;

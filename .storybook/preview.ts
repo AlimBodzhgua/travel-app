@@ -1,9 +1,8 @@
 import type { Preview } from "@storybook/react";
 import { StyleDecorator } from '../src/config/storybook/StyleDecorator/StyleDecorator';
 import { BrowserDecorator } from '../src/config/storybook/BrowserDecorator/BrowserDecorator';
-import { StoreDecorator } from '../src/config/storybook/StoreDecorator/StoreDecorator';
 import { LocalizationDecorator } from '../src/config/storybook/LocalizationDecorator/LocalizationDecorator';
-
+import { StoreDecorator } from '../src/config/storybook/StoreDecorator/StoreDecorator';
 
 const preview: Preview = {
     parameters: {
@@ -18,9 +17,9 @@ const preview: Preview = {
     decorators: [
         StyleDecorator,
         BrowserDecorator,
-        StoreDecorator,
         LocalizationDecorator,
-    ]
+        StoreDecorator({user: { authData: undefined }}),
+    ],
 };
 
 export default preview;

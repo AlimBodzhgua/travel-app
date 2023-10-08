@@ -1,27 +1,29 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { GroupItem } from "./GroupItem";
+import { CardItem } from "./CardItem";
 
 const meta = {
-    title: "Components/items/GroupItem",
-    component: GroupItem,
+    title: "Components/items/CardItem",
+    component: CardItem,
     parameters: {
         layout: "centered",
     },
     tags: ["autodocs"],
     argTypes: {},
     args: {}
-} satisfies Meta<typeof GroupItem>;
+} satisfies Meta<typeof CardItem>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        group: {
+        card: {
             id: 1,
-            title: "group 1 title",
-            cards: []
+            title: 'card title',
+            description: 'lorem ipsum dollar set amet',
         },
+        groupId: 1,
+        travelId: 1,
     },
 };

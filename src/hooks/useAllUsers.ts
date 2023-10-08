@@ -14,14 +14,14 @@ export const useAllUsers = (): [IPublicUser[], boolean, string | undefined] => {
 
 	useEffect(() => {
 		dispatch(fetchAllUsers());
-	}, []);
+	}, [dispatch]);
 
 
 	useEffect(() => {
 		if (users.length && user) {
 			setFilteredUsers(removeFriendsFromAllUsers(user.friends, users));
 		}
-	}, [users]);
+	}, [users, user]);
 
 	return [filteredUsers, isLoading, errorMessage];
 };

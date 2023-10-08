@@ -34,3 +34,8 @@ ul, ol, li {
 	top: 47%;
 	left: 47%;
 }
+
+.withFullWidth {
+	width: 100%!important;
+	height: 100%!important;
+}

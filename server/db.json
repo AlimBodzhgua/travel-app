@@ -16,7 +16,7 @@
       "travels": [
         {
           "id": 1696690300138,
-          "name": "tri123",
+          "name": "travel to Moscow",
           "dateStart": "2023.10.07",
           "dateEnd": "2023.10.07",
           "members": [],
@@ -25,12 +25,32 @@
         },
         {
           "id": 1696690304858,
-          "name": "fasd123",
+          "name": "travel to Sochi",
           "dateStart": "2023.10.07",
           "dateEnd": "2023.10.07",
           "members": [],
-          "backlog": [],
-          "groups": []
+          "backlog": [
+            {
+              "id": 1696689792596,
+              "name": "backlog 1"
+            },
+            {
+              "id": 1696701669884,
+              "name": "backlog 2"
+            }
+          ],
+          "groups": [
+            {
+              "id": 1696705712096,
+              "title": "group 1 title",
+              "cards": []
+            },
+            {
+              "id": 1696705712096,
+              "title": "group 2 title",
+              "cards": []
+            }
+          ]
         },
         {
           "id": 1696687791519,
@@ -72,6 +92,31 @@
       ],
       "friendRequests": [],
       "travels": []
+    },
+    {
+      "email": "alim@mail.ru",
+      "password": "$2a$10$QdXqjf/AkdwVVIT/tziqxun6/ui66BsAh2Cn8043tYp.aQHg35/mu",
+      "login": "alimbo1",
+      "id": 1696705696266,
+      "friends": [],
+      "friendRequests": [],
+      "travels": [
+        {
+          "id": 1696705703756,
+          "name": "123",
+          "dateStart": "2023.10.07",
+          "dateEnd": "2023.10.07",
+          "members": [],
+          "backlog": [],
+          "groups": [
+            {
+              "id": 1696705712096,
+              "title": "asdasd",
+              "cards": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

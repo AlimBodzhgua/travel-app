@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC, memo, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from 'redux/actions/userActions';
@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { ThreeDots } from 'react-loader-spinner';
 import { IUserLogin } from 'types/types';
 import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
+import { userActions } from 'redux/reducers/userSlice';
 import classes from '../auth.module.css';
 
 
@@ -33,6 +34,12 @@ export const LoginForm: FC = memo(() => {
 			}
 		});
 	};
+
+	useEffect(() => {
+		return () => {
+			dispatch(userActions.clearError());
+		}
+	}, [])
 
 	return (
 		<form className={classes.form} onSubmit={handleSubmit(onSubmit)}>

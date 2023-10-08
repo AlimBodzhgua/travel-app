@@ -5,13 +5,16 @@ import { acceptFriendRequest } from 'redux/actions/userActions';
 import { selectUser } from 'redux/selectors/selectors';
 import { IFriend } from 'types/types';
 import { Button, ButtonTheme } from 'components/UI/Button/Button';
-import classes from './friend-requests.module.css';
+
+import classnames from 'classnames';
+import classes from './Request.module.css';
 
 interface RequestItemProps {
 	request: IFriend; 
+	className?: string;
 }
 
-const RequestItem: FC<RequestItemProps> = memo(({request}) => {
+export const RequestItem: FC<RequestItemProps> = memo(({request, className}) => {
 	const user = useAppSelector(selectUser);
 	const dispatch = useAppDispatch();
 
@@ -36,7 +39,7 @@ const RequestItem: FC<RequestItemProps> = memo(({request}) => {
 	};
 
 	return (
-		<li className={classes.item}>
+		<li className={classnames(classes.item, className)}>
 			<div className={classes.item__info}>
 				<div>{request.email}</div>
 				<div>{request.login}</div>
@@ -60,6 +63,3 @@ const RequestItem: FC<RequestItemProps> = memo(({request}) => {
 		</li>
 	);
 });
-
-
-export default RequestItem;

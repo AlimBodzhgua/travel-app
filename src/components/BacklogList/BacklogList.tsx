@@ -11,10 +11,14 @@ import { DndContext } from '@dnd-kit/core';
 import { BacklogItem } from './BacklogItem/BacklogItem';
 
 import BacklogCreateForm from 'components/CreateForms/BacklogCreateForm/BacklogCreateForm';
-
+import classnames from 'classnames';
 import classes from './backlog.module.css';
 
-const BacklogList: FC = memo(() => {
+interface BacklogListProps {
+	className?: string;
+}
+
+const BacklogList: FC<BacklogListProps> = memo(({className}) => {
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const { id } = useParams<{id? : string}>();
 	const backlogs = useAppSelector(state => selectBacklogsByTravelId(state, Number(id)));
@@ -43,7 +47,7 @@ const BacklogList: FC = memo(() => {
 
 
 	return (
-		<div className={classes.backlog}>
+		<div className={classnames(classes.backlog, className)}>
 			<h2 className={classes.backlog__title}>Backlog</h2>	
 			<DndContext
 				sensors={sensors}

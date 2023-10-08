@@ -1,15 +1,17 @@
 import { FC, memo } from 'react';
 import { IFriend } from 'types/types';
-import FriendItem from './FriendItem';
+import { FriendItem } from './FriendItem/FriendItem';
+import classnames from 'classnames';
 import classes from './friend-list.module.css';
 
 interface FriendsListProps {
-	friends: IFriend[]
+	friends: IFriend[];
+	className?: string;
 }
 
-const FriendList: FC<FriendsListProps> = memo(({friends}) => {
+const FriendList: FC<FriendsListProps> = memo(({friends, className}) => {
 	return (
-		<ul className={classes.list}>
+		<ul className={classnames(classes.list, className)}>
 			{friends.map(friend => 
 				<FriendItem 
 					key={friend.id}

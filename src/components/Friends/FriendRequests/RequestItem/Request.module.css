@@ -1,0 +1,36 @@
+.item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	font-size: 16px;
+	padding: 6px 8px;
+	margin-bottom: 17px;
+
+	box-shadow: -1px 8px 25px -12px rgba(0,0,0,0.75);
+	border: 1px solid rgba(0, 0, 0, .3);
+	border-radius: 5px;
+}
+
+.item__info {
+	display: flex;
+	gap: 12px;
+}
+
+.item__actions {
+	display: flex;
+	gap: 10px;
+}
+
+.add,
+.reject {
+	padding: 4px;
+	font-size: 15px;
+
+	transition: border-radius .1s linear;
+}
+
+.add:hover,
+.reject:hover {
+	border-radius: 5px;
+}

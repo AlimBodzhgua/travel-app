@@ -16,14 +16,14 @@ const App: FC = () => {
             const user: IUser = JSON.parse(localStorage.getItem('user') || '');
             dispatch(userSlice.actions.setUser(user));
         }
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         if (isAuth && authData) {
             UserService.updateUser(authData);
             saveUserToLocalStorage(authData);
         }
-    }, [authData]);
+    }, [authData, isAuth]);
 
     return <AppRouter/>;
 };
