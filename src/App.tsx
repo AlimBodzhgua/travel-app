@@ -5,7 +5,6 @@ import { userSlice } from 'redux/reducers/userSlice';
 import { IUser } from 'types/types';
 import UserService from 'API/UserService';
 import AppRouter from 'router/AppRouter';
-import './App.css';
 
 const App: FC = () => {
     const dispatch = useAppDispatch();

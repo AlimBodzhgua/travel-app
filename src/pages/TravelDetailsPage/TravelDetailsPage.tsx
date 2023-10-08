@@ -5,7 +5,7 @@ import { selectTravelById } from 'redux/selectors/selectors';
 import { TravelItem } from 'components/travel/TravelItem/TravelItem';
 import NavBar from 'components/Navbar/NavBar';
 import Members from 'components/Members/Members';
-import BacklogList from 'components/BacklogList/BacklogList';
+import BacklogList from 'components/Backlog/BacklogList/BacklogList';
 import Groups from 'components/Groups/Groups';
 import classes from './travel-details.module.css';
 

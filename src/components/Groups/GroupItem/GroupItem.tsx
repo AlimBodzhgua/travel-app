@@ -3,6 +3,7 @@ import { IGroup } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
 import { userActions } from 'redux/reducers/userSlice';
+import { useTranslation } from 'react-i18next';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
@@ -16,6 +17,7 @@ interface GroupItemProps {
 }
 
 export const GroupItem: FC<GroupItemProps> = memo(({group}) => {
+	const { t } = useTranslation();
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const [showPopup, setShowPopup] = useState<boolean>(false);
 	const [editable, setEditable] = useState<boolean>(false);
@@ -114,8 +116,7 @@ export const GroupItem: FC<GroupItemProps> = memo(({group}) => {
 				? 	<CardsList groupId={group.id} travelId={Number(id)}/>
 				:   <div className={classes.item__empty}>
 						<div className={classes.empty__text}>
-							Nothing is planned<br/>
-							Add something here or transher from backlog
+							{t('Nothing is planned')}
 						</div>
 					</div>
 			}
@@ -130,7 +131,7 @@ export const GroupItem: FC<GroupItemProps> = memo(({group}) => {
 						onClick={() => setShowCreateForm(true)}
 						className={classes.add}
 					>
-						+ Add card
+						+ {t('Add card')}
 					</button>
 			}
 		</li>

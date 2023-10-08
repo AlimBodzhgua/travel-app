@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { registerUser } from 'redux/actions/userActions';
 import { ThreeDots } from 'react-loader-spinner';
 import { createNewUser } from 'utils/utils';
+import { useTranslation } from 'react-i18next';
 import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
 import classes from '../auth.module.css';
 
@@ -16,6 +17,7 @@ interface IFormInput {
 
 
 export const RegisterForm: FC = memo(() => {
+	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const {errorMessage, isLoading} = useAppSelector(state => state.user);
 	const navigate = useNavigate();
@@ -40,16 +42,16 @@ export const RegisterForm: FC = memo(() => {
 		<form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
 			<input 
 				type='text'
-				placeholder='Login'
+				placeholder={t('Login')}
 				className={classes.input}
 				{...register('login', {
 					required: {
 						value: true,
-						message: 'Login is a required field',
+						message: t('Login is a required field'),
 					},
 					minLength: {
 						value: 6,
-						message: 'Login at least 6 characters long',
+						message: t('Login at least 6 characters long'),
 					}
 				})}
 			/>
@@ -58,12 +60,12 @@ export const RegisterForm: FC = memo(() => {
 			}
 			<input 
 				type='email'
-				placeholder='Email'
+				placeholder={t('Email')}
 				className={classes.input}
 				{...register('email', {
 					required: {
 						value: true,
-						message: 'Email is a required field',
+						message: t('Email is a required field'),
 					}
 				})}
 			/>
@@ -72,16 +74,16 @@ export const RegisterForm: FC = memo(() => {
 			}
 			<input 
 				type='password'
-				placeholder='Password'
+				placeholder={t('Password')}
 				className={classes.input}
 				{...register('password', {
 					required: {
 						value: true,
-						message: 'Password is required field',
+						message: t('Password is required field'),
 					},
 					minLength: {
 						value: 6,
-						message: 'Password at least 6 characters long'
+						message: t('Password at least 6 characters long')
 					}
 				})}
 			/>
@@ -89,7 +91,7 @@ export const RegisterForm: FC = memo(() => {
 				<div className={classes.error}>{errors.password.message}</div>
 			}
 			{errorMessage &&
-				<div className={classes.error}>User with such email already exist</div>
+				<div className={classes.error}>{t('User with such email already exist')}</div>
 			}
 			<Button
 				type='submit'
@@ -99,7 +101,7 @@ export const RegisterForm: FC = memo(() => {
 			>
 				{isLoading 
 					? 	<>
-							Loading
+							{t('Loading')}
 							<ThreeDots 
 								height='22' 
 								width='34' 
@@ -109,7 +111,7 @@ export const RegisterForm: FC = memo(() => {
 								visible={true}
 							/>
 						</>
-					: 	<>Register</>
+					: 	<>{t('Register')}</>
 				}
 			</Button>
 		</form>

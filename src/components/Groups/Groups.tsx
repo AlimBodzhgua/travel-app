@@ -7,11 +7,13 @@ import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { useParams } from 'react-router-dom';
 import { selectGroupsByTravelId } from 'redux/selectors/selectors';
 import { GroupItem } from './GroupItem/GroupItem';
+import { useTranslation } from 'react-i18next';
 
 import GroupCreateForm from '../CreateForms/GroupCreateForm/GroupCreateForm';
 import classes from './groups.module.css';
 
 const Groups: FC = memo(() => {
+	const { t } = useTranslation();
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 	const { id } = useParams<{id? : string}>();
@@ -63,7 +65,7 @@ const Groups: FC = memo(() => {
 						className={classes.add}
 						onClick={() => setShowCreateForm(true)}
 					>
-						+ Add group
+						+ {t('Add group')}
 					</button>
 			}
 		</div>

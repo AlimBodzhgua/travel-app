@@ -5,6 +5,7 @@ import { useHover } from 'hooks/useHover';
 import { selectUser } from 'redux/selectors/selectors';
 import { sendFriendRequest, cancelFriendRequest } from 'redux/actions/allUsersActions';
 import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
+import { useTranslation } from 'react-i18next';
 import classes from './users-list.module.css';
 
 interface UserItemProps {
@@ -16,6 +17,7 @@ const UserItem: FC<UserItemProps> = memo(({user}) => {
 	const dispatch = useAppDispatch();
 	const [hovering, hoverProps]  = useHover();
 	const [requestSended, setRequestSended] = useState<boolean>(false);
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		user.friendRequests.forEach(request => {
@@ -61,7 +63,10 @@ const UserItem: FC<UserItemProps> = memo(({user}) => {
 						size={ButtonSize.SMALL}
 						square={true}
 					>
-						{hovering ? <>cancel request</> : <>request sended</>}
+						{hovering
+							? t('cancel request')
+							: t('request sended')
+						}
 					</Button>
 				:   <Button 
 						{...hoverProps}
@@ -70,7 +75,7 @@ const UserItem: FC<UserItemProps> = memo(({user}) => {
 						size={ButtonSize.SMALL}
 						square={true}
 					>
-						add friend
+						{t('add friend')}
 					</Button>
 			}
 		</li>

@@ -4,8 +4,10 @@ import { Provider } from 'react-redux';
 import { createReduxStore } from 'redux/config/store';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import 'dayjs/locale/de';
 import App from './App';
+import 'config/i18n/i18n';
+import 'dayjs/locale/de';
+import './App.css';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement

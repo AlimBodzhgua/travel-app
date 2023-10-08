@@ -3,6 +3,7 @@ import { RotatingLines } from 'react-loader-spinner';
 import { useDebounce } from 'hooks/useDebounce';
 import { IPublicUser } from 'types/types';
 import { useAllUsers } from 'hooks/useAllUsers';
+import { useTranslation } from 'react-i18next';
 import NavBar from 'components/Navbar/NavBar';
 import UsersList from 'components/UsersList/UsersList';
 import classes from './users.module.css';
@@ -12,6 +13,7 @@ const UsersPage: FC = () => {
 	const [users, isLoading, errorMessage] = useAllUsers();
 	const [searchedUsers, setSearchedUsers] = useState<IPublicUser[]>([]);
 	const [searchQuery, setSearchQuery] = useState<string>('');
+	const { t } = useTranslation(); 
 	const debouncedValue = useDebounce(searchQuery, 500);
 
 	useEffect(() => {
@@ -35,10 +37,10 @@ const UsersPage: FC = () => {
 				?	<h2>Error loading users, reload the page or try later</h2>
 				:	<>	
 						<div className={classes.header}>
-							<h2 className={classes.title}>Travelers</h2>
+							<h2 className={classes.title}>{t('Other users')}</h2>
 							<input 
 								type='text' 
-								placeholder='search users'
+								placeholder={t('search users')}
 								value={searchQuery}
 								onChange={handleChange}
 								className={classes.search}
@@ -55,7 +57,7 @@ const UsersPage: FC = () => {
 						                />
 						            </div>
 								:	<UsersList users={searchedUsers} /> 
-							:   <h2>No users here yet</h2>
+							:   <h2>{t('No users here yet')}</h2>
 						}
 					</>
 			}

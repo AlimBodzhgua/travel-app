@@ -1,15 +1,15 @@
 import { FC, memo } from 'react';
 import { NavLink } from 'react-router-dom';
 import { RouteNames } from 'router/routes';
-import {
-	AppLink,
-	AppLinkSize,
-	AppLinkTheme
-} from 'components/UI/AppLink/AppLink';
+import { AppLink, AppLinkSize, AppLinkTheme } from 'components/UI/AppLink/AppLink';
+import { LangSwitcher } from 'components/LangSwitcher/LangSwitcher';
+import { useTranslation } from 'react-i18next';
 
 import classes from './navbar.module.css';
 
 const NavBar: FC = () => {
+	const { t } = useTranslation();
+
 	return (
 		<nav className={classes.nav}>
 			<div className={classes.nav__left}>
@@ -27,14 +27,14 @@ const NavBar: FC = () => {
 					theme={AppLinkTheme.CLEAR}
 					size={AppLinkSize.SMALL}
 				>
-					My Travels 
+					{t('My Travels')} 
 				</AppLink>
 				<AppLink
 					to={RouteNames.USERS}
 					theme={AppLinkTheme.CLEAR}
 					size={AppLinkSize.SMALL}
 				>
-					Users
+					{t('Users')}
 				</AppLink>
 			</div>	
 			<div className={classes.nav__right}>	
@@ -43,15 +43,16 @@ const NavBar: FC = () => {
 					theme={AppLinkTheme.CLEAR}
 					size={AppLinkSize.SMALL}
 				>
-					Friends
+					{t('Friends')}
 				</AppLink>
 				<AppLink
 					to={RouteNames.PROFILE}
 					theme={AppLinkTheme.CLEAR}
 					size={AppLinkSize.SMALL}
 				>
-					Profile
+					{t('Profile')}
 				</AppLink>
+				<LangSwitcher />
 			</div>
 		</nav>
 	);

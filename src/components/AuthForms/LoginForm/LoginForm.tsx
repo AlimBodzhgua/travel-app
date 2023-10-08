@@ -7,6 +7,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import { IUserLogin } from 'types/types';
 import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
 import { userActions } from 'redux/reducers/userSlice';
+import { useTranslation } from 'react-i18next';
 import classes from '../auth.module.css';
 
 
@@ -16,6 +17,7 @@ interface IFormInput {
 }
 
 export const LoginForm: FC = memo(() => {
+	const { t } = useTranslation();
 	const { isLoading } = useAppSelector(state => state.user);
 	const dispatch = useAppDispatch();
 	const {
@@ -30,7 +32,7 @@ export const LoginForm: FC = memo(() => {
 			if (meta.requestStatus === 'fulfilled') {
 				navigate('/travels');
 			} else if (meta.requestStatus === 'rejected') {
-				alert('Wrong password or email');
+				alert(t('Wrong password or email'));
 			}
 		});
 	};
@@ -45,12 +47,12 @@ export const LoginForm: FC = memo(() => {
 		<form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
 			<input 
 				type='email' 
-				placeholder='Email'
+				placeholder={t('Email')}
 				className={classes.input}
 				{...register('email', {
 					required: {
 						value: true,
-						message: 'Email is a required field'
+						message: t('Email is a required field')
 					}
 				})}
 			/>
@@ -59,12 +61,12 @@ export const LoginForm: FC = memo(() => {
 			}
 			<input 
 				type='password' 
-				placeholder='Password'
+				placeholder={t('Password')}
 				className={classes.input}
 				{...register('password', {
 					required: {
 						value: true,
-						message: 'Password is a required field'
+						message: t('Password is a required field')
 					}
 				})}
 			/>
@@ -79,7 +81,7 @@ export const LoginForm: FC = memo(() => {
 			>
 				{isLoading 
 					? 	<>
-							Loading
+							{t('Loading')}
 							<ThreeDots 
 								height='22' 
 								width='34' 
@@ -89,7 +91,7 @@ export const LoginForm: FC = memo(() => {
 								visible={true}
 							/>
 						</> 
-					: 	<>login</>
+					: 	t('sign in')
 				}
 			</Button>
 		</form>

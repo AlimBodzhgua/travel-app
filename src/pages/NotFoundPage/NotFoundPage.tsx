@@ -1,8 +1,11 @@
-import {FC} from 'react';
-import {NavLink} from 'react-router-dom';
+import { FC } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import classes from './not-found.module.css';
 
 const NotFoundPage: FC = () => {
+	const { t } = useTranslation();
+
 	return (
 		<div className={classes.centered}>
 			<h1>
@@ -12,7 +15,7 @@ const NotFoundPage: FC = () => {
 			<NavLink 
 				to='/'
 				className={classes.link}
-			>Go to home page</NavLink>
+			>{t('Go to home page')}</NavLink>
 		</div>
 	);
 };

@@ -6,6 +6,7 @@ import { IFriend } from 'types/types';
 import { DndContext, DragStartEvent, DragEndEvent } from '@dnd-kit/core';
 import { userActions } from 'redux/reducers/userSlice';
 import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
+import { useTranslation } from 'react-i18next';
 import AddMembersSection from './AddMembersSection/AddMembersSection';
 import MembersList from './MembersList/MembersList';
 
@@ -13,6 +14,7 @@ import classes from './members.module.css';
 
 const Members: FC = memo(() => {
 	const { id } = useParams<{id?: string}>();
+	const { t } = useTranslation();
 	const [showAddSection, setShowAddSection] = useState<boolean>(false);
 	const [activeItem, setActiveItem] = useState<IFriend | null>(null);
 	const members = useAppSelector(state => selectMembersByTravelId(state, Number(id)));
@@ -47,13 +49,20 @@ const Members: FC = memo(() => {
 		<div className={classes.members}>
 			<div className={classes.members__header}>
 				{members.length
-					? <h3 className={classes.title}>Members list</h3>
+					? 	<h3 className={classes.title}>
+							{t('Members list')}
+						</h3>
 					: null
 				}
 				<button 
 					onClick={handleClick}
 					className={classes.add}
-				>{showAddSection ? <>close</> : <>add members</>}</button>
+				>
+					{showAddSection 
+						? t('close')
+						: t('add members')
+					}
+				</button>
 			</div>
 			<DndContext 
 				onDragStart={handleDragStart}

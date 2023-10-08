@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { useAppSelector } from 'hooks/redux';
 import { RouteNames } from 'router/routes';
+import { useTranslation } from 'react-i18next';
 import {
 	AppLink,
 	AppLinkTheme,
@@ -12,6 +13,7 @@ import classes from './home.module.css';
 
 const HomePage: FC = () => {
 	const { isAuth } = useAppSelector(state => state.user);
+	const { t } = useTranslation();
 
 	return (
 		<div className={classes.container}>
@@ -25,14 +27,14 @@ const HomePage: FC = () => {
 								size={AppLinkSize.MEDIUM}
 								theme={AppLinkTheme.PRIMARY}
 							>
-								Profile
+								{t('Profile')}
 							</AppLink>
 							<AppLink
 								to={RouteNames.TRAVELS}
 								size={AppLinkSize.MEDIUM}
 								theme={AppLinkTheme.PRIMARY}
 							>
-								Travels
+								{t('Travels')}
 							</AppLink>
 						</>
 					:
@@ -42,14 +44,14 @@ const HomePage: FC = () => {
 								size={AppLinkSize.MEDIUM}
 								theme={AppLinkTheme.PRIMARY}
 							>
-								Register
+								{t('Register')}
 							</AppLink>
 							<AppLink
 								to={RouteNames.LOGIN}
 								size={AppLinkSize.MEDIUM}
 								theme={AppLinkTheme.PRIMARY}
 							>
-								Login
+								{t('Login')}
 							</AppLink>
 						</>
 				}

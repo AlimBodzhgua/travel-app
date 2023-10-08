@@ -1,0 +1,60 @@
+{
+	"Lang": "ENG",
+	"Loading": "Loading",
+
+	"Travels": "Travels",
+	"Other users": "Other users",
+	"No users here yet": "No users here yet",
+	"search users": "search users",
+
+	"My Travels": "My Travels",
+	"Users": "Users",
+	"Friends": "Friends",
+	"Profile": "Profile",
+	"Register": "Register",
+	"Login": "Login",
+
+	"cancel request": "cancel request",
+	"request sended": "request sended",
+	"add friend": "add friend",
+
+	"You don`t have any planned trips yet": "You don`t have any planned trips yet",
+	"Create trip": "Create trip",
+
+	"Register Account": "Register Account",
+	"Login in Account": "Login in Account",
+	"Go to home page": "Go to home page",
+
+	"You have no friend requests": "You have no friend requests",
+	"You have no friends": "You have no friends",
+	"Friend requests": "Friend requests",
+	"Friend list": "Friend list",
+
+	"Your profile": "Your profile",
+	"logout": "logout",
+	"Are you sure you want to save changes?": "Are you sure you want to save changes?",
+	"Input value empty": "Input value empty",
+
+	"Members list": "Members list",
+	"close": "close",
+	"add members": "add members",
+	"Drag friends and drop to members list or press button": "Drag friends and drop to members list or press button",
+	"You have no friends to add": "You have no friends to add",
+
+	"Add group": "Add group",
+	"Add card": "Add card",
+	"Nothing is planned": "Nothing is planned",
+
+	"Login": "Login",
+	"sign in": "sign in",
+	"Login is a required field": "Login is a required field",
+	"Login at least 6 characters long": "Login at least 6 characters long",
+	"Email": "Email",
+	"Email is a required field": "Email is a required field",
+	"Password": "Password",
+	"Password is required field": "Password is required field",
+	"Password at least 6 characters long": "Password is required field",
+	"User with such email already exist": "User with such email already exist",
+	"Register": "Register",
+	"Wrong password or email": "Wrong password or email"
+}

@@ -1,0 +1,59 @@
+{
+	"Lang": "RU",
+	"Loading": "Загрузка",
+	"Travels": "Путешествия",
+	"Other users": "Другие пользователи",
+	"No users here yet": "Здесь пока нет пользователеи",
+	"search users": "поиск пользователеи",
+
+	"My Travels": "Путешествия",
+	"Users": "Пользователи",
+	"Friends": "Друзья",
+	"Profile": "Профиль",
+	"Register": "Регистрация",
+	"Login": "Вход",
+
+	"cancel request": "отменить запрос",
+	"request sended": "запрос отправлен",
+	"add friend": "добавить",
+
+	"You don`t have any planned trips yet": "У вас пока нет запланированных путешествий",
+	"Create trip": "Создать путешествие",
+
+	"Register Account": "Регистрация аккаунта",
+	"Login in Account": "Вход в аккаунт",
+	"Go to home page": "Перейти на главную страницу",
+
+	"You have no friend requests": "У вас нет запросов в друзья",
+	"You have no friends": "У вас нет друзей",
+	"Friend requests": "Список запросов в друзья",
+	"Friend list": "Список друзей",
+
+	"Your profile": "Профиль",
+	"logout": "выход",
+	"Are you sure you want to save changes?": "Вы уверены что хотите сохранить изменения?",
+	"Input value empty": "Пустое поле ввода",
+
+	"Members list": "Список участников",
+	"add members": "добавить участников",
+	"close": "закрыть",
+	"Drag friends and drop to members list or press button": "Перетащите друзей в список участников или нажмите кнопку",
+	"You have no friends to add": "У вас нет друзей чтобы добавить",
+
+	"Add group": "Добавить группу",
+	"Add card": "Добавить карточку",
+	"Nothing is planned": "Ничего не запланировано",
+
+	"Login": "Логин",
+	"sign in": "войти",
+	"Login is a required field": "Логин – обязательное поле",
+	"Login at least 6 characters long": "Длина логина не менее 6 символов",
+	"Email": "Email",
+	"Email is a required field": "Email – обязательное поле",
+	"Password": "Пароль",
+	"Password is required field": "Password - обязательное поле",
+	"Password at least 6 characters long": "Длина пароля не менее 6 символов",
+	"User with such email already exist": "Пользователь с такой почтой уже существует",
+	"Register": "Регистрация",
+	"Wrong password or email": "Неверная почта или пароль"
+}
