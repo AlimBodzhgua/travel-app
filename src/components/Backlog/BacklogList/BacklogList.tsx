@@ -4,22 +4,21 @@ import { selectBacklogsByTravelId} from 'redux/selectors/selectors';
 import { userActions } from 'redux/reducers/userSlice';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
+import { BacklogCreateForm } from 'components/CreateForms';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { DndContext } from '@dnd-kit/core';
-import { BacklogItem } from '../BacklogItem/BacklogItem';
-
-import BacklogCreateForm from 'components/CreateForms/BacklogCreateForm/BacklogCreateForm';
 import classnames from 'classnames';
+
+import { BacklogItem } from '../BacklogItem/BacklogItem';
 import classes from './BacklogList.module.css';
 
 interface BacklogListProps {
 	className?: string;
 }
 
-const BacklogList: FC<BacklogListProps> = memo(({className}) => {
+export const BacklogList: FC<BacklogListProps> = memo(({ className }) => {
 	const { t } = useTranslation();
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const { id } = useParams<{id? : string}>();
@@ -33,9 +32,9 @@ const BacklogList: FC<BacklogListProps> = memo(({className}) => {
 	    	},
 	  	})
 	);
-	const handleClick = ():void => setShowCreateForm(true);
+	const handleClick = () => setShowCreateForm(true);
 
-	const handleDragEnd = (e: { active: any; over: any; }):void => {
+	const handleDragEnd = (e: { active: any; over: any; }) => {
 		const {active, over} = e;
 		if (active.id === over.id) {
 			return;
@@ -88,5 +87,3 @@ const BacklogList: FC<BacklogListProps> = memo(({className}) => {
 		</div>
 	);
 });
-
-export default BacklogList;

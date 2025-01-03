@@ -47,8 +47,10 @@ export const Button: FC<ButtonProps> = (props) => {
 				{[classes.square]: square},
 			)}
 			{...otherProps}
-		>{children}</button>
-	)
-}
+		>
+			{children}
+		</button>
+	);
+};
 
 

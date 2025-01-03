@@ -5,10 +5,10 @@ import { removeMembersFromFriendList } from 'utils/utils';
 import { useParams } from 'react-router-dom';
 import { IFriend } from 'types/types';
 import { useTranslation } from 'react-i18next';
-import Item from './Item';
+import { Item } from './Item';
 import classes from './member-add.module.css';
 
-const AddMembersSection: FC = memo(() => {
+export const AddMembersSection: FC = memo(() => {
 	const { t } = useTranslation();
 	const { id } = useParams<{id? : string}>();
 	const members = useAppSelector(state => selectMembersByTravelId(state, Number(id)));
@@ -44,5 +44,3 @@ const AddMembersSection: FC = memo(() => {
 		</div>
 	);
 });
-
-export default AddMembersSection;

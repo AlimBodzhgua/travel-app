@@ -12,7 +12,7 @@ interface UserItemProps {
 	user: IPublicUser;
 }
 
-const UserItem: FC<UserItemProps> = memo(({user}) => {
+export const UserItem: FC<UserItemProps> = memo(({user}) => {
 	const currentUser = useAppSelector(selectUser);
 	const dispatch = useAppDispatch();
 	const [hovering, hoverProps]  = useHover();
@@ -81,6 +81,3 @@ const UserItem: FC<UserItemProps> = memo(({user}) => {
 		</li>
 	);
 });
-
-
-export default UserItem;

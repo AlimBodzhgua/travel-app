@@ -2,11 +2,11 @@ import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from 'hooks/redux';
 import { selectTravelById } from 'redux/selectors/selectors';
-import { TravelItem } from 'components/travel/TravelItem/TravelItem';
-import NavBar from 'components/Navbar/NavBar';
-import Members from 'components/Members/Members';
-import BacklogList from 'components/Backlog/BacklogList/BacklogList';
-import Groups from 'components/Groups/Groups';
+import { TravelItem } from 'components/TravelList';
+import { Navbar } from 'components/Navbar/Navbar';
+import { Members } from 'components/Members';
+import { BacklogList } from 'components/Backlog';
+import { Groups } from 'components/Groups';
 import classes from './travel-details.module.css';
 
 const TravelDetailsPage: FC = () => {
@@ -16,7 +16,7 @@ const TravelDetailsPage: FC = () => {
 	return (
 		<div>
 			<div className={classes.container}>
-				<NavBar />
+				<Navbar />
 				{travel && 
 					<>
 						<TravelItem 

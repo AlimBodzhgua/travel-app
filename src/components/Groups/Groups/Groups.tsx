@@ -6,13 +6,13 @@ import { useSensors, useSensor, PointerSensor, DndContext } from '@dnd-kit/core'
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { useParams } from 'react-router-dom';
 import { selectGroupsByTravelId } from 'redux/selectors/selectors';
-import { GroupItem } from './GroupItem/GroupItem';
 import { useTranslation } from 'react-i18next';
+import { GroupCreateForm } from 'components/CreateForms/';
 
-import GroupCreateForm from '../CreateForms/GroupCreateForm/GroupCreateForm';
+import { GroupItem } from '../GroupItem/GroupItem';
 import classes from './groups.module.css';
 
-const Groups: FC = memo(() => {
+export const Groups: FC = memo(() => {
 	const { t } = useTranslation();
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const dispatch = useAppDispatch();

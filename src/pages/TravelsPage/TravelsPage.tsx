@@ -3,9 +3,9 @@ import { useAppSelector } from 'hooks/redux';
 import { selectTravels } from 'redux/selectors/selectors';
 import { Button, ButtonTheme, ButtonSize } from 'components/UI/Button/Button';
 import { useTranslation } from 'react-i18next';
-import NavBar from 'components/Navbar/NavBar';
-import TravelList from 'components/travel/TravelList';
-import TravelCreateForm from 'components/CreateForms/TravelCreateForm/TravelCreateForm';
+import { Navbar } from 'components/Navbar/Navbar';
+import { TravelList } from 'components/TravelList';
+import { TravelCreateForm } from 'components/CreateForms/TravelCreateForm/TravelCreateForm';
 import classes from './travels.module.css';
 
 
@@ -19,7 +19,7 @@ const TravelsPage: FC = () => {
 	return (
 		<div>
 			<div className={classes.container}>
-				<NavBar />
+				<Navbar />
 				<header className={classes.header}>
 					<h1 className={classes.page__title}>Travels</h1>
 					<Button

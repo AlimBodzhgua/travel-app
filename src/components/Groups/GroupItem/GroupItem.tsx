@@ -7,16 +7,16 @@ import { useTranslation } from 'react-i18next';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-import CardCreateForm from 'components/CreateForms/CardCreateForm/CardCreateForm';
-import CardsList from 'components/CardsList/CardsList';
-import Popup from 'components/Popup/Popup';
+import { CardCreateForm } from 'components/CreateForms';
+import { CardsList } from 'components/CardsList';
+import { Popup } from 'components/Popup/Popup';
 import classes from './GroupItem.module.css';
 	
 interface GroupItemProps {
 	group: IGroup;
 }
 
-export const GroupItem: FC<GroupItemProps> = memo(({group}) => {
+export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 	const { t } = useTranslation();
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const [showPopup, setShowPopup] = useState<boolean>(false);

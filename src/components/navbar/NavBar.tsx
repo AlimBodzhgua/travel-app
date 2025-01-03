@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import classes from './navbar.module.css';
 
-const NavBar: FC = () => {
+export const Navbar: FC = memo(() => {
 	const { t } = useTranslation();
 
 	return (
@@ -56,6 +56,4 @@ const NavBar: FC = () => {
 			</div>
 		</nav>
 	);
-};
-
-export default memo(NavBar);
+});

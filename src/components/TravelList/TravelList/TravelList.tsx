@@ -1,6 +1,5 @@
 import { FC, memo } from 'react';
 import { ITravel } from 'types/types';
-import { TravelItem } from './TravelItem/TravelItem';
 import { useAppDispatch } from 'hooks/redux';
 import { userActions } from 'redux/reducers/userSlice';
 import { SortableContext } from '@dnd-kit/sortable';
@@ -8,13 +7,14 @@ import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { DndContext } from '@dnd-kit/core';
 
+import { TravelItem } from '../TravelItem/TravelItem';
 import classes from './travel.module.css';
 
 interface TravelListProps {
 	travels: ITravel[];
 }
 
-const TravelList: FC<TravelListProps> = memo(({travels}) => {
+export const TravelList: FC<TravelListProps> = memo(({travels}) => {
 	const dispatch = useAppDispatch();
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
@@ -57,5 +57,3 @@ const TravelList: FC<TravelListProps> = memo(({travels}) => {
 		</DndContext>
 	);
 });
-
-export default TravelList;

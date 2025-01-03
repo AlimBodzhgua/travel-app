@@ -12,7 +12,8 @@ interface BacklogItemProps {
 	className?: string;
 }
 
-export const BacklogItem: FC<BacklogItemProps> = memo(({backlog, className}) => {
+export const BacklogItem: FC<BacklogItemProps> = memo((props) => {
+	const { backlog, className } = props;
 	const [value, setValue] = useState<string>('');
 	const [editable, setEditable] = useState<boolean>(false);
 	const { id } = useParams<{id?: string}>();

@@ -17,7 +17,7 @@ interface CardCreateFormProps {
 	setShowCreateForm?: Dispatch<SetStateAction<boolean>>
 }
 
-const CardCreateForm: FC<CardCreateFormProps> = memo(({setShowCreateForm, groupId}) => {
+export const CardCreateForm: FC<CardCreateFormProps> = memo(({setShowCreateForm, groupId}) => {
 	const [title, setTitle] = useState<string>('');
 	const [text, setText] = useState<string>('');
 	const dispatch = useAppDispatch();
@@ -83,5 +83,3 @@ const CardCreateForm: FC<CardCreateFormProps> = memo(({setShowCreateForm, groupI
 		</div>
 	);
 });
-
-export default CardCreateForm;

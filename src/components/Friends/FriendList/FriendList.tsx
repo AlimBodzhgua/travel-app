@@ -1,7 +1,8 @@
 import { FC, memo } from 'react';
 import { IFriend } from 'types/types';
-import { FriendItem } from './FriendItem/FriendItem';
 import classnames from 'classnames';
+
+import { FriendItem } from '../FriendItem/FriendItem';
 import classes from './friend-list.module.css';
 
 interface FriendsListProps {
@@ -9,7 +10,7 @@ interface FriendsListProps {
 	className?: string;
 }
 
-const FriendList: FC<FriendsListProps> = memo(({friends, className}) => {
+export const FriendList: FC<FriendsListProps> = memo(({friends, className}) => {
 	return (
 		<ul className={classnames(classes.list, className)}>
 			{friends.map(friend => 
@@ -21,5 +22,3 @@ const FriendList: FC<FriendsListProps> = memo(({friends, className}) => {
 		</ul>
 	);
 });
-
-export default FriendList;

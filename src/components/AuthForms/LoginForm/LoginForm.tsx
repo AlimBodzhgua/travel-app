@@ -40,8 +40,8 @@ export const LoginForm: FC = memo(() => {
 	useEffect(() => {
 		return () => {
 			dispatch(userActions.clearError());
-		}
-	}, [])
+		};
+	}, [dispatch]);
 
 	return (
 		<form className={classes.form} onSubmit={handleSubmit(onSubmit)}>

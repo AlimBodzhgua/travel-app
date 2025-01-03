@@ -11,7 +11,7 @@ interface ItemProps {
 	friend: IFriend;
 }
 
-const Item: FC<ItemProps> = memo(({friend}) => {
+export const Item: FC<ItemProps> = memo(({friend}) => {
 	const dispatch = useAppDispatch();
 	const { id } = useParams<{id? : string}>();
 	const {
@@ -60,5 +60,3 @@ const Item: FC<ItemProps> = memo(({friend}) => {
 		</>
 	);  
 });
-
-export default Item;

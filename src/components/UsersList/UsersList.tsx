@@ -1,13 +1,12 @@
 import { FC, memo } from 'react';
 import { IPublicUser } from 'types/types';
-import UserItem from './UserItem';
-import classes from './users-list.module.css';
+import { UserItem } from './UserItem';
 
 interface UsersListProps {
 	users: IPublicUser[]
 }
 
-const UsersList: FC<UsersListProps> = memo(({users}) => {
+export const UsersList: FC<UsersListProps> = memo(({users}) => {
 	return (
 		<ul>
 			{users.map(user => 
@@ -20,5 +19,3 @@ const UsersList: FC<UsersListProps> = memo(({users}) => {
 	);
 });
 
-
-export default UsersList;

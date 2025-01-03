@@ -7,7 +7,7 @@ import {
 	AppLinkTheme,
 	AppLinkSize,
 } from 'components/UI/AppLink/AppLink';
-import NavBar from 'components/Navbar/NavBar';
+import { Navbar } from 'components/Navbar/Navbar';
 import classes from './home.module.css';
 
 
@@ -17,7 +17,7 @@ const HomePage: FC = () => {
 
 	return (
 		<div className={classes.container}>
-			<NavBar />
+			<Navbar />
 			<div className={classes.centered}>
 				{isAuth 
 					?

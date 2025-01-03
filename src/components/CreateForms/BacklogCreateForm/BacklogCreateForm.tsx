@@ -8,7 +8,7 @@ interface BacklogCreateFormProps {
 	setShowCreateForm?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const BacklogCreateForm: FC<BacklogCreateFormProps> = memo(({setShowCreateForm}) => {
+export const BacklogCreateForm: FC<BacklogCreateFormProps> = memo(({setShowCreateForm}) => {
 	const [value, setValue] = useState<string>('');
 	const { id } = useParams<{id?: string}>();
 	const dispatch = useAppDispatch();
@@ -55,6 +55,3 @@ const BacklogCreateForm: FC<BacklogCreateFormProps> = memo(({setShowCreateForm})
 	</div>
 	);
 });
-
-
-export default BacklogCreateForm;

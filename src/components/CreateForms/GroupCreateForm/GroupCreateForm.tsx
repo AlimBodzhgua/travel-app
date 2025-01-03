@@ -9,7 +9,7 @@ interface GroupCreateFormProps {
 	setShowCreateForm?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const GroupCreateForm: FC<GroupCreateFormProps> = memo(({setShowCreateForm}) => {
+export const GroupCreateForm: FC<GroupCreateFormProps> = memo(({setShowCreateForm}) => {
 	const [value, setValue] = useState<string>('');
 	const { id } = useParams<{id? : string}>();
 	const dispatch = useAppDispatch();
@@ -51,5 +51,3 @@ const GroupCreateForm: FC<GroupCreateFormProps> = memo(({setShowCreateForm}) => 
 		</div>
 	);
 });
-
-export default GroupCreateForm;

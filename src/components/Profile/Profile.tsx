@@ -7,8 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme, ButtonSize } from 'components/UI/Button/Button';
 import classes from './profile.module.css';
 
-
-const Profile: FC = memo(() => {
+export const Profile: FC = memo(() => {
 	const user = useAppSelector(selectUser);
 	const { t } = useTranslation();
 	const [login, setLogin] = useState<string>('');
@@ -24,17 +23,17 @@ const Profile: FC = memo(() => {
 		}
 	}, []);
 
-	const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
+	const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setLogin(e.target?.value);
 	};
 
-	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
+	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(e.target?.value);
 	};
 
-	const handleEditClick = ():void => setEditable(!editable);
+	const handleEditClick = () => setEditable(!editable);
 
-	const handleSaveClick = ():void => {
+	const handleSaveClick = () => {
 		if (window.confirm(t('Are you sure you want to save changes?'))) {
 			if (login.length && email.length) {
 				if (login !== user?.login) {
@@ -48,12 +47,11 @@ const Profile: FC = memo(() => {
 		}
 	};
 
-	const handleLogoutClick = ():void => {
+	const handleLogoutClick = () => {
 		dispatch(userActions.logoutUser());
 		localStorage.removeItem('user');
 		navigate('/');
 	};
-
 
 	return (
 		<div className={classes.profile}>
@@ -74,7 +72,7 @@ const Profile: FC = memo(() => {
 						onClick={handleEditClick}
 						className={editable ? classes.cancel : classes.edit}
 					>
-						{editable ? <>&#10005;</> : <>edit</>}
+						{editable ? <>&#10005;</> : 'edit'}
 					</button>
 				</div>
 			</div>
@@ -104,6 +102,3 @@ const Profile: FC = memo(() => {
 		</div>
 	);
 });
-
-
-export default Profile;

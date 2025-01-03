@@ -1,23 +1,23 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import CardCreateForm from "./CardCreateForm";
+import { CardCreateForm } from './CardCreateForm';
 
 const meta = {
-    title: "Forms/CardCreateForm",
-    component: CardCreateForm,
-    parameters: {
-        layout: "centered",
-    },
-    tags: ["autodocs"],
-    argTypes: {},
-    args: {}
+	title: 'Forms/CardCreateForm',
+	component: CardCreateForm,
+	parameters: {
+		layout: 'centered',
+	},
+	tags: ['autodocs'],
+	argTypes: {},
+	args: {},
 } satisfies Meta<typeof CardCreateForm>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    args: {
-        groupId: 2,
-    },
+	args: {
+		groupId: 2,
+	},
 };

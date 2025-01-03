@@ -15,7 +15,6 @@ interface IFormInput {
 	password: string;
 }
 
-
 export const RegisterForm: FC = memo(() => {
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();

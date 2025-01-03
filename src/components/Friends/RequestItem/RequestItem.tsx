@@ -29,11 +29,12 @@ export const RequestItem: FC<RequestItemProps> = memo(({request, className}) => 
 			const currentUser: IFriend = {
 				id: user.id,
 				login: user.login,
-				email: user.email
+				email: user.email,
 			};
+			
 			dispatch(acceptFriendRequest({
 				requestUser: friend,
-				responseUser: currentUser 
+				responseUser: currentUser,
 			}));
 		}
 	};

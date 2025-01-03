@@ -47,5 +47,5 @@ export const AppLink: FC<AppLinkProps> = memo((props) => {
 		>
 			{children}
 		</Link>
-	)
+	);
 });

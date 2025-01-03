@@ -6,19 +6,20 @@ interface PopupProps {
 	handleDeleteClick: () => void;
 }
 
-const Popup: FC<PopupProps> = ({handleCancelClick, handleDeleteClick}) => {
+export const Popup: FC<PopupProps> = (props) => {
+	const { handleCancelClick, handleDeleteClick } = props;
 
 	const onKeydown = useCallback((e: KeyboardEvent) => {
 		if (e.key === 'Escape') {
             handleCancelClick();
         }
-	}, [])
+	}, []);
 
 	useEffect(() => {
 		window.addEventListener('keydown', onKeydown);
 
 		return () => window.removeEventListener('keydown', onKeydown);
-	}, [])
+	}, []);
 
 	return (
 		<div className={classes.modal}>
@@ -44,5 +45,3 @@ const Popup: FC<PopupProps> = ({handleCancelClick, handleDeleteClick}) => {
 		</div>
 	);
 };
-
-export default Popup;

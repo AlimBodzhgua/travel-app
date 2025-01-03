@@ -11,7 +11,7 @@ interface TravelCreateFormProps {
 	setShowCreateForm?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TravelCreateForm: FC<TravelCreateFormProps> = memo(({setShowCreateForm}) => {
+export const TravelCreateForm: FC<TravelCreateFormProps> = memo(({setShowCreateForm}) => {
 	const [startDate, setStartDate] = useState<Dayjs | null>(dayjs());
 	const [endDate, setEndDate] = useState<Dayjs | null>(dayjs());
 	const [value, setValue] = useState<string>('');
@@ -68,6 +68,3 @@ const TravelCreateForm: FC<TravelCreateFormProps> = memo(({setShowCreateForm}) =
 		</div>
 	);
 });
-
-
-export default TravelCreateForm;

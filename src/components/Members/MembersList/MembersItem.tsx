@@ -10,7 +10,7 @@ interface MembersItemProps {
 	member: IFriend;
 }
 
-const MembersItem: FC<MembersItemProps> = memo(({member}) => {
+export const MembersItem: FC<MembersItemProps> = memo(({member}) => {
 	const { id } = useParams<{id?: string}>();
 	const [hovering, hoverProps]  = useHover();
 	const dispatch = useAppDispatch();
@@ -38,5 +38,3 @@ const MembersItem: FC<MembersItemProps> = memo(({member}) => {
 		</li>
 	);
 });
-
-export default MembersItem;

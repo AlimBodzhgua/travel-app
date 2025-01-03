@@ -7,12 +7,12 @@ import { DndContext, DragStartEvent, DragEndEvent } from '@dnd-kit/core';
 import { userActions } from 'redux/reducers/userSlice';
 import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
 import { useTranslation } from 'react-i18next';
-import AddMembersSection from './AddMembersSection/AddMembersSection';
-import MembersList from './MembersList/MembersList';
 
+import { AddMembersSection } from '../AddMembersSection/AddMembersSection';
+import { MembersList } from '../MembersList/MembersList';
 import classes from './members.module.css';
 
-const Members: FC = memo(() => {
+export const Members: FC = memo(() => {
 	const { id } = useParams<{id?: string}>();
 	const { t } = useTranslation();
 	const [showAddSection, setShowAddSection] = useState<boolean>(false);
@@ -80,5 +80,3 @@ const Members: FC = memo(() => {
 		</div>
 	);
 });
-
-export default Members;

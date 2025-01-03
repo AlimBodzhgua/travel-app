@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IUser, IUserLogin, IFriend } from 'types/types';
 import { getErrorMessage, modifyUserResponseObject, saveUserToLocalStorage } from 'utils/utils';
-import UserService from 'API/UserService';
+import UserService from 'services/UserService';
 
 export const registerUser = createAsyncThunk<
 	IUser, 

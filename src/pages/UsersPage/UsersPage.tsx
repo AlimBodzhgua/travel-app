@@ -4,10 +4,9 @@ import { useDebounce } from 'hooks/useDebounce';
 import { IPublicUser } from 'types/types';
 import { useAllUsers } from 'hooks/useAllUsers';
 import { useTranslation } from 'react-i18next';
-import NavBar from 'components/Navbar/NavBar';
-import UsersList from 'components/UsersList/UsersList';
+import { Navbar } from 'components/Navbar/Navbar';
+import { UsersList } from 'components/UsersList/UsersList';
 import classes from './users.module.css';
-
 
 const UsersPage: FC = () => {
 	const [users, isLoading, errorMessage] = useAllUsers();
@@ -17,14 +16,13 @@ const UsersPage: FC = () => {
 	const debouncedValue = useDebounce(searchQuery, 500);
 
 	useEffect(() => {
-		const result = users.filter((u) => {
-			if (u.login.toLowerCase().includes(debouncedValue.toLowerCase())) {
-				return u;
+		const result = users.filter((user) => {
+			if (user.login.toLowerCase().includes(debouncedValue.toLowerCase())) {
+				return user;
 			}
 		});
 		setSearchedUsers(result);
 	}, [debouncedValue, users]);
-
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
 		setSearchQuery(e.target.value);
@@ -32,35 +30,39 @@ const UsersPage: FC = () => {
 
 	return (
 		<div className={classes.container}>
-			<NavBar />
-			{errorMessage 
-				?	<h2>Error loading users, reload the page or try later</h2>
-				:	<>	
-						<div className={classes.header}>
-							<h2 className={classes.title}>{t('Other users')}</h2>
-							<input 
-								type='text' 
-								placeholder={t('search users')}
-								value={searchQuery}
-								onChange={handleChange}
-								className={classes.search}
-							/>
-						</div>
-						{users.length 
-							? isLoading 
-								? 	<div className={classes.loader}>
-										<RotatingLines
-						                    strokeColor='grey'
-						                    strokeWidth='5'
-						                    animationDuration='0.75'
-						                    width='55'
-						                />
-						            </div>
-								:	<UsersList users={searchedUsers} /> 
-							:   <h2>{t('No users here yet')}</h2>
-						}
-					</>
-			}
+			<Navbar />
+			{errorMessage ? (
+				<h2>Error loading users, reload the page or try later</h2>
+			) : (
+				<>
+					<div className={classes.header}>
+						<h2 className={classes.title}>{t('Other users')}</h2>
+						<input
+							type='text'
+							placeholder={t('search users')}
+							value={searchQuery}
+							onChange={handleChange}
+							className={classes.search}
+						/>
+					</div>
+					{users.length ? (
+						isLoading ? (
+							<div className={classes.loader}>
+								<RotatingLines
+									strokeColor='grey'
+									strokeWidth='5'
+									animationDuration='0.75'
+									width='55'
+								/>
+							</div>
+						) : (
+							<UsersList users={searchedUsers} />
+						)
+					) : (
+						<h2>{t('No users here yet')}</h2>
+					)}
+				</>
+			)}
 		</div>
 	);
 };

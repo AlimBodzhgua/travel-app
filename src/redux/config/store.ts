@@ -7,7 +7,7 @@ export const createReduxStore = (initialState?: StateSchema) => {
 	const rootReducer: ReducersMapObject<StateSchema> = {
 		user: userReducer,
 		allUsers: allUsersReducer,
-	}
+	};
 
 	const store = configureStore({
 		reducer: rootReducer,
@@ -15,6 +15,6 @@ export const createReduxStore = (initialState?: StateSchema) => {
 	});
 
 	return store;
-}
+};
 
-export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

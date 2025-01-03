@@ -8,7 +8,6 @@ import { SortableItem } from 'components/SortableItem/SortableItem';
 import DateRangePicker from 'components/UI/DateRangePicker/DateRangePicker';
 import classes from './TravelItem.module.css';
 
-
 interface TravelItemProps {
 	id: number;
 	name: string;
@@ -31,13 +30,13 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 		setValue(name);
 	}, []);
 
-	const handleEditClick = ():void => setEditable(!editable);
+	const handleEditClick = () => setEditable(!editable);
 
-	const handleDeleteClick = ():void => {
+	const handleDeleteClick = () => {
 		dispatch(userActions.deleteTravel(id));
 	};
 
-	const handleSaveClick = ():void => {
+	const handleSaveClick = () => {
 		if (startDate && endDate) {
 			dispatch(userActions.editTravel({
 				id: id,

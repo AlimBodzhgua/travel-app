@@ -5,7 +5,7 @@ import { userActions } from 'redux/reducers/userSlice';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { useSensors, useSensor, PointerSensor, DndContext } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
-import { CardItem } from './CardItem/CardItem';
+import { CardItem } from '../CardItem/CardItem';
 import classes from './cards.module.css';
 
 interface CardsListProps {
@@ -13,7 +13,7 @@ interface CardsListProps {
 	groupId: number;
 }
 
-const CardsList:FC<CardsListProps> = memo(({travelId, groupId}) => {
+export const CardsList:FC<CardsListProps> = memo(({travelId, groupId}) => {
 	const cards = useAppSelector(state => selectCards(state, travelId, groupId));
 	const dispatch = useAppDispatch();
 
@@ -66,5 +66,3 @@ const CardsList:FC<CardsListProps> = memo(({travelId, groupId}) => {
 		</>
 	);
 });
-
-export default CardsList;
