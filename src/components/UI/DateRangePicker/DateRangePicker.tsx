@@ -6,9 +6,9 @@ import classes from './date-range.module.css';
 
 interface DateRangePickerProps {
 	startDate?: Dayjs | null;
-	setStartDate?: Dispatch<SetStateAction<Dayjs | null>>;
+	onStartDateChange: (date: Dayjs) => void;
 	endDate?: Dayjs | null;
-	setEndDate?: Dispatch<SetStateAction<Dayjs | null>>;
+	onEndDateChange: (date: Dayjs) => void;
 	labelStart?: string;
 	labelEnd?: string;
 	disabled?: boolean;
@@ -17,20 +17,24 @@ interface DateRangePickerProps {
 
 const DateRangePicker:FC<DateRangePickerProps> = memo(({
 	startDate = dayjs(), 
-	setStartDate,
+	onStartDateChange,
 	endDate = dayjs(),
-	setEndDate,
+	onEndDateChange,
 	labelStart,
 	labelEnd,
 	disabled = false
 }) => {
 
 	const handleStartChange = (e: (Dayjs | null)) => {
-		setStartDate?.(e);
+		if (e) {
+			onStartDateChange(e);
+		}
 	};
 
 	const handleEndChange = (e: (Dayjs | null)) => {
-		setEndDate?.(e);
+		if (e) {
+			onEndDateChange(e);
+		}
 	};
 
 	return (

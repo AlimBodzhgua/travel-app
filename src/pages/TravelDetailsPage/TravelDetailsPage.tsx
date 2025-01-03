@@ -19,12 +19,7 @@ const TravelDetailsPage: FC = () => {
 				<Navbar />
 				{travel && 
 					<>
-						<TravelItem 
-							id={travel.id}
-							name={travel.name}
-							dateStart={travel.dateStart}
-							dateEnd={travel.dateEnd}
-						/>
+						<TravelItem travel={travel}/>
 						<Members />
 						<div className={classes.details}>
 							<BacklogList />

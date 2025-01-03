@@ -108,6 +108,55 @@
       "friendRequests": [],
       "travels": [
         {
+          "id": 1735912980002,
+          "name": "Trip to sochi",
+          "dateStart": "2025.01.03",
+          "dateEnd": "2025.01.13",
+          "members": [],
+          "backlog": [],
+          "groups": []
+        },
+        {
+          "id": 1735913997236,
+          "name": "new new travel",
+          "dateStart": "2025.01.09",
+          "dateEnd": "2025.01.06",
+          "members": [],
+          "backlog": [
+            {
+              "id": 1735917945016,
+              "name": "back 123"
+            },
+            {
+              "id": 1735917939751,
+              "name": "new bac"
+            }
+          ],
+          "groups": [
+            {
+              "id": 1735917765307,
+              "title": "New group",
+              "cards": [
+                {
+                  "id": 1735917790388,
+                  "title": "Card 2",
+                  "description": "Newqdsa\n"
+                },
+                {
+                  "id": 1735917781631,
+                  "title": "New card",
+                  "description": "pla n1"
+                }
+              ]
+            },
+            {
+              "id": 1735918046917,
+              "title": "seconds group",
+              "cards": []
+            }
+          ]
+        },
+        {
           "id": 1696760869536,
           "name": "2131",
           "dateStart": "2023.10.08",

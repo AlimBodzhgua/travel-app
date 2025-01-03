@@ -11,10 +11,12 @@ import classes from './travels.module.css';
 
 const TravelsPage: FC = () => {
 	const travels = useAppSelector(selectTravels);
-
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const { t } = useTranslation();
-	const handleClick = () => setShowCreateForm(true);
+
+	const onShowFrom = () => setShowCreateForm(true);
+	
+	const onCloseForm = () => setShowCreateForm(false);
 
 	return (
 		<div>
@@ -25,7 +27,7 @@ const TravelsPage: FC = () => {
 					<Button
 						theme={ButtonTheme.PRIMARY}
 						size={ButtonSize.SMALL}
-						onClick={handleClick}
+						onClick={onShowFrom}
 					>
 						{t('Create trip')}
 					</Button>
@@ -34,11 +36,7 @@ const TravelsPage: FC = () => {
 					? <TravelList travels={travels}/>
 					: <h3>{t('You don`t have any planned trips yet')}</h3>
 				}
-				{showCreateForm &&
-					<TravelCreateForm
-						setShowCreateForm={setShowCreateForm}
-					/>
-				}
+				{showCreateForm && <TravelCreateForm onCloseForm={onCloseForm}/>}
 			</div>
 		</div>
 	);

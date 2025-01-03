@@ -3,7 +3,7 @@ import { IBacklog } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
 import { userActions } from 'redux/reducers/userSlice';
-import { SortableItem } from 'components/SortableItem/SortableItem';
+import { SortableItem } from 'lib/components';
 import classes from './BacklogItem.module.css';
 import classNames from 'classnames';
 

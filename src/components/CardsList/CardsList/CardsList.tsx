@@ -2,9 +2,7 @@ import { FC, memo } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { selectCards } from 'redux/selectors/selectors';
 import { userActions } from 'redux/reducers/userSlice';
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { useSensors, useSensor, PointerSensor, DndContext } from '@dnd-kit/core';
-import { restrictToParentElement } from '@dnd-kit/modifiers';
+import { SortableList } from 'lib/components';
 import { CardItem } from '../CardItem/CardItem';
 import classes from './cards.module.css';
 
@@ -30,39 +28,21 @@ export const CardsList:FC<CardsListProps> = memo(({travelId, groupId}) => {
 		}));
 	};
 
-	const sensors = useSensors(
-		useSensor(PointerSensor, {
-	    	activationConstraint: {
-	      		distance: 8,
-	    	},
-	  	})
-	);
-
 	return (
-		<>
-		{cards && 
-			<DndContext
-				onDragEnd={handleDragEnd}
-				sensors={sensors}
-				modifiers={[restrictToParentElement]}
-			>
-				<SortableContext
-					items={cards}
-					strategy={verticalListSortingStrategy}
-				>
-					<ul className={classes.list}>
-							{cards.map(card => 
-								<CardItem 
-									key={card.id}
-									card={card}
-									groupId={groupId}
-									travelId={travelId}
-								/>
-							)}
-					</ul>
-				</SortableContext>
-			</DndContext>
-		}
-		</>
+		<SortableList
+			onDragEnd={handleDragEnd}
+			items={cards}
+		>
+			<ul className={classes.list}>
+					{cards.map(card => 
+						<CardItem 
+							key={card.id}
+							card={card}
+							groupId={groupId}
+							travelId={travelId}
+						/>
+					)}
+			</ul>
+		</SortableList>
 	);
 });

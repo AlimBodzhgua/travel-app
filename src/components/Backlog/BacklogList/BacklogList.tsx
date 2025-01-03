@@ -5,10 +5,7 @@ import { userActions } from 'redux/reducers/userSlice';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BacklogCreateForm } from 'components/CreateForms';
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
-import { restrictToParentElement } from '@dnd-kit/modifiers';
-import { DndContext } from '@dnd-kit/core';
+import { SortableList } from 'lib/components';
 import classnames from 'classnames';
 
 import { BacklogItem } from '../BacklogItem/BacklogItem';
@@ -25,13 +22,6 @@ export const BacklogList: FC<BacklogListProps> = memo(({ className }) => {
 	const backlogs = useAppSelector(state => selectBacklogsByTravelId(state, Number(id)));
 	const dispatch = useAppDispatch();
 
-	const sensors = useSensors(
-		useSensor(PointerSensor, {
-	    	activationConstraint: {
-	      		distance: 8,
-	    	},
-	  	})
-	);
 	const handleClick = () => setShowCreateForm(true);
 
 	const handleDragEnd = (e: { active: any; over: any; }) => {
@@ -49,41 +39,31 @@ export const BacklogList: FC<BacklogListProps> = memo(({ className }) => {
 
 	return (
 		<div className={classnames(classes.backlog, className)}>
-			<h2 className={classes.backlog__title}>Backlog</h2>	
-			<DndContext
-				sensors={sensors}
+			<h2 className={classes.backlog__title}>Backlog</h2>
+
+			<SortableList
 				onDragEnd={handleDragEnd}
-				modifiers={[restrictToParentElement]}
+				items={backlogs}
 			>
-				<SortableContext 
-					items={backlogs}
-			        strategy={verticalListSortingStrategy}
-				>
-					<ul className={classes.backlog__list}>
-						{backlogs.map(backlog => 
-							<BacklogItem
-								key={backlog.id}
-								backlog={backlog}
-							/>
-						)}
-					</ul>
-				</SortableContext>
-			</DndContext>
-			{showCreateForm 
-				?
-					<BacklogCreateForm 
-						setShowCreateForm={setShowCreateForm}
-					/>
-				:
-					<div className={classes.backlog__footer}>
-						<button 
-							onClick={handleClick}
-							className={classes.add}
-						>
-							+ {t('Add card')}
-						</button>
-					</div>
-			}
+				<ul className={classes.backlog__list}>
+					{backlogs.map((backlog) => (
+						<BacklogItem key={backlog.id} backlog={backlog} />
+					))}
+				</ul>
+			</SortableList>
+			
+			{showCreateForm ? (
+				<BacklogCreateForm setShowCreateForm={setShowCreateForm} />
+			) : (
+				<div className={classes.backlog__footer}>
+					<button
+						onClick={handleClick}
+						className={classes.add}
+					>
+						+ {t('Add card')}
+					</button>
+				</div>
+			)}
 		</div>
 	);
 });

@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { useAppDispatch } from 'hooks/redux';
 import { userActions } from 'redux/reducers/userSlice';
 import { ICard } from 'types/types';
-import { SortableItem } from 'components/SortableItem/SortableItem';
+import { SortableItem } from 'lib/components';
 import classnames from 'classnames';
 import classes from './CardItem.module.css';
 

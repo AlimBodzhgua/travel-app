@@ -4,42 +4,37 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { userActions } from 'redux/reducers/userSlice';
 import { useAppDispatch } from 'hooks/redux';
 import { Dayjs } from 'dayjs';
-import { SortableItem } from 'components/SortableItem/SortableItem';
+import { SortableItem } from 'lib/components';
+import { getTravelPage } from 'router/routes';
+import { ITravel } from 'types/types';
 import DateRangePicker from 'components/UI/DateRangePicker/DateRangePicker';
 import classes from './TravelItem.module.css';
 
 interface TravelItemProps {
-	id: number;
-	name: string;
-	dateStart: string;
-	dateEnd: string;
+	travel: ITravel;
 }
 
 export const TravelItem: FC<TravelItemProps> = memo((props) => {
-	const { id, name, dateStart, dateEnd } = props;
-	const [startDate, setStartDate] = useState<Dayjs | null>(null);
-	const [endDate, setEndDate] = useState<Dayjs | null>(null);
+	const { travel } = props;
+	const [startDate, setStartDate] = useState<Dayjs>(stringToDayjsObject(travel.dateStart));
+	const [endDate, setEndDate] = useState<Dayjs>(stringToDayjsObject(travel.dateEnd));
 	const [editable, setEditable] = useState<boolean>(false);
-	const [value, setValue] = useState<string>('');
+	const [value, setValue] = useState<string>(travel.name);
 	const location = useLocation();
 	const dispatch = useAppDispatch();
-
-	useEffect(() => {
-		setStartDate(stringToDayjsObject(dateStart));
-		setEndDate(stringToDayjsObject(dateEnd));
-		setValue(name);
-	}, []);
-
-	const handleEditClick = () => setEditable(!editable);
-
-	const handleDeleteClick = () => {
-		dispatch(userActions.deleteTravel(id));
-	};
-
-	const handleSaveClick = () => {
+	
+	const onStartDateChange = (date: Dayjs) => {
+		setStartDate(date);
+	}
+	
+	const onEndDateChange = (date: Dayjs) => {
+		setEndDate(date);
+	}
+	
+	const onSave = () => {
 		if (startDate && endDate) {
 			dispatch(userActions.editTravel({
-				id: id,
+				id: travel.id,
 				name: value,
 				dateStart: startDate.format('YYYY.MM.DD'),
 				dateEnd: endDate.format('YYYY.MM.DD'),
@@ -48,10 +43,18 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 		setEditable(false);
 	};
 
+	const onToggleEdit = () => {
+		setEditable(prev => !prev);
+	};
+
+	const onDelete = () => {
+		dispatch(userActions.deleteTravel(travel.id));
+	};
+
 	return (
-		<SortableItem id={id}>
+		<SortableItem id={travel.id}>
 			<li className={
-				location.pathname === `/travels/${id}` 
+				location.pathname === `/travels/${travel.id}` 
 					? classes.list__item_details
 					: classes.list__item
 				}
@@ -61,27 +64,27 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 							type='text' 
 							autoFocus
 							className={classes.item__input}
-							placeholder={name} 
+							placeholder={travel.name} 
 							value={value}
 							onChange={(e) => setValue(e.target.value)}
 					  	/>
 					: 	<div className={classes.item__title}>
 							<NavLink 
-								to={`http://localhost:3000/travels/${id}`}
-								className={location.pathname === `/travels/${id}` 
+								to={getTravelPage(travel.id)}
+								className={location.pathname === `/travels/${travel.id}` 
 									? classes.item__link_details
 									: classes.item__link
 								}
 							>
-								{name}
+								{travel.name}
 							</NavLink>
 					  	</div>
 				}
 				<DateRangePicker 
 					startDate={startDate}
-					setStartDate={setStartDate}
+					onStartDateChange={onStartDateChange}
 					endDate={endDate}
-					setEndDate={setEndDate}
+					onEndDateChange={onEndDateChange}
 					labelStart='travel start date'
 					labelEnd='travel end date'
 					disabled={editable ? false : true}
@@ -89,7 +92,7 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 				<div className={classes.item__actions}>
 					{editable &&
 						<button 
-					  		onClick={handleSaveClick}
+					  		onClick={onSave}
 							className={classes.save}
 						>
 							&#x2714;
@@ -97,13 +100,13 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 					}
 					<button 
 						className={classes.edit} 
-						onClick={handleEditClick}
+						onClick={onToggleEdit}
 					>
 						edit
 					</button>
 					<button 
 						className={classes.delete} 
-						onClick={handleDeleteClick}
+						onClick={onDelete}
 					>
 						delete
 					</button>

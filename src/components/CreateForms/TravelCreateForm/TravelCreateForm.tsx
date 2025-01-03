@@ -8,16 +8,26 @@ import dayjs, { Dayjs } from 'dayjs';
 import classes from './travel-create.module.css';
 
 interface TravelCreateFormProps {
-	setShowCreateForm?: React.Dispatch<React.SetStateAction<boolean>>;
+	//setShowCreateForm?: React.Dispatch<React.SetStateAction<boolean>>;
+	onCloseForm: () => void;
 }
 
-export const TravelCreateForm: FC<TravelCreateFormProps> = memo(({setShowCreateForm}) => {
+export const TravelCreateForm: FC<TravelCreateFormProps> = memo((props) => {
+	const { onCloseForm } = props;
 	const [startDate, setStartDate] = useState<Dayjs | null>(dayjs());
 	const [endDate, setEndDate] = useState<Dayjs | null>(dayjs());
 	const [value, setValue] = useState<string>('');
 	const dispatch = useAppDispatch();
 
-	const handleCancelClick = ():void => setShowCreateForm?.(false);
+	//const handleCancelClick = () => setShowCreateForm?.(false);
+
+	const onStartDateChange = (date: Dayjs) => {
+		setStartDate(date);
+	};
+
+	const onEndDateChange = (date: Dayjs) => {
+		setEndDate(date);
+	};
 
 	const handleSaveClick = () => { 	
 		if (startDate !== null && endDate !== null) {
@@ -27,7 +37,8 @@ export const TravelCreateForm: FC<TravelCreateFormProps> = memo(({setShowCreateF
 				dispatch(userActions.addTravel(travel));
 			} else alert('Input value can not be empty');
 		}
-		setShowCreateForm?.(false);
+		//setShowCreateForm?.(false);
+		onCloseForm();
 	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,9 +56,9 @@ export const TravelCreateForm: FC<TravelCreateFormProps> = memo(({setShowCreateF
 			/>
 			<DateRangePicker 
 				startDate={startDate}
-				setStartDate={setStartDate}
+				onStartDateChange={onStartDateChange}
 				endDate={endDate}
-				setEndDate={setEndDate}
+				onEndDateChange={onEndDateChange}
 				labelStart='select start date'
 				labelEnd='select end date'
 			/>
@@ -60,7 +71,7 @@ export const TravelCreateForm: FC<TravelCreateFormProps> = memo(({setShowCreateF
 				</button>
 				<button 
 					className={classes.cancel} 
-					onClick={handleCancelClick}
+					onClick={onCloseForm}
 				>
 					&#10005;
 				</button>

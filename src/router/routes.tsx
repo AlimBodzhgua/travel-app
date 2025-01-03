@@ -20,7 +20,9 @@ export enum RouteNames {
 	LOGIN = '/login',
 	USERS = '/users',
 	FRIENDS = '/friends',
-} 
+}
+
+export const getTravelPage = (id: string | number) => `/travels/${id}`;
 
 export const privateRoutes = [
 	{path: RouteNames.HOME, component: <HomePage />},
