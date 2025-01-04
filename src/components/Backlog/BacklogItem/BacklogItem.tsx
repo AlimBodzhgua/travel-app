@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
 import { userActions } from 'redux/reducers/userSlice';
 import { SortableItem } from 'lib/components';
-import classes from './BacklogItem.module.css';
 import classNames from 'classnames';
+import classes from './BacklogItem.module.css';
 
 interface BacklogItemProps {
 	backlog: IBacklog;
@@ -14,29 +14,27 @@ interface BacklogItemProps {
 
 export const BacklogItem: FC<BacklogItemProps> = memo((props) => {
 	const { backlog, className } = props;
-	const [value, setValue] = useState<string>('');
-	const [editable, setEditable] = useState<boolean>(false);
 	const { id } = useParams<{id?: string}>();
-	const inputRef = useRef<HTMLInputElement>(null);
+	const [value, setValue] = useState<string>(backlog.name);
+	const [editable, setEditable] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 	
-	useEffect(() => {
-		if (editable === true) {
-			inputRef.current?.focus();
-			setValue(backlog.name);
-		}
-	}, [editable]);
+	const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setValue(e.target.value);
+	};
 
-	const handleEditClick = ():void => setEditable(!editable);
+	const onToggleEdit = () => {
+		setEditable(prev => !prev);
+	};
 
-	const handleDeleteClick = ():void => {
+	const onDelete = () => {
 		dispatch(userActions.deleteBacklog({
 			travelId: Number(id), 
 			backlogId: backlog.id,
 		}));
 	};
 
-	const handleSaveClick = ():void => {
+	const onSave = () => {
 		dispatch(userActions.editBacklog({
 			travelId: Number(id),
 			backlogId: backlog.id,
@@ -48,38 +46,29 @@ export const BacklogItem: FC<BacklogItemProps> = memo((props) => {
 	return (
 		<SortableItem id={backlog.id}>
 			<li className={classNames(classes.BacklogItem, className)}>
-				{editable 
-					?
-						<input 
-							type='text' 
-							ref={inputRef}
-							placeholder={backlog.name}
-							value={value}
-							onChange={(e) => setValue(e.target.value)}
-							className={classes.item__input}
-						/>
-					:   <div className={classes.item__name}>{backlog.name}</div>
-				}
-				
-				<div className={classes.item__actions}>
-					{editable && 
-						<button 
-							onClick={handleSaveClick}
-							className={classes.delete}
-						>
+				{editable ? (
+					<input
+						autoFocus
+						type='text'
+						placeholder='Enter backlog name...'
+						value={value}
+						onChange={onChangeValue}
+						className={classes.input}
+					/>
+				) : (
+					<div className={classes.name}>{backlog.name}</div>
+				)}
+
+				<div className={classes.actions}>
+					{editable && (
+						<button onClick={onSave} className={classes.delete}>
 							&#x2714;
 						</button>
-					}
-					<button 
-						onClick={handleEditClick}
-						className={classes.edit}
-					>
+					)}
+					<button onClick={onToggleEdit} className={classes.edit}>
 						edit
 					</button>
-					<button 
-						onClick={handleDeleteClick}
-						className={classes.delete}
-					>
+					<button onClick={onDelete} className={classes.delete}>
 						&#10005;
 					</button>
 				</div>

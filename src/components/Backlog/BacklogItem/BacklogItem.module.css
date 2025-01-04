@@ -17,12 +17,12 @@
 	cursor: grab;
 }
 
-.item__name {
+.name {
 	height: 100%;
 	width: 100%;
 }
 
-.item__input {
+.input {
 	height: 100%;
 	width: 100%;
 
@@ -32,11 +32,11 @@
 	font-size: inherit;
 }
 
-.item__input:focus {
+.input:focus {
 	outline: none;
 }
 
-.item__actions {
+.actions {
 	display: flex;
 	justify-content: space-between;
 	gap: 8px;
