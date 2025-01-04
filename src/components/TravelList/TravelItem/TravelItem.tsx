@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, memo } from 'react';
+import { FC, useState, memo } from 'react';
 import { stringToDayjsObject } from 'utils/utils';
 import { NavLink, useLocation } from 'react-router-dom';
 import { userActions } from 'redux/reducers/userSlice';
@@ -25,11 +25,11 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 	
 	const onStartDateChange = (date: Dayjs) => {
 		setStartDate(date);
-	}
+	};
 	
 	const onEndDateChange = (date: Dayjs) => {
 		setEndDate(date);
-	}
+	};
 	
 	const onSave = () => {
 		if (startDate && endDate) {
