@@ -49,7 +49,6 @@
 	"Add card": "Add card",
 	"Nothing is planned": "Nothing is planned",
 
-	"Login": "Login",
 	"sign in": "sign in",
 	"Login is required field": "Login is required field",
 	"Login at least 6 characters long": "Login at least 6 characters long",
@@ -59,6 +58,5 @@
 	"Password is required field": "Password is required field",
 	"Password at least 6 characters long": "Password is required field",
 	"User with such email already exist": "User with such email already exist",
-	"Register": "Register",
 	"Wrong password or email": "Wrong password or email"
 }

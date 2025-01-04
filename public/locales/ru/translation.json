@@ -48,7 +48,6 @@
 	"Add card": "Добавить карточку",
 	"Nothing is planned": "Ничего не запланировано",
 
-	"Login": "Логин",
 	"sign in": "войти",
 	"Login is required field": "Логин – обязательное поле",
 	"Login at least 6 characters long": "Длина логина не менее 6 символов",
@@ -58,6 +57,5 @@
 	"Password is required field": "Password - обязательное поле",
 	"Password at least 6 characters long": "Длина пароля не менее 6 символов",
 	"User with such email already exist": "Пользователь с такой почтой уже существует",
-	"Register": "Регистрация",
 	"Wrong password or email": "Неверная почта или пароль"
 }
