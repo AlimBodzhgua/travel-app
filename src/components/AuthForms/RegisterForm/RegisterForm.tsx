@@ -10,6 +10,8 @@ import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
 import { AppLink, AppLinkSize } from 'components/UI/AppLink/AppLink';
 import { RouteNames } from 'router/routes';
 import classes from '../auth.module.css';
+import { AppLink, AppLinkSize } from 'components/UI/AppLink/AppLink';
+import { RouteNames } from 'router/routes';
 
 interface IFormInput {
 	login: string;

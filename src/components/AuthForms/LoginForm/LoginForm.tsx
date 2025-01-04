@@ -11,6 +11,8 @@ import { useTranslation } from 'react-i18next';
 import { AppLink } from 'components/UI/AppLink/AppLink';
 import { RouteNames } from 'router/routes';
 import classes from '../auth.module.css';
+import { AppLink } from 'components/UI/AppLink/AppLink';
+import { RouteNames } from 'router/routes';
 
 
 interface IFormInput {
