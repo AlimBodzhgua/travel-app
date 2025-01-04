@@ -1,4 +1,4 @@
-import { FC, useState, useRef, useEffect, memo } from 'react';
+import { FC, useState, memo } from 'react';
 import { IBacklog } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
