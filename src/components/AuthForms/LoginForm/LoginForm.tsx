@@ -11,9 +11,6 @@ import { useTranslation } from 'react-i18next';
 import { AppLink } from 'components/UI/AppLink/AppLink';
 import { RouteNames } from 'router/routes';
 import classes from '../auth.module.css';
-import { AppLink } from 'components/UI/AppLink/AppLink';
-import { RouteNames } from 'router/routes';
-
 
 interface IFormInput {
 	email: string;
@@ -31,21 +28,22 @@ export const LoginForm: FC = memo(() => {
 	} = useForm<IFormInput>();
 	const navigate = useNavigate();
 
-	const onSubmit: SubmitHandler<IUserLogin> = (e) => {
-		dispatch(loginUser(e)).then(({meta}) => {
-			if (meta.requestStatus === 'fulfilled') {
-				navigate('/travels');
-			} else if (meta.requestStatus === 'rejected') {
-				alert(t('Wrong password or email'));
-			}
-		});
-	};
-
 	useEffect(() => {
 		return () => {
 			dispatch(userActions.clearError());
 		};
 	}, [dispatch]);
+
+
+	const onSubmit: SubmitHandler<IUserLogin> = async (e) => {
+		const { meta } = await dispatch(loginUser(e));
+		
+		if (meta.requestStatus === 'fulfilled') {
+			navigate('/travels');
+		} else if (meta.requestStatus === 'rejected') {
+			alert(t('Wrong password or email'));
+		}
+	};
 
 	return (
 		<form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
@@ -56,7 +54,7 @@ export const LoginForm: FC = memo(() => {
 				{...register('email', {
 					required: {
 						value: true,
-						message: t('Email is a required field')
+						message: t('Email is required field')
 					}
 				})}
 			/>
@@ -70,7 +68,7 @@ export const LoginForm: FC = memo(() => {
 				{...register('password', {
 					required: {
 						value: true,
-						message: t('Password is a required field')
+						message: t('Password is required field')
 					}
 				})}
 			/>

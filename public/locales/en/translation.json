@@ -51,10 +51,10 @@
 
 	"Login": "Login",
 	"sign in": "sign in",
-	"Login is a required field": "Login is a required field",
+	"Login is required field": "Login is required field",
 	"Login at least 6 characters long": "Login at least 6 characters long",
 	"Email": "Email",
-	"Email is a required field": "Email is a required field",
+	"Email is required field": "Email is required field",
 	"Password": "Password",
 	"Password is required field": "Password is required field",
 	"Password at least 6 characters long": "Password is required field",

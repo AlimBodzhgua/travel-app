@@ -7,11 +7,9 @@ import { ThreeDots } from 'react-loader-spinner';
 import { createNewUser } from 'utils/utils';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
-import { AppLink, AppLinkSize } from 'components/UI/AppLink/AppLink';
+import { AppLink } from 'components/UI/AppLink/AppLink';
 import { RouteNames } from 'router/routes';
 import classes from '../auth.module.css';
-import { AppLink, AppLinkSize } from 'components/UI/AppLink/AppLink';
-import { RouteNames } from 'router/routes';
 
 interface IFormInput {
 	login: string;
@@ -30,15 +28,13 @@ export const RegisterForm: FC = memo(() => {
 		formState: { errors }
 	} = useForm<IFormInput>();
 
-
-	const onSubmit: SubmitHandler<IFormInput> = (e) => {
+	const onSubmit: SubmitHandler<IFormInput> = async (e) => {
 		const user = createNewUser(e);
-		dispatch(registerUser(user))
-			.then(({meta}) => {
-				if (meta.requestStatus === 'fulfilled') {
-					navigate('/travels');
-				}
-			});
+		const { meta } = await dispatch(registerUser(user));
+
+		if (meta.requestStatus === 'fulfilled') {
+			navigate('/travels');
+		}
 	};
 
 	return (
@@ -50,7 +46,7 @@ export const RegisterForm: FC = memo(() => {
 				{...register('login', {
 					required: {
 						value: true,
-						message: t('Login is a required field'),
+						message: t('Login is required field'),
 					},
 					minLength: {
 						value: 6,
@@ -68,7 +64,7 @@ export const RegisterForm: FC = memo(() => {
 				{...register('email', {
 					required: {
 						value: true,
-						message: t('Email is a required field'),
+						message: t('Email is required field'),
 					}
 				})}
 			/>

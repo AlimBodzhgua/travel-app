@@ -50,10 +50,10 @@
 
 	"Login": "Логин",
 	"sign in": "войти",
-	"Login is a required field": "Логин – обязательное поле",
+	"Login is required field": "Логин – обязательное поле",
 	"Login at least 6 characters long": "Длина логина не менее 6 символов",
 	"Email": "Email",
-	"Email is a required field": "Email – обязательное поле",
+	"Email is required field": "Email – обязательное поле",
 	"Password": "Пароль",
 	"Password is required field": "Password - обязательное поле",
 	"Password at least 6 characters long": "Длина пароля не менее 6 символов",
