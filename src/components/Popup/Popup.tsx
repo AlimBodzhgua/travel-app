@@ -1,17 +1,17 @@
-import { FC, useEffect, useCallback } from 'react';
+import { FC, useEffect, useCallback, memo } from 'react';
 import classes from './popup.module.css';
 
 interface PopupProps {
-	handleCancelClick: () => void;
-	handleDeleteClick: () => void;
+	onCancel: () => void;
+	onDelete: () => void;
 }
 
-export const Popup: FC<PopupProps> = (props) => {
-	const { handleCancelClick, handleDeleteClick } = props;
+export const Popup: FC<PopupProps> = memo((props) => {
+	const { onCancel, onDelete } = props;
 
 	const onKeydown = useCallback((e: KeyboardEvent) => {
 		if (e.key === 'Escape') {
-            handleCancelClick();
+            onCancel();
         }
 	}, []);
 
@@ -19,24 +19,24 @@ export const Popup: FC<PopupProps> = (props) => {
 		window.addEventListener('keydown', onKeydown);
 
 		return () => window.removeEventListener('keydown', onKeydown);
-	}, []);
+	}, [onKeydown]);
 
 	return (
-		<div className={classes.modal}>
-			<h2 className={classes.modal__title}>Delete exactly?</h2>
+		<div className={classes.popup}>
+			<h2 className={classes.title}>Delete exactly?</h2>
 			<div>
 				All group data (including all cards in it) will be permanently deleted
 			</div>
-			<div className={classes.modal__actions}>
+			<div className={classes.actions}>
 				<button 
 					className={classes.cancel}
-					onClick={handleCancelClick}
+					onClick={onCancel}
 				>
 					Cancel
 				</button>
 				<button 
 					className={classes.submit}
-					onClick={handleDeleteClick}
+					onClick={onDelete}
 				>
 					Yes, delete
 				</button>
@@ -44,4 +44,4 @@ export const Popup: FC<PopupProps> = (props) => {
 			</div>
 		</div>
 	);
-};
+});

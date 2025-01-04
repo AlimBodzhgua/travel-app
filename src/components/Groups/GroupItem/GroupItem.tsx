@@ -21,7 +21,7 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const [showPopup, setShowPopup] = useState<boolean>(false);
 	const [editable, setEditable] = useState<boolean>(false);
-	const [value, setValue] = useState<string>('');
+	const [value, setValue] = useState<string>(group.title);
 	const dispatch = useAppDispatch();
 	const { id } = useParams<{id? : string}>();
 	const { 
@@ -37,17 +37,19 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
  		transition
 	};
 
-	useEffect(() => {
-		setValue(group.title);			
+	const onToggleEdit = () => {
+		setEditable(prev => !prev);
+	};
+
+	const onCloseFrom = () => {
+		setShowCreateForm(false);
+	};
+	
+	const onTogglePopup = useCallback(() => {
+		setShowPopup(prev => !prev);
 	}, []);
 
-	const handleEditClick = () => setEditable(!editable);
-
-	const handleDeleteClick = useCallback(() => {
-		setShowPopup(!showPopup);
-	}, [showPopup]);
-
-	const handleSaveClick = ():void => {
+	const onSave = () => {
 		dispatch(userActions.editGroup({
 			travelId: Number(id),
 			groupId: group.id,
@@ -86,28 +88,28 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 				<div className={classes.item__actions}>
 					{editable && 
 						<button 
-							onClick={handleSaveClick}
+							onClick={onSave}
 							className={classes.save}
 						>
 							&#x2714;
 						</button>
 					}
 					<button 
-						onClick={handleEditClick}
+						onClick={onToggleEdit}
 						className={classes.edit}
 					>
 						edit
 					</button>
 					<button 
-						onClick={handleDeleteClick}
+						onClick={onTogglePopup}
 						className={classes.close}
 					>
 						&#10005;
 					</button>
 					{showPopup && 
 						<Popup
-							handleCancelClick={handleDeleteClick}
-							handleDeleteClick={deleteGroup}
+							onCancel={onTogglePopup}
+							onDelete={deleteGroup}
 						/>
 					}
 				</div>
@@ -121,18 +123,19 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 					</div>
 			}
 			{showCreateForm 
-				? 
+				? (
 					<CardCreateForm 
-						setShowCreateForm={setShowCreateForm}
+						onClose={onCloseFrom}
 						groupId={group.id}
 					/>
-				:
+				) : (
 					<button 
 						onClick={() => setShowCreateForm(true)}
 						className={classes.add}
 					>
 						+ {t('Add card')}
 					</button>
+				)
 			}
 		</li>
 	);

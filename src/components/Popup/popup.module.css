@@ -1,6 +1,6 @@
 
 
-.modal {
+.popup {
 	height: 150px;
 	width: 330px;
 
@@ -21,12 +21,12 @@
 }
 
 
-.modal__title {
+.title {
 	margin-bottom: 10px;
 	font-weight: 500;
 }
 
-.modal__actions {
+.actions {
 	align-self: end;
 	display: flex;
 	justify-content: space-between;
@@ -60,7 +60,7 @@
 	border: none;
 
 	border-radius: 7px;
-	padding: 4px;
+	padding: 5px 6px;
 }
 
 .cancel:hover,

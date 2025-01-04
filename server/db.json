@@ -135,17 +135,17 @@
           "groups": [
             {
               "id": 1735917765307,
-              "title": "New group",
+              "title": "New group 1",
               "cards": [
-                {
-                  "id": 1735917790388,
-                  "title": "Card 2",
-                  "description": "Newqdsa\n"
-                },
                 {
                   "id": 1735917781631,
                   "title": "New card",
                   "description": "pla n1"
+                },
+                {
+                  "id": 1735917790388,
+                  "title": "Card 2",
+                  "description": "Newqdsa\n"
                 }
               ]
             },
