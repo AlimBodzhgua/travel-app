@@ -40,12 +40,12 @@ export const RequestItem: FC<RequestItemProps> = memo(({request, className}) => 
 	};
 
 	return (
-		<li className={classnames(classes.item, className)}>
-			<div className={classes.item__info}>
+		<li className={classnames(classes.RequestItem, className)}>
+			<div className={classes.info}>
 				<div>{request.email}</div>
 				<div>{request.login}</div>
 			</div>
-			<div className={classes.item__actions}>
+			<div className={classes.actions}>
 				<Button 
 					onClick={() => handleAddClick(request)}
 					className={classes.add}

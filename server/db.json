@@ -104,8 +104,20 @@
       "password": "$2a$10$QdXqjf/AkdwVVIT/tziqxun6/ui66BsAh2Cn8043tYp.aQHg35/mu",
       "login": "alimbo1",
       "id": 1696705696266,
-      "friends": [],
-      "friendRequests": [],
+      "friends": [
+        {
+          "id": 1736012730959,
+          "login": "alimbo4",
+          "email": "alimbo4@mail.ru"
+        }
+      ],
+      "friendRequests": [
+        {
+          "id": 1736013245590,
+          "login": "alimbo5",
+          "email": "alimbo5@mail.ru"
+        }
+      ],
       "travels": [
         {
           "id": 1735913997236,
@@ -172,6 +184,30 @@
           ]
         }
       ]
+    },
+    {
+      "email": "alimbo4@mail.ru",
+      "password": "$2a$10$MopmXZe01/CTiuSCCwzCDO4Jw0F11YEewG/nsgusbWRA.nD4ZW2JS",
+      "login": "alimbo4",
+      "id": 1736012730959,
+      "friends": [
+        {
+          "id": 1696705696266,
+          "login": "alimbo1",
+          "email": "alim@mail.ru"
+        }
+      ],
+      "friendRequests": [],
+      "travels": []
+    },
+    {
+      "email": "alimbo5@mail.ru",
+      "password": "$2a$10$aikzJzle3MZ8fZwZu95EEuhEzf5FCt9wuW8h8SWwtR69KRqpfyj7i",
+      "login": "alimbo5",
+      "id": 1736013245590,
+      "friends": [],
+      "friendRequests": [],
+      "travels": []
     }
   ]
 }
