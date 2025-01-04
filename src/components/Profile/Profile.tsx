@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, memo } from 'react';
+import { FC, useState, memo } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { useNavigate } from 'react-router-dom';
 import { userActions } from 'redux/reducers/userSlice';
@@ -10,32 +10,29 @@ import classes from './profile.module.css';
 export const Profile: FC = memo(() => {
 	const user = useAppSelector(selectUser);
 	const { t } = useTranslation();
-	const [login, setLogin] = useState<string>('');
-	const [email, setEmail] = useState<string>('');
+	const [login, setLogin] = useState<string | undefined>(user?.login);
+	const [email, setEmail] = useState<string | undefined>(user?.email);
 	const [editable, setEditable] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		if (user) {
-			setLogin(user.login);
-			setEmail(user.email);
-		}
-	}, []);
-
-	const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const onLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setLogin(e.target?.value);
 	};
 
-	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(e.target?.value);
 	};
 
-	const handleEditClick = () => setEditable(!editable);
+	const onToggleEdit = () => {
+		setEditable(prev => !prev);
+	};
 
-	const handleSaveClick = () => {
-		if (window.confirm(t('Are you sure you want to save changes?'))) {
-			if (login.length && email.length) {
+	const onSave = () => {
+		const saveConfirmed = window.confirm(t('Are you sure you want to save changes?')); 
+
+		if (saveConfirmed) {
+			if (login?.length && email?.length) {
 				if (login !== user?.login) {
 					dispatch(userActions.changeLogin(login));
 				}
@@ -47,29 +44,33 @@ export const Profile: FC = memo(() => {
 		}
 	};
 
-	const handleLogoutClick = () => {
-		dispatch(userActions.logoutUser());
-		localStorage.removeItem('user');
-		navigate('/');
+	const onLogout = () => {
+		const logoutConfirmed = window.confirm(t('Are you sure you want to logout?'));
+
+		if (logoutConfirmed) {
+			dispatch(userActions.logoutUser());
+			localStorage.removeItem('user');
+			navigate('/');
+		}
 	};
 
 	return (
 		<div className={classes.profile}>
-			<div className={classes.profile__header}>
-				<h1 className={classes.profile__title}>
+			<div className={classes.header}>
+				<h1 className={classes.title}>
 					{t('Your profile')}
 				</h1>
-				<div className={classes.profile__actions}>
+				<div className={classes.actions}>
 					{editable &&
 						<button 
-							onClick={handleSaveClick}
+							onClick={onSave}
 							className={classes.save}
 						>
 							&#x2714;
 						</button>
 					}
 					<button 
-						onClick={handleEditClick}
+						onClick={onToggleEdit}
 						className={editable ? classes.cancel : classes.edit}
 					>
 						{editable ? <>&#10005;</> : 'edit'}
@@ -77,24 +78,24 @@ export const Profile: FC = memo(() => {
 				</div>
 			</div>
 			<input 
-				disabled={editable ? false : true}
 				type='text' 
+				disabled={editable ? false : true}
 				value={login}
-				onChange={handleLoginChange}
-				className={classes.profile__item}
+				onChange={onLoginChange}
+				className={classes.input}
 			/>
 			<input 
-				disabled={editable ? false : true}
 				type='email' 
+				disabled={editable ? false : true}
 				value={email}
-				onChange={handleEmailChange}
-				className={classes.profile__item}
+				onChange={onEmailChange}
+				className={classes.input}
 			/>
 			<Button
-				className={classes.profile__btn}
+				className={classes.logout}
 				theme={ButtonTheme.BLUE}
 				size={ButtonSize.MEDIUM}				
-				onClick={handleLogoutClick}
+				onClick={onLogout}
 				square={true}
 			>
 				{t('logout')}

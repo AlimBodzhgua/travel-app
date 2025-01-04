@@ -8,7 +8,7 @@
 }
 
 
-.profile__header {
+.header {
 	align-self: center;
 	margin: 16px 0;
 	width: 100%;
@@ -18,12 +18,12 @@
 	align-self: center;
 }
 
-.profile__title {
+.title {
 
 	font-weight: 500;
 }
 
-.profile__actions {
+.actions {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -75,7 +75,7 @@
 	cursor: pointer;
 }
 
-.profile__item {
+.input {
 	align-self: center;
 
 	padding: 8px;
@@ -85,14 +85,14 @@
 	margin-bottom: 10px;
 }
 
-.profile__btn {
+.logout {
 	align-self: center;
 
 	margin-top: 10px;
 }
 
 
-.profile__btn:hover {
+.logout:hover {
 	cursor: pointer;
 }
 
