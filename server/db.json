@@ -108,15 +108,6 @@
       "friendRequests": [],
       "travels": [
         {
-          "id": 1735912980002,
-          "name": "Trip to sochi",
-          "dateStart": "2025.01.03",
-          "dateEnd": "2025.01.13",
-          "members": [],
-          "backlog": [],
-          "groups": []
-        },
-        {
           "id": 1735913997236,
           "name": "new new travel",
           "dateStart": "2025.01.09",
@@ -155,6 +146,15 @@
               "cards": []
             }
           ]
+        },
+        {
+          "id": 1735912980002,
+          "name": "Trip to sochi",
+          "dateStart": "2025.01.03",
+          "dateEnd": "2025.01.13",
+          "members": [],
+          "backlog": [],
+          "groups": []
         },
         {
           "id": 1696760869536,

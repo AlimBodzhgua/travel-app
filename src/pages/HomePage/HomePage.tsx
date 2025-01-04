@@ -7,7 +7,7 @@ import {
 	AppLinkTheme,
 	AppLinkSize,
 } from 'components/UI/AppLink/AppLink';
-import { Navbar } from 'components/Navbar/Navbar';
+import { Page } from 'components/UI/Page/Page';
 import classes from './home.module.css';
 
 
@@ -16,47 +16,48 @@ const HomePage: FC = () => {
 	const { t } = useTranslation();
 
 	return (
-		<div className={classes.container}>
-			<Navbar />
-			<div className={classes.centered}>
-				{isAuth 
-					?
-						<>
-							<AppLink
-								to={RouteNames.PROFILE}
-								size={AppLinkSize.MEDIUM}
-								theme={AppLinkTheme.PRIMARY}
-							>
-								{t('Profile')}
-							</AppLink>
-							<AppLink
-								to={RouteNames.TRAVELS}
-								size={AppLinkSize.MEDIUM}
-								theme={AppLinkTheme.PRIMARY}
-							>
-								{t('Travels')}
-							</AppLink>
-						</>
-					:
-						<>
-							<AppLink
-								to={RouteNames.REGISTER}
-								size={AppLinkSize.MEDIUM}
-								theme={AppLinkTheme.PRIMARY}
-							>
-								{t('Register')}
-							</AppLink>
-							<AppLink
-								to={RouteNames.LOGIN}
-								size={AppLinkSize.MEDIUM}
-								theme={AppLinkTheme.PRIMARY}
-							>
-								{t('Login')}
-							</AppLink>
-						</>
-				}
-			</div>
-		</div>
+		<Page>
+			{isAuth 
+				?
+					<>
+						<AppLink
+							to={RouteNames.PROFILE}
+							size={AppLinkSize.MEDIUM}
+							theme={AppLinkTheme.PRIMARY}
+							className={classes.link}
+						>
+							{t('Profile')}
+						</AppLink>
+						<AppLink
+							to={RouteNames.TRAVELS}
+							size={AppLinkSize.MEDIUM}
+							theme={AppLinkTheme.PRIMARY}
+							className={classes.link}
+						>
+							{t('Travels')}
+						</AppLink>
+					</>
+				:
+					<>
+						<AppLink
+							to={RouteNames.REGISTER}
+							size={AppLinkSize.MEDIUM}
+							theme={AppLinkTheme.PRIMARY}
+							className={classes.link}
+						>
+							{t('Register')}
+						</AppLink>
+						<AppLink
+							to={RouteNames.LOGIN}
+							size={AppLinkSize.MEDIUM}
+							theme={AppLinkTheme.PRIMARY}
+							className={classes.link}
+						>
+							{t('Login')}
+						</AppLink>
+					</>
+			}
+		</Page>
 	);
 };
 

@@ -1,0 +1,15 @@
+.Page {
+	display: flex;
+	flex-direction: column;
+	
+	margin: 100px 0;
+	height: 100%;
+}
+
+.HCentered {
+	align-items: center;
+}
+
+.VCentered {
+	justify-content: center;
+}

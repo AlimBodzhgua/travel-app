@@ -1,17 +1,13 @@
 import { FC } from 'react';
 import { Profile } from 'components/Profile/Profile';
-import { Navbar } from 'components/Navbar/Navbar';
-import classes from './profile.module.css';
+import { Page } from 'components/UI/Page/Page';
 
 
 const ProfilePage: FC = () => {
 	return (
-		<div className={classes.container}>
-			<Navbar />
-			<div className={classes.centered}>
-				<Profile />
-			</div>
-		</div>
+		<Page>
+			<Profile />
+		</Page>
 	);
 };
 

@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { useAppSelector } from 'hooks/redux';
 import { selectUser } from 'redux/selectors/selectors';
 import { useTranslation } from 'react-i18next';
-import { Navbar } from 'components/Navbar/Navbar';
 import { FriendList } from 'components/Friends';
 import { FriendRequests } from 'components/Friends';
 import classes from './friends.module.css';
@@ -12,8 +11,7 @@ const FriendsPage: FC = () => {
 	const { t } = useTranslation();
 
 	return (
-		<div className={classes.container}>
-			<Navbar />
+		<>
 			<h2 className={classes.title}>{t('Friend requests')}</h2>
 
 			{user?.friendRequests.length ? (
@@ -28,7 +26,7 @@ const FriendsPage: FC = () => {
 			) : (
 				<div className={classes.empty}>{t('You have no friends')}</div>
 			)}
-		</div>
+		</>
 	);
 };
 

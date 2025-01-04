@@ -4,7 +4,6 @@ import { useDebounce } from 'hooks/useDebounce';
 import { IPublicUser } from 'types/types';
 import { useAllUsers } from 'hooks/useAllUsers';
 import { useTranslation } from 'react-i18next';
-import { Navbar } from 'components/Navbar/Navbar';
 import { UsersList } from 'components/UsersList/UsersList';
 import classes from './users.module.css';
 
@@ -29,14 +28,13 @@ const UsersPage: FC = () => {
 	};
 
 	return (
-		<div className={classes.container}>
-			<Navbar />
+		<>
 			{errorMessage ? (
 				<h2>Error loading users, reload the page or try later</h2>
 			) : (
 				<>
 					<div className={classes.header}>
-						<h2 className={classes.title}>{t('Other users')}</h2>
+						<h2>{t('Other users')}</h2>
 						<input
 							type='text'
 							placeholder={t('search users')}
@@ -63,7 +61,7 @@ const UsersPage: FC = () => {
 					)}
 				</>
 			)}
-		</div>
+		</>
 	);
 };
 
