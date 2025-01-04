@@ -35,6 +35,9 @@
 	"Are you sure you want to logout?": "Вы уверены что хотите выйти?",
 	"Input value empty": "Пустое поле ввода",
 
+	"Don't have an account?": "Нет аккаунта?",
+	"Already have an account?": "Уже есть аккаунт?",
+
 	"Members list": "Список участников",
 	"add members": "добавить участников",
 	"close": "закрыть",

@@ -8,6 +8,8 @@ import { IUserLogin } from 'types/types';
 import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
 import { userActions } from 'redux/reducers/userSlice';
 import { useTranslation } from 'react-i18next';
+import { AppLink } from 'components/UI/AppLink/AppLink';
+import { RouteNames } from 'router/routes';
 import classes from '../auth.module.css';
 
 
@@ -73,6 +75,15 @@ export const LoginForm: FC = memo(() => {
 			{errors.password && 
 				<div className={classes.error}>{errors.password.message}</div>
 			}
+			<div className={classes.redirectInfo}>
+				<div className={classes.redirectText}>{t('Don\'t have an account?')}</div>
+				<AppLink
+					to={RouteNames.REGISTER}
+					className={classes.redirectLink}
+				>
+					{t('Register')}
+				</AppLink>
+			</div>
 			<Button
 				type='submit'
 				className={classes.btn}

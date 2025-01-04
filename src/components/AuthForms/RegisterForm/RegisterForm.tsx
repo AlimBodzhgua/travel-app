@@ -7,6 +7,8 @@ import { ThreeDots } from 'react-loader-spinner';
 import { createNewUser } from 'utils/utils';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
+import { AppLink, AppLinkSize } from 'components/UI/AppLink/AppLink';
+import { RouteNames } from 'router/routes';
 import classes from '../auth.module.css';
 
 interface IFormInput {
@@ -92,6 +94,15 @@ export const RegisterForm: FC = memo(() => {
 			{errorMessage &&
 				<div className={classes.error}>{t('User with such email already exist')}</div>
 			}
+			<div className={classes.redirectInfo}>
+				<div className={classes.redirectText}>{t('Already have an account?')}</div>
+				<AppLink
+					to={RouteNames.LOGIN}
+					className={classes.redirectLink}
+				>
+					{t('Login')}
+				</AppLink>
+			</div>
 			<Button
 				type='submit'
 				className={classes.btn}
