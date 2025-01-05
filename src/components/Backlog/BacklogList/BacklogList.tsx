@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BacklogCreateForm } from 'components/CreateForms';
 import { SortableList } from 'lib/components';
+import { ReactComponent as EmptyBox } from 'assets/icons/empty-box.svg';
+import { DragEndEvent } from '@dnd-kit/core';
 import classnames from 'classnames';
 
 import { BacklogItem } from '../BacklogItem/BacklogItem';
@@ -22,44 +24,48 @@ export const BacklogList: FC<BacklogListProps> = memo(({ className }) => {
 	const backlogs = useAppSelector(state => selectBacklogsByTravelId(state, Number(id)));
 	const dispatch = useAppDispatch();
 
-	const handleClick = () => setShowCreateForm(true);
+	const onShowFormForm = () => {
+		setShowCreateForm(true);
+	};
 
-	const handleDragEnd = (e: { active: any; over: any; }) => {
-		const {active, over} = e;
-		if (active.id === over.id) {
-			return;
+	const onDragEnd = (e: DragEndEvent) => {
+		const { active, over } = e;
+		if (active.id !== over?.id) {
+			dispatch(userActions.moveBacklogs({
+				travelId: Number(id),
+				activeId: Number(active.id),
+				overId: Number(over!.id),
+			}));
 		}
-		dispatch(userActions.moveBacklogs({
-			travelId: Number(id),
-			activeId: active.id,
-			overId: over.id,
-		}));
 	};
 
 
 	return (
 		<div className={classnames(classes.backlog, className)}>
-			<h2 className={classes.backlog__title}>Backlog</h2>
+			<h2 className={classes.title}>Backlog</h2>
 
-			<SortableList
-				onDragEnd={handleDragEnd}
-				items={backlogs}
-			>
-				<ul className={classes.backlog__list}>
-					{backlogs.map((backlog) => (
-						<BacklogItem key={backlog.id} backlog={backlog} />
-					))}
-				</ul>
-			</SortableList>
-			
+			{backlogs.length ? (
+				<SortableList onDragEnd={onDragEnd} items={backlogs}>
+					<ul className={classes.list}>
+						{backlogs.map((backlog) => (
+							<BacklogItem key={backlog.id} backlog={backlog} />
+						))}
+					</ul>
+				</SortableList>
+			) : (
+				!showCreateForm && (
+					<div className={classes.emptyMsg}>
+						<EmptyBox className={classes.boxIcon} />
+						<h4>No planned tasks</h4>
+					</div>
+				)
+			)}
+
 			{showCreateForm ? (
 				<BacklogCreateForm setShowCreateForm={setShowCreateForm} />
 			) : (
-				<div className={classes.backlog__footer}>
-					<button
-						onClick={handleClick}
-						className={classes.add}
-					>
+				<div className={classes.footer}>
+					<button onClick={onShowFormForm} className={classes.addBtn}>
 						+ {t('Add card')}
 					</button>
 				</div>

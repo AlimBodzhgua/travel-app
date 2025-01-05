@@ -9,26 +9,39 @@
 	height: fit-content;
 }
 
-.backlog__title {
+.title {
 	font-weight: 500;
 }
 
-.backlog__list {
+.list {
 	width: 100%;
 	margin: 15px 0;
 }
 
-.backlog__footer {
+.footer {
 	text-align: right;
 }
 
-.add {
+.addBtn {
 	border: none;
 	background: none;
 	font-weight: 700;
 }
 
-.add:hover {
+.addBtn:hover {
 	cursor: pointer;
 }
 
+.emptyMsg {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+
+	margin: 8px 0;
+}
+
+.boxIcon {
+	height: 2rem;
+	width: 2rem;
+}
