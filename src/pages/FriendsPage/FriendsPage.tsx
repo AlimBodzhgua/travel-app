@@ -13,19 +13,10 @@ const FriendsPage: FC = () => {
 	return (
 		<>
 			<h2 className={classes.title}>{t('Friend requests')}</h2>
-
-			{user?.friendRequests.length ? (
-				<FriendRequests friendRequests={user.friendRequests} />
-			) : (
-				<div className={classes.empty}>{t('You have no friend requests')}</div>
-			)}
-
+			<FriendRequests friendRequests={user!.friendRequests} />
+			
 			<h2 className={classes.title}>{t('Friend list')}</h2>
-			{user?.friends.length ? (
-				<FriendList friends={user.friends} />
-			) : (
-				<div className={classes.empty}>{t('You have no friends')}</div>
-			)}
+			<FriendList friends={user!.friends} />
 		</>
 	);
 };

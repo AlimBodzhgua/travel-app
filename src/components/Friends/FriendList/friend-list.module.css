@@ -32,3 +32,18 @@
 .delete:hover {
 	border-radius: 5px;
 }
+
+.emptyMsg {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	
+	margin-bottom: 14px;
+	color: #14b5f5;
+}
+
+.icon {
+	height: 5rem;
+	fill: #c8d1d3;
+}
