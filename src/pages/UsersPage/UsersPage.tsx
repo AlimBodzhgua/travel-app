@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 import { useDebounce } from 'hooks/useDebounce';
 import { IPublicUser } from 'types/types';
@@ -6,6 +6,9 @@ import { useAllUsers } from 'hooks/useAllUsers';
 import { useTranslation } from 'react-i18next';
 import { UsersList } from 'components/UsersList/UsersList';
 import classes from './users.module.css';
+import { ReactComponent as SearchIcon} from 'assets/icons/search.svg';
+import { Input } from 'components/UI/Input/Input';
+import { Hotkey } from 'components/UI/Hotkey/Hotkey';
 
 const UsersPage: FC = () => {
 	const [users, isLoading, errorMessage] = useAllUsers();
@@ -13,6 +16,25 @@ const UsersPage: FC = () => {
 	const [searchQuery, setSearchQuery] = useState<string>('');
 	const { t } = useTranslation(); 
 	const debouncedValue = useDebounce(searchQuery, 500);
+	const inputRef = useRef<HTMLInputElement | null>(null);
+
+	const onHotkeyPress = useCallback((e: KeyboardEvent) => {
+		if (e.altKey === true && e.key === 'Enter') {
+			if (document.activeElement === inputRef.current) {
+				inputRef.current?.blur();
+			} else {
+				inputRef.current?.focus();
+			}
+		} else if (e.key === 'Escape') {
+			inputRef.current?.blur();
+		}
+	}, []);
+
+	useEffect(() => {
+		window.addEventListener('keydown', onHotkeyPress);
+
+		return () => window.removeEventListener('keydown', onHotkeyPress);
+	}, [onHotkeyPress]);
 
 	useEffect(() => {
 		const result = users.filter((user) => {
@@ -23,7 +45,7 @@ const UsersPage: FC = () => {
 		setSearchedUsers(result);
 	}, [debouncedValue, users]);
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
+	const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
 		setSearchQuery(e.target.value);
 	};
 
@@ -35,12 +57,17 @@ const UsersPage: FC = () => {
 				<>
 					<div className={classes.header}>
 						<h2>{t('Other users')}</h2>
-						<input
-							type='text'
-							placeholder={t('search users')}
-							value={searchQuery}
-							onChange={handleChange}
+						<Input
+							addonBefore={<SearchIcon className={classes.searchIcon} />}
+							addonAfter={
+								<div className={classes.hotkeys}>
+									<Hotkey>alt</Hotkey>+<Hotkey>enter</Hotkey>
+								</div>
+							}
+							placeholder='Search users'
 							className={classes.search}
+							onChange={onSearchChange}
+							ref={inputRef}
 						/>
 					</div>
 					{users.length ? (
