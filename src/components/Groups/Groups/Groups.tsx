@@ -46,11 +46,12 @@ export const Groups: FC = memo(() => {
 					))}
 				</ul>
 			</SortableList>
+
 			{showCreateForm ? (
 				<GroupCreateForm setShowCreateForm={setShowCreateForm} />
 			) : (
 				<button
-					className={classes.add}
+					className={classes.addBtn}
 					onClick={onShowForm}
 				>
 					+ {t('Add group')}
