@@ -28,5 +28,5 @@
 
 .addBtn:hover {
 	cursor: pointer;
-	color: #D3D3D3;
+	color: var(--color-grey);
 }
