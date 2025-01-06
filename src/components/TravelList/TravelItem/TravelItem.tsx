@@ -30,6 +30,10 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 	const onEndDateChange = (date: Dayjs) => {
 		setEndDate(date);
 	};
+
+	const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setValue(e.target.value);
+	}
 	
 	const onSave = () => {
 		if (startDate && endDate) {
@@ -55,31 +59,33 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 		<SortableItem id={travel.id}>
 			<li className={
 				location.pathname === `/travels/${travel.id}` 
-					? classes.list__item_details
-					: classes.list__item
+					? classes.TravelItemDetails
+					: classes.TravelItem
 				}
 			>
-				{editable 
-					?	<input 
-							type='text' 
-							autoFocus
-							className={classes.item__input}
-							placeholder={travel.name} 
-							value={value}
-							onChange={(e) => setValue(e.target.value)}
-					  	/>
-					: 	<div className={classes.item__title}>
-							<NavLink 
-								to={getTravelPage(travel.id)}
-								className={location.pathname === `/travels/${travel.id}` 
-									? classes.item__link_details
-									: classes.item__link
-								}
-							>
-								{travel.name}
-							</NavLink>
-					  	</div>
-				}
+				{editable ? (
+					<input
+						type='text'
+						autoFocus
+						className={classes.input}
+						placeholder={travel.name}
+						value={value}
+						onChange={onChangeValue}
+					/>
+				) : (
+					<div className={classes.title}>
+						<NavLink
+							to={getTravelPage(travel.id)}
+							className={
+								location.pathname === `/travels/${travel.id}`
+									? classes.linkDetails
+									: classes.link
+							}
+						>
+							{travel.name}
+						</NavLink>
+					</div>
+				)}
 				<DateRangePicker 
 					startDate={startDate}
 					onStartDateChange={onStartDateChange}
@@ -89,25 +95,16 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 					labelEnd='travel end date'
 					disabled={editable ? false : true}
 				/>
-				<div className={classes.item__actions}>
+				<div className={classes.actions}>
 					{editable &&
-						<button 
-					  		onClick={onSave}
-							className={classes.save}
-						>
+						<button onClick={onSave} className={classes.saveBtn}>
 							&#x2714;
 						</button>
 					}
-					<button 
-						className={classes.edit} 
-						onClick={onToggleEdit}
-					>
+					<button onClick={onToggleEdit} className={classes.editBtn}>
 						edit
 					</button>
-					<button 
-						className={classes.delete} 
-						onClick={onDelete}
-					>
+					<button onClick={onDelete} className={classes.deleteBtn}>
 						delete
 					</button>
 				</div>
