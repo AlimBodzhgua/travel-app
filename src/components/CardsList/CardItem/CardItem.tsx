@@ -8,8 +8,8 @@ import classes from './CardItem.module.css';
 
 interface CardItemProps {
 	card: ICard;
-	groupId: number;
-	travelId: number;
+	groupId: string;
+	travelId: string;
 	className?: string;
 }
 

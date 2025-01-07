@@ -56,7 +56,7 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 
 	const onSave = () => {
 		dispatch(userActions.editGroup({
-			travelId: Number(id),
+			travelId: id!,
 			groupId: group.id,
 			value
 		}));
@@ -65,7 +65,7 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 
 	const deleteGroup = useCallback(() => {
 		dispatch(userActions.deleteGroup({
-			travelId: Number(id),
+			travelId: id!,
 			groupId: group.id
 		}));
 	}, [dispatch]);
@@ -112,7 +112,7 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 				</div>
 			</div>
 			{group?.cards.length ? (
-				<CardsList groupId={group.id} travelId={Number(id)} />
+				<CardsList groupId={group.id} travelId={id!} />
 			) : (!showCreateForm && (
 					<div className={classes.emptyMsg}>
 						<NoteIcon className={classes.icon} />

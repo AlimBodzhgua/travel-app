@@ -28,14 +28,9 @@ export const createNewUser =
 };
 
 
-export const createNewTravel = (
-	id: number, 
-	value: string, 
-	startDate: Dayjs, 
-	endDate: Dayjs
-): ITravel => {
+export const createNewTravel = (value: string, startDate: Dayjs, endDate: Dayjs): ITravel => {
 	return { 
-		id: id,
+		id: crypto.randomUUID(),
 		name: value,
 		dateStart: startDate.format('YYYY.MM.DD'),
 		dateEnd: endDate.format('YYYY.MM.DD'),
@@ -46,32 +41,32 @@ export const createNewTravel = (
 };
 
 
-export const createNewGroup = (title: string):IGroup => {
-	return {id: Date.now(), title, cards: []};
+export const createNewGroup = (title: string): IGroup => {
+	return { id: crypto.randomUUID(), title, cards: [] };
 };
 
 
 export const createNewCard = (title: string, description: string): ICard => {
-	return {id: Date.now(), title, description};
+	return { id: crypto.randomUUID(), title, description };
 };
 
 
-export const saveUserToLocalStorage = (user: IUser):void => {
+export const saveUserToLocalStorage = (user: IUser): void => {
 	localStorage.setItem('user', JSON.stringify(user));
 };
 
 
-export const isUserLoggedIn = ():boolean => {
+export const isUserLoggedIn = (): boolean => {
 	return localStorage.hasOwnProperty('user');
 };
 
 
-export const modifyUserResponseObject = (data: IUserResponse):IUser => {
+export const modifyUserResponseObject = (data: IUserResponse): IUser => {
 	return {...data.user, password: data.accessToken};
 };
 
 
-export const stringToDayjsObject = (date: string):Dayjs => {
+export const stringToDayjsObject = (date: string): Dayjs => {
 	const jsDateObj = dayjs(date).toDate();
 	return dayjs(jsDateObj);
 };

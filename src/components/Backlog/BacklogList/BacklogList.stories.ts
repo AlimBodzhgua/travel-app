@@ -27,7 +27,7 @@ const authData = {
 	password: '',
 	travels: [
 		{
-			id: 1696690304858,
+			id: '1696690304858',
 			name: 'travel to Sochi',
 			dateStart: '2023.10.07',
 			dateEnd: '2023.10.07',

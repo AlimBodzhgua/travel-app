@@ -29,14 +29,14 @@ export const BacklogItem: FC<BacklogItemProps> = memo((props) => {
 
 	const onDelete = () => {
 		dispatch(userActions.deleteBacklog({
-			travelId: Number(id), 
+			travelId: id!, 
 			backlogId: backlog.id,
 		}));
 	};
 
 	const onSave = () => {
 		dispatch(userActions.editBacklog({
-			travelId: Number(id),
+			travelId: id!,
 			backlogId: backlog.id,
 			value: value,
 		}));

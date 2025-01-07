@@ -27,7 +27,7 @@ export const GroupCreateForm: FC<GroupCreateFormProps> = memo((props) => {
 	const onSave = useCallback(() => {
 		if (value.length) {
 			const group = createNewGroup(value);
-			dispatch(userActions.addGroup({ id: Number(id), group }));
+			dispatch(userActions.addGroup({ travelId: id!, group }));
 			onCancel();
 		} else alert('Empty input value');
 	}, [onCancel, dispatch, value]);

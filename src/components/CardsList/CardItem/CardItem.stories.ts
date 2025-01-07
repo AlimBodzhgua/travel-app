@@ -19,11 +19,11 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	args: {
 		card: {
-			id: 1,
+			id: '1',
 			title: 'card title',
 			description: 'lorem ipsum dollar set amet',
 		},
-		groupId: 1,
-		travelId: 1,
+		groupId: '1',
+		travelId: '1',
 	},
 };

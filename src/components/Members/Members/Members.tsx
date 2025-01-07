@@ -17,7 +17,7 @@ export const Members: FC = memo(() => {
 	const { t } = useTranslation();
 	const [showAddSection, setShowAddSection] = useState<boolean>(false);
 	const [activeItem, setActiveItem] = useState<IFriend | null>(null);
-	const members = useAppSelector(state => selectMembersByTravelId(state, Number(id)));
+	const members = useAppSelector(state => selectMembersByTravelId(state, id!));
 	const dispatch = useAppDispatch();
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
@@ -36,11 +36,8 @@ export const Members: FC = memo(() => {
 
 	const handleDragEnd = (e: DragEndEvent):void => {
 		if (e.over) {
-			const item:IFriend = e.active.data.current?.friend;
-			dispatch(userActions.addMember({
-				id: Number(id),
-				member: item
-			}));
+			const item: IFriend = e.active.data.current?.friend;
+			dispatch(userActions.addMember({ travelId: id!, member: item }));
 		}
 		setActiveItem(null);
 	};

@@ -8,7 +8,6 @@ import dayjs, { Dayjs } from 'dayjs';
 import classes from './travel-create.module.css';
 
 interface TravelCreateFormProps {
-	//setShowCreateForm?: React.Dispatch<React.SetStateAction<boolean>>;
 	onCloseForm: () => void;
 }
 
@@ -18,8 +17,6 @@ export const TravelCreateForm: FC<TravelCreateFormProps> = memo((props) => {
 	const [endDate, setEndDate] = useState<Dayjs | null>(dayjs());
 	const [value, setValue] = useState<string>('');
 	const dispatch = useAppDispatch();
-
-	//const handleCancelClick = () => setShowCreateForm?.(false);
 
 	const onStartDateChange = (date: Dayjs) => {
 		setStartDate(date);
@@ -32,12 +29,10 @@ export const TravelCreateForm: FC<TravelCreateFormProps> = memo((props) => {
 	const handleSaveClick = () => { 	
 		if (startDate !== null && endDate !== null) {
 			if (value.length) {
-				const id: number = Date.now();
-				const travel = createNewTravel(id, value, startDate, endDate);
+				const travel = createNewTravel(value, startDate, endDate);
 				dispatch(userActions.addTravel(travel));
 			} else alert('Input value can not be empty');
 		}
-		//setShowCreateForm?.(false);
 		onCloseForm();
 	};
 

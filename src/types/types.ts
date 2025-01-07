@@ -13,7 +13,7 @@ export type IFriend = Pick<IUser, 'id' | 'login' | 'email'>;
 export type IPublicUser = Omit<IUser, 'password'>;
 
 export interface ITravel {
-	id: number;
+	id: string;
 	name: string;
 	dateStart: string;
 	dateEnd: string;
@@ -28,13 +28,13 @@ export interface IBacklog {
 }
 
 export interface IGroup {
-	id: number;
+	id: string;
 	title: string;
 	cards:	ICard[];
 }
 
 export interface ICard {
-	id: number;
+	id: string;
 	title: string;
 	description: string;
 }

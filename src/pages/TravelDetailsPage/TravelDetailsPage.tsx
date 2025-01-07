@@ -10,7 +10,7 @@ import classes from './travel-details.module.css';
 
 const TravelDetailsPage: FC = () => {
 	const { id } = useParams<{id? : string}>();
-	const travel = useAppSelector(state => selectTravelById(state, Number(id)));
+	const travel = useAppSelector(state => selectTravelById(state, id!));
 
 	return (
 		<>

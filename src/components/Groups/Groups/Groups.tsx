@@ -13,10 +13,10 @@ import classes from './groups.module.css';
 
 export const Groups: FC = memo(() => {
 	const { t } = useTranslation();
-	const { id } = useParams<{id? : string}>();
+	const { id } = useParams<{ id? : string }>();
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
-	const groups = useAppSelector(state => selectGroupsByTravelId(state, Number(id)));
+	const groups = useAppSelector(state => selectGroupsByTravelId(state, id!));
 
 	const onToggleShowForm = useCallback(() => {
 		setShowCreateForm(prev => !prev);
@@ -27,9 +27,9 @@ export const Groups: FC = memo(() => {
 
 		if (active.id !== over!.id) {
 			dispatch(userActions.moveGroups({
-				travelId: Number(id),
-				activeId: Number(active.id),
-				overId: Number(over!.id),
+				travelId: id!,
+				activeId: String(active.id),
+				overId: String(over!.id),
 			}));
 		}
 	};

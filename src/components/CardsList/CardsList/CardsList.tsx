@@ -7,11 +7,12 @@ import { CardItem } from '../CardItem/CardItem';
 import classes from './cards.module.css';
 
 interface CardsListProps {
-	travelId: number;
-	groupId: number;
+	travelId: string;
+	groupId: string;
 }
 
-export const CardsList:FC<CardsListProps> = memo(({travelId, groupId}) => {
+export const CardsList:FC<CardsListProps> = memo((props) => {
+	const { travelId, groupId } = props;
 	const cards = useAppSelector(state => selectCards(state, travelId, groupId));
 	const dispatch = useAppDispatch();
 

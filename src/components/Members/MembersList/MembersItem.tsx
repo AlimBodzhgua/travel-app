@@ -16,10 +16,7 @@ export const MembersItem: FC<MembersItemProps> = memo(({member}) => {
 	const dispatch = useAppDispatch();
 
 	const handleClick = ():void => {
-		dispatch(userActions.deleteMember({
-			travelId: Number(id),
-			memberId: member.id
-		}));
+		dispatch(userActions.deleteMember({ travelId: id!, memberId: member.id }));
 	};
 
 	return (

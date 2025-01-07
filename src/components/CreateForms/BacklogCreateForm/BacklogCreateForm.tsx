@@ -40,7 +40,7 @@ export const BacklogCreateForm: FC<BacklogCreateFormProps> = memo(({ onClose }) 
 	const onSave = () => {
 		if (value.length) {
 			const backlog = { id: crypto.randomUUID(), name: value };
-			dispatch(userActions.addBacklog({ id: id!, backlog }));
+			dispatch(userActions.addBacklog({ travelId: id!, backlog }));
 			onClose();
 		} else alert('Input value is empty');
 	};

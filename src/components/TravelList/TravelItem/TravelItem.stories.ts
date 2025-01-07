@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	args: {
 		travel: {
-			id: 1696690300138,
+			id: '1696690300138',
 			name: 'travel to Moscow',
 			dateStart: '2023.10.07',
 			dateEnd: '2023.10.07',

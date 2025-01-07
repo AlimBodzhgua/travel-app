@@ -6,7 +6,7 @@ import { createNewCard } from 'utils/utils';
 import classes from './card-create.module.css';
 
 interface CardCreateFormProps {
-	groupId: number;
+	groupId: string;
 	onClose: () => void
 }
 
@@ -22,7 +22,7 @@ export const CardCreateForm: FC<CardCreateFormProps> = memo((props) => {
 		if (text.length && title.length) {
 			const card = createNewCard(title, text);
 			dispatch(userActions.addCard({
-				travelId: Number(id),
+				travelId: id!,
 				groupId,
 				card
 			}));

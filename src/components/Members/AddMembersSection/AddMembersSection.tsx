@@ -11,7 +11,7 @@ import classes from './member-add.module.css';
 export const AddMembersSection: FC = memo(() => {
 	const { t } = useTranslation();
 	const { id } = useParams<{id? : string}>();
-	const members = useAppSelector(state => selectMembersByTravelId(state, Number(id)));
+	const members = useAppSelector(state => selectMembersByTravelId(state, id!));
 	const user = useAppSelector(selectUser);
 	const [filteredFriends, setFilteredFriends] = useState<IFriend[]>([]);
 

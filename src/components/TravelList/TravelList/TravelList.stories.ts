@@ -18,7 +18,7 @@ export const Default: Story = {
 	args: {
 		travels: [
 			{
-				id: 1696690300138,
+				id: '1696690300138',
 				name: 'travel to Moscow',
 				dateStart: '2023.10.07',
 				dateEnd: '2023.10.07',
@@ -27,7 +27,7 @@ export const Default: Story = {
 				groups: [],
 			},
 			{
-				id: 1696690300138,
+				id: '1696690300138',
 				name: 'travel to Sochi',
 				dateStart: '2023.10.07',
 				dateEnd: '2023.10.07',

@@ -21,7 +21,7 @@ export const BacklogList: FC<BacklogListProps> = memo(({ className }) => {
 	const { t } = useTranslation();
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const { id } = useParams<{id? : string}>();
-	const backlogs = useAppSelector(state => selectBacklogsByTravelId(state, Number(id)));
+	const backlogs = useAppSelector(state => selectBacklogsByTravelId(state, id!));
 	const dispatch = useAppDispatch();
 
 	const onToggleShowFormForm = useCallback(() => {
@@ -32,7 +32,7 @@ export const BacklogList: FC<BacklogListProps> = memo(({ className }) => {
 		const { active, over } = e;
 		if (active.id !== over?.id) {
 			dispatch(userActions.moveBacklogs({
-				travelId: Number(id),
+				travelId: id!,
 				activeId: String(active.id),
 				overId: String(over!.id),
 			}));

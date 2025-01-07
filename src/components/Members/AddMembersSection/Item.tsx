@@ -33,10 +33,7 @@ export const Item: FC<ItemProps> = memo(({friend}) => {
 	};	
 
 	const handleClick = ():void => {
-		dispatch(userActions.addMember({
-			id: Number(id), 
-			member: friend
-		}));
+		dispatch(userActions.addMember({ travelId: id!, member: friend }));
 	};
 
 	return (
