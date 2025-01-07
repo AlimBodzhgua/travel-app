@@ -18,8 +18,8 @@ export const Groups: FC = memo(() => {
 	const dispatch = useAppDispatch();
 	const groups = useAppSelector(state => selectGroupsByTravelId(state, Number(id)));
 
-	const onShowForm = () => {
-		setShowCreateForm(true);
+	const onToggleShowForm = () => {
+		setShowCreateForm(prev => !prev);
 	}
 
 	const handleDragEnd = (e: DragEndEvent):void => {
@@ -36,6 +36,7 @@ export const Groups: FC = memo(() => {
 
 	return (
 		<div className={classes.groups}>
+			
 			<SortableList
 				onDragEnd={handleDragEnd}
 				items={groups}
@@ -48,11 +49,11 @@ export const Groups: FC = memo(() => {
 			</SortableList>
 
 			{showCreateForm ? (
-				<GroupCreateForm setShowCreateForm={setShowCreateForm} />
+				<GroupCreateForm onCancel={onToggleShowForm} />
 			) : (
 				<button
 					className={classes.addBtn}
-					onClick={onShowForm}
+					onClick={onToggleShowForm}
 				>
 					+ {t('Add group')}
 				</button>
