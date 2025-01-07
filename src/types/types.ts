@@ -23,7 +23,7 @@ export interface ITravel {
 }
 
 export interface IBacklog {
-	id: number;
+	id: string;
 	name: string;
 }
 

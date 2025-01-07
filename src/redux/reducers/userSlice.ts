@@ -112,7 +112,7 @@ export const userSlice = createSlice({
 				}
 			});
 		},
-		deleteBacklog(state, action: PayloadAction<{travelId: number, backlogId: number}>) {
+		deleteBacklog(state, action: PayloadAction<{ travelId: number, backlogId: string }>) {
 			state.authData?.travels.forEach((travel) => {
 				if (travel.id === action.payload.travelId) {
 					travel.backlog.splice(travel.backlog.findIndex((item) => 
@@ -123,7 +123,7 @@ export const userSlice = createSlice({
 		},
 		editBacklog(state, action: PayloadAction<{
 			travelId: number, 
-			backlogId: number, 
+			backlogId: string, 
 			value: string}>
 		) {
 			state.authData?.travels.forEach((travel) => {
@@ -136,7 +136,11 @@ export const userSlice = createSlice({
 				}
 			});
 		},
-		moveBacklogs(state, action: PayloadAction<{travelId: number, activeId: number ,overId: number}>) {
+		moveBacklogs(state, action: PayloadAction<{
+			travelId: number,
+			activeId: string,
+			overId: string,
+		}>) {
 			state.authData?.travels.forEach((travel) => {
 				if (travel.id === action.payload.travelId) {
 					const activeIndex = travel.backlog.findIndex((log) => {
