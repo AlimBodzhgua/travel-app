@@ -6,43 +6,41 @@
 	display: flex;
 	justify-content: space-between;
 
-	background-color: lightblue;
+	background-color: #14b5f5;
 	border-radius: 5px;
 }
 
-.form__input {
-	width: 90%;
-	padding: 7px;
-	font-size: 18px;
+.input {
+	width: 100%;
 }
 
-.form__actions {
-	width: 10%;
+.actions {
 	margin-left: 2px;
 
 	display: flex;
 	justify-content: space-evenly;
+	gap: 4px;
 }
 
-.save,
-.cancel {
+.saveBtn,
+.cancelBtn {
 	background: none;
 	border: none;
 }
 
-.cancel {
+.cancelBtn {
 	font-weight: 900;
 	
 	padding: 2px 4px;
-	font-size: 19px;
+	font-size: 15px;
 }
 
-.save {
+.saveBtn {
 	padding: 2px 4px;
 	font-size: 19px;
 }
 
-.save:hover,
-.cancel:hover {
+.saveBtn:hover,
+.cancelBtn:hover {
 	cursor: pointer;
 }

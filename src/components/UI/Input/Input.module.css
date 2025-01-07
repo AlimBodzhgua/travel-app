@@ -1,44 +1,35 @@
 
 .Input {
-	box-shadow: 0 0 0 1px #e0e9eb;
 	display: flex;
 	justify-content: space-between;
-	padding: 2px 0;
-	border-radius: 0.310rem;
+
+	box-shadow: 0 0 0 1px #e0e9eb;
 	transition: box-shadow .2s linear;
+
+	border-radius: 0.310rem;
+	background-color: #fff;
 	line-height: 1;
+	padding: 2px 0;
 	
 	overflow: hidden;
-	box-sizing: border-box;
 }
 
 .sm {
-	font-size: 28px;
-
-	.addon {
-		font-size: 16px;
-	}
+	font-size: 0.875rem;
 }
 
 .md {
-	font-size: 36px;
-
-	.addon {
-		font-size: 14px;
-	}
+	font-size: 1rem;
 }
 
 .lg {
-	font-size: 42px;
-
-	.addon {
-		font-size: 20px;
-	}
+	font-size: 1.125rem;
 }
 
 .InputField {
 	border: none;
 	height: inherit;
+	font-size: inherit;
 	padding: 6px 4px;
 	width: 100%;
 }
@@ -55,6 +46,7 @@
 .addon {
 	width: auto;
 	margin: 0 4px;
+	font-size: inherit;
 
 	display: flex;
 	justify-content: center;
