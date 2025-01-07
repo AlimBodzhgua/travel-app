@@ -1,4 +1,4 @@
-import { FC, useState, memo } from 'react';
+import { FC, useState, memo, useCallback } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { DragEndEvent } from '@dnd-kit/core';
 import { userActions } from 'redux/reducers/userSlice';
@@ -18,9 +18,9 @@ export const Groups: FC = memo(() => {
 	const dispatch = useAppDispatch();
 	const groups = useAppSelector(state => selectGroupsByTravelId(state, Number(id)));
 
-	const onToggleShowForm = () => {
+	const onToggleShowForm = useCallback(() => {
 		setShowCreateForm(prev => !prev);
-	}
+	}, []);
 
 	const handleDragEnd = (e: DragEndEvent):void => {
 		const { active, over } = e;
