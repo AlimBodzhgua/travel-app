@@ -1,4 +1,4 @@
-import { FC, useState, memo } from 'react';
+import { FC, useState, memo, useCallback } from 'react';
 import { useAppDispatch, useAppSelector} from 'hooks/redux';
 import { selectBacklogsByTravelId} from 'redux/selectors/selectors';
 import { userActions } from 'redux/reducers/userSlice';
@@ -24,17 +24,17 @@ export const BacklogList: FC<BacklogListProps> = memo(({ className }) => {
 	const backlogs = useAppSelector(state => selectBacklogsByTravelId(state, Number(id)));
 	const dispatch = useAppDispatch();
 
-	const onShowFormForm = () => {
-		setShowCreateForm(true);
-	};
+	const onToggleShowFormForm = useCallback(() => {
+		setShowCreateForm(prev => !prev);
+	}, []);
 
 	const onDragEnd = (e: DragEndEvent) => {
 		const { active, over } = e;
 		if (active.id !== over?.id) {
 			dispatch(userActions.moveBacklogs({
 				travelId: Number(id),
-				activeId: Number(active.id),
-				overId: Number(over!.id),
+				activeId: String(active.id),
+				overId: String(over!.id),
 			}));
 		}
 	};
@@ -62,10 +62,10 @@ export const BacklogList: FC<BacklogListProps> = memo(({ className }) => {
 			)}
 
 			{showCreateForm ? (
-				<BacklogCreateForm setShowCreateForm={setShowCreateForm} />
+				<BacklogCreateForm onClose={onToggleShowFormForm} />
 			) : (
 				<div className={classes.footer}>
-					<button onClick={onShowFormForm} className={classes.addBtn}>
+					<button onClick={onToggleShowFormForm} className={classes.addBtn}>
 						+ {t('Add card')}
 					</button>
 				</div>

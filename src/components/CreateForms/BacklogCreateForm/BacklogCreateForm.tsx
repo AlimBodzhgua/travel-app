@@ -1,57 +1,80 @@
-import { FC, useState, memo } from 'react';
+import { FC, useState, memo, useEffect, useRef } from 'react';
 import { useAppDispatch } from 'hooks/redux';
 import { useParams } from 'react-router-dom';
 import { userActions } from 'redux/reducers/userSlice';
+import { Input } from 'components/UI/Input/Input';
+import { Button, ButtonTheme } from 'components/UI/Button/Button';
+
 import classes from './backlog-create.module.css';
 
 interface BacklogCreateFormProps {
-	setShowCreateForm?: React.Dispatch<React.SetStateAction<boolean>>;
+	onClose: () => void;
 }
 
-export const BacklogCreateForm: FC<BacklogCreateFormProps> = memo(({setShowCreateForm}) => {
+export const BacklogCreateForm: FC<BacklogCreateFormProps> = memo(({ onClose }) => {
+	const { id } = useParams<{ id?: string }>();
 	const [value, setValue] = useState<string>('');
-	const { id } = useParams<{id?: string}>();
 	const dispatch = useAppDispatch();
+	const inputRef = useRef<HTMLInputElement | null>(null);
 
-	const handleCloseClick = () => setShowCreateForm?.(false);
+	const onHotkeyPress = (e: KeyboardEvent) => {
+		const isFocused = inputRef.current === document.activeElement;
 
-	const handleSaveClick = () => {
-		if (typeof id !== 'undefined') {
-			if (value.length) {
-				const backlog = {id: Date.now(), name: value};
-				dispatch(userActions.addBacklog({id, backlog}));
-				setShowCreateForm?.(false);
-			} else alert('Input value is empty');
+		if (e.key === 'Enter' && isFocused) {
+			onSave();
+		} else if (e.key === 'Escape' && isFocused) {
+			onClose();
 		}
 	};
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	useEffect(() => {
+		window.addEventListener('keydown', onHotkeyPress);
+
+		return () => window.removeEventListener('keydown', onHotkeyPress);
+	}, [onHotkeyPress]);
+
+	const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
 	};
 
+	const onSave = () => {
+		if (value.length) {
+			const backlog = { id: crypto.randomUUID(), name: value };
+			dispatch(userActions.addBacklog({ id: id!, backlog }));
+			onClose();
+		} else alert('Input value is empty');
+	};
+
+
 	return (
 		<div className={classes.form}>
-			<input 
+			<Input
 				autoFocus
-				type='text'
+				className={classes.input}
 				value={value}
-				onChange={handleInputChange}
-				className={classes.form__input}
+				onChange={onChangeValue}
+				ref={inputRef}
+				type='text'
+				size='sm'
+				addonAfter={
+					<div className={classes.actions}>
+						<Button
+							className={classes.addBtn}
+							onClick={onSave}
+							theme={ButtonTheme.CLEAR}
+						>
+							&#43;
+						</Button>
+						<Button
+							className={classes.closeBtn}
+							onClick={onClose}
+							theme={ButtonTheme.CLEAR}
+						>
+							&#10005;
+						</Button>
+					</div>
+				}
 			/>
-			<div className={classes.form__actions}>
-				<button 
-					className={classes.add}
-					onClick={handleSaveClick}
-				>
-					&#43;
-				</button>
-				<button 
-					className={classes.close}
-					onClick={handleCloseClick}
-				>
-					&#10005;
-				</button>
-			</div>
 	</div>
 	);
 });
