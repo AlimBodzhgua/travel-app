@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { acceptFriendRequest } from 'redux/actions/userActions';
 import { selectUser } from 'redux/selectors/selectors';
 import { IFriend } from 'types/types';

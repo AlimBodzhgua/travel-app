@@ -1,7 +1,7 @@
 import { FC, useState, useEffect, memo, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { useTranslation } from 'react-i18next';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';

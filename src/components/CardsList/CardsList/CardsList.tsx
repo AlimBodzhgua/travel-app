@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { selectCards } from 'redux/selectors/selectors';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { SortableList } from 'lib/components';
 import { CardItem } from '../CardItem/CardItem';
 import classes from './cards.module.css';

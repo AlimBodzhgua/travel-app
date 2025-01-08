@@ -13,7 +13,7 @@ import {
 	registerUser, 
 	loginUser
 } from 'redux/actions/userActions';
-import {arrayMove} from '@dnd-kit/sortable';
+import { arrayMove } from '@dnd-kit/sortable';
 
 export interface UserSchema {
 	isLoading: boolean;

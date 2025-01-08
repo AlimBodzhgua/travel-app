@@ -1,7 +1,7 @@
 import { FC, useState, memo, useCallback } from 'react';
 import { useAppDispatch, useAppSelector} from 'hooks/redux';
 import { selectBacklogsByTravelId} from 'redux/selectors/selectors';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BacklogCreateForm } from 'components/CreateForms';

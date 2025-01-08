@@ -1,7 +1,7 @@
 import { FC, useState, useId, memo } from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from 'hooks/redux';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { createNewCard } from 'utils/utils';
 import classes from './card-create.module.css';
 

@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { useAppDispatch } from 'hooks/redux';
 import { useParams } from 'react-router-dom';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { Button } from 'components/UI/Button/Button';
 import { ReactComponent as DeleteIcon } from 'assets/icons/close.svg';
 

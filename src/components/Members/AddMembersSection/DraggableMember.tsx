@@ -3,7 +3,7 @@ import { useDraggable } from '@dnd-kit/core';
 import { useAppDispatch } from 'hooks/redux';
 import { CSS } from '@dnd-kit/utilities';
 import { useParams } from 'react-router-dom';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { Button } from 'components/UI/Button/Button';
 import type { IFriend } from 'types/types';
 

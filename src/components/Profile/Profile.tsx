@@ -1,7 +1,7 @@
 import { FC, useState, memo } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { useNavigate } from 'react-router-dom';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { selectUser } from 'redux/selectors/selectors';    
 import { useTranslation } from 'react-i18next';
 import { Button } from 'components/UI/Button/Button';

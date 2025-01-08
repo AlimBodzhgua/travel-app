@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { selectMembersByTravelId } from 'redux/selectors/selectors';
 import { IFriend } from 'types/types';
 import { DndContext, DragStartEvent, DragEndEvent } from '@dnd-kit/core';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'components/UI/Button/Button';

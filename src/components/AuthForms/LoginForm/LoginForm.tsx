@@ -6,7 +6,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { ThreeDots } from 'react-loader-spinner';
 import { IUserLogin } from 'types/types';
 import { Button } from 'components/UI/Button/Button';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { useTranslation } from 'react-i18next';
 import { AppLink } from 'components/UI/AppLink/AppLink';
 import { RouteNames } from 'router/routes';

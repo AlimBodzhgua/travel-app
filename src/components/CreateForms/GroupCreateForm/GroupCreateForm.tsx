@@ -1,7 +1,7 @@
 import { FC, useState, memo, useEffect, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { createNewGroup } from 'utils/utils';
 import { Input } from 'components/UI/Input/Input';
 import { Button } from 'components/UI/Button/Button';

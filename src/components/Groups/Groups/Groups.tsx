@@ -1,7 +1,7 @@
 import { FC, useState, memo, useCallback } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { DragEndEvent } from '@dnd-kit/core';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { useParams } from 'react-router-dom';
 import { selectGroupsByTravelId } from 'redux/selectors/selectors';
 import { useTranslation } from 'react-i18next';

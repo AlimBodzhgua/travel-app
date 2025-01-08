@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { ITravel } from 'types/types';
 import { useAppDispatch } from 'hooks/redux';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { SortableList } from 'lib/components';
 
 import { TravelItem } from '../TravelItem/TravelItem';

@@ -1,5 +1,5 @@
-import { AllUsersSchema } from '../reducers/allUsersSlice';
-import { UserSchema } from '../reducers/userSlice';
+import { AllUsersSchema } from '../slices/allUsersSlice';
+import { UserSchema } from '../slices/userSlice';
 
 export interface StateSchema {
 	user: UserSchema,

@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { useAppDispatch } from 'hooks/redux';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { ICard } from 'types/types';
 import { SortableItem } from 'lib/components';
 import classnames from 'classnames';

@@ -1,6 +1,6 @@
 import { FC, useState, memo, useEffect, useRef } from 'react';
 import { useAppDispatch } from 'hooks/redux';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { createNewTravel } from 'utils/utils';
 import { Button } from 'components/UI/Button/Button';
 import { Input } from 'components/UI/Input/Input';

@@ -1,7 +1,7 @@
 import { FC, useState, memo } from 'react';
 import { stringToDayjsObject } from 'utils/utils';
 import { NavLink, useLocation } from 'react-router-dom';
-import { userActions } from 'redux/reducers/userSlice';
+import { userActions } from 'redux/slices/userSlice';
 import { useAppDispatch } from 'hooks/redux';
 import { SortableItem } from 'lib/components';
 import { getTravelPage } from 'router/routes';
