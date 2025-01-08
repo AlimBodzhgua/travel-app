@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { useHover } from 'hooks/useHover';
 import { selectUser } from 'redux/selectors/selectors';
 import { sendFriendRequest, cancelFriendRequest } from 'redux/actions/allUsersActions';
-import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
+import { Button } from 'components/UI/Button/Button';
 import { useTranslation } from 'react-i18next';
 import classes from './users-list.module.css';
 
@@ -59,8 +59,8 @@ export const UserItem: FC<UserItemProps> = memo(({user}) => {
 				?	<Button 
 						{...hoverProps}
 						onClick={handleCancelClick}
-						theme={ButtonTheme.BLUE}
-						size={ButtonSize.SMALL}
+						theme='blue'
+						size='sm'
 						square={true}
 					>
 						{hovering
@@ -71,8 +71,8 @@ export const UserItem: FC<UserItemProps> = memo(({user}) => {
 				:   <Button 
 						{...hoverProps}
 						onClick={handleAddClick}
-						theme={ButtonTheme.BLUE}
-						size={ButtonSize.SMALL}
+						theme='blue'
+						size='sm'
 						square={true}
 					>
 						{t('add friend')}

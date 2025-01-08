@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { userActions } from 'redux/reducers/userSlice';
 import { selectUser } from 'redux/selectors/selectors';    
 import { useTranslation } from 'react-i18next';
-import { Button, ButtonTheme, ButtonSize } from 'components/UI/Button/Button';
+import { Button } from 'components/UI/Button/Button';
 import classes from './profile.module.css';
 
 export const Profile: FC = memo(() => {
@@ -93,8 +93,8 @@ export const Profile: FC = memo(() => {
 			/>
 			<Button
 				className={classes.logout}
-				theme={ButtonTheme.BLUE}
-				size={ButtonSize.MEDIUM}				
+				theme='blue'
+				size='md'			
 				onClick={onLogout}
 				square={true}
 			>

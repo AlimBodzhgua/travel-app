@@ -4,7 +4,7 @@ import { userActions } from 'redux/reducers/userSlice';
 import { acceptFriendRequest } from 'redux/actions/userActions';
 import { selectUser } from 'redux/selectors/selectors';
 import { IFriend } from 'types/types';
-import { Button, ButtonTheme } from 'components/UI/Button/Button';
+import { Button } from 'components/UI/Button/Button';
 
 import classnames from 'classnames';
 import classes from './Request.module.css';
@@ -49,14 +49,14 @@ export const RequestItem: FC<RequestItemProps> = memo(({request, className}) => 
 				<Button 
 					onClick={() => handleAddClick(request)}
 					className={classes.add}
-					theme={ButtonTheme.BLUE}
+					theme='blue'
 				>
 					add
 				</Button>
 				<Button 
 					onClick={() => handleRejectClick(request.id)}
 					className={classes.reject}
-					theme={ButtonTheme.RED}
+					theme='red'
 				>
 					reject
 				</Button>

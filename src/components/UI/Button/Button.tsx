@@ -1,23 +1,9 @@
-import {
-	FC,
-	ButtonHTMLAttributes,
-	ReactNode,
-} from 'react';
+import { FC, ButtonHTMLAttributes, ReactNode } from 'react';
 import classnames from 'classnames';
 import classes from './Button.module.css';
 
-export enum ButtonTheme {
-	PRIMARY = 'primary',
-	BLUE = 'blue',
-	CLEAR = 'clear',
-	RED = 'red',
-}
-
-export enum ButtonSize {
-	SMALL = 'small',
-	MEDIUM = 'medium',
-	LARGE = 'large',
-}
+type ButtonTheme = 'primary' | 'blue' | 'red' | 'clear';
+type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	children: ReactNode;
@@ -32,8 +18,8 @@ export const Button: FC<ButtonProps> = (props) => {
 		children,
 		className,
 		square,
-		theme = ButtonTheme.PRIMARY,
-		size = ButtonSize.MEDIUM,
+		theme = 'primary',
+		size = 'md',
 		...otherProps
 	} = props;
 

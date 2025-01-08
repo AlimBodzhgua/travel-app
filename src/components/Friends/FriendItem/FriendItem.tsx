@@ -3,7 +3,7 @@ import { IFriend } from 'types/types';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { selectUser } from 'redux/selectors/selectors';
 import { deleteFriend } from 'redux/actions/userActions';
-import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
+import { Button } from 'components/UI/Button/Button';
 import classnames from 'classnames';
 import classes from './FriendItem.module.css';
 
@@ -36,8 +36,8 @@ export const FriendItem: FC<FriendItemProps> = memo(({friend, className}) => {
 			<Button 
 				onClick={handleClick}
 				className={classes.delete}
-				theme={ButtonTheme.RED}
-				size={ButtonSize.SMALL}
+				theme='red'
+				size='sm'
 			>
 				delete
 			</Button>

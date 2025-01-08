@@ -6,7 +6,7 @@ import { registerUser } from 'redux/actions/userActions';
 import { ThreeDots } from 'react-loader-spinner';
 import { createNewUser } from 'utils/utils';
 import { useTranslation } from 'react-i18next';
-import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
+import { Button } from 'components/UI/Button/Button';
 import { AppLink } from 'components/UI/AppLink/AppLink';
 import { RouteNames } from 'router/routes';
 import classes from '../auth.module.css';
@@ -104,8 +104,8 @@ export const RegisterForm: FC = memo(() => {
 			<Button
 				type='submit'
 				className={classes.btn}
-				theme={ButtonTheme.BLUE}
-				size={ButtonSize.SMALL}
+				theme='blue'
+				size='sm'
 			>
 				{isLoading 
 					? 	<>

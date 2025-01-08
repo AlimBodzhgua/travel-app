@@ -5,7 +5,7 @@ import { loginUser } from 'redux/actions/userActions';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { ThreeDots } from 'react-loader-spinner';
 import { IUserLogin } from 'types/types';
-import { Button, ButtonSize, ButtonTheme } from 'components/UI/Button/Button';
+import { Button } from 'components/UI/Button/Button';
 import { userActions } from 'redux/reducers/userSlice';
 import { useTranslation } from 'react-i18next';
 import { AppLink } from 'components/UI/AppLink/AppLink';
@@ -87,8 +87,8 @@ export const LoginForm: FC = memo(() => {
 			<Button
 				type='submit'
 				className={classes.btn}
-				theme={ButtonTheme.BLUE}
-				size={ButtonSize.SMALL}
+				theme='blue'
+				size='sm'
 			>
 				{isLoading 
 					? 	<>

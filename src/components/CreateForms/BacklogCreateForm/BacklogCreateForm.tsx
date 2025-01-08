@@ -3,7 +3,7 @@ import { useAppDispatch } from 'hooks/redux';
 import { useParams } from 'react-router-dom';
 import { userActions } from 'redux/reducers/userSlice';
 import { Input } from 'components/UI/Input/Input';
-import { Button, ButtonTheme } from 'components/UI/Button/Button';
+import { Button } from 'components/UI/Button/Button';
 
 import classes from './backlog-create.module.css';
 
@@ -61,14 +61,14 @@ export const BacklogCreateForm: FC<BacklogCreateFormProps> = memo(({ onClose }) 
 						<Button
 							className={classes.addBtn}
 							onClick={onSave}
-							theme={ButtonTheme.CLEAR}
+							theme='clear'
 						>
 							&#43;
 						</Button>
 						<Button
 							className={classes.closeBtn}
 							onClick={onClose}
-							theme={ButtonTheme.CLEAR}
+							theme='clear'
 						>
 							&#10005;
 						</Button>

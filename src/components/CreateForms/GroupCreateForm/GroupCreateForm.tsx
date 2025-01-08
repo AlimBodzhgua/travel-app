@@ -4,7 +4,7 @@ import { useAppDispatch } from 'hooks/redux';
 import { userActions } from 'redux/reducers/userSlice';
 import { createNewGroup } from 'utils/utils';
 import { Input } from 'components/UI/Input/Input';
-import { Button, ButtonTheme } from 'components/UI/Button/Button';
+import { Button } from 'components/UI/Button/Button';
 import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg';
 
 import classes from './group-create.module.css';
@@ -63,14 +63,14 @@ export const GroupCreateForm: FC<GroupCreateFormProps> = memo((props) => {
 						<Button
 							onClick={onSave}
 							className={classes.saveBtn}
-							theme={ButtonTheme.CLEAR}
+							theme='clear'
 						>
 							<SuccessIcon className={classes.icon} />
 						</Button>
 						<Button
 							onClick={onCancel}
 							className={classes.cancelBtn}
-							theme={ButtonTheme.CLEAR}
+							theme='clear'
 						>
 							&#10005;
 						</Button>
