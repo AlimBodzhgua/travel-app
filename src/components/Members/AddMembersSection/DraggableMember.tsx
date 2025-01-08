@@ -2,18 +2,18 @@ import { FC, memo } from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { useAppDispatch } from 'hooks/redux';
 import { CSS } from '@dnd-kit/utilities';
-import { IFriend } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { userActions } from 'redux/reducers/userSlice';
 import { Button } from 'components/UI/Button/Button';
+import type { IFriend } from 'types/types';
 
 import classes from './member-add.module.css';
 
-interface ItemProps {
+interface DraggableMemberProps {
 	friend: IFriend;
 }
 
-export const Item: FC<ItemProps> = memo(({ friend }) => {
+export const DraggableMember: FC<DraggableMemberProps> = memo(({ friend }) => {
 	const dispatch = useAppDispatch();
 	const { id } = useParams<{id? : string}>();
 	const {
@@ -42,7 +42,7 @@ export const Item: FC<ItemProps> = memo(({ friend }) => {
 			{...attributes}
 			style={style}
 			ref={setNodeRef} 
-			className={classes.item}
+			className={classes.DraggableMember}
 		>
 			<div>
 				<div>{friend.email}</div>

@@ -5,7 +5,7 @@ import { removeMembersFromFriendList } from 'utils/utils';
 import { useParams } from 'react-router-dom';
 import { IFriend } from 'types/types';
 import { useTranslation } from 'react-i18next';
-import { Item } from './Item';
+import { DraggableMember } from './DraggableMember';
 import classes from './member-add.module.css';
 
 export const AddMembersSection: FC = memo(() => {
@@ -30,7 +30,7 @@ export const AddMembersSection: FC = memo(() => {
 					</h4>
 					<ul className={classes.list}>
 						{filteredFriends.map((friend) => (
-							<Item key={friend.id} friend={friend} />
+							<DraggableMember key={friend.id} friend={friend} />
 						))}
 					</ul>
 				</>

@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { DragOverlay } from '@dnd-kit/core';
 import type { IFriend } from 'types/types';
 
-import { Item } from '../AddMembersSection/Item';
+import { DraggableMember } from '../AddMembersSection/DraggableMember';
 import { DroppableMembersArea } from '../AddMembersSection/DroppableMembersArea';
 import { MembersItem } from './MembersItem';
 import classes from './members-list.module.css';
@@ -23,7 +23,7 @@ export const MembersList: FC<MembersListProps> = memo((props) => {
 			{activeItem && (
 				<>
 					<DragOverlay>
-						{!!activeItem && <Item friend={activeItem} />}
+						{!!activeItem && <DraggableMember friend={activeItem} />}
 					</DragOverlay>
 					<DroppableMembersArea />
 				</>
