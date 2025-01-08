@@ -1,9 +1,16 @@
-import { FC, useState, memo } from 'react';
+import { FC, useState, memo, useEffect, useRef } from 'react';
 import { useAppDispatch } from 'hooks/redux';
 import { userActions } from 'redux/reducers/userSlice';
 import { createNewTravel } from 'utils/utils';
+import { Button } from 'components/UI/Button/Button';
+import { Input } from 'components/UI/Input/Input';
 import DateRangePicker from 'components/UI/DateRangePicker/DateRangePicker';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
+
+import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg';
+import { ReactComponent as CloseIcon } from 'assets/icons/close.svg';
+
+import type { Dayjs } from 'dayjs'
 
 import classes from './travel-create.module.css';
 
@@ -17,6 +24,23 @@ export const TravelCreateForm: FC<TravelCreateFormProps> = memo((props) => {
 	const [endDate, setEndDate] = useState<Dayjs | null>(dayjs());
 	const [value, setValue] = useState<string>('');
 	const dispatch = useAppDispatch();
+	const inputRef = useRef<HTMLInputElement | null>(null);
+
+	const onHotkeyPress = (e: KeyboardEvent) => {
+		const isFocused = inputRef.current === document.activeElement;
+
+		if (e.key === 'Enter' && isFocused) {
+			onSave();
+		} else if (e.key === 'Escape' && isFocused) {
+			onCloseForm();
+		}
+	};
+
+	useEffect(() => {
+		window.addEventListener('keydown', onHotkeyPress);
+
+		return () => window.removeEventListener('keydown', onHotkeyPress);
+	}, [onHotkeyPress]);
 
 	const onStartDateChange = (date: Dayjs) => {
 		setStartDate(date);
@@ -26,7 +50,7 @@ export const TravelCreateForm: FC<TravelCreateFormProps> = memo((props) => {
 		setEndDate(date);
 	};
 
-	const handleSaveClick = () => { 	
+	const onSave = () => { 	
 		if (startDate !== null && endDate !== null) {
 			if (value.length) {
 				const travel = createNewTravel(value, startDate, endDate);
@@ -36,18 +60,19 @@ export const TravelCreateForm: FC<TravelCreateFormProps> = memo((props) => {
 		onCloseForm();
 	};
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
 	};
 
 	return (
 		<div className={classes.form}>
-			<input 
+			<Input
+				className={classes.input}
 				autoFocus
-				type='text' 
+				type='text'
 				value={value}
-				onChange={handleInputChange}
-				className={classes.form__input}
+				onChange={onChangeValue}
+				ref={inputRef}
 			/>
 			<DateRangePicker 
 				startDate={startDate}
@@ -57,19 +82,19 @@ export const TravelCreateForm: FC<TravelCreateFormProps> = memo((props) => {
 				labelStart='select start date'
 				labelEnd='select end date'
 			/>
-			<div className={classes.form__actions}>
-				<button 
-					className={classes.add} 
-					onClick={handleSaveClick}
+			<div className={classes.actions}>
+				<Button 
+					className={classes.addBtn} 
+					onClick={onSave}
 				>
-					+
-				</button>
-				<button 
-					className={classes.cancel} 
+					<SuccessIcon className={classes.icon} />
+				</Button>
+				<Button 
+					className={classes.cancelBtn} 
 					onClick={onCloseForm}
 				>
-					&#10005;
-				</button>
+					<CloseIcon className={classes.icon}/>
+				</Button>
 			</div>
 		</div>
 	);
