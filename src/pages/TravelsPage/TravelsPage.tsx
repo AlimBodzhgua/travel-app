@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { useAppSelector } from 'hooks/redux';
 import { selectTravels } from 'redux/selectors/selectors';
 import { Button, ButtonTheme, ButtonSize } from 'components/UI/Button/Button';
@@ -12,19 +12,19 @@ const TravelsPage: FC = () => {
 	const travels = useAppSelector(selectTravels);
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 	const { t } = useTranslation();
-
-	const onShowFrom = () => setShowCreateForm(true);
 	
-	const onCloseForm = () => setShowCreateForm(false);
+	const onToggleShowForm = useCallback(() => {
+		setShowCreateForm(prev => !prev);
+	}, []);
 
 	return (
 		<>
 			<header className={classes.header}>
-				<h1 className={classes.page__title}>Travels</h1>
+				<h1 className={classes.title}>Travels</h1>
 				<Button
 					theme={ButtonTheme.PRIMARY}
 					size={ButtonSize.SMALL}
-					onClick={onShowFrom}
+					onClick={onToggleShowForm}
 				>
 					{t('Create trip')}
 				</Button>
@@ -33,7 +33,7 @@ const TravelsPage: FC = () => {
 				? <TravelList travels={travels}/>
 				: <h3>{t('You don`t have any planned trips yet')}</h3>
 			}
-			{showCreateForm && <TravelCreateForm onCloseForm={onCloseForm}/>}
+			{showCreateForm && <TravelCreateForm onCloseForm={onToggleShowForm}/>}
 		</>
 	);
 };

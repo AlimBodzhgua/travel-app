@@ -7,20 +7,6 @@
 	justify-content: space-between;
 }
 
-.page__title {
+.title {
 	font-weight: 900;
-}
-
-.button {
-	background-color: skyblue;
-	border: none;
-	border-radius: 7px;
-	padding: 6px 9px;
-
-	font-size: 14px;
-	font-weight: 600;
-}
-
-.button:hover {
-	cursor: pointer;
 }
