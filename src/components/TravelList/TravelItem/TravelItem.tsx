@@ -6,6 +6,12 @@ import { useAppDispatch } from 'hooks/redux';
 import { SortableItem } from 'lib/components';
 import { getTravelPage } from 'router/routes';
 import { DateRangePicker } from 'components/UI/DateRangePicker/DateRangePicker';
+import { Input } from 'components/UI/Input/Input';
+import { Button } from 'components/UI/Button/Button';
+
+import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg';
+import { ReactComponent as EditIcon } from 'assets/icons/edit_white.svg';
+import { ReactComponent as DeleteIcon } from 'assets/icons/delete.svg';
 
 import type { ITravel } from 'types/types';
 import type { Dayjs } from 'dayjs';
@@ -35,7 +41,7 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 
 	const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
-	}
+	};
 	
 	const onSave = () => {
 		if (startDate && endDate) {
@@ -66,13 +72,22 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 				}
 			>
 				{editable ? (
-					<input
+					<Input 
 						type='text'
 						autoFocus
-						className={classes.input}
-						placeholder={travel.name}
+						placeholder='Enter travel title'
 						value={value}
 						onChange={onChangeValue}
+						className={classes.input}
+						addonAfter={
+							<Button
+								theme='clear'
+								onClick={onSave}
+								className={classes.saveBtn}
+							>
+								<SuccessIcon />
+							</Button>
+						}
 					/>
 				) : (
 					<div className={classes.title}>
@@ -98,17 +113,12 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 					disabled={editable ? false : true}
 				/>
 				<div className={classes.actions}>
-					{editable &&
-						<button onClick={onSave} className={classes.saveBtn}>
-							&#x2714;
-						</button>
-					}
-					<button onClick={onToggleEdit} className={classes.editBtn}>
-						edit
-					</button>
-					<button onClick={onDelete} className={classes.deleteBtn}>
-						delete
-					</button>
+					<Button onClick={onToggleEdit} className={classes.editBtn}>
+						<EditIcon className={classes.editIcon}/>
+					</Button>
+					<Button onClick={onDelete} className={classes.deleteBtn}>
+						<DeleteIcon className={classes.deleteIcon}/>
+					</Button>
 				</div>
 			</li>
 		</SortableItem>

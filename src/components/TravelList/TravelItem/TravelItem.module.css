@@ -49,12 +49,17 @@
 	text-decoration: underline;
 }
 
-
 .input {
-	width: 44%;
-	padding: 10px;
-	font-size: 14px;
+	flex-grow: 1;
 	margin-right: 10px;
+}
+
+.saveBtn {
+	margin-right: 2px;
+}
+
+.saveBtn:hover {
+	fill: green;
 }
 
 .actions {
@@ -71,43 +76,42 @@
 
 .editBtn,
 .deleteBtn {
-	width: 32px;
-	height: 37px;
-	padding: 2px 0;
-	font-size: 0;
+	padding: 6px 3px;
 
-	border: none;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .editBtn {
 	background-color: var(--color-lightblue);
-
-	background-image: url('assets/icons/edit_white.svg');
 }
 
 .deleteBtn {
 	background-color: var(--color-red);
-
-	background-image: url('assets/icons/delete.svg');
 }
 
-.saveBtn {
-	width: 32px;
-	height: 37px;
-	padding: 2px 0;
+.editIcon,
+.deleteIcon {
+	width: 1.7rem;
+	height: 1.7rem;
 
-	font-weight: 500;
-	font-size: 16px;
+	transition: transform .2s linear;
+} 
 
-	border: none;
+.editIcon {
+	fill: #fff;
+}
+
+.deleteIcon {
+	stroke: #fff;
 }
 
 .editBtn:hover,
-.deleteBtn:hover,
-.saveBtn:hover {
-	cursor: pointer;
+.deleteBtn:hover {
+	
+	.deleteIcon,
+	.editIcon {
+		transform: scale(1.1);
+	}
 }
