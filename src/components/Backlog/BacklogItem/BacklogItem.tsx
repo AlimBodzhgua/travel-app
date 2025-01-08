@@ -1,10 +1,17 @@
 import { FC, useState, memo } from 'react';
-import { IBacklog } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
 import { userActions } from 'redux/reducers/userSlice';
 import { SortableItem } from 'lib/components';
+import { Input } from 'components/UI/Input/Input';
+import { Button } from 'components/UI/Button/Button';
 import classNames from 'classnames';
+import type { IBacklog } from 'types/types';
+
+import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg';
+import { ReactComponent as EditIcon } from 'assets/icons/edit.svg';
+import { ReactComponent as CloseIcon } from 'assets/icons/close.svg';
+
 import classes from './BacklogItem.module.css';
 
 interface BacklogItemProps {
@@ -47,30 +54,31 @@ export const BacklogItem: FC<BacklogItemProps> = memo((props) => {
 		<SortableItem id={backlog.id}>
 			<li className={classNames(classes.BacklogItem, className)}>
 				{editable ? (
-					<input
-						autoFocus
-						type='text'
-						placeholder='Enter backlog name...'
+					<Input
 						value={value}
 						onChange={onChangeValue}
 						className={classes.input}
+						autoFocus
+						type='text'
+						size='sm'
+						placeholder='Enter backlog name...'
+						addonAfter={
+							<Button onClick={onSave} theme='clear' className={classes.successBtn}>
+								<SuccessIcon className={classes.successIcon}/>
+							</Button>
+						}
 					/>
 				) : (
 					<div className={classes.name}>{backlog.name}</div>
 				)}
 
 				<div className={classes.actions}>
-					{editable && (
-						<button onClick={onSave} className={classes.delete}>
-							&#x2714;
-						</button>
-					)}
-					<button onClick={onToggleEdit} className={classes.edit}>
-						edit
-					</button>
-					<button onClick={onDelete} className={classes.delete}>
-						&#10005;
-					</button>
+					<Button onClick={onToggleEdit} theme='clear' className={classes.editBtn}>
+						<EditIcon className={classes.editIcon}/>
+					</Button>
+					<Button onClick={onDelete} theme='clear' className={classes.closeBtn}>
+						<CloseIcon className={classes.closeIcon}/>
+					</Button>
 				</div>
 			</li>
 		</SortableItem>

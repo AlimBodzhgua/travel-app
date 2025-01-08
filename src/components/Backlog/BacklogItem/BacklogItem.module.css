@@ -5,7 +5,7 @@
 	border-radius: 6px;
 
 	margin-bottom: 8px;
-	padding: 10px 6px;
+	padding: 8px 10px;
 
 	display: flex;
 	justify-content: space-between;
@@ -23,49 +23,47 @@
 }
 
 .input {
-	height: 100%;
 	width: 100%;
-
-	border: none;
-	border-bottom: 1px solid #000;
-	color: inherit;
-	font-size: inherit;
-}
-
-.input:focus {
-	outline: none;
+	margin-right: 5px;
+	padding: 0;
 }
 
 .actions {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 	gap: 8px;
 
 	position: relative;
 }
 
-.edit,
-.delete {
-	border: none;
-	background: none;
-	padding: 0;
+.successBtn:hover {
+	.successIcon {
+		fill: green;
+	} 	
 }
 
-.edit:hover,
-.delete:hover {
-	cursor: pointer;
+.successIcon {
+	width: .8rem;
+	height: 0.8rem;
 }
 
-.edit {
-	background-image: url('assets/icons/edit.svg');
-	background-position: center;
-	background-size: contain;
-	background-repeat: no-repeat;
-	color: transparent;
+.editIcon,
+.closeIcon {
+	width: 1rem;
+	height: 0.9rem;
 
-	width: 15px;
+	opacity: fill .2s linear;
 }
 
-.delete {
-	font-weight: 900;
+.editBtn:hover {
+	.editIcon {
+		fill: var(--color-blue);
+	}
+}
+
+.closeBtn:hover {
+	.closeIcon {
+		fill: red;
+	}
 }
