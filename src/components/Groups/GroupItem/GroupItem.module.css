@@ -23,63 +23,73 @@
 .title {
 	font-size: 20px;
 	font-weight: 500;
+	width: 100%;
 }
 
 .input {
 	width: 100%;
 
-	padding: 8px 5px;
 	margin-right: 10px;
+}
 
-	font-size: 16px;
+.saveBtn {
+	margin-right: 4px;
+	
+	transition: fill .2s linear;
+}
+
+.saveBtn:hover {
+	fill: green;
 }
 
 .actions {
 	display: flex;
 	justify-content: space-between;
-	gap: 10px;
+	gap: 5px;
+
 	position: relative;
 }
 
-
-.edit,
-.close,
-.save {
-	border: none;
-	background: none;
-
-	font-weight: 900;
-	font-size: 18px;
+.editBtn,
+.closeBtn {
+	padding: 4px;
 }
 
-.edit {
-	background-image: url('assets/icons/edit.svg');
-	background-position: center;
-	background-size: contain;
-	background-repeat: no-repeat;
-	color: transparent;
+.editIcon {
+	width: 1rem;
+	height: 1rem;
 
-	width: 18px;
+	transition: transform .2s linear;
 }
 
-.edit:hover,
-.close:hover,
-.save:hover {
-	cursor: pointer;
+.closeIcon {
+	width: 1rem;
+	height: 1rem;
+
+	transition: transform .2s linear;
 }
 
-.add {
-	background: none;
-	border: none;
-	margin: 5px 0;
+.editBtn:hover {
+
+	.editIcon {
+		fill: var(--color-blue);
+		transform: scale(1.2);
+	}
+}
+
+.closeBtn:hover {
+
+	.closeIcon {
+		fill: red;
+		transform: scale(1.2);
+	}
+}
+
+.addBtn {
+	margin-top: 5px;
 
 	font-weight: 700;
-	font-size: 14px;
 	align-self: end;
-}
-
-.add:hover {
-	cursor: pointer;
 }
 
 .emptyMsg {
@@ -89,7 +99,7 @@
 	flex-direction: column;
 }
 
-.icon {
+.noteIcon {
 	width: 2.4rem;
 	height: 2.4rem;
 	fill: #514b4b;

@@ -1,18 +1,25 @@
 import { FC, useState, useEffect, memo, useCallback } from 'react';
-import { IGroup } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
 import { userActions } from 'redux/reducers/userSlice';
 import { useTranslation } from 'react-i18next';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import type { IGroup } from 'types/types';
 
 import { CardCreateForm } from 'components/CreateForms';
 import { CardsList } from 'components/CardsList';
 import { Popup } from 'components/Popup/Popup';
+import { Input } from 'components/UI/Input/Input';
+import { Button } from 'components/UI/Button/Button';
+
 import { ReactComponent as NoteIcon } from 'assets/icons/note.svg'
+import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg'
+import { ReactComponent as EditIcon } from 'assets/icons/edit.svg'
+import { ReactComponent as CloseIcon } from 'assets/icons/close.svg'
+
 import classes from './GroupItem.module.css';
-	
+
 interface GroupItemProps {
 	group: IGroup;
 }
@@ -48,7 +55,7 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 
 	const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
-	}
+	};
 	
 	const onTogglePopup = useCallback(() => {
 		setShowPopup(prev => !prev);
@@ -80,42 +87,43 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 		>
 			<div className={classes.header}>
 				{editable ? (
-					<input
+					<Input
 						autoFocus
-						type='text'
 						value={value}
 						onChange={onChangeValue}
-						placeholder={group?.title}
 						className={classes.input}
+						type='text'
+						size='sm'
+						placeholder='Enter group name'
+						addonAfter={
+							<Button
+								onClick={onSave}
+								theme='clear'
+								className={classes.saveBtn}
+							>
+								<SuccessIcon />
+							</Button>
+						}
 					/>
 				) : (
 					<h2 className={classes.title}>{group?.title}</h2>
 				)}
 				<div className={classes.actions}>
-					{editable && 
-						<button 
-							onClick={onSave}
-							className={classes.save}
-						>
-							&#x2714;
-						</button>
-					}
-					<button onClick={onToggleEdit} className={classes.edit}>
-						edit
-					</button>
-					<button onClick={onTogglePopup} className={classes.close}>
-						&#10005;
-					</button>
+					<Button onClick={onToggleEdit} size='sm' className={classes.editBtn}>
+						<EditIcon className={classes.editIcon}/>
+					</Button>
+					<Button onClick={onTogglePopup} size='sm' className={classes.closeBtn}>
+						<CloseIcon className={classes.closeIcon}/>
+					</Button>
 
 					{showPopup && <Popup onCancel={onTogglePopup} onDelete={deleteGroup}/>}
-
 				</div>
 			</div>
 			{group?.cards.length ? (
 				<CardsList groupId={group.id} travelId={id!} />
 			) : (!showCreateForm && (
 					<div className={classes.emptyMsg}>
-						<NoteIcon className={classes.icon} />
+						<NoteIcon className={classes.noteIcon} />
 						<h3 className={classes.emptyTitle}>{t('Nothing is planned')}</h3>
 					</div>
 				)
@@ -123,9 +131,9 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 			{showCreateForm ? (
 				<CardCreateForm onClose={onToggleShowForm} groupId={group.id} />
 			) : (
-				<button onClick={onToggleShowForm} className={classes.add}>
+				<Button onClick={onToggleShowForm} size='sm' className={classes.addBtn}>
 					+ {t('Add card')}
-				</button>
+				</Button>
 			)}
 		</li>
 	);
