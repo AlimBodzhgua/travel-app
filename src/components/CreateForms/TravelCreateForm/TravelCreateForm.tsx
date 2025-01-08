@@ -4,7 +4,7 @@ import { userActions } from 'redux/reducers/userSlice';
 import { createNewTravel } from 'utils/utils';
 import { Button } from 'components/UI/Button/Button';
 import { Input } from 'components/UI/Input/Input';
-import DateRangePicker from 'components/UI/DateRangePicker/DateRangePicker';
+import { DateRangePicker } from 'components/UI/DateRangePicker/DateRangePicker';
 import dayjs from 'dayjs';
 
 import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg';

@@ -3,11 +3,13 @@ import { stringToDayjsObject } from 'utils/utils';
 import { NavLink, useLocation } from 'react-router-dom';
 import { userActions } from 'redux/reducers/userSlice';
 import { useAppDispatch } from 'hooks/redux';
-import { Dayjs } from 'dayjs';
 import { SortableItem } from 'lib/components';
 import { getTravelPage } from 'router/routes';
-import { ITravel } from 'types/types';
-import DateRangePicker from 'components/UI/DateRangePicker/DateRangePicker';
+import { DateRangePicker } from 'components/UI/DateRangePicker/DateRangePicker';
+
+import type { ITravel } from 'types/types';
+import type { Dayjs } from 'dayjs';
+
 import classes from './TravelItem.module.css';
 
 interface TravelItemProps {
