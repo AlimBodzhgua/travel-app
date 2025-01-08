@@ -13,10 +13,10 @@ import { Popup } from 'components/Popup/Popup';
 import { Input } from 'components/UI/Input/Input';
 import { Button } from 'components/UI/Button/Button';
 
-import { ReactComponent as NoteIcon } from 'assets/icons/note.svg'
-import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg'
-import { ReactComponent as EditIcon } from 'assets/icons/edit.svg'
-import { ReactComponent as CloseIcon } from 'assets/icons/close.svg'
+import { ReactComponent as NoteIcon } from 'assets/icons/note.svg';
+import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg';
+import { ReactComponent as EditIcon } from 'assets/icons/edit.svg';
+import { ReactComponent as CloseIcon } from 'assets/icons/close.svg';
 
 import classes from './GroupItem.module.css';
 
