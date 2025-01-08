@@ -4,7 +4,6 @@
 	padding: 10px 0;
 }
 
-
 .list {
 	display: flex;
 	gap: 10px;
@@ -36,37 +35,28 @@
 	align-items: center;
 }
 
-.add {
-	width: 26px;
-	height: 31px;
-	padding: 2px 0;
+.addBtn {
+	font-size: 25px;
+	padding: 2px 6px;
 
-	border: none;
 	color: #fff;
-	transition: color .2s linear;
-
-	font-size: 20px;
-	font-weight: 600;
 	background-color: var(--color-lightblue);
-
-	transition: 
-		transform .2s linear, 
-		color .2s linear
+	
+	transition: color .2s linear;
 }
 
-.add:hover {
-	cursor: pointer;
+.addBtn:hover {
 	color: gray;
 }
 
-.helper_text {
+.helperText {
 	color: var(--color-blue);
 	padding-bottom: 7px;
 	text-align: center;
 	font-weight: normal;
 }
 
-.empty_text {
+.emptyText {
 	text-align: center;
 	color: var(--color-blue);
 }

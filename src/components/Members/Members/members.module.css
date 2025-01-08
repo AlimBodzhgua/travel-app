@@ -1,9 +1,5 @@
 
-.members {
-	/*border: 1px solid black;*/
-}
-
-.members__header {
+.header {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
@@ -15,16 +11,11 @@
 	flex-grow: 1;
 }
 
-.add {
-	border: none;
+.addBtn {
 	font-size: 16px;
+	background-color: var(--color-grey);
 
-	padding: 6px 6px;
-	width: 25%;
-}
-
-.add:hover {
-	cursor: pointer;
+	padding: 6px 24px;
 }
 
 .empty {

@@ -10,7 +10,7 @@ import classes from './member-add.module.css';
 
 export const AddMembersSection: FC = memo(() => {
 	const { t } = useTranslation();
-	const { id } = useParams<{id? : string}>();
+	const { id } = useParams<{ id?: string }>();
 	const members = useAppSelector(state => selectMembersByTravelId(state, id!));
 	const user = useAppSelector(selectUser);
 	const [filteredFriends, setFilteredFriends] = useState<IFriend[]>([]);
@@ -23,24 +23,20 @@ export const AddMembersSection: FC = memo(() => {
 
 	return (
 		<div className={classes.section}>
-			{filteredFriends.length 
-				?	<>
-						<h4 className={classes.helper_text}>
-							{t('Drag friends and drop to members list or press button')}
-						</h4>
-						<ul className={classes.list}>
-							{filteredFriends.map(friend => 
-								<Item 
-									key={friend.id} 
-									friend={friend}
-								/>
-							)}
-						</ul>
-					</>
-				: 	<div className={classes.empty_text}>
-						{t('You have no friends to add')}
-					</div>
-			}
+			{filteredFriends.length ? (
+				<>
+					<h4 className={classes.helperText}>
+						{t('Drag friends and drop to members list or press button')}
+					</h4>
+					<ul className={classes.list}>
+						{filteredFriends.map((friend) => (
+							<Item key={friend.id} friend={friend} />
+						))}
+					</ul>
+				</>
+			) : (
+				<div className={classes.emptyText}>{t('You have no friends to add')}</div>
+			)}
 		</div>
 	);
 });

@@ -7,6 +7,7 @@ import { DndContext, DragStartEvent, DragEndEvent } from '@dnd-kit/core';
 import { userActions } from 'redux/reducers/userSlice';
 import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
 import { useTranslation } from 'react-i18next';
+import { Button } from 'components/UI/Button/Button';
 
 import { AddMembersSection } from '../AddMembersSection/AddMembersSection';
 import { MembersList } from '../MembersList/MembersList';
@@ -27,14 +28,16 @@ export const Members: FC = memo(() => {
 	  	})
 	);
 
-	const handleClick = ():void => setShowAddSection(!showAddSection);
+	const onToggleShowAddSection = () => {
+		setShowAddSection(prev => !prev);
+	};
 
-	const handleDragStart = (e: DragStartEvent) => {
-		const item:IFriend = e.active.data.current?.friend;
+	const onDragStart = (e: DragStartEvent) => {
+		const item: IFriend = e.active.data.current?.friend;
 		setActiveItem(item);
 	};
 
-	const handleDragEnd = (e: DragEndEvent):void => {
+	const onDragEnd = (e: DragEndEvent):void => {
 		if (e.over) {
 			const item: IFriend = e.active.data.current?.friend;
 			dispatch(userActions.addMember({ travelId: id!, member: item }));
@@ -43,32 +46,23 @@ export const Members: FC = memo(() => {
 	};
 
 	return (
-		<div className={classes.members}>
-			<div className={classes.members__header}>
-				{members.length
-					? 	<h3 className={classes.title}>
-							{t('Members list')}
-						</h3>
-					: null
-				}
-				<button 
-					onClick={handleClick}
-					className={classes.add}
-				>
-					{showAddSection 
-						? t('close')
-						: t('add members')
-					}
-				</button>
+		<div>
+			<div className={classes.header}>
+				{!!members.length && (
+					<h3 className={classes.title}>
+						{t('Members list')}
+					</h3>
+				)}
+				<Button onClick={onToggleShowAddSection} className={classes.addBtn}>
+					{showAddSection ? t('close') : t('add members')}
+				</Button>
 			</div>
 			<DndContext 
-				onDragStart={handleDragStart}
-				onDragEnd={handleDragEnd}
+				onDragStart={onDragStart}
+				onDragEnd={onDragEnd}
 				sensors={sensors}
 			>
-				{showAddSection &&
-					<AddMembersSection />
-				}
+				{showAddSection && <AddMembersSection />}
 				<MembersList 
 					members={members} 
 					activeItem={activeItem}

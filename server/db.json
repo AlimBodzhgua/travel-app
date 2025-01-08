@@ -124,13 +124,7 @@
           "name": "new trop 123",
           "dateStart": "2025.01.07",
           "dateEnd": "2025.01.07",
-          "members": [
-            {
-              "id": 1736012730959,
-              "login": "alimbo4",
-              "email": "alimbo4@mail.ru"
-            }
-          ],
+          "members": [],
           "backlog": [
             {
               "id": "eaa1b3ea-b54d-443e-9041-067223d89018",
@@ -159,6 +153,15 @@
               ]
             }
           ]
+        },
+        {
+          "id": "3c034c4d-1d6a-48f2-9cd6-61239820fc51",
+          "name": "new trop",
+          "dateStart": "2025.01.08",
+          "dateEnd": "2025.01.08",
+          "members": [],
+          "backlog": [],
+          "groups": []
         }
       ]
     },

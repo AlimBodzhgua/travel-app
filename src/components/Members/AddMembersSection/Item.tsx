@@ -5,13 +5,15 @@ import { CSS } from '@dnd-kit/utilities';
 import { IFriend } from 'types/types';
 import { useParams } from 'react-router-dom';
 import { userActions } from 'redux/reducers/userSlice';
+import { Button } from 'components/UI/Button/Button';
+
 import classes from './member-add.module.css';
 
 interface ItemProps {
 	friend: IFriend;
 }
 
-export const Item: FC<ItemProps> = memo(({friend}) => {
+export const Item: FC<ItemProps> = memo(({ friend }) => {
 	const dispatch = useAppDispatch();
 	const { id } = useParams<{id? : string}>();
 	const {
@@ -22,9 +24,7 @@ export const Item: FC<ItemProps> = memo(({friend}) => {
 		isDragging
 	} = useDraggable({
 	    id: friend.id,
-	    data: {
-	    	friend: friend
-	    }
+	    data: { friend: friend },
 	});
 
 	const style = {
@@ -32,28 +32,23 @@ export const Item: FC<ItemProps> = memo(({friend}) => {
 		opacity: isDragging ? '0' : '1',
 	};	
 
-	const handleClick = ():void => {
+	const onAdd = () => {
 		dispatch(userActions.addMember({ travelId: id!, member: friend }));
 	};
 
 	return (
-		<>
-			<li 
-				{...listeners} 
-				{...attributes}
-				style={style}
-				ref={setNodeRef} 
-				className={classes.item}
-			>
-				<div>
-					<div>{friend.email}</div>
-					<div>{friend.login}</div>
-				</div>
-				<button 
-					className={classes.add} 
-					onClick={handleClick}
-				>+</button>
-			</li>
-		</>
+		<li 
+			{...listeners} 
+			{...attributes}
+			style={style}
+			ref={setNodeRef} 
+			className={classes.item}
+		>
+			<div>
+				<div>{friend.email}</div>
+				<div>{friend.login}</div>
+			</div>
+			<Button onClick={onAdd} className={classes.addBtn}>&#43;</Button>
+		</li>
 	);  
 });
