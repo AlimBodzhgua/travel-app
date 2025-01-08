@@ -1,5 +1,12 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { arrayMove } from '@dnd-kit/sortable';
 import {
+	getAcceptFriendRequestReducerBuilder,
+	getDeleteFrinedReducerBuilder,
+	getLoginUserReducerBuilder,
+	getRegisterUserReducerBuilder,
+} from 'redux/reducers/reducers';
+import type {
 	IUser, 
 	ITravel, 
 	IBacklog, 
@@ -7,20 +14,13 @@ import {
 	ICard, 
 	IFriend
 } from 'types/types';
-import {
-	acceptFriendRequest,
-	deleteFriend,
-	registerUser, 
-	loginUser
-} from 'redux/actions/userActions';
-import { arrayMove } from '@dnd-kit/sortable';
 
 export interface UserSchema {
 	isLoading: boolean;
 	isAuth: boolean;
 	errorMessage: string | undefined;
 	authData?: IUser;
-}
+};
 
 const initialState: UserSchema = {
 	isAuth: false,
@@ -256,52 +256,10 @@ export const userSlice = createSlice({
 		}
 	},
 	extraReducers: (builder) => {
-		builder
-			.addCase(registerUser.pending, (state, _) => {
-				state.isLoading = true;
-			})
-			.addCase(registerUser.fulfilled, (state, action) => {
-				state.isLoading = false;
-				state.isAuth = true;
-				state.authData = action.payload;
-				state.errorMessage = '';
-			})
-			.addCase(registerUser.rejected, (state, action) => {
-				state.isLoading = false;
-				state.errorMessage = action.payload;
-			})
-			.addCase(loginUser.pending, (state, _) => {
-				state.isLoading = true;
-			})
-			.addCase(loginUser.fulfilled, (state, action) => {
-				state.isLoading = false;
-				state.isAuth = true;
-				state.authData = action.payload;
-			})
-			.addCase(loginUser.rejected, (state, action) => {
-				state.isLoading = false;
-				state.errorMessage = action.payload;
-			})
-			.addCase(acceptFriendRequest.fulfilled, (state, action) => {
-				if (state.authData) {
-					state.authData.friendRequests = state.authData.friendRequests
-						.filter(request => request.id !== action.payload.id);
-					state.authData.friends.push(action.payload);
-				}	
-			})
-			.addCase(acceptFriendRequest.rejected, (state, action) => {
-				state.errorMessage = action.payload;
-				state.isLoading = false;
-			})
-			.addCase(deleteFriend.fulfilled, (state, action) => {
-				if (state.authData) {
-					state.authData.friends = state.authData.friends.filter(friend => friend.id !== action.payload);
-				}
-			})
-			.addCase(deleteFriend.rejected, (state, action) => {
-				state.errorMessage = action.payload;
-				state.isLoading = false;
-			});
+		getRegisterUserReducerBuilder(builder);
+		getLoginUserReducerBuilder(builder);
+		getAcceptFriendRequestReducerBuilder(builder);
+		getDeleteFrinedReducerBuilder(builder);
 	}
 });
 
