@@ -4,14 +4,14 @@ import {
 	sendFriendRequest,
 	cancelFriendRequest
 } from 'redux/actions/allUsersActions';
-import {IPublicUser} from 'types/types';
+import type { IPublicUser } from 'types/types';
 
 
 export interface AllUsersSchema {
 	isLoading: boolean;
 	errorMessage: string | undefined;
 	users: IPublicUser[] | [];
-}
+};
 
 const initialState:AllUsersSchema = {
 	isLoading: false,
@@ -22,9 +22,7 @@ const initialState:AllUsersSchema = {
 const allUsersSlice = createSlice({
 	name: 'allUsers',
 	initialState,
-	reducers: {
-
-	},
+	reducers: {},
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchAllUsers.pending, (state) => {
@@ -55,5 +53,5 @@ const allUsersSlice = createSlice({
 	}
 });
 
-export const {actions: allUsersActions} = allUsersSlice;
-export const {reducer: allUsersReducer} = allUsersSlice;
+export const { actions: allUsersActions } = allUsersSlice;
+export const { reducer: allUsersReducer } = allUsersSlice;

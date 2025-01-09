@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg';
 import { ReactComponent as CloseIcon } from 'assets/icons/close.svg';
 
-import type { Dayjs } from 'dayjs'
+import type { Dayjs } from 'dayjs';
 
 import classes from './travel-create.module.css';
 

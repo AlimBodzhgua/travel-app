@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
-import classes from './Page.module.css';
 import classNames from 'classnames';
+import classes from './Page.module.css';
 
 interface PageProps {
 	children: ReactNode;
@@ -23,5 +23,5 @@ export const Page: FC<PageProps> = (props) => {
 		)}>
 			{children}
 		</div>
-	)
-}
+	);
+};

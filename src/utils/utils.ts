@@ -75,7 +75,7 @@ export const stringToDayjsObject = (date: string): Dayjs => {
 export const removeMembersFromFriendList = (members: IFriend[], friends: IFriend[]): IFriend[] => {
 	return friends.filter((friend) => {
 		const find = members.find(member => member.id === friend.id);
-		if (!find) return friend;
+		return !find;
 	}) || [];
 };
 
@@ -83,6 +83,6 @@ export const removeMembersFromFriendList = (members: IFriend[], friends: IFriend
 export const removeFriendsFromAllUsers = (friends: IFriend[], users: IPublicUser[]): IPublicUser[] => {
 	return users.filter((user) => {
 		const find = friends.find(friend => friend.id === user.id);
-		if (!find) return user;
+		return !find;
 	}) || [];
 };

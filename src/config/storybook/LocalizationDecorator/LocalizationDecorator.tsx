@@ -4,8 +4,8 @@ import { Decorator } from '@storybook/react';
 
 export const LocalizationDecorator: Decorator = (Story) => {
 	return (
-        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='de'>
+		<LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='de'>
 			<Story />
 		</LocalizationProvider>
-	)
-}
+	);
+};

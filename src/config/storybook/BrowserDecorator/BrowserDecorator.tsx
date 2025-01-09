@@ -6,5 +6,5 @@ export const BrowserDecorator: Decorator = (Story) => {
 		<BrowserRouter>
 			<Story />
 		</BrowserRouter>
-	)
-}
+	);
+};

@@ -1,4 +1,4 @@
-import { FC, forwardRef, InputHTMLAttributes, memo, ReactNode, useState } from 'react';
+import { forwardRef, InputHTMLAttributes, ReactNode, useState } from 'react';
 import classnames from 'classnames';
 import classes from './Input.module.css';
 
@@ -23,7 +23,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
 	const onToggleFocus = () => {
 		setIsFocused((prev) => !prev);
-	}
+	};
 
 	return (
 		<div className={

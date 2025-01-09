@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
-import type { Dayjs } from 'dayjs'
+import type { Dayjs } from 'dayjs';
 
 import classes from './date-range.module.css';
 

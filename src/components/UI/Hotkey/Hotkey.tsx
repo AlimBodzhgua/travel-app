@@ -8,8 +8,7 @@ interface HotkeyProps {
 	className?: string;
 }
 
-
-export const Hotkey: FC<HotkeyProps> = (props) => {
+export const Hotkey: FC<HotkeyProps> = memo((props) => {
 	const {
 		rounded = true,
 		children,
@@ -20,5 +19,5 @@ export const Hotkey: FC<HotkeyProps> = (props) => {
 		<div className={classnames(classes.Hotkey, className, {[classes.rounded]: rounded})}>
 			{children}
 		</div>
-	)
-}
+	);
+});
