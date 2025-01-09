@@ -5,6 +5,12 @@ import { userActions } from 'redux/slices/userSlice';
 import { selectUser } from 'redux/selectors/selectors';    
 import { useTranslation } from 'react-i18next';
 import { Button } from 'components/UI/Button/Button';
+import { Input } from 'components/UI/Input/Input';
+
+import { ReactComponent as EditIcon } from 'assets/icons/edit.svg';
+import { ReactComponent as CloseIcon } from 'assets/icons/close.svg';
+import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg';
+
 import classes from './profile.module.css';
 
 export const Profile: FC = memo(() => {
@@ -62,41 +68,48 @@ export const Profile: FC = memo(() => {
 				</h1>
 				<div className={classes.actions}>
 					{editable &&
-						<button 
+						<Button 
 							onClick={onSave}
-							className={classes.save}
+							className={classes.saveBtn}
+							theme='clear'
 						>
-							&#x2714;
-						</button>
+							<SuccessIcon className={classes.saveIcon}/>
+						</Button>
 					}
-					<button 
+					<Button 
 						onClick={onToggleEdit}
-						className={editable ? classes.cancel : classes.edit}
+						className={classes.editBtn}
+						theme='clear'
 					>
-						{editable ? <>&#10005;</> : 'edit'}
-					</button>
+						{editable
+							? <CloseIcon className={classes.closeIcon}/>
+							: <EditIcon className={classes.editIcon}/>
+						}
+					</Button>
 				</div>
 			</div>
-			<input 
-				type='text' 
-				disabled={editable ? false : true}
+			<Input 
 				value={login}
 				onChange={onLoginChange}
+				disabled={!editable}
 				className={classes.input}
+				type='text' 
+				size='lg'
 			/>
-			<input 
-				type='email' 
-				disabled={editable ? false : true}
+			<Input 
 				value={email}
 				onChange={onEmailChange}
+				disabled={!editable}
 				className={classes.input}
+				type='email' 
+				size='lg'
 			/>
 			<Button
-				className={classes.logout}
+				className={classes.logoutBtn}
+				onClick={onLogout}
 				theme='blue'
 				size='md'			
-				onClick={onLogout}
-				square={true}
+				square
 			>
 				{t('logout')}
 			</Button>

@@ -19,7 +19,6 @@
 }
 
 .title {
-
 	font-weight: 500;
 }
 
@@ -27,72 +26,46 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	gap: 10px;
 }
 
-.save {
-	width: 30px;
-	height: 32px;
-	padding: 2px 0;
+.editIcon,
+.closeIcon,
+.saveIcon {
+	width: 1.2rem;
+	height: 1.2rem;
 
-	font-weight: 500;
-	font-size: 16px;
-
-	border: none;
+	transition: fill .2s linear, transform .2s linear;
 }
 
-.edit {
-	width: 30px;
-	height: 32px;
-	padding: 2px 0;
-	font-size: 0;
-	color: transparent;
+.editBtn:hover {
 
-	border: none;
-	background-color: var(--color-lightblue);
-	background-image: url('assets/icons/edit_white.svg');
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
+	.editIcon {
+		fill: blue;
+		transform: scale(1.1);
+	}
+
+	.closeIcon {
+		fill: red;
+		transform: scale(1.1);
+	}
 }
 
 
-.cancel {
-	width: 30px;
-	height: 32px;
-	padding: 2px 0;
-
-	font-weight: 900;
-	font-size: 16px;
-	color: #fff;
-
-	border: none;
-	background-color: var(--color-red);
-}
-
-.edit:hover,
-.save:hover,
-.cancel:hover {
-	cursor: pointer;
+.saveBtn:hover {
+	
+	.saveIcon {
+		fill: green;
+		transform: scale(1.1);
+	}
 }
 
 .input {
-	align-self: center;
-
-	padding: 8px;
-	font-size: 20px;
-	width: 100%;
-
-	margin-bottom: 10px;
+	margin-bottom: 12px;
 }
 
-.logout {
+.logoutBtn {
 	align-self: center;
 
 	margin-top: 10px;
 }
-
-
-.logout:hover {
-	cursor: pointer;
-}
-
