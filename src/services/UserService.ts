@@ -5,7 +5,7 @@ import {
 	IUserLogin, 
 	IFriend
 } from 'types/types';
-import $axios from 'components/api/axios';
+import $axios from 'api/axios';
 
 export default class UserService {
 	static async register(user: IUser): Promise<IUserResponse> {
