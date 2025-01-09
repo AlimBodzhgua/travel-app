@@ -13,6 +13,7 @@ import { ReactComponent as EditIcon } from 'assets/icons/edit.svg';
 import { ReactComponent as CloseIcon } from 'assets/icons/close.svg';
 
 import classes from './BacklogItem.module.css';
+import { useInputHotkeys } from 'hooks/useInputHotkeys';
 
 interface BacklogItemProps {
 	backlog: IBacklog;
@@ -50,6 +51,8 @@ export const BacklogItem: FC<BacklogItemProps> = memo((props) => {
 		setEditable(false);
 	};
 
+	const inputRef = useInputHotkeys({ onSave, onCancel: onToggleEdit });
+
 	return (
 		<SortableItem id={backlog.id}>
 			<li className={classNames(classes.BacklogItem, className)}>
@@ -58,6 +61,7 @@ export const BacklogItem: FC<BacklogItemProps> = memo((props) => {
 						value={value}
 						onChange={onChangeValue}
 						className={classes.input}
+						ref={inputRef}
 						autoFocus
 						type='text'
 						size='sm'

@@ -8,6 +8,7 @@ import { getTravelPage } from 'router/routes';
 import { DateRangePicker } from 'components/UI/DateRangePicker/DateRangePicker';
 import { Input } from 'components/UI/Input/Input';
 import { Button } from 'components/UI/Button/Button';
+import { useInputHotkeys } from 'hooks/useInputHotkeys';
 
 import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg';
 import { ReactComponent as EditIcon } from 'assets/icons/edit_white.svg';
@@ -59,6 +60,8 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 		setEditable(prev => !prev);
 	};
 
+	const inputRef = useInputHotkeys({ onSave, onCancel: onToggleEdit })
+
 	const onDelete = () => {
 		dispatch(userActions.deleteTravel(travel.id));
 	};
@@ -73,12 +76,13 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 			>
 				{editable ? (
 					<Input 
-						type='text'
-						autoFocus
-						placeholder='Enter travel title'
 						value={value}
 						onChange={onChangeValue}
 						className={classes.input}
+						ref={inputRef}
+						autoFocus
+						type='text'
+						placeholder='Enter travel title'
 						addonAfter={
 							<Button
 								theme='clear'

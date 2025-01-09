@@ -5,6 +5,7 @@ import { createNewTravel } from 'utils/utils';
 import { Button } from 'components/UI/Button/Button';
 import { Input } from 'components/UI/Input/Input';
 import { DateRangePicker } from 'components/UI/DateRangePicker/DateRangePicker';
+import { useInputHotkeys } from 'hooks/useInputHotkeys';
 import dayjs from 'dayjs';
 
 import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg';
@@ -24,30 +25,17 @@ export const TravelCreateForm: FC<TravelCreateFormProps> = memo((props) => {
 	const [endDate, setEndDate] = useState<Dayjs | null>(dayjs());
 	const [value, setValue] = useState<string>('');
 	const dispatch = useAppDispatch();
-	const inputRef = useRef<HTMLInputElement | null>(null);
-
-	const onHotkeyPress = (e: KeyboardEvent) => {
-		const isFocused = inputRef.current === document.activeElement;
-
-		if (e.key === 'Enter' && isFocused) {
-			onSave();
-		} else if (e.key === 'Escape' && isFocused) {
-			onCloseForm();
-		}
-	};
-
-	useEffect(() => {
-		window.addEventListener('keydown', onHotkeyPress);
-
-		return () => window.removeEventListener('keydown', onHotkeyPress);
-	}, [onHotkeyPress]);
-
+	
 	const onStartDateChange = (date: Dayjs) => {
 		setStartDate(date);
 	};
-
+	
 	const onEndDateChange = (date: Dayjs) => {
 		setEndDate(date);
+	};
+	
+	const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setValue(e.target.value);
 	};
 
 	const onSave = () => { 	
@@ -60,9 +48,7 @@ export const TravelCreateForm: FC<TravelCreateFormProps> = memo((props) => {
 		onCloseForm();
 	};
 
-	const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setValue(e.target.value);
-	};
+	const inputRef = useInputHotkeys({ onSave, onCancel: onCloseForm });
 
 	return (
 		<div className={classes.form}>

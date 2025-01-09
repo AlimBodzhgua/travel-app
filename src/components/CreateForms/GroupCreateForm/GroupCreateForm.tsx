@@ -5,6 +5,7 @@ import { userActions } from 'redux/slices/userSlice';
 import { createNewGroup } from 'utils/utils';
 import { Input } from 'components/UI/Input/Input';
 import { Button } from 'components/UI/Button/Button';
+import { useInputHotkeys } from 'hooks/useInputHotkeys';
 import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg';
 
 import classes from './group-create.module.css';
@@ -17,13 +18,12 @@ export const GroupCreateForm: FC<GroupCreateFormProps> = memo((props) => {
 	const { onCancel } = props;
 	const { id } = useParams<{id? : string}>();
 	const [value, setValue] = useState<string>('');
-	const inputRef = useRef<HTMLInputElement | null>(null);
 	const dispatch = useAppDispatch();
-
+	
 	const onChangeValue = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
 	}, [value]);
-
+	
 	const onSave = useCallback(() => {
 		if (value.length) {
 			const group = createNewGroup(value);
@@ -31,21 +31,8 @@ export const GroupCreateForm: FC<GroupCreateFormProps> = memo((props) => {
 			onCancel();
 		} else alert('Empty input value');
 	}, [onCancel, dispatch, value]);
-
-	const onHotkeyPress = useCallback((e: KeyboardEvent) => {
-		const isFocused = inputRef.current === document.activeElement;
-		if (e.key === 'Enter' && isFocused) {
-			onSave();
-		} else if (e.key === 'Escape' && isFocused) {
-			onCancel();
-		}
-	}, [onCancel, onSave]);
-
-	useEffect(() => {
-		window.addEventListener('keydown', onHotkeyPress);
-
-		return () => window.removeEventListener('keydown', onHotkeyPress);
-	}, [onHotkeyPress]);
+	
+	const inputRef = useInputHotkeys({ onSave, onCancel: onCancel });
 
 	return (
 		<div className={classes.form}>

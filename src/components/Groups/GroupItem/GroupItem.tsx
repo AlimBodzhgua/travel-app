@@ -5,6 +5,7 @@ import { userActions } from 'redux/slices/userSlice';
 import { useTranslation } from 'react-i18next';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { useInputHotkeys } from 'hooks/useInputHotkeys';
 import type { IGroup } from 'types/types';
 
 import { CardCreateForm } from 'components/CreateForms';
@@ -70,6 +71,8 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 		setEditable(false);
 	};
 
+	const inputRef = useInputHotkeys({ onSave, onCancel: onToggleEdit });
+
 	const deleteGroup = useCallback(() => {
 		dispatch(userActions.deleteGroup({
 			travelId: id!,
@@ -88,10 +91,11 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 			<div className={classes.header}>
 				{editable ? (
 					<Input
-						autoFocus
 						value={value}
 						onChange={onChangeValue}
 						className={classes.input}
+						ref={inputRef}
+						autoFocus
 						type='text'
 						size='sm'
 						placeholder='Enter group name'
