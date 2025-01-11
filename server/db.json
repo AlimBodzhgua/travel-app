@@ -143,7 +143,13 @@
             {
               "id": "1fa761c0-a837-450f-ba6a-6c3be58641ed",
               "title": "group name",
-              "cards": []
+              "cards": [
+                {
+                  "id": "1f1ad68b-215b-4cd0-bd6f-70d0eb17f448",
+                  "title": "Title",
+                  "description": "Plan"
+                }
+              ]
             },
             {
               "id": "c5f63aa7-b581-4187-a947-a4cfcd316d15",

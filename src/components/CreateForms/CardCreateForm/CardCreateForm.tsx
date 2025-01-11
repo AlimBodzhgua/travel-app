@@ -1,8 +1,15 @@
 import { FC, useState, useId, memo } from 'react';
-import {useParams} from 'react-router-dom';
-import {useAppDispatch} from 'hooks/redux';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch } from 'hooks/redux';
 import { userActions } from 'redux/slices/userSlice';
 import { createNewCard } from 'utils/utils';
+import { Divider } from 'components/UI/Divider/Divider';
+import { Button } from 'components/UI/Button/Button';
+import { Input } from 'components/UI/Input/Input';
+
+import { ReactComponent as CloseIcon } from 'assets/icons/close.svg';
+import { ReactComponent as SuccessIcon } from 'assets/icons/success.svg';
+
 import classes from './card-create.module.css';
 
 interface CardCreateFormProps {
@@ -30,7 +37,7 @@ export const CardCreateForm: FC<CardCreateFormProps> = memo((props) => {
 		} else alert('Input is empty');
 	};
 
-	const onChangeTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+	const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setTitle(e.target.value);
 	};
 
@@ -40,35 +47,35 @@ export const CardCreateForm: FC<CardCreateFormProps> = memo((props) => {
 
 	return (
 		<div className={classes.form}>
-			<textarea
+			<Input
 				autoFocus
 				value={title}
-				className={classes.form__input}
+				className={classes.input}
 				onChange={onChangeTitle}
 				placeholder='Enter card title'
-				rows={2}
-				maxLength={32}
 			/>
-			<span className={classes.form__separator}></span>
-			<div className={classes.form__area}>
-				<label htmlFor={textAreaId}>Write your plan:</label>
+			<Divider orientation='vertical'size='120px'/>
+			<div className={classes.textBlock}>
+				<div className={classes.textHeader}>
+					<label htmlFor={textAreaId}>Write your plan:</label>
+					<div className={classes.actions}>
+						<Button onClick={onSave} theme='clear' className={classes.saveBtn}>
+							<SuccessIcon />
+						</Button>
+						<Button onClick={onClose} theme='clear' className={classes.closeBtn}>
+							<CloseIcon />
+						</Button>
+					</div>
+				</div>
 				<textarea
+					value={text}
+					onChange={onChangeText}
 					id={textAreaId}
 					cols={30}
 					rows={5}
 					maxLength={140}
-					className={classes.form__textarea}
-					value={text}
-					onChange={onChangeText}
+					className={classes.textArea}
 				/>
-			</div>
-			<div className={classes.form__actions}>
-				<button onClick={onSave} className={classes.save}>
-					&#x2714;
-				</button>
-				<button onClick={onClose} className={classes.close}>
-					&#10005;
-				</button>
 			</div>
 		</div>
 	);
