@@ -24,6 +24,10 @@
 	align-items: center;
 }
 
+.title:hover {
+	cursor: text;
+}
+
 .description {
 	width: 65%;
 	height: 100%;
@@ -31,6 +35,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.description:hover {
+	cursor: text;
 }
 
 .deleteBtn {

@@ -110,7 +110,7 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 						}
 					/>
 				) : (
-					<h2 className={classes.title}>{group?.title}</h2>
+					<h2 className={classes.title} onDoubleClick={onToggleEdit}>{group?.title}</h2>
 				)}
 				<div className={classes.actions}>
 					<Button onClick={onToggleEdit} size='sm' className={classes.editBtn}>

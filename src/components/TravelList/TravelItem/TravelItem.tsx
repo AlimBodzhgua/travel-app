@@ -94,7 +94,7 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 						}
 					/>
 				) : (
-					<div className={classes.title}>
+					<div className={classes.title} onDoubleClick={onToggleEdit}>
 						<NavLink
 							to={getTravelPage(travel.id)}
 							className={

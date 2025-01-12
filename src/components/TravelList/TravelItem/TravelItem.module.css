@@ -26,8 +26,12 @@
 }
 
 .title {
-	width: 48%;
 	margin-right: 10px;
+	flex-grow: 1;
+}
+
+.title:hover {
+	cursor: text;
 }
 
 .link {

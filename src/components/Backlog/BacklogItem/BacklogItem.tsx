@@ -73,7 +73,7 @@ export const BacklogItem: FC<BacklogItemProps> = memo((props) => {
 						}
 					/>
 				) : (
-					<div className={classes.name}>{backlog.name}</div>
+					<div className={classes.name} onDoubleClick={onToggleEdit}>{backlog.name}</div>
 				)}
 
 				<div className={classes.actions}>

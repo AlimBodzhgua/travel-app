@@ -127,16 +127,20 @@
           "members": [],
           "backlog": [
             {
-              "id": "548f7e32-b808-43c1-b6b2-8ec67283a29d",
-              "name": "dqwd"
-            },
-            {
               "id": "eaa1b3ea-b54d-443e-9041-067223d89018",
               "name": "qwe13"
             },
             {
+              "id": "548f7e32-b808-43c1-b6b2-8ec67283a29d",
+              "name": "dqwd"
+            },
+            {
               "id": "6482f697-ccae-4bdf-94a7-9a76a3adae18",
               "name": "new card 123"
+            },
+            {
+              "id": "894a7257-e016-4b0c-a35d-6d0666d11ed4",
+              "name": "цу"
             }
           ],
           "groups": [
