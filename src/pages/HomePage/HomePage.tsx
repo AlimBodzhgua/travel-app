@@ -8,6 +8,7 @@ import {
 	AppLinkSize,
 } from 'components/UI/AppLink/AppLink';
 import { Page } from 'components/UI/Page/Page';
+import { ReactComponent as TravelIcon } from 'assets/icons/trip.svg';
 import classes from './home.module.css';
 
 
@@ -17,8 +18,9 @@ const HomePage: FC = () => {
 
 	return (
 		<Page>
-			{isAuth 
-				?
+			<TravelIcon className={classes.travelIcon} />
+			<div className={classes.actions}>
+				{isAuth ? (
 					<>
 						<AppLink
 							to={RouteNames.PROFILE}
@@ -37,7 +39,7 @@ const HomePage: FC = () => {
 							{t('Travels')}
 						</AppLink>
 					</>
-				:
+				) : (
 					<>
 						<AppLink
 							to={RouteNames.REGISTER}
@@ -56,7 +58,8 @@ const HomePage: FC = () => {
 							{t('Login')}
 						</AppLink>
 					</>
-			}
+				)}
+			</div>
 		</Page>
 	);
 };

@@ -1,4 +1,16 @@
 
+.actions {
+	display: flex;
+	justify-content: space-between;
+	gap: 15px;
+	margin: 12px 0;
+}
+
 .link {
 	margin-bottom: 15px;
+	color: #fff;
+}
+
+.travelIcon {
+	width: 42rem;
 }
