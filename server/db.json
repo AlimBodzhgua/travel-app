@@ -127,30 +127,19 @@
           "members": [],
           "backlog": [
             {
+              "id": "548f7e32-b808-43c1-b6b2-8ec67283a29d",
+              "name": "dqwd"
+            },
+            {
               "id": "eaa1b3ea-b54d-443e-9041-067223d89018",
               "name": "qwe13"
             },
             {
               "id": "6482f697-ccae-4bdf-94a7-9a76a3adae18",
               "name": "new card 123"
-            },
-            {
-              "id": "548f7e32-b808-43c1-b6b2-8ec67283a29d",
-              "name": "dqwd"
             }
           ],
           "groups": [
-            {
-              "id": "1fa761c0-a837-450f-ba6a-6c3be58641ed",
-              "title": "group name",
-              "cards": [
-                {
-                  "id": "1f1ad68b-215b-4cd0-bd6f-70d0eb17f448",
-                  "title": "Title",
-                  "description": "Plan"
-                }
-              ]
-            },
             {
               "id": "c5f63aa7-b581-4187-a947-a4cfcd316d15",
               "title": "new group 32",
@@ -164,6 +153,37 @@
                   "id": "50c2bc62-805e-4e33-9136-5f6b327d82ce",
                   "title": "вйцэ",
                   "description": "счясчя\n"
+                }
+              ]
+            },
+            {
+              "id": "1fa761c0-a837-450f-ba6a-6c3be58641ed",
+              "title": "group name",
+              "cards": [
+                {
+                  "id": "fafc6dcb-1f05-43f2-bcb5-78409052c4e5",
+                  "title": "new group 1",
+                  "description": "qweasdzxc lorem ipsum qweasdzxc lorem ipsumqweasdzxc lorem ipsumqweasdzxc lorem ipsumqweasdzxc lorem ipsumqweasdzxc lorem ipsumqweasdzxc lor"
+                },
+                {
+                  "id": "f48a189a-dc27-4365-8866-a098b73e8b10",
+                  "title": "wdqw",
+                  "description": "Hi i have a messing system which gets messages from the database. the problem is the messages are keep going and do not go to a new line lor"
+                },
+                {
+                  "id": "1f1ad68b-215b-4cd0-bd6f-70d0eb17f448",
+                  "title": "Title",
+                  "description": "Plan"
+                },
+                {
+                  "id": "4123c8b4-d55f-494a-8fd5-26493e4f870c",
+                  "title": "qwedas",
+                  "description": "Hi i have a messing system which gets messages from the database. the problem is the messages are keep going and do not go to a new line lor Hi i have a messing system which gets messages from the database. the problem is the mess"
+                },
+                {
+                  "id": "75a5bb16-9025-44a6-8375-26a265403a9f",
+                  "title": "qwd",
+                  "description": "Hi i have a messing system which gets messages from the database. the problem is the messages are keep going and do not go to a new line lor Hi i have a messing system which gets messages from the database. the problem is the mess Hi i have a messing system wh"
                 }
               ]
             }

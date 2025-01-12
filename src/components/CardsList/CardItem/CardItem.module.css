@@ -1,6 +1,6 @@
 .CardItem {
 	width: 100%;
-	height: 120px;
+	max-height: 120px;
 
 	display: flex;
 	justify-content: space-between;
@@ -15,7 +15,7 @@
 	position: relative;
 }
 
-.card__left {
+.titleWrapper {
 	width: 35%;
 	padding: 2px;
 
@@ -24,41 +24,30 @@
 	align-items: center;
 }
 
-.card__title {
-
-}
-
-.card__separator {
-	width: 2px;
-	height: 90%;
-	background-color: #000;
-}
-
-.card__text {
+.description {
 	width: 65%;
-	padding: 0 8px;
+	height: 100%;
+	padding: 0 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.delete {
+.deleteBtn {
 	position: absolute;
 	top: 5px;
 	right: 10px;
 
-	border: none;
-	background: none;
-	padding: 0;
-
-	font-weight: 900;
-	font-size: 16px;
-
 	transform: scale(0);
-	transition: transform .1s linear;
+	transition:
+		transform .1s linear,
+		fill .2s linear;
 }
 
-.card:hover .delete {
+.CardItem:hover .deleteBtn {
 	transform: scale(1);
 }
 
-.delete:hover {
-	cursor: pointer;
+.deleteBtn:hover {
+	fill: red;
 }

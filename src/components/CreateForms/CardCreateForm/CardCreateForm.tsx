@@ -73,7 +73,7 @@ export const CardCreateForm: FC<CardCreateFormProps> = memo((props) => {
 					id={textAreaId}
 					cols={30}
 					rows={5}
-					maxLength={140}
+					maxLength={250}
 					className={classes.textArea}
 				/>
 			</div>

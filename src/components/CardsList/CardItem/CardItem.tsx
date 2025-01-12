@@ -1,9 +1,13 @@
 import { FC, memo } from 'react';
 import { useAppDispatch } from 'hooks/redux';
 import { userActions } from 'redux/slices/userSlice';
-import { ICard } from 'types/types';
 import { SortableItem } from 'lib/components';
+import { Divider } from 'components/UI/Divider/Divider';
+import { Button } from 'components/UI/Button/Button';
+import { ReactComponent as CloseIcon } from 'assets/icons/close.svg';
 import classnames from 'classnames';
+import type { ICard } from 'types/types';
+
 import classes from './CardItem.module.css';
 
 interface CardItemProps {
@@ -22,7 +26,7 @@ export const CardItem:FC<CardItemProps> = memo((props) => {
 	} = props;
 	const dispatch = useAppDispatch();
 
-	const handleDeleteClick = ():void => {
+	const onDelete = () => {
 		dispatch(userActions.deleteCard({
 			cardId: card.id,
 			groupId: groupId,
@@ -33,19 +37,20 @@ export const CardItem:FC<CardItemProps> = memo((props) => {
 	return (
 		<SortableItem id={card.id}>
 			<li className={classnames(classes.CardItem, className)}>
-				<div className={classes.card__left}>
-					<h3 className={classes.card__title}>{card.title}</h3>
+				<div className={classes.titleWrapper}>
+					<h3 className={classes.title}>{card.title}</h3>
 				</div>
-				<span className={classes.card__separator}></span>
-				<div className={classes.card__text}>
+				<Divider orientation='vertical'/>
+				<div className={classes.description}>
 					{card.description}
 				</div>
-				<button 
-					onClick={handleDeleteClick}
-					className={classes.delete}
+				<Button 
+					onClick={onDelete}
+					className={classes.deleteBtn}
+					theme='clear'
 				>
-					&#10005;
-				</button>
+					<CloseIcon />
+				</Button>
 			</li>
 		</SortableItem>
 	);
