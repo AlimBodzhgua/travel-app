@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'components/UI/Button/Button';
-import classes from './LangSwitcher.module.css';
+import { ReactComponent as GlobeIcon } from 'assets/icons/globe.svg';
 import classnames from 'classnames';
+import classes from './LangSwitcher.module.css';
 
 export interface LangSwitcherProps {
 	className?: string;
@@ -22,6 +23,7 @@ export const LangSwitcher: FC<LangSwitcherProps> = ({className}) => {
 			className={classnames(classes.LangSwitcher, className)}
 			onClick={toggleLang}
 		>
+			<GlobeIcon className={classes.icon}/>
 			{t('Lang')}
 		</Button>
 	);
