@@ -1,4 +1,4 @@
-import { FC, useState, memo, useEffect, useRef } from 'react';
+import { FC, useState, memo } from 'react';
 import { useAppDispatch } from 'hooks/redux';
 import { userActions } from 'redux/slices/userSlice';
 import { createNewTravel } from 'utils/utils';

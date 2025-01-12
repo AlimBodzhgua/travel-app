@@ -1,4 +1,4 @@
-import { FC, useState, memo, useEffect, useCallback, useRef } from 'react';
+import { FC, useState, memo, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/redux';
 import { userActions } from 'redux/slices/userSlice';

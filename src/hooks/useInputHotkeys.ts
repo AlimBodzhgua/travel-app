@@ -22,7 +22,7 @@ export const useInputHotkeys = ({ onSave, onCancel }: InputHotkeysProps) => {
 		window.addEventListener('keydown', onHotkeyPress);
 
         return () => window.removeEventListener('keydown', onHotkeyPress);
-	}, [onHotkeyPress])
+	}, [onHotkeyPress]);
 
 	return inputRef;
-}
+};

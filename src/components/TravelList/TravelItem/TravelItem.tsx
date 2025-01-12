@@ -60,7 +60,7 @@ export const TravelItem: FC<TravelItemProps> = memo((props) => {
 		setEditable(prev => !prev);
 	};
 
-	const inputRef = useInputHotkeys({ onSave, onCancel: onToggleEdit })
+	const inputRef = useInputHotkeys({ onSave, onCancel: onToggleEdit });
 
 	const onDelete = () => {
 		dispatch(userActions.deleteTravel(travel.id));
