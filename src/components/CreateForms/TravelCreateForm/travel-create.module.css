@@ -35,7 +35,7 @@
 }
 
 .addBtn {
-	background-color: #14b5f5;
+	background-color: var(--color-lightblue);
 }
 
 .cancelBtn {

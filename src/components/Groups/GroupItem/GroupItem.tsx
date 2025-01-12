@@ -135,8 +135,8 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 			{showCreateForm ? (
 				<CardCreateForm onClose={onToggleShowForm} groupId={group.id} />
 			) : (
-				<Button onClick={onToggleShowForm} size='sm' className={classes.addBtn}>
-					+ {t('Add card')}
+				<Button onClick={onToggleShowForm} size='sm' theme='clear' className={classes.addBtn}>
+					+ {t('Add Card')}
 				</Button>
 			)}
 		</li>

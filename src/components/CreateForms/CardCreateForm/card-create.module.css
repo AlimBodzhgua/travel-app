@@ -55,5 +55,5 @@
 
 .textArea:focus {
 	outline: none;
-	border-color: #14b5f5;
+	border-color: var(--color-lightblue);
 }

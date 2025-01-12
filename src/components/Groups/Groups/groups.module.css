@@ -16,7 +16,7 @@
 	padding: 12px 0;
 	margin: 5px 0;
 
-	background-color: #14b5f5;
+	background-color: var(--color-lightblue);
 	color: #fff;
 	transition: color .2s linear;
 	

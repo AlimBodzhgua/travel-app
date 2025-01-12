@@ -9,7 +9,7 @@
 	align-items: center;
 	
 	margin-bottom: 14px;
-	color: #14b5f5;
+	color: var(--color-lightblue);
 }
 
 .icon {
