@@ -3,8 +3,8 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { userActions } from 'redux/slices/userSlice';
 import { acceptFriendRequest } from 'redux/actions/userActions';
 import { selectUser } from 'redux/selectors/selectors';
-import { IFriend } from 'types/types';
 import { Button } from 'components/UI/Button/Button';
+import type { IFriend } from 'types/types';
 
 import classnames from 'classnames';
 import classes from './Request.module.css';
@@ -14,17 +14,12 @@ interface RequestItemProps {
 	className?: string;
 }
 
-export const RequestItem: FC<RequestItemProps> = memo(({request, className}) => {
+export const RequestItem: FC<RequestItemProps> = memo((props) => {
+	const { request, className } = props;
 	const user = useAppSelector(selectUser);
 	const dispatch = useAppDispatch();
 
-	const handleRejectClick = (id:number):void => {
-		if (window.confirm('Are you sure you want to reject friend request?')) {
-			dispatch(userActions.rejectFriendRequest(id));
-		}
-	};
-
-	const handleAddClick = (friend: IFriend) => {
+	const onAddFriend = () => {
 		if (user) {
 			const currentUser: IFriend = {
 				id: user.id,
@@ -33,9 +28,15 @@ export const RequestItem: FC<RequestItemProps> = memo(({request, className}) => 
 			};
 			
 			dispatch(acceptFriendRequest({
-				requestUser: friend,
+				requestUser: request,
 				responseUser: currentUser,
 			}));
+		}
+	};
+
+	const onRejectRequest = () => {
+		if (window.confirm('Are you sure you want to reject friend request?')) {
+			dispatch(userActions.rejectFriendRequest(request.id));
 		}
 	};
 
@@ -47,15 +48,15 @@ export const RequestItem: FC<RequestItemProps> = memo(({request, className}) => 
 			</div>
 			<div className={classes.actions}>
 				<Button 
-					onClick={() => handleAddClick(request)}
-					className={classes.add}
+					onClick={onAddFriend}
+					className={classes.addBtn}
 					theme='blue'
 				>
 					add
 				</Button>
 				<Button 
-					onClick={() => handleRejectClick(request.id)}
-					className={classes.reject}
+					onClick={onRejectRequest}
+					className={classes.rejectBtn}
 					theme='red'
 				>
 					reject

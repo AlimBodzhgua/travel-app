@@ -22,15 +22,15 @@
 	gap: 10px;
 }
 
-.add,
-.reject {
+.addBtn,
+.rejectBtn {
 	padding: 4px 8px;
 	font-size: 15px;
 
 	transition: border-radius .1s linear;
 }
 
-.add:hover,
-.reject:hover {
+.addBtn:hover,
+.rejectBtn:hover {
 	border-radius: 5px;
 }
