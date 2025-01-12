@@ -1,20 +1,17 @@
 import { FC, memo } from 'react';
-import { IPublicUser } from 'types/types';
+import type { IPublicUser } from 'types/types';
 import { UserItem } from './UserItem';
 
 interface UsersListProps {
-	users: IPublicUser[]
+	users: IPublicUser[];
 }
 
-export const UsersList: FC<UsersListProps> = memo(({users}) => {
+export const UsersList: FC<UsersListProps> = memo(({ users }) => {
 	return (
 		<ul>
-			{users.map(user => 
-				<UserItem 
-					key={user.id}
-					user={user}
-				/>
-			)}
+			{users.map((user) => (
+				<UserItem key={user.id} user={user} />
+			))}
 		</ul>
 	);
 });

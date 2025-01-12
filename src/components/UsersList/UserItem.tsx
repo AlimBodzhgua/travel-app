@@ -12,12 +12,12 @@ interface UserItemProps {
 	user: IPublicUser;
 }
 
-export const UserItem: FC<UserItemProps> = memo(({user}) => {
-	const currentUser = useAppSelector(selectUser);
-	const dispatch = useAppDispatch();
+export const UserItem: FC<UserItemProps> = memo(({ user }) => {
+	const { t } = useTranslation();
 	const [hovering, hoverProps]  = useHover();
 	const [requestSended, setRequestSended] = useState<boolean>(false);
-	const { t } = useTranslation();
+	const currentUser = useAppSelector(selectUser);
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		user.friendRequests.forEach(request => {
@@ -27,7 +27,7 @@ export const UserItem: FC<UserItemProps> = memo(({user}) => {
 		});
 	}, []);
 
-	const handleCancelClick = ():void => {
+	const onCancel = () => {
 		if (currentUser && hovering && requestSended) {
 			dispatch(cancelFriendRequest({
 				toId: user.id,
@@ -37,7 +37,7 @@ export const UserItem: FC<UserItemProps> = memo(({user}) => {
 		}
 	};
 
-	const handleAddClick = ():void => {
+	const onAdd = () => {
 		if (currentUser) {
 			const fromData = {
 				id: currentUser.id,
@@ -50,34 +50,32 @@ export const UserItem: FC<UserItemProps> = memo(({user}) => {
 	};
 
 	return (
-		<li className={classes.item}>
+		<li className={classes.UserItem}>
 			<div>
 				<h3>{user.email}</h3>
 				<div>{user.login}</div>
 			</div>
-			{requestSended 
-				?	<Button 
-						{...hoverProps}
-						onClick={handleCancelClick}
-						theme='blue'
-						size='sm'
-						square={true}
-					>
-						{hovering
-							? t('cancel request')
-							: t('request sended')
-						}
-					</Button>
-				:   <Button 
-						{...hoverProps}
-						onClick={handleAddClick}
-						theme='blue'
-						size='sm'
-						square={true}
-					>
-						{t('add friend')}
-					</Button>
-			}
+			{requestSended ? (
+				<Button
+					{...hoverProps}
+					onClick={onCancel}
+					theme='blue'
+					size='sm'
+					square
+				>
+					{hovering ? t('cancel request') : t('request sended')}
+				</Button>
+			) : (
+				<Button
+					{...hoverProps}
+					onClick={onAdd}
+					theme='blue'
+					size='sm'
+					square
+				>
+					{t('add friend')}
+				</Button>
+			)}
 		</li>
 	);
 });
