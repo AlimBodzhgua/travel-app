@@ -68,7 +68,7 @@ export const userSlice = createSlice({
 			state.authData!.travels = filteredTravels;
 		},
 		editTravel(state, action: PayloadAction<
-			Omit<ITravel, 'members' | 'backlog' | 'groups'>
+			Omit<ITravel, 'members' | 'backlog' | 'groups' | 'places'>
 		>) {
 			state.authData?.travels.forEach(travel => {
 				if (travel.id === action.payload.id) {
@@ -253,6 +253,20 @@ export const userSlice = createSlice({
 					});
 				}
 			});	
+		},
+		addPlace(state, action: PayloadAction<{ travelId: string, place: string }>) {
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				travel.places.push(...travel.places, action.payload.place);
+			}
+		},
+		clearPlaces(state, action: PayloadAction<{ travelId: string }>) {
+			state.authData?.travels.forEach((travel) => {
+				if (travel.id === action.payload.travelId) {
+					travel.places = [];
+				}
+			})
 		}
 	},
 	extraReducers: (builder) => {

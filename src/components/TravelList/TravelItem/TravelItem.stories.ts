@@ -23,6 +23,7 @@ export const Default: Story = {
 			dateEnd: '2023.10.07',
 			members: [],
 			backlog: [],
+			places: [],
 			groups: [],
 		}
 	},

@@ -37,6 +37,7 @@ export const createNewTravel = (value: string, startDate: Dayjs, endDate: Dayjs)
 		members: [],
 		backlog: [],
 		groups: [],
+		places: [],
 	};
 };
 

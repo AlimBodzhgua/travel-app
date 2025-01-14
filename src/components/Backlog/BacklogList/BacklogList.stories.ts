@@ -33,6 +33,7 @@ const authData = {
 			dateEnd: '2023.10.07',
 			groups: [],
 			members: [],
+			places: [],
 			backlog: [
 				{
 					id: 'd8c9e269-10c3-4c9c-adc9-a3144c36f375',

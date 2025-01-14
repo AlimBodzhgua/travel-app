@@ -8,6 +8,7 @@ import App from './App';
 import 'config/i18n/i18n';
 import 'dayjs/locale/de';
 import './App.css';
+import { YMaps } from '@pbe/react-yandex-maps';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -19,7 +20,12 @@ root.render(
     <BrowserRouter>
         <Provider store={store}>
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='de'>
-                <App />
+				<YMaps query={{
+					apikey: '186cb437-4517-458a-bc6d-963f93764fa4',
+					load: 'package.full'
+				}}>
+					<App />
+				</YMaps>
             </LocalizationProvider>
         </Provider>
     </BrowserRouter>

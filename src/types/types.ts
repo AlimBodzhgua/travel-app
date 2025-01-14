@@ -18,7 +18,8 @@ export interface ITravel {
 	dateStart: string;
 	dateEnd: string;
 	members: IFriend[];
-	backlog: IBacklog[]
+	backlog: IBacklog[];
+	places: string[];
 	groups: IGroup[];
 }
 
