@@ -112,7 +112,30 @@
         }
       ],
       "friendRequests": [],
-      "travels": []
+      "travels": [
+        {
+          "id": "4a66541e-d2d9-4a43-8900-27ac8c5cd4ed",
+          "name": "new grop",
+          "dateStart": "2025.01.14",
+          "dateEnd": "2025.01.14",
+          "members": [],
+          "backlog": [],
+          "groups": [
+            {
+              "id": "774a66ab-712d-45b9-b769-05fa30acd51b",
+              "title": "group 1",
+              "cards": [
+                {
+                  "id": "80c483c9-5d5f-44b8-b2f8-6d7aa2b7cb3d",
+                  "title": "dqwd",
+                  "description": "dasdsa"
+                }
+              ]
+            }
+          ],
+          "places": []
+        }
+      ]
     },
     {
       "email": "alimbo4@mail.ru",
