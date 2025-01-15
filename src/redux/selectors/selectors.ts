@@ -39,8 +39,3 @@ export const selectPlaces = (state: StateSchema, travelId: string) => {
 export const selectAllUsers = (state: StateSchema) => {
 	return state.allUsers.users.filter(user => user.id !== state.user.authData?.id);
 };
-
-export const memozedSelectAllUsers = createSelector(
-	[selectAllUsers], (allUsers) => {
-	return allUsers;
-});
