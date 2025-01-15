@@ -25,6 +25,7 @@ export const Default: Story = {
 				members: [],
 				backlog: [],
 				groups: [],
+				places: [],
 			},
 			{
 				id: '1696690300138',
@@ -34,6 +35,7 @@ export const Default: Story = {
 				members: [],
 				backlog: [],
 				groups: [],
+				places: [],
 			},
 		],
 	},

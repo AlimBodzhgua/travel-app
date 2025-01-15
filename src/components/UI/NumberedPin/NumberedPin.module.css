@@ -1,0 +1,20 @@
+
+
+.NumberedPin {
+	position: relative;
+	width: 1.4rem;
+}
+
+.number {
+	position: absolute;
+	top: 35%;
+	left: 45%;
+	transform: translate(-50%, -50%);
+	font-size: 12px;
+	color: #fff;
+	font-weight: 900;
+}
+
+.pinIcon {
+	width: 1.3rem;
+}

@@ -93,6 +93,7 @@
 
 .addBtn {
 	margin-top: 5px;
+	color: #fff;
 
 	font-weight: 700;
 	align-self: end;
@@ -103,11 +104,13 @@
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+
+	color: #fff;
 }
 
 .noteIcon {
 	width: 2.4rem;
 	height: 2.4rem;
-	fill: #514b4b;
+	fill: #efefef;
 	margin-bottom: 10px;
 }

@@ -29,7 +29,6 @@ const initialState: UserSchema = {
 	authData: undefined,
 };
 
-
 export const userSlice = createSlice({
 	name: 'user',
 	initialState,
@@ -64,195 +63,154 @@ export const userSlice = createSlice({
 			state.authData?.travels.push(action.payload);
 		},
 		deleteTravel(state, action: PayloadAction<string>) {
-			const filteredTravels = state.authData!.travels.filter((travel) => travel.id !== action.payload);
-			state.authData!.travels = filteredTravels;
+			const travelIndex = state.authData!.travels.findIndex((travel) => travel.id === action.payload);
+			state.authData!.travels.splice(travelIndex, 1);
 		},
-		editTravel(state, action: PayloadAction<
-			Omit<ITravel, 'members' | 'backlog' | 'groups'>
-		>) {
-			state.authData?.travels.forEach(travel => {
-				if (travel.id === action.payload.id) {
-					travel.name = action.payload.name;
-					travel.dateStart = action.payload.dateStart;
-					travel.dateEnd = action.payload.dateEnd;
-				}
-			});
+		editTravel(state, action: PayloadAction<Omit<ITravel, 'members' | 'backlog' | 'groups' | 'places'>>) {
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.id);
+			if (travel) {
+				travel.name = action.payload.name;
+				travel.dateStart = action.payload.dateStart;
+				travel.dateEnd = action.payload.dateEnd;
+			}
 		},
 		moveTravels(state, action: PayloadAction<{ activeId: string, overId: string }>) {
 			if (state.authData) {
-				const activeIndex = state.authData?.travels.findIndex((travel) => {
-					return travel.id === action.payload.activeId;
-				});
-				const overIndex = state.authData?.travels.findIndex((travel) => {
-					return travel.id === action.payload.overId;
-				});
-				state.authData.travels = arrayMove(state?.authData?.travels, activeIndex, overIndex);
+				const activeIndex = state.authData.travels.findIndex((t) => t.id === action.payload.activeId);
+				const overIndex = state.authData.travels.findIndex((t) => t.id === action.payload.overId);
+				state.authData.travels = arrayMove(state.authData.travels, activeIndex, overIndex);
 			}
 		},
 		addMember(state, action: PayloadAction<{ travelId: string, member: IFriend }>) {
-			state.authData?.travels.forEach(travel => {
-				if (travel.id === action.payload.travelId) {
-					travel.members.push(action.payload.member);
-				}
-			});
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				travel.members.push(action.payload.member);
+			}
 		},
 		deleteMember(state, action: PayloadAction<{ travelId: string, memberId: number }>) {
-			state.authData?.travels.forEach(travel => {
-				if (travel.id === action.payload.travelId) {
-					travel.members = travel.members
-						.filter(member => member.id !== action.payload.memberId);
-				}
-			});
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				const memberIndex = travel.members.findIndex((member) => member.id === action.payload.memberId);
+				travel.members.splice(memberIndex, 1);
+			}
 		},
 		addBacklog(state, action: PayloadAction<{ travelId: string, backlog: IBacklog }>) {
-			state.authData?.travels.forEach(travel => {
-				if (travel.id === action.payload.travelId) {
-					travel.backlog.push(action.payload.backlog);
-				}
-			});
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				travel.backlog.push(action.payload.backlog);
+			}
 		},
 		deleteBacklog(state, action: PayloadAction<{ travelId: string, backlogId: string }>) {
-			state.authData?.travels.forEach((travel) => {
-				if (travel.id === action.payload.travelId) {
-					travel.backlog.splice(travel.backlog.findIndex((item) => 
-						item.id === action.payload.backlogId
-					), 1);
-				}
-			});
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				const backlogIndex = travel.backlog.findIndex((backlog) => backlog.id === action.payload.backlogId);
+				travel.backlog.splice(backlogIndex, 1);
+			}
 		},
-		editBacklog(state, action: PayloadAction<{
-			travelId: string, 
-			backlogId: string, 
-			value: string}>
-		) {
-			state.authData?.travels.forEach((travel) => {
-				if (travel.id === action.payload.travelId) {
-					travel.backlog.forEach(item => {
-						if (item.id === action.payload.backlogId) {
-							item.name = action.payload.value;
-						}
-					});
+		editBacklog(state, action: PayloadAction<{ travelId: string, backlogId: string, value: string }>) {
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				const backlog = travel.backlog.find((backlog) => backlog.id === action.payload.backlogId);
+
+				if (backlog) {
+					backlog.name = action.payload.value;
 				}
-			});
+			}
 		},
-		moveBacklogs(state, action: PayloadAction<{
-			travelId: string,
-			activeId: string,
-			overId: string,
-		}>) {
-			state.authData?.travels.forEach((travel) => {
-				if (travel.id === action.payload.travelId) {
-					const activeIndex = travel.backlog.findIndex((log) => {
-						return log.id === action.payload.activeId;
-					});
-					const overIndex = travel.backlog.findIndex((log) => {
-						return log.id === action.payload.overId;
-					});
-					travel.backlog = arrayMove(travel.backlog, activeIndex, overIndex);
-				}
-			});
+		moveBacklogs(state, action: PayloadAction<{ travelId: string,activeId: string,overId: string }>) {
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				const activeIndex = travel.backlog.findIndex((log) => log.id === action.payload.activeId);
+				const overIndex = travel.backlog.findIndex((log) => log.id === action.payload.overId);
+				travel.backlog = arrayMove(travel.backlog, activeIndex, overIndex);
+			}
 		},
 		addGroup(state, action: PayloadAction<{ travelId: string, group: IGroup }>) {
-			state.authData?.travels.forEach((travel) => {
-				if (travel.id === action.payload.travelId) {
-					travel.groups.push(action.payload.group);
-				}
-			});
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				travel.groups.push(action.payload.group);
+			}
 		},
-		deleteGroup(state, action: PayloadAction<{travelId: string, groupId: string}>) {
-			state.authData?.travels.forEach((travel) => {
-				if (travel.id === action.payload.travelId) {
-					travel.groups.splice(travel.groups.findIndex(group => 
-						group.id === action.payload.groupId
-					), 1);
-				}
-			});
+		deleteGroup(state, action: PayloadAction<{ travelId: string, groupId: string }>) {
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				const groupIndex = travel.groups.findIndex((group) => group.id === action.payload.groupId);
+				travel.groups.splice(groupIndex, 1);
+			}
 		},
-		editGroup(state, action: PayloadAction<{
-			travelId: string,
-			groupId: string,
-			value: string
-		}>) {
-			state.authData?.travels.forEach((travel) => {
-				if (travel.id === action.payload.travelId) {
-					travel.groups.forEach(group => {
-						if (group.id === action.payload.groupId) {
-							group.title = action.payload.value;
-						}
-					});
+		editGroup(state, action: PayloadAction<{ travelId: string, groupId: string, value: string }>) {
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				const group = travel.groups.find((group) => group.id === action.payload.groupId);
+
+				if (group) {
+					group.title = action.payload.value;
 				}
-			});
+			}
 		},
-		moveGroups(state, action: PayloadAction<{
-			travelId: string, 
-			activeId: string, 
-			overId: string
-		}>) {
-			state.authData?.travels.forEach((travel) => {
-				if (travel.id === action.payload.travelId) {
-					const activeIndex = travel.groups.findIndex((group) => {
-						return group.id === action.payload.activeId;
-					});
-					const overIndex = travel.groups.findIndex((group) => {
-						return group.id === action.payload.overId;
-					});
-					travel.groups = arrayMove(travel.groups, activeIndex, overIndex);
-				}
-			});
+		moveGroups(state, action: PayloadAction<{ travelId: string, activeId: string, overId: string }>) {
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				const activeIndex = travel.groups.findIndex((group) => group.id === action.payload.activeId);
+				const overIndex = travel.groups.findIndex((group) => group.id === action.payload.overId);
+				travel.groups = arrayMove(travel.groups, activeIndex, overIndex);
+			}
 		},
-		addCard(state, action: PayloadAction<{
-			travelId: string, 
-			groupId: string,
-			card: ICard
-		}>) {
-			state.authData?.travels.forEach((travel) => {
-				if (travel.id === action.payload.travelId) {
-					travel.groups.forEach(group => {
-						if (group.id === action.payload.groupId) {
-							group.cards.push(action.payload.card);
-						}
-					});
+		addCard(state, action: PayloadAction<{ travelId: string, groupId: string, card: ICard }>) {
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				const group = travel.groups.find((group) => group.id === action.payload.groupId);
+
+				if (group) {
+					group.cards.push(action.payload.card);
 				}
-			});
+			}
 		},
-		deleteCard(state, action: PayloadAction<{
-			cardId: string,
-			groupId: string,
-			travelId: string
-		}>) {
-			state.authData?.travels.forEach(travel => {
-				if (travel.id === action.payload.travelId) {
-					travel.groups.forEach(group => {
-						if (group.id === action.payload.groupId) {
-							group.cards.splice(group.cards.findIndex(
-								card => card.id === action.payload.cardId)
-							, 1);
-						}
-					});
+		deleteCard(state, action: PayloadAction<{ cardId: string, groupId: string, travelId: string }>) {
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				const group = travel.groups.find((group) => group.id === action.payload.groupId);
+
+				if (group) {
+					const cardIndex = group.cards.findIndex((card) => card.id === action.payload.groupId);
+					group.cards.splice(cardIndex, 1);
 				}
-			});
+			}
 		},
-		moveCards(state, action: PayloadAction<{
-			travelId: string,
-			groupId: string,
-			activeId: string,
-			overId: string
-		}>) {
-			state.authData?.travels.forEach((travel) => {
-				if (travel.id === action.payload.travelId) {
-					travel.groups.forEach(group => {
-						if (group.id === action.payload.groupId) {
-							const activeIndex = group.cards.findIndex((card) => {
-								return card.id === action.payload.activeId;
-							});
-							const overIndex = group.cards.findIndex((card) => {
-								return card.id === action.payload.overId;
-							});
-							group.cards = arrayMove(group.cards, activeIndex, overIndex);
-						}
-					});
+		moveCards(state, action: PayloadAction<{ travelId: string, groupId: string, activeId: string, overId: string }>) {
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) {
+				const group = travel.groups.find((group) => group.id === action.payload.groupId);
+
+				if (group) {
+					const activeIndex = group.cards.findIndex((card) => card.id === action.payload.activeId);
+					const overIndex = group.cards.findIndex((card) => card.id === action.payload.overId);
+					group.cards = arrayMove(group.cards, activeIndex, overIndex);
 				}
-			});	
+			}
+		},
+		addPlace(state, action: PayloadAction<{ travelId: string, place: string }>) {
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+			if (travel) travel.places.push(action.payload.place);
+		},
+		clearPlaces(state, action: PayloadAction<string>) {
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload);
+
+			if (travel) travel.places = [];
 		}
 	},
 	extraReducers: (builder) => {

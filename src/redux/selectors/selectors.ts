@@ -31,6 +31,11 @@ export const selectCards = (state: StateSchema, travelId: string, groupId: strin
 		.find(group => group.id === groupId)?.cards || [];
 };
 
+export const selectPlaces = (state: StateSchema, travelId: string) => {
+	return state.user.authData?.travels
+		.find((travel) => travel.id === travelId)?.places || [];
+};
+
 export const selectAllUsers = (state: StateSchema) => {
 	return state.allUsers.users.filter(user => user.id !== state.user.authData?.id);
 };

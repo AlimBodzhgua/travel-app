@@ -39,11 +39,9 @@ export const BacklogList: FC<BacklogListProps> = memo(({ className }) => {
 		}
 	};
 
-
 	return (
 		<div className={classnames(classes.backlog, className)}>
 			<h2 className={classes.title}>Backlog</h2>
-
 			{backlogs.length ? (
 				<SortableList onDragEnd={onDragEnd} items={backlogs}>
 					<ul className={classes.list}>
