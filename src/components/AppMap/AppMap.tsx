@@ -3,19 +3,8 @@ import { useYMaps } from '@pbe/react-yandex-maps';
 import { RotatingLines } from 'react-loader-spinner';
 import { Button } from 'components/UI/Button/Button';
 import { defaultControls } from './controls';
+import { ReactComponent as TrashIcon } from 'assets/icons/delete.svg';
 import classes from './AppMap.module.css';
-
-const initialPlaces = [
-	'Москва, улица Лужники', // [55.719130, 37.557834]
-	'Москва, Беговая улица, 22', // [55.778765, 37.559388]
-	'Москва, Измайловский парк культуры и отдыха', // [55.76713959111698, 37.7601008370564]
-]
-
-const initialCoords = [
-	[55.719130, 37.557834],
-	[55.778765, 37.559388],
-	[55.76713959111698, 37.7601008370564],
-]
 
 interface AppMapProps {
 	onLocationSelect?: (address: string) => void;
@@ -99,12 +88,12 @@ export const AppMap: FC<AppMapProps> = memo((props) => {
 		}
 	};
 
-	const onAddPlacemark = async (coords: number[], caption?: string) => {
+	const onAddPlacemark = async (coords: number[], caption?: string, skipAction?: boolean) => {
 		const address = await getAddress(coords);
 		placemarkRef.current = createPlacemark(coords, address);
 		map.current!.geoObjects.add(placemarkRef.current);
 		
-		if (onLocationSelect && address) {
+		if (onLocationSelect && address && skipAction !== false) {
 			onLocationSelect(address);
 		}
 	};
@@ -129,7 +118,7 @@ export const AppMap: FC<AppMapProps> = memo((props) => {
 		places.forEach(async (place) => {
 			const coordinates = await getCoordinates(place);
 			if (coordinates) {
-				onAddPlacemark(coordinates);
+				onAddPlacemark(coordinates, undefined, false);
 				onAddPolyline(coordinates);
 			}
 		});
@@ -150,10 +139,11 @@ export const AppMap: FC<AppMapProps> = memo((props) => {
 
 		if (initialCoords) {
 			initialCoords.forEach((coord) => {
-				onAddPlacemark(coord);
+				onAddPlacemark(coord, undefined, false);
 				onAddPolyline(coord);
 			})
 		} else if (initialPlaces) {
+			console.log('initial places')
 			initPlaces(initialPlaces);
 		}
 
@@ -184,7 +174,7 @@ export const AppMap: FC<AppMapProps> = memo((props) => {
 					className={classes.clearBtn}
 					onClick={onClear}
 				>
-					clear
+					<TrashIcon className={classes.trashIcon}/>
 				</Button>
 			)}
 			<div className={classes.Map} ref={mapRef} />

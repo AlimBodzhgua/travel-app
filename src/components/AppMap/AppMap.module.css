@@ -20,15 +20,21 @@
 
 .clearBtn {
 	position: absolute;
-	top: 15px;
-	left: 50px;
+	top: 54px;
+	left: 14px;
 	z-index: 100;
 	
 	color: #000;
 	background-color: #fff;
 	font-weight: 500;
-	padding: 5px 8px;
+	padding: 2px 4px;
 	border-radius: 3px;
+}
+
+.trashIcon {
+	width: 1.2rem;
+	height: 1.2rem;
+	stroke: black;
 }
 
 .spinner {

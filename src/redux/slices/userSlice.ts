@@ -205,16 +205,12 @@ export const userSlice = createSlice({
 		addPlace(state, action: PayloadAction<{ travelId: string, place: string }>) {
 			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
 
-			if (travel) {
-				travel.places.push(...travel.places, action.payload.place);
-			}
+			if (travel) travel.places.push(action.payload.place);
 		},
-		clearPlaces(state, action: PayloadAction<{ travelId: string }>) {
-			state.authData?.travels.forEach((travel) => {
-				if (travel.id === action.payload.travelId) {
-					travel.places = [];
-				}
-			})
+		clearPlaces(state, action: PayloadAction<string>) {
+			const travel = state.authData?.travels.find((travel) => travel.id === action.payload);
+
+			if (travel) travel.places = [];
 		}
 	},
 	extraReducers: (builder) => {

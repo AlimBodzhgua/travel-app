@@ -19,16 +19,20 @@ export const TravelRoute: FC<TravelRouteProps> = memo(({ className }) => {
 
 	const onLocationSelect = useCallback((address: string) => {
 		dispatch(userActions.addPlace({ travelId: id!, place: address }));
-	}, []);
+	}, [dispatch]);
 
 	const onClearPlaces = useCallback(() => {
-		dispatch(userActions.clearPlaces({ travelId: id! }));
-	}, []);
-
+		dispatch(userActions.clearPlaces(id!));
+	}, [dispatch]);
 
 	return (
 		<div className={classnames(classes.TravelRoute, className)}>
-			<AppMap onLocationSelect={onLocationSelect} onMapClear={onClearPlaces} />
+			<h2 className={classes.title}>Build your trip route</h2>
+			<AppMap
+				onLocationSelect={onLocationSelect}
+				onMapClear={onClearPlaces}
+				initialPlaces={places}
+			/>
 			<Places places={places} />
 		</div>
 	);

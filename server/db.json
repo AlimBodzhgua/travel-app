@@ -114,20 +114,17 @@
       "friendRequests": [],
       "travels": [
         {
-          "id": "4a66541e-d2d9-4a43-8900-27ac8c5cd4ed",
-          "name": "new grop",
-          "dateStart": "2025.01.14",
-          "dateEnd": "2025.01.14",
+          "id": "859b6bbc-85a8-4e3f-b3c2-cc583f5195a6",
+          "name": "new",
+          "dateStart": "2025.01.15",
+          "dateEnd": "2025.01.15",
           "members": [],
           "backlog": [],
-          "groups": [
-            {
-              "id": "774a66ab-712d-45b9-b769-05fa30acd51b",
-              "title": "group 1",
-              "cards": []
-            }
-          ],
-          "places": []
+          "groups": [],
+          "places": [
+            "Москва, улица Лужники, 24с3",
+            "Москва, Северный административный округ, район Беговой"
+          ]
         }
       ]
     },
