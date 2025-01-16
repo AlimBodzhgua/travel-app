@@ -12,13 +12,7 @@
           "email": "alimbo1@mail.ru"
         }
       ],
-      "friendRequests": [
-        {
-          "id": 1696705696266,
-          "login": "alimbo1",
-          "email": "alim@mail.ru"
-        }
-      ],
+      "friendRequests": [],
       "travels": [
         {
           "id": "1696690300138",
@@ -96,7 +90,13 @@
           "email": "alimbo3@mail.ru"
         }
       ],
-      "friendRequests": [],
+      "friendRequests": [
+        {
+          "id": 1696705696266,
+          "login": "alimbo1",
+          "email": "alim@mail.ru"
+        }
+      ],
       "travels": []
     },
     {

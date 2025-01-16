@@ -37,18 +37,18 @@ const allUsersSlice = createSlice({
 				state.errorMessage = action.payload;
 			})
 			.addCase(sendFriendRequest.fulfilled, (state, action) => {
-				state.users.forEach(user => {
-					if (user.id === action.payload.id) {
-						user.friendRequests.push(action.payload.data);
-					}
-				});
+				const user = state.users.find((user) => user.id === action.payload.receivingId);
+
+				if (user) {
+					user.friendRequests.push(action.payload.requestingUser);
+				}
 			})
 			.addCase(cancelFriendRequest.fulfilled, (state, action) => {
-				state.users.forEach(user => {
-					if (user.id === action.payload.toId) {
-						user.friendRequests = user.friendRequests.filter(request => request.id !== action.payload.fromId);
-					}
-				});
+				const user = state.users.find((user) => user.id === action.payload.canceledUserId);
+
+				if (user) {
+					user.friendRequests = user.friendRequests.filter(request => request.id !== action.payload.receivedUserId);
+				}
 			});
 	}
 });
