@@ -30,8 +30,8 @@ export const UserItem: FC<UserItemProps> = memo(({ user }) => {
 	const onCancel = () => {
 		if (currentUser && hovering && requestSended) {
 			dispatch(cancelFriendRequest({
-				toId: user.id,
-				fromId: currentUser.id
+				receivedUserId: user.id,
+				canceledUserId: currentUser.id,
 			}));
 			setRequestSended(!requestSended);
 		}
@@ -39,12 +39,12 @@ export const UserItem: FC<UserItemProps> = memo(({ user }) => {
 
 	const onAdd = () => {
 		if (currentUser) {
-			const fromData = {
+			const requestingUserData = {
 				id: currentUser.id,
 				login: currentUser.login,
-				email: currentUser.email
+				email: currentUser.email,
 			};
-			dispatch(sendFriendRequest({id: user.id, data: fromData}));
+			dispatch(sendFriendRequest({ receivingId: user.id, requestingUser: requestingUserData }));
 			setRequestSended(!requestSended);
 		}
 	};

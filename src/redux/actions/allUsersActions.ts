@@ -1,15 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getErrorMessage } from 'utils/utils';
-import { IPublicUser } from 'types/types';
+import type { IPublicUser } from 'types/types';
 import UserService from 'services/UserService';
 
 export const fetchAllUsers = createAsyncThunk<
 	IPublicUser[], 
 	void, 
-	{rejectValue: string}
+	{ rejectValue: string }
 >(
-	'users/getAll',
-	async (_, {rejectWithValue}) => {
+	'allUsers/getAll',
+	async (_, { rejectWithValue }) => {
 		try {
 			const response = await UserService.getAllUsers();
 			return response;
@@ -19,48 +19,51 @@ export const fetchAllUsers = createAsyncThunk<
 	}
 );
 
-interface DataProps {
+type RequestingUser = {
 	id: number;
 	login: string;
 	email: string;
 }
 
-interface ISendFriendRequestAction {
-	id: number;
-	data: DataProps;
+type RequestType = {
+	receivingId: number;
+	requestingUser: RequestingUser;
 }
 
 export const sendFriendRequest = createAsyncThunk<
-	ISendFriendRequestAction,
-	ISendFriendRequestAction,
-	{rejectValue: string}
+	RequestType,
+	RequestType,
+	{ rejectValue: string }
 >(
-	'users/friendRequest',
-	async({id, data}, {rejectWithValue}) => {
+	'allUsers/friendRequest',
+	async(request, { rejectWithValue }) => {
+		const { receivingId, requestingUser } = request;
 		try {
-			UserService.sendFriendRequest(id, data);
-			return {id, data};
+			await UserService.sendFriendRequest(receivingId, requestingUser);
+			return { receivingId, requestingUser };
 		} catch (e) {
 			return rejectWithValue(getErrorMessage(e));
 		}
 	}
 );
 
-interface ICancelFriendRequestAction {
-	toId: number;
-	fromId: number;
+type CancelRequestType = {
+	receivedUserId: number;
+	canceledUserId: number;
 }
 
 export const cancelFriendRequest = createAsyncThunk<
-	ICancelFriendRequestAction,
-	ICancelFriendRequestAction,
-	{rejectValue: string}
+	CancelRequestType,
+	CancelRequestType,
+	{ rejectValue: string }
 >(
-	'users/cancelRequest',
-	async({toId, fromId}, {rejectWithValue}) => {
+	'allUsers/cancelRequest',
+	async(request, { rejectWithValue }) => {
+		const { receivedUserId, canceledUserId} = request;
+
 		try {
-			UserService.cancelFriendRequest(toId, fromId);
-			return {toId, fromId};
+			await UserService.cancelFriendRequest(receivedUserId, canceledUserId);
+			return { receivedUserId, canceledUserId };
 		} catch (e) {
 			return rejectWithValue(getErrorMessage(e));
 		}

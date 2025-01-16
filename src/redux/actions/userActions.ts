@@ -1,15 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IUser, IUserLogin, IFriend } from 'types/types';
 import { getErrorMessage, modifyUserResponseObject, saveUserToLocalStorage } from 'utils/utils';
+import type { IUser, IUserLogin, IFriend } from 'types/types';
 import UserService from 'services/UserService';
 
 export const registerUser = createAsyncThunk<
 	IUser, 
 	IUser, 
-	{rejectValue: string}
+	{ rejectValue: string }
 >(
-	'users/register',
-	async (data, {rejectWithValue}) => {
+	'user/register',
+	async (data, { rejectWithValue }) => {
 		try {
 			const response = await UserService.register(data);
 			const user = modifyUserResponseObject(response);
@@ -24,10 +24,10 @@ export const registerUser = createAsyncThunk<
 export const loginUser = createAsyncThunk<
 	IUser,
 	IUserLogin,
-	{rejectValue: string}
+	{ rejectValue: string }
 >(
-	'users/login',
-	async (data, {rejectWithValue}) => {
+	'user/login',
+	async (data, { rejectWithValue }) => {
 		try {
 			const response = await UserService.login(data);
 			const user = modifyUserResponseObject(response);
@@ -42,13 +42,15 @@ export const loginUser = createAsyncThunk<
 
 export const acceptFriendRequest = createAsyncThunk<
 	IFriend,
-	{requestUser: IFriend, responseUser: IFriend},
-	{rejectValue: string}
+	{ requestUser: IFriend, responseUser: IFriend },
+	{ rejectValue: string }
 >(
 	'user/acceptFriendRequest',
-	async({requestUser, responseUser}, {rejectWithValue}) => {
+	async(request, { rejectWithValue }) => {
+		const { requestUser, responseUser } = request;
+
 		try {
-			UserService.acceptFriendRequest(requestUser, responseUser);
+			await UserService.acceptFriendRequest(requestUser, responseUser);
 			return requestUser;
 		} catch (e) {
 			return rejectWithValue(getErrorMessage(e));
@@ -58,13 +60,15 @@ export const acceptFriendRequest = createAsyncThunk<
 
 export const deleteFriend = createAsyncThunk<
 	number,
-	{firstUserId: number, secondUserId: number},
-	{rejectValue: string}
+	{ firstUserId: number, secondUserId: number },
+	{ rejectValue: string }
 >(
 	'user/deleteFrined',
-	async({firstUserId, secondUserId}, {rejectWithValue}) => {
+	async(data, { rejectWithValue }) => {
+		const { firstUserId, secondUserId } = data;
+
 		try {
-			UserService.deleteFriend(firstUserId, secondUserId);
+			await UserService.deleteFriend(firstUserId, secondUserId);
 			return secondUserId;
 		} catch (e) {
 			return rejectWithValue(getErrorMessage(e));

@@ -1,5 +1,4 @@
 import { StateSchema } from 'redux/config/StateSchema';
-import { createSelector } from '@reduxjs/toolkit';
 
 export const selectUser = (state: StateSchema) => {
 	return state.user.authData;
