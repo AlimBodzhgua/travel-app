@@ -3,7 +3,8 @@ import {
 	IPublicUser,
 	IUserResponse, 
 	IUserLogin, 
-	IFriend
+	IFriend,
+	ITravel
 } from 'types/types';
 import $axios from 'api/axios';
 
@@ -56,10 +57,7 @@ export default class UserService {
 		await $axios.patch(`/users/${toId}`, body);
 	}
 
-	static async acceptFriendRequest(
-		requestUser: IFriend,
-		responseUser: IFriend,
-	): Promise<void> {
+	static async acceptFriendRequest(requestUser: IFriend, responseUser: IFriend): Promise<void> {
 		const response = await $axios.get(`/users/${requestUser.id}`);
 		const body = { friends: [...response.data.friends, responseUser] };
 
@@ -75,5 +73,27 @@ export default class UserService {
 		};
 
 		await $axios.patch(`/users/${secondUserId}`, body);
+	}
+
+	static async getUserTravels(userId: number): Promise<ITravel[]> {
+		const response = await $axios.get<IUser[]>(`/users?id=${userId}`);
+		return response.data[0].travels;
+	}
+
+	static async addTravelToMember(memberId: number, travel: ITravel) : Promise<void> {
+		const memberTravels = await UserService.getUserTravels(memberId);
+
+		await $axios.patch(`/users/${memberId}`, {
+			travels: [...memberTravels, travel],
+		});
+	}
+
+	static async removeTravelByMember(memberId: number, travelId: string) : Promise<void> {
+		const memberTravels = await UserService.getUserTravels(memberId);
+		const filteredTravels = memberTravels.filter((travel) => travel.id !== travelId);
+
+		await $axios.patch(`/users/${memberId}`, {
+			travels: filteredTravels,
+		});
 	}
 }

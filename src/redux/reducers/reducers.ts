@@ -1,6 +1,6 @@
 import type { ActionReducerMapBuilder } from '@reduxjs/toolkit';
 import type { UserSchema } from 'redux/slices/userSlice';
-import { acceptFriendRequest, deleteFriend, loginUser, registerUser } from 'redux/actions/userActions';
+import { acceptFriendRequest, addMember, deleteFriend, deleteMember, loginUser, registerUser } from 'redux/actions/userActions';
 
 export const getRegisterUserReducerBuilder = (builder: ActionReducerMapBuilder<UserSchema>) => {
 	builder.addCase(registerUser.pending, (state, _) => {
@@ -58,5 +58,45 @@ export const getDeleteFrinedReducerBuilder = (builder: ActionReducerMapBuilder<U
 	builder.addCase(deleteFriend.rejected, (state, action) => {
 		state.errorMessage = action.payload;
 		state.isLoading = false;
+	});
+};
+
+
+export const getAddMemberReducerBuilder = (builder: ActionReducerMapBuilder<UserSchema>) => {
+	builder.addCase(addMember.pending, (state, action) => {
+		state.isLoading = true;
+	});
+	builder.addCase(addMember.fulfilled, (state, action) => {
+		state.isLoading = false;
+		state.errorMessage = undefined;
+		
+		const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travel.id);
+		
+		if (travel) {
+			travel.members.push(action.payload.member);
+		}
+	});
+	builder.addCase(addMember.rejected, (state, action) => {
+		state.errorMessage = action.payload;
+	});
+};
+
+export const getDeleteMemberReducerBuilder = (builder: ActionReducerMapBuilder<UserSchema>) => {
+	builder.addCase(deleteMember.pending, (state, action) => {
+		state.isLoading = true;
+	});
+	builder.addCase(deleteMember.fulfilled, (state, action) => {
+		state.isLoading = false;
+		state.errorMessage = undefined;
+
+		const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
+
+		if (travel) {
+			const memberIndex = travel.members.findIndex((member) => member.id === action.payload.memberId);
+			travel.members.splice(memberIndex, 1);
+		}
+	});
+	builder.addCase(deleteMember.rejected, (state, action) => {
+		state.errorMessage = action.payload;
 	});
 };

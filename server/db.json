@@ -1,13 +1,28 @@
 {
   "users": [
     {
-      "email": "alimbo3@mail.ru",
-      "password": "$2a$10$ZSXuGye/gJAWJNuXD6fMLutRC1bFu7Hxx.RMTQlbcUtKYPnnDwT9q",
-      "login": "alimbo3",
-      "id": 1696621269786,
+      "email": "alimbo1@mail.ru",
+      "password": "$2a$10$C1BIDIDJ7AqHPzAb9L01EOTHgkPXnN1zPu2Q.suSqbD0Ikgfq1v/i",
+      "login": "alimbo1",
+      "id": 1737035978902,
       "friends": [
         {
-          "id": 1696621389637,
+          "id": 1737037659999,
+          "login": "alimbo2",
+          "email": "alimbo2@mail.ru"
+        }
+      ],
+      "friendRequests": [],
+      "travels": []
+    },
+    {
+      "email": "alimbo2@mail.ru",
+      "password": "$2a$10$zPAnnEQ46nWwCm716Yxgt.FEWoij6PmOLXNkydnJe5DJjMG6BzCpi",
+      "login": "alimbo2",
+      "id": 1737037659999,
+      "friends": [
+        {
+          "id": 1737035978902,
           "login": "alimbo1",
           "email": "alimbo1@mail.ru"
         }
@@ -15,142 +30,16 @@
       "friendRequests": [],
       "travels": [
         {
-          "id": "1696690300138",
-          "name": "travel to Moscow",
-          "dateStart": "2023.10.07",
-          "dateEnd": "2023.10.07",
-          "members": [],
-          "backlog": [],
-          "groups": []
-        },
-        {
-          "id": "1696690304858",
-          "name": "travel to Sochi",
-          "dateStart": "2023.10.07",
-          "dateEnd": "2023.10.07",
-          "members": [],
-          "backlog": [
-            {
-              "id": "1696689792596",
-              "name": "backlog 1"
-            },
-            {
-              "id": "1696701669884",
-              "name": "backlog 2"
-            }
-          ],
-          "groups": [
-            {
-              "id": "1696705712096",
-              "title": "group 1 title",
-              "cards": []
-            },
-            {
-              "id": "1696705712096",
-              "title": "group 2 title",
-              "cards": []
-            }
-          ]
-        },
-        {
-          "id": "1696687791519",
-          "name": "new trip",
-          "dateStart": "2023.10.07",
-          "dateEnd": "2023.10.07",
-          "members": [],
-          "backlog": [
-            {
-              "id": "1696689792596",
-              "name": "345"
-            },
-            {
-              "id": "1696701669884",
-              "name": "asd"
-            }
-          ],
-          "groups": [
-            {
-              "id": "1696690045658",
-              "title": "new group12",
-              "cards": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "email": "alimbo1@mail.ru",
-      "password": "$2a$10$sRzyuNbjj1cnZhY4itLw5uBWsxL.HVUX0yUgPmPecE1PqB1x2w3T2",
-      "login": "alimbo1",
-      "id": 1696621389637,
-      "friends": [
-        {
-          "id": 1696621269786,
-          "login": "alimbo3",
-          "email": "alimbo3@mail.ru"
-        }
-      ],
-      "friendRequests": [
-        {
-          "id": 1696705696266,
-          "login": "alimbo1",
-          "email": "alim@mail.ru"
-        }
-      ],
-      "travels": []
-    },
-    {
-      "email": "alim@mail.ru",
-      "password": "$2a$10$QdXqjf/AkdwVVIT/tziqxun6/ui66BsAh2Cn8043tYp.aQHg35/mu",
-      "login": "alimbo1",
-      "id": 1696705696266,
-      "friends": [
-        {
-          "id": 1736012730959,
-          "login": "alimbo4",
-          "email": "alimbo4@mail.ru"
-        }
-      ],
-      "friendRequests": [],
-      "travels": [
-        {
-          "id": "859b6bbc-85a8-4e3f-b3c2-cc583f5195a6",
-          "name": "new",
-          "dateStart": "2025.01.15",
-          "dateEnd": "2025.01.15",
+          "id": "55f83ce4-7cb8-4b8f-8bf3-74781d351661",
+          "name": "alimbo1 travel",
+          "dateStart": "2025.01.16",
+          "dateEnd": "2025.01.16",
           "members": [],
           "backlog": [],
           "groups": [],
-          "places": [
-            "Москва, улица Лужники, 24с3",
-            "Москва, Северный административный округ, район Беговой"
-          ]
+          "places": []
         }
       ]
-    },
-    {
-      "email": "alimbo4@mail.ru",
-      "password": "$2a$10$MopmXZe01/CTiuSCCwzCDO4Jw0F11YEewG/nsgusbWRA.nD4ZW2JS",
-      "login": "alimbo4",
-      "id": 1736012730959,
-      "friends": [
-        {
-          "id": 1696705696266,
-          "login": "alimbo1",
-          "email": "alim@mail.ru"
-        }
-      ],
-      "friendRequests": [],
-      "travels": []
-    },
-    {
-      "email": "alimbo5@mail.ru",
-      "password": "$2a$10$aikzJzle3MZ8fZwZu95EEuhEzf5FCt9wuW8h8SWwtR69KRqpfyj7i",
-      "login": "alimbo5",
-      "id": 1736013245590,
-      "friends": [],
-      "friendRequests": [],
-      "travels": []
     }
   ]
 }

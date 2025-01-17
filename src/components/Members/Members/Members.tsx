@@ -1,13 +1,13 @@
 import { FC, useState, memo } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks/redux';
 import { useParams } from 'react-router-dom';
-import { selectMembersByTravelId } from 'redux/selectors/selectors';
+import { selectMembersByTravelId, selectTravelById } from 'redux/selectors/selectors';
 import { IFriend } from 'types/types';
 import { DndContext, DragStartEvent, DragEndEvent } from '@dnd-kit/core';
-import { userActions } from 'redux/slices/userSlice';
 import { useSensors, useSensor, PointerSensor } from '@dnd-kit/core';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'components/UI/Button/Button';
+import { addMember } from 'redux/actions/userActions';
 
 import { AddMembersSection } from '../AddMembersSection/AddMembersSection';
 import { MembersList } from '../MembersList/MembersList';
@@ -19,6 +19,7 @@ export const Members: FC = memo(() => {
 	const [showAddSection, setShowAddSection] = useState<boolean>(false);
 	const [activeItem, setActiveItem] = useState<IFriend | null>(null);
 	const members = useAppSelector(state => selectMembersByTravelId(state, id!));
+	const travel = useAppSelector(state => selectTravelById(state, id!));
 	const dispatch = useAppDispatch();
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
@@ -38,9 +39,10 @@ export const Members: FC = memo(() => {
 	};
 
 	const onDragEnd = (e: DragEndEvent):void => {
-		if (e.over) {
+		if (e.over && travel) {
 			const item: IFriend = e.active.data.current?.friend;
-			dispatch(userActions.addMember({ travelId: id!, member: item }));
+
+			dispatch(addMember({ travel: travel, member: item }));
 		}
 		setActiveItem(null);
 	};

@@ -21,3 +21,16 @@
 	top: 40%;
 	left: 48%;
 }
+
+.errorMsg {
+	text-align: center;	
+	margin-top: 50px;
+	border: 1px solid rgb(170, 166, 166);
+	border-radius: 6px;
+	padding: 14px 8px;
+}
+
+.errorIcon {
+	margin-top: 12px;
+	fill: red;
+}

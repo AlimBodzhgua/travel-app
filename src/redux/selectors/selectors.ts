@@ -1,8 +1,16 @@
-import { StateSchema } from 'redux/config/StateSchema';
+import { StateSchema } from './../config/StateSchema';
 
 export const selectUser = (state: StateSchema) => {
 	return state.user.authData;
 };
+
+export const selectUserId = (state: StateSchema) => state.user.authData?.id;
+
+export const selectUserInfo = (state: StateSchema) => ({
+	id: state.user.authData!.id,
+	login: state.user.authData!.login,
+	email: state.user.authData!.email,
+})
 
 export const selectTravelById = (state: StateSchema, id: string) => {
 	return state.user.authData?.travels.find(travel => travel.id === id);	

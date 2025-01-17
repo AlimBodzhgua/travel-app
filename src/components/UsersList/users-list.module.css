@@ -11,3 +11,18 @@
 	border: 1px solid rgba(0, 0, 0, .3);
 	border-radius: 5px;
 }
+
+.emptyMsg {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
+	color: var(--color-lightblue)
+}
+
+.usersIcon {
+	width: 4rem;
+	height: 4rem;
+	fill: #c8d1d3;
+}

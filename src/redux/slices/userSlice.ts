@@ -2,7 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { arrayMove } from '@dnd-kit/sortable';
 import {
 	getAcceptFriendRequestReducerBuilder,
+	getAddMemberReducerBuilder,
 	getDeleteFrinedReducerBuilder,
+	getDeleteMemberReducerBuilder,
 	getLoginUserReducerBuilder,
 	getRegisterUserReducerBuilder,
 } from 'redux/reducers/reducers';
@@ -79,21 +81,6 @@ export const userSlice = createSlice({
 				const activeIndex = state.authData.travels.findIndex((t) => t.id === action.payload.activeId);
 				const overIndex = state.authData.travels.findIndex((t) => t.id === action.payload.overId);
 				state.authData.travels = arrayMove(state.authData.travels, activeIndex, overIndex);
-			}
-		},
-		addMember(state, action: PayloadAction<{ travelId: string, member: IFriend }>) {
-			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
-
-			if (travel) {
-				travel.members.push(action.payload.member);
-			}
-		},
-		deleteMember(state, action: PayloadAction<{ travelId: string, memberId: number }>) {
-			const travel = state.authData?.travels.find((travel) => travel.id === action.payload.travelId);
-
-			if (travel) {
-				const memberIndex = travel.members.findIndex((member) => member.id === action.payload.memberId);
-				travel.members.splice(memberIndex, 1);
 			}
 		},
 		addBacklog(state, action: PayloadAction<{ travelId: string, backlog: IBacklog }>) {
@@ -218,6 +205,8 @@ export const userSlice = createSlice({
 		getLoginUserReducerBuilder(builder);
 		getAcceptFriendRequestReducerBuilder(builder);
 		getDeleteFrinedReducerBuilder(builder);
+		getAddMemberReducerBuilder(builder);
+		getDeleteMemberReducerBuilder(builder);
 	}
 });
 

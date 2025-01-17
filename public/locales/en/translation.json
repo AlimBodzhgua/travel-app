@@ -4,7 +4,8 @@
 
 	"Travels": "Travels",
 	"Other users": "Other users",
-	"No users here yet": "No users here yet",
+	"No users in app community yet": "No users in app community yet",
+	"Error fetching users, reload the page or try again later": "Error fetching users, reload the page or try again later",
 	"search users": "search users",
 
 	"My Travels": "My Travels",

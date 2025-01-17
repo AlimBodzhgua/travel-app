@@ -3,7 +3,9 @@
 	"Loading": "Загрузка",
 	"Travels": "Путешествия",
 	"Other users": "Другие пользователи",
-	"No users here yet": "Здесь пока нет пользователеи",
+	"No users in app community yet": "В сообществе приложения пока нет пользователей",
+	"Error fetching users, reload the page or try again later": "Ошибка при загрузке пользователей, перезагрузите страницу или повторите попытку позже.",
+
 	"search users": "поиск пользователеи",
 
 	"My Travels": "Путешествия",

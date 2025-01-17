@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getErrorMessage, modifyUserResponseObject, saveUserToLocalStorage } from 'utils/utils';
-import type { IUser, IUserLogin, IFriend } from 'types/types';
+import { StateSchema } from 'redux/config/StateSchema';
+import { selectUserInfo } from 'redux/selectors/selectors';
+import type { IUser, IUserLogin, IFriend, ITravel } from 'types/types';
 import UserService from 'services/UserService';
 
 export const registerUser = createAsyncThunk<
@@ -75,3 +77,47 @@ export const deleteFriend = createAsyncThunk<
 		}
 	}
 );
+
+export const addMember = createAsyncThunk<
+	{ travel: ITravel, member: IFriend },
+	{ travel: ITravel, member: IFriend },
+	{ rejectValue: string, state: StateSchema }
+>(
+	'user/addMember',
+	async (data, { rejectWithValue, getState }) => {
+		const userInfo = selectUserInfo(getState());
+		const { travel, member } = data;
+
+		const updatedTravel = {
+			...travel!,
+			members: [...travel!.members, userInfo],
+		};
+
+		try {
+			await UserService.addTravelToMember(member.id, updatedTravel);
+
+			return data;
+		} catch (e) {
+			return rejectWithValue(getErrorMessage(e));
+		}
+	}
+)
+
+export const deleteMember = createAsyncThunk<
+	{ travelId: string, memberId: number },
+	{ travelId: string, memberId: number },
+	{ rejectValue: string }
+>(
+	'user/deleteMember',
+	async (data, { rejectWithValue }) => {
+		const { travelId, memberId } = data;
+
+		try {
+			await UserService.removeTravelByMember(memberId, travelId);
+
+			return data;
+		} catch (e) {
+			return rejectWithValue(getErrorMessage(e));
+		}
+	}
+)
