@@ -10,7 +10,7 @@ import type { IGroup } from 'types/types';
 
 import { CardCreateForm } from 'components/CreateForms';
 import { CardsList } from 'components/CardsList';
-import { Popup } from 'components/Popup/Popup';
+import { Popover } from 'components/UI/Popover/Popover';
 import { Input } from 'components/UI/Input/Input';
 import { Button } from 'components/UI/Button/Button';
 
@@ -29,7 +29,7 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 	const { t } = useTranslation();
 	const { id } = useParams<{id? : string}>();
 	const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
-	const [showPopup, setShowPopup] = useState<boolean>(false);
+	const [showPopover, setShowPopover] = useState<boolean>(false);
 	const [editable, setEditable] = useState<boolean>(false);
 	const [value, setValue] = useState<string>(group.title);
 	const dispatch = useAppDispatch();
@@ -47,19 +47,19 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 	};
 
 	const onToggleEdit = () => {
-		setEditable(prev => !prev);
+		setEditable((prev) => !prev);
 	};
 
 	const onToggleShowForm = () => {
-		setShowCreateForm(prev => !prev);
+		setShowCreateForm((prev) => !prev);
 	};
 
 	const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
 	};
 	
-	const onTogglePopup = useCallback(() => {
-		setShowPopup(prev => !prev);
+	const onTogglePopover = useCallback(() => {
+		setShowPopover((prev) => !prev);
 	}, []);
 
 	const onSave = () => {
@@ -81,11 +81,11 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 	}, [dispatch]);
 
 	return (
-		<li 
+		<li
 			className={classes.GroupItem}
 			style={style}
 			ref={setNodeRef}
-			{...attributes} 
+			{...attributes}
 			{...listeners}
 		>
 			<div className={classes.header}>
@@ -100,32 +100,49 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 						size='sm'
 						placeholder='Enter group name'
 						addonAfter={
-							<Button
-								onClick={onSave}
-								theme='clear'
-								className={classes.saveBtn}
-							>
+							<Button onClick={onSave} theme='clear' className={classes.saveBtn}>
 								<SuccessIcon />
 							</Button>
 						}
 					/>
 				) : (
-					<h2 className={classes.title} onDoubleClick={onToggleEdit}>{group?.title}</h2>
+					<h2 className={classes.title} onDoubleClick={onToggleEdit}>
+						{group?.title}
+					</h2>
 				)}
 				<div className={classes.actions}>
 					<Button onClick={onToggleEdit} size='sm' className={classes.editBtn}>
-						<EditIcon className={classes.editIcon}/>
+						<EditIcon className={classes.editIcon} />
 					</Button>
-					<Button onClick={onTogglePopup} size='sm' className={classes.closeBtn}>
-						<CloseIcon className={classes.closeIcon}/>
-					</Button>
+					<Popover
+						isOpen={showPopover}
+						onToggle={onTogglePopover}
+						onClose={onTogglePopover}
+						header='Delete exactly?'
+						body='All group data (including all cards in it) will be permanently deleted'
+						footer={
+							<Button 
+								theme='red'
+								square
+								className={classes.submitBtn}
+								onClick={deleteGroup}
+							>
+								Yes, delete
+							</Button>
+						}
+					>
+						<Button size='sm' className={classes.closeBtn}>
+							<CloseIcon className={classes.closeIcon} />
+						</Button>
+					</Popover>
 
-					{showPopup && <Popup onCancel={onTogglePopup} onDelete={deleteGroup}/>}
+					{/* {showPopup && <Popover onCancel={onTogglePopup} onDelete={deleteGroup}/>} */}
 				</div>
 			</div>
 			{group?.cards.length ? (
 				<CardsList groupId={group.id} travelId={id!} />
-			) : (!showCreateForm && (
+			) : (
+				!showCreateForm && (
 					<div className={classes.emptyMsg}>
 						<NoteIcon className={classes.noteIcon} />
 						<h3 className={classes.emptyTitle}>{t('Nothing is planned')}</h3>
@@ -135,7 +152,12 @@ export const GroupItem: FC<GroupItemProps> = memo(({ group }) => {
 			{showCreateForm ? (
 				<CardCreateForm onClose={onToggleShowForm} groupId={group.id} />
 			) : (
-				<Button onClick={onToggleShowForm} size='sm' theme='clear' className={classes.addBtn}>
+				<Button
+					onClick={onToggleShowForm}
+					size='sm'
+					theme='clear'
+					className={classes.addBtn}
+				>
 					+ {t('Add Card')}
 				</Button>
 			)}

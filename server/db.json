@@ -13,7 +13,18 @@
         }
       ],
       "friendRequests": [],
-      "travels": []
+      "travels": [
+        {
+          "id": "e9ccf9e6-5ecc-49ff-af7f-68c6f4cb96fd",
+          "name": "New Travel",
+          "dateStart": "2025.03.16",
+          "dateEnd": "2025.03.16",
+          "members": [],
+          "backlog": [],
+          "groups": [],
+          "places": []
+        }
+      ]
     },
     {
       "email": "alimbo2@mail.ru",

@@ -114,3 +114,9 @@
 	fill: #efefef;
 	margin-bottom: 10px;
 }
+
+.submitBtn {
+	display: flex;
+	justify-self: end;
+	padding: 5px 6px;
+}
