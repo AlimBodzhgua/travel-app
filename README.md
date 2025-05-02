@@ -12,8 +12,8 @@ A web application for organizing trips both independently and with other users w
 # To run this app use: npm run dev
 Use npm run dev to run the json servser and react app concurrently.
 
-# `npm run storybook`
+## `npm run storybook`
 Use this command to run storybook, by default it runs in 6006 port.
 
-# `npm run storybook:build`
+## `npm run storybook:build`
 Use this command to build storybook.
